@@ -57,7 +57,7 @@ export default function Hero() {
       {/* Animated background orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#0eaceb] rounded-full blur-3xl opacity-20"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#7c3aed] rounded-full blur-3xl opacity-20"
           animate={{
             scale: [1, 1.2, 1],
             x: [0, 50, 0],
@@ -70,7 +70,7 @@ export default function Hero() {
           }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#57c785] rounded-full blur-3xl opacity-20"
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#06b6d4] rounded-full blur-3xl opacity-20"
           animate={{
             scale: [1, 1.3, 1],
             x: [0, -50, 0],
@@ -83,7 +83,7 @@ export default function Hero() {
           }}
         />
         <motion.div
-          className="absolute top-1/2 right-1/3 w-72 h-72 bg-[#eddd53] rounded-full blur-3xl opacity-20"
+          className="absolute top-1/2 right-1/3 w-72 h-72 bg-[#a855f7] rounded-full blur-3xl opacity-20"
           animate={{
             scale: [1, 1.1, 1],
             x: [0, 30, 0],
@@ -136,7 +136,7 @@ export default function Hero() {
           >
             <MagneticButton
               onClick={() => scrollToSection("projects")}
-              className="px-8 py-4 bg-gradient-to-r from-[#0eaceb] via-[#57c785] to-[#eddd53] text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transition-shadow"
+              className="px-8 py-4 bg-gradient-to-r from-[#7c3aed] via-[#06b6d4] to-[#a855f7] text-white font-semibold rounded-full shadow-lg hover:shadow-2xl transition-shadow"
             >
               View My Work
             </MagneticButton>

@@ -16,37 +16,36 @@ export default function DeviceMockup({
 }: DeviceMockupProps) {
   if (device === "laptop") {
     return (
-      <motion.div
-        className="relative w-full max-w-4xl mx-auto"
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
-      >
-        {/* Laptop frame */}
-        <div className="relative bg-gray-800 rounded-t-lg p-3 shadow-2xl">
-          {/* Screen bezel */}
-          <div className="relative bg-gray-900 rounded-t-md overflow-hidden aspect-video">
-            {/* Camera notch */}
-            <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-700 rounded-full z-10"></div>
-            {/* Screen content */}
-            <div className="relative w-full h-full">
+      <div className="relative w-full max-w-4xl mx-auto">
+        {/* Container with aspect ratio for the laptop */}
+        <div className="relative w-full" style={{ paddingBottom: "66.67%" }}>
+          {/* 3D Laptop Frame Image - with transparent background */}
+          <Image
+            src="/images/laptop-mockup.png"
+            alt="Laptop frame"
+            fill
+            className="object-contain z-10 pointer-events-none"
+            priority
+            style={{ objectFit: 'contain' }}
+          />
+          
+          {/* Project Screenshot - positioned to appear inside the laptop screen */}
+          <div className="absolute inset-0 flex items-start justify-center pt-[8%] px-[17%]">
+            <div className="relative w-full" style={{ paddingBottom: "62%" }}>
               <Image
                 src={imageSrc}
                 alt={alt}
                 fill
-                className="object-cover"
+                className="object-cover rounded-sm"
               />
             </div>
           </div>
         </div>
-        {/* Laptop base */}
-        <div className="w-full h-4 bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-lg shadow-lg">
-          <div className="w-1/3 h-1 mx-auto mt-1.5 bg-gray-600 rounded"></div>
-        </div>
-      </motion.div>
+      </div>
     );
   }
 
-  // Phone mockup
+  // Phone mockup - keeping the original for now
   return (
     <motion.div
       className="relative w-full max-w-xs mx-auto"

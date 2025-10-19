@@ -1,16 +1,126 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { projects } from "@/data/projects";
 import DeviceMockup from "@/components/DeviceMockup";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { HiExternalLink } from "react-icons/hi";
 import { FaGithub } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useRef, MouseEvent } from "react";
+
+// 3D Tilt Component for Project Preview
+function TiltCard({ children, project }: { children: React.ReactNode; project: any }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [hoveredProject, setHoveredProject] = useState(false);
+
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7.5deg", "-7.5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7.5deg", "7.5deg"]);
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+    setHoveredProject(false);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setHoveredProject(true)}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformStyle: "preserve-3d",
+      }}
+      className="relative"
+    >
+      <motion.div
+        style={{
+          transform: "translateZ(50px)",
+          transformStyle: "preserve-3d",
+        }}
+        animate={{
+          boxShadow: hoveredProject
+            ? "0 25px 50px -12px rgba(124, 58, 237, 0.5), 0 0 40px rgba(6, 182, 212, 0.3)"
+            : "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+        }}
+        transition={{ duration: 0.3 }}
+        className="relative rounded-xl"
+      >
+        {children}
+        
+        {/* Glow effect overlay */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: hoveredProject ? 1 : 0,
+          }}
+          transition={{ duration: 0.3 }}
+          className="absolute inset-0 bg-gradient-to-r from-[#7c3aed]/20 via-[#06b6d4]/20 to-[#a855f7]/20 rounded-xl flex items-center justify-center gap-4 pointer-events-none"
+          style={{
+            transform: "translateZ(75px)",
+          }}
+        >
+          <motion.div
+            className="flex gap-4"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{
+              scale: hoveredProject ? 1 : 0.8,
+              opacity: hoveredProject ? 1 : 0,
+            }}
+            transition={{ duration: 0.2, delay: 0.1 }}
+          >
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pointer-events-auto p-4 bg-white dark:bg-gray-800 rounded-full hover:scale-110 transition-transform shadow-2xl"
+              >
+                <HiExternalLink className="w-8 h-8 text-gray-900 dark:text-white" />
+              </a>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pointer-events-auto p-4 bg-white dark:bg-gray-800 rounded-full hover:scale-110 transition-transform shadow-2xl"
+              >
+                <FaGithub className="w-8 h-8 text-gray-900 dark:text-white" />
+              </a>
+            )}
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function Projects() {
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
-
   return (
     <section
       id="projects"
@@ -49,49 +159,14 @@ export default function Projects() {
               } gap-12 items-center`}
             >
               {/* Project Preview */}
-              <div className="w-full lg:w-1/2">
-                <motion.div
-                  onHoverStart={() => setHoveredProject(project.id)}
-                  onHoverEnd={() => setHoveredProject(null)}
-                  className="relative"
-                >
+              <div className="w-full lg:w-1/2" style={{ perspective: "1000px" }}>
+                <TiltCard project={project}>
                   <DeviceMockup
-                    device={index % 3 === 0 ? "phone" : "laptop"}
+                    device="laptop"
                     imageSrc={project.image}
                     alt={project.name}
                   />
-                  
-                  {/* Hover overlay */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: hoveredProject === project.id ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-gradient-to-r from-[#0eaceb]/90 via-[#57c785]/90 to-[#eddd53]/90 rounded-lg flex items-center justify-center gap-4 pointer-events-none"
-                  >
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="pointer-events-auto p-4 bg-white rounded-full hover:scale-110 transition-transform"
-                      >
-                        <HiExternalLink className="w-8 h-8 text-gray-900" />
-                      </a>
-                    )}
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="pointer-events-auto p-4 bg-white rounded-full hover:scale-110 transition-transform"
-                      >
-                        <FaGithub className="w-8 h-8 text-gray-900" />
-                      </a>
-                    )}
-                  </motion.div>
-                </motion.div>
+                </TiltCard>
               </div>
 
               {/* Project Info */}
@@ -124,7 +199,7 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#0eaceb] to-[#57c785] text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow"
+                      className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#7c3aed] to-[#06b6d4] text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow"
                     >
                       <HiExternalLink className="w-5 h-5" />
                       Live Demo

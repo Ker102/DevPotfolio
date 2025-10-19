@@ -11,15 +11,15 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          cyan: "#0eaceb",
-          green: "#57c785",
-          yellow: "#eddd53",
+          purple: "#7c3aed",
+          cyan: "#06b6d4",
+          lavender: "#a855f7",
         },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "gradient-custom": "linear-gradient(90deg, rgba(14, 172, 235, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%)",
+        "gradient-custom": "linear-gradient(90deg, rgba(124, 58, 237, 1) 0%, rgba(6, 182, 212, 1) 50%, rgba(168, 85, 247, 1) 100%)",
       },
       animation: {
         "fade-in-up": "fadeInUp 0.6s ease-out",

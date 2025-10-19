@@ -56,6 +56,34 @@ const iconMap: { [key: string]: any } = {
   "CI/CD": FaCode,
 };
 
+// Brand colors for each technology
+const iconColors: { [key: string]: string } = {
+  React: "#61DAFB",
+  "Next.js": "#000000",
+  TypeScript: "#3178C6",
+  JavaScript: "#F7DF1E",
+  "Tailwind CSS": "#06B6D4",
+  HTML5: "#E34F26",
+  CSS3: "#1572B6",
+  "Vue.js": "#4FC08D",
+  "Node.js": "#339933",
+  Express: "#000000",
+  Python: "#FFD43B",
+  Django: "#092E20",
+  PostgreSQL: "#4169E1",
+  MongoDB: "#47A248",
+  GraphQL: "#E10098",
+  Git: "#F05032",
+  Docker: "#2496ED",
+  AWS: "#FF9900",
+  Vercel: "#000000",
+  Figma: "#A259FF",
+  Jest: "#C21325",
+  Linux: "#000000",
+  "REST API": "#7c3aed",
+  "CI/CD": "#7c3aed",
+};
+
 export default function About() {
   return (
     <section
@@ -105,6 +133,9 @@ export default function About() {
                   .filter((skill) => skill.category === category)
                   .map((skill) => {
                     const Icon = iconMap[skill.name] || FaCode;
+                    const iconColor = iconColors[skill.name] || "#7c3aed";
+                    // Use white for black icons in dark mode
+                    const isDarkIcon = ["#000000", "#092E20"].includes(iconColor);
                     return (
                       <motion.div
                         key={skill.name}
@@ -113,7 +144,10 @@ export default function About() {
                         whileHover="hover"
                         className="glass dark:glass-dark rounded-xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all"
                       >
-                        <Icon className="w-12 h-12 text-[#0eaceb]" />
+                        <Icon 
+                          className={`w-12 h-12 ${isDarkIcon ? 'dark:text-white' : ''}`}
+                          style={{ color: iconColor }}
+                        />
                         <span className="text-sm font-medium text-center">
                           {skill.name}
                         </span>
