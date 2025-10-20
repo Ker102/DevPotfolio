@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { skills, skillCategories } from "@/data/skills";
 import GlassSurface from "@/components/GlassSurface";
+import FloatingDecor from "@/components/FloatingDecor";
+import LogoLoop from "@/components/LogoLoop";
 import { fadeInUp, staggerContainer, cardHover } from "@/lib/animations";
 import {
   SiReact,
@@ -85,13 +87,67 @@ const iconColors: { [key: string]: string } = {
   "CI/CD": "#7c3aed",
 };
 
+// Logo configurations for LogoLoop
+const frontendLogos = [
+  { src: "https://cdn.simpleicons.org/react/61DAFB", alt: "React", title: "React" },
+  { src: "https://cdn.simpleicons.org/nextdotjs/ffffff", alt: "Next.js", title: "Next.js" },
+  { src: "https://cdn.simpleicons.org/typescript/3178C6", alt: "TypeScript", title: "TypeScript" },
+  { src: "https://cdn.simpleicons.org/javascript/F7DF1E", alt: "JavaScript", title: "JavaScript" },
+  { src: "https://cdn.simpleicons.org/tailwindcss/06B6D4", alt: "Tailwind CSS", title: "Tailwind CSS" },
+  { src: "https://cdn.simpleicons.org/html5/E34F26", alt: "HTML5", title: "HTML5" },
+  { src: "https://cdn.simpleicons.org/css3/1572B6", alt: "CSS3", title: "CSS3" },
+  { src: "https://cdn.simpleicons.org/vuedotjs/4FC08D", alt: "Vue.js", title: "Vue.js" },
+];
+
+const backendLogos = [
+  { src: "https://cdn.simpleicons.org/nodedotjs/339933", alt: "Node.js", title: "Node.js" },
+  { src: "https://cdn.simpleicons.org/express/ffffff", alt: "Express", title: "Express" },
+  { src: "https://cdn.simpleicons.org/python/FFD43B", alt: "Python", title: "Python" },
+  { src: "https://cdn.simpleicons.org/django/092E20", alt: "Django", title: "Django" },
+  { src: "https://cdn.simpleicons.org/postgresql/4169E1", alt: "PostgreSQL", title: "PostgreSQL" },
+  { src: "https://cdn.simpleicons.org/mongodb/47A248", alt: "MongoDB", title: "MongoDB" },
+  { src: "https://cdn.simpleicons.org/graphql/E10098", alt: "GraphQL", title: "GraphQL" },
+];
+
+const toolsLogos = [
+  { src: "https://cdn.simpleicons.org/git/F05032", alt: "Git", title: "Git" },
+  { src: "https://cdn.simpleicons.org/docker/2496ED", alt: "Docker", title: "Docker" },
+  { src: "https://cdn.simpleicons.org/amazonaws/FF9900", alt: "AWS", title: "AWS" },
+  { src: "https://cdn.simpleicons.org/vercel/ffffff", alt: "Vercel", title: "Vercel" },
+  { src: "https://cdn.simpleicons.org/figma/A259FF", alt: "Figma", title: "Figma" },
+  { src: "https://cdn.simpleicons.org/jest/C21325", alt: "Jest", title: "Jest" },
+  { src: "https://cdn.simpleicons.org/linux/FCC624", alt: "Linux", title: "Linux" },
+];
+
 export default function About() {
   return (
     <section
       id="about"
-      className="min-h-screen py-20 px-6 bg-black dark:bg-gray-50"
+      className="relative min-h-screen py-20 px-6 bg-black dark:bg-gray-50 overflow-hidden"
     >
-      <div className="container mx-auto max-w-7xl">
+      {/* Floating Decorative Elements */}
+      <FloatingDecor
+        src="/images/decorative/liquid-5.png"
+        alt="Decorative element 5"
+        size={220}
+        xOffset={88}
+        yOffset={20}
+        delay={1}
+        duration={58}
+        opacity={0.95}
+      />
+      <FloatingDecor
+        src="/images/decorative/liquid-6.png"
+        alt="Decorative element 6"
+        size={180}
+        xOffset={-2}
+        yOffset={50}
+        delay={2}
+        duration={53}
+        opacity={0.98}
+      />
+
+      <div className="relative z-10 container mx-auto max-w-7xl">
         <motion.div
           initial="initial"
           whileInView="animate"
@@ -115,56 +171,71 @@ export default function About() {
           whileInView="animate"
           viewport={{ once: true, amount: 0.2 }}
           variants={staggerContainer}
-          className="space-y-12"
+          className="space-y-16"
         >
           <motion.h3
             variants={fadeInUp}
-            className="text-3xl md:text-4xl font-bold text-center mb-12 text-white"
+            className="text-3xl md:text-4xl font-bold text-center mb-16 text-white"
           >
             <span className="gradient-text">Skills & Technologies</span>
           </motion.h3>
 
-          {skillCategories.map((category) => (
-            <motion.div key={category} variants={fadeInUp}>
-              <h4 className="text-2xl font-semibold mb-6 text-center text-white">
-                <span className="gradient-text">{category}</span>
-              </h4>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                {skills
-                  .filter((skill) => skill.category === category)
-                  .map((skill) => {
-                    const Icon = iconMap[skill.name] || FaCode;
-                    const iconColor = iconColors[skill.name] || "#7c3aed";
-                    // Use white for black icons in dark mode
-                    const isDarkIcon = ["#000000", "#092E20"].includes(iconColor);
-                    return (
-                      <motion.div
-                        key={skill.name}
-                        variants={cardHover}
-                        initial="rest"
-                        whileHover="hover"
-                        className="cursor-pointer transition-all"
-                      >
-                        <GlassSurface
-                          width="100%"
-                          height="auto"
-                          borderRadius={12}
-                          className="p-6 flex flex-col items-center justify-center gap-3"
-                        >
-                          <Icon 
-                            className={`w-12 h-12 ${isDarkIcon ? 'dark:text-white' : ''}`}
-                            style={{ color: iconColor }}
-                          />
-                          <span className="text-sm font-medium text-center text-white">
-                            {skill.name}
-                          </span>
-                        </GlassSurface>
-                      </motion.div>
-                    );
-                  })}
-              </div>
-            </motion.div>
-          ))}
+          {/* Frontend Technologies */}
+          <motion.div variants={fadeInUp} className="space-y-6">
+            <h4 className="text-2xl font-semibold text-center text-white">
+              <span className="gradient-text">Frontend</span>
+            </h4>
+            <LogoLoop
+              logos={frontendLogos}
+              speed={60}
+              direction="left"
+              logoHeight={48}
+              gap={48}
+              pauseOnHover={true}
+              fadeOut={true}
+              fadeOutColor="#000000"
+              scaleOnHover={true}
+              ariaLabel="Frontend technologies"
+            />
+          </motion.div>
+
+          {/* Backend Technologies */}
+          <motion.div variants={fadeInUp} className="space-y-6">
+            <h4 className="text-2xl font-semibold text-center text-white">
+              <span className="gradient-text">Backend</span>
+            </h4>
+            <LogoLoop
+              logos={backendLogos}
+              speed={55}
+              direction="right"
+              logoHeight={48}
+              gap={48}
+              pauseOnHover={true}
+              fadeOut={true}
+              fadeOutColor="#000000"
+              scaleOnHover={true}
+              ariaLabel="Backend technologies"
+            />
+          </motion.div>
+
+          {/* Tools & DevOps */}
+          <motion.div variants={fadeInUp} className="space-y-6">
+            <h4 className="text-2xl font-semibold text-center text-white">
+              <span className="gradient-text">Tools & DevOps</span>
+            </h4>
+            <LogoLoop
+              logos={toolsLogos}
+              speed={50}
+              direction="left"
+              logoHeight={48}
+              gap={48}
+              pauseOnHover={true}
+              fadeOut={true}
+              fadeOutColor="#000000"
+              scaleOnHover={true}
+              ariaLabel="Tools and DevOps technologies"
+            />
+          </motion.div>
         </motion.div>
 
         {/* Stats Section */}

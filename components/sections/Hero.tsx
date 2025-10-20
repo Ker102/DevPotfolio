@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState, useMemo } from "react";
 import MagneticButton from "@/components/MagneticButton";
 import GlassSurface from "@/components/GlassSurface";
+import FloatingDecor from "@/components/FloatingDecor";
 import { HiArrowDown } from "react-icons/hi";
 import { fadeInUp, slideInFromLeft, slideInFromRight } from "@/lib/animations";
 
@@ -153,6 +154,52 @@ export default function Hero() {
           }}
         />
       </div>
+
+      {/* Floating Decorative Elements - Only render on client */}
+      {isMounted && (
+        <>
+          <FloatingDecor
+            src="/images/decorative/liquid-1.png"
+            alt="Decorative element 1"
+            size={300}
+            xOffset={-3}
+            yOffset={15}
+            delay={0}
+            duration={50}
+            opacity={1}
+          />
+          <FloatingDecor
+            src="/images/decorative/liquid-2.png"
+            alt="Decorative element 2"
+            size={250}
+            xOffset={82}
+            yOffset={10}
+            delay={5}
+            duration={55}
+            opacity={0.95}
+          />
+          <FloatingDecor
+            src="/images/decorative/liquid-3.png"
+            alt="Decorative element 3"
+            size={200}
+            xOffset={5}
+            yOffset={70}
+            delay={2.5}
+            duration={60}
+            opacity={0.95}
+          />
+          <FloatingDecor
+            src="/images/decorative/liquid-4.png"
+            alt="Decorative element 4"
+            size={280}
+            xOffset={87}
+            yOffset={65}
+            delay={3}
+            duration={52}
+            opacity={0.98}
+          />
+        </>
+      )}
 
       <div className="relative z-10 container mx-auto px-6 text-center">
         <motion.div

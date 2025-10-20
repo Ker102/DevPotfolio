@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import GlassSurface from "@/components/GlassSurface";
+import FloatingDecor from "@/components/FloatingDecor";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { SiGmail, SiLinkedin, SiGithub, SiInstagram } from "react-icons/si";
 
@@ -40,9 +41,31 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen py-20 px-6 bg-black dark:bg-gray-50 flex items-center"
+      className="relative min-h-screen py-20 px-6 bg-black dark:bg-gray-50 flex items-center overflow-hidden"
     >
-      <div className="container mx-auto max-w-4xl">
+      {/* Floating Decorative Elements */}
+      <FloatingDecor
+        src="/images/decorative/liquid-2.png"
+        alt="Decorative element 2"
+        size={240}
+        xOffset={86}
+        yOffset={30}
+        delay={2.5}
+        duration={57}
+        opacity={0.95}
+      />
+      <FloatingDecor
+        src="/images/decorative/liquid-4.png"
+        alt="Decorative element 4"
+        size={190}
+        xOffset={-3}
+        yOffset={60}
+        delay={1.5}
+        duration={51}
+        opacity={0.98}
+      />
+
+      <div className="relative z-10 container mx-auto max-w-4xl">
         <motion.div
           initial="initial"
           whileInView="animate"

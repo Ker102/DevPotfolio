@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { projects } from "@/data/projects";
 import DeviceMockup from "@/components/DeviceMockup";
 import GlassSurface from "@/components/GlassSurface";
+import FloatingDecor from "@/components/FloatingDecor";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { HiExternalLink } from "react-icons/hi";
 import { FaGithub } from "react-icons/fa";
@@ -140,9 +141,31 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-screen py-20 px-6 bg-black dark:bg-white"
+      className="relative min-h-screen py-20 px-6 bg-black dark:bg-white overflow-hidden"
     >
-      <div className="container mx-auto max-w-7xl">
+      {/* Floating Decorative Elements */}
+      <FloatingDecor
+        src="/images/decorative/liquid-1.png"
+        alt="Decorative element 1"
+        size={260}
+        xOffset={-4}
+        yOffset={10}
+        delay={3}
+        duration={56}
+        opacity={0.95}
+      />
+      <FloatingDecor
+        src="/images/decorative/liquid-3.png"
+        alt="Decorative element 3"
+        size={200}
+        xOffset={85}
+        yOffset={60}
+        delay={1}
+        duration={54}
+        opacity={0.98}
+      />
+
+      <div className="relative z-10 container mx-auto max-w-7xl">
         <motion.div
           initial="initial"
           whileInView="animate"
