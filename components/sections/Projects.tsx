@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { projects } from "@/data/projects";
 import DeviceMockup from "@/components/DeviceMockup";
+import GlassSurface from "@/components/GlassSurface";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { HiExternalLink } from "react-icons/hi";
 import { FaGithub } from "react-icons/fa";
@@ -62,11 +63,11 @@ function TiltCard({ children, project }: { children: React.ReactNode; project: a
           transform: "translateZ(50px)",
           transformStyle: "preserve-3d",
         }}
-        animate={{
-          boxShadow: hoveredProject
-            ? "0 25px 50px -12px rgba(124, 58, 237, 0.5), 0 0 40px rgba(6, 182, 212, 0.3)"
-            : "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
-        }}
+          animate={{
+            boxShadow: hoveredProject
+              ? "0 25px 50px -12px rgba(255, 255, 255, 0.3), 0 0 60px rgba(184, 184, 184, 0.2), 0 0 100px rgba(140, 140, 140, 0.1)"
+              : "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
+          }}
         transition={{ duration: 0.3 }}
         className="relative rounded-xl"
       >
@@ -79,8 +80,9 @@ function TiltCard({ children, project }: { children: React.ReactNode; project: a
             opacity: hoveredProject ? 1 : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="absolute inset-0 bg-gradient-to-r from-[#7c3aed]/20 via-[#06b6d4]/20 to-[#a855f7]/20 rounded-xl flex items-center justify-center gap-4 pointer-events-none"
+          className="absolute inset-0 rounded-xl flex items-center justify-center gap-4 pointer-events-none"
           style={{
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(184,184,184,0.12) 50%, rgba(140,140,140,0.15) 100%)',
             transform: "translateZ(75px)",
           }}
         >
@@ -98,9 +100,16 @@ function TiltCard({ children, project }: { children: React.ReactNode; project: a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pointer-events-auto p-4 bg-white dark:bg-gray-800 rounded-full hover:scale-110 transition-transform shadow-2xl"
+                className="pointer-events-auto hover:scale-110 transition-transform shadow-2xl"
               >
-                <HiExternalLink className="w-8 h-8 text-gray-900 dark:text-white" />
+                <GlassSurface
+                  width={64}
+                  height={64}
+                  borderRadius={9999}
+                  className="flex items-center justify-center"
+                >
+                  <HiExternalLink className="w-8 h-8" />
+                </GlassSurface>
               </a>
             )}
             {project.githubUrl && (
@@ -108,9 +117,16 @@ function TiltCard({ children, project }: { children: React.ReactNode; project: a
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pointer-events-auto p-4 bg-white dark:bg-gray-800 rounded-full hover:scale-110 transition-transform shadow-2xl"
+                className="pointer-events-auto hover:scale-110 transition-transform shadow-2xl"
               >
-                <FaGithub className="w-8 h-8 text-gray-900 dark:text-white" />
+                <GlassSurface
+                  width={64}
+                  height={64}
+                  borderRadius={9999}
+                  className="flex items-center justify-center"
+                >
+                  <FaGithub className="w-8 h-8" />
+                </GlassSurface>
               </a>
             )}
           </motion.div>
@@ -124,7 +140,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-screen py-20 px-6 bg-white dark:bg-gray-800"
+      className="min-h-screen py-20 px-6 bg-black dark:bg-white"
     >
       <div className="container mx-auto max-w-7xl">
         <motion.div
@@ -134,10 +150,10 @@ export default function Projects() {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
             A showcase of my recent work and side projects. Each project is
             crafted with attention to detail and modern best practices.
           </p>
@@ -174,19 +190,22 @@ export default function Projects() {
                 <h3 className="text-3xl md:text-4xl font-bold gradient-text">
                   {project.name}
                 </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-300">
+                <p className="text-lg text-gray-300">
                   {project.description}
                 </p>
 
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2">
                   {project.techStack.map((tech, techIndex) => (
-                    <span
+                    <GlassSurface
                       key={techIndex}
-                      className="px-4 py-2 glass dark:glass-dark rounded-full text-sm font-medium"
+                      width="auto"
+                      height="auto"
+                      borderRadius={9999}
+                      className="px-4 py-2"
                     >
-                      {tech}
-                    </span>
+                      <span className="text-sm font-medium text-white">{tech}</span>
+                    </GlassSurface>
                   ))}
                 </div>
 
@@ -199,7 +218,11 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#7c3aed] to-[#06b6d4] text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow"
+                      className="flex items-center gap-2 px-6 py-3 text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow"
+                      style={{
+                        background: 'linear-gradient(135deg, #ffffff 0%, #e8e8e8 25%, #b8b8b8 50%, #8c8c8c 75%, #b8b8b8 100%)',
+                        filter: 'saturate(1.3) brightness(1.1)'
+                      }}
                     >
                       <HiExternalLink className="w-5 h-5" />
                       Live Demo
@@ -212,10 +235,17 @@ export default function Projects() {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-3 glass dark:glass-dark font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow"
+                      className="shadow-lg hover:shadow-xl transition-shadow"
                     >
-                      <FaGithub className="w-5 h-5" />
-                      View Code
+                      <GlassSurface
+                        width="auto"
+                        height="auto"
+                        borderRadius={9999}
+                        className="flex items-center gap-2 px-6 py-3"
+                      >
+                        <FaGithub className="w-5 h-5" />
+                        <span className="font-semibold">View Code</span>
+                      </GlassSurface>
                     </motion.a>
                   )}
                 </div>

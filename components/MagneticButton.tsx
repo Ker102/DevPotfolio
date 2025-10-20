@@ -1,18 +1,20 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useRef, MouseEvent } from "react";
+import { useRef, MouseEvent, CSSProperties } from "react";
 
 interface MagneticButtonProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
+  style?: CSSProperties;
 }
 
 export default function MagneticButton({
   children,
   className = "",
   onClick,
+  style,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
   const x = useMotionValue(0);
@@ -48,7 +50,7 @@ export default function MagneticButton({
   return (
     <motion.button
       ref={ref}
-      style={{ x: springX, y: springY }}
+      style={{ x: springX, y: springY, ...style }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}

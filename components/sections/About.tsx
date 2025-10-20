@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { skills, skillCategories } from "@/data/skills";
+import GlassSurface from "@/components/GlassSurface";
 import { fadeInUp, staggerContainer, cardHover } from "@/lib/animations";
 import {
   SiReact,
@@ -88,7 +89,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="min-h-screen py-20 px-6 bg-gray-50 dark:bg-gray-900"
+      className="min-h-screen py-20 px-6 bg-black dark:bg-gray-50"
     >
       <div className="container mx-auto max-w-7xl">
         <motion.div
@@ -98,10 +99,10 @@ export default function About() {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-4">
+          <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
             About <span className="gradient-text">Me</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
             I'm a passionate developer who loves building exceptional digital
             experiences. With expertise in modern web technologies, I turn ideas
             into reality through clean code and creative solutions.
@@ -118,15 +119,15 @@ export default function About() {
         >
           <motion.h3
             variants={fadeInUp}
-            className="text-3xl md:text-4xl font-bold text-center mb-12"
+            className="text-3xl md:text-4xl font-bold text-center mb-12 text-white"
           >
             <span className="gradient-text">Skills & Technologies</span>
           </motion.h3>
 
           {skillCategories.map((category) => (
             <motion.div key={category} variants={fadeInUp}>
-              <h4 className="text-2xl font-semibold mb-6 text-center gradient-text">
-                {category}
+              <h4 className="text-2xl font-semibold mb-6 text-center text-white">
+                <span className="gradient-text">{category}</span>
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {skills
@@ -142,15 +143,22 @@ export default function About() {
                         variants={cardHover}
                         initial="rest"
                         whileHover="hover"
-                        className="glass dark:glass-dark rounded-xl p-6 flex flex-col items-center justify-center gap-3 cursor-pointer transition-all"
+                        className="cursor-pointer transition-all"
                       >
-                        <Icon 
-                          className={`w-12 h-12 ${isDarkIcon ? 'dark:text-white' : ''}`}
-                          style={{ color: iconColor }}
-                        />
-                        <span className="text-sm font-medium text-center">
-                          {skill.name}
-                        </span>
+                        <GlassSurface
+                          width="100%"
+                          height="auto"
+                          borderRadius={12}
+                          className="p-6 flex flex-col items-center justify-center gap-3"
+                        >
+                          <Icon 
+                            className={`w-12 h-12 ${isDarkIcon ? 'dark:text-white' : ''}`}
+                            style={{ color: iconColor }}
+                          />
+                          <span className="text-sm font-medium text-center text-white">
+                            {skill.name}
+                          </span>
+                        </GlassSurface>
                       </motion.div>
                     );
                   })}
@@ -176,14 +184,20 @@ export default function About() {
             <motion.div
               key={index}
               variants={fadeInUp}
-              className="glass dark:glass-dark rounded-xl p-6 text-center"
             >
-              <h4 className="text-4xl md:text-5xl font-bold gradient-text mb-2">
-                {stat.number}
-              </h4>
-              <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                {stat.label}
-              </p>
+              <GlassSurface
+                width="100%"
+                height="auto"
+                borderRadius={12}
+                className="p-6 text-center"
+              >
+                <h4 className="text-4xl md:text-5xl font-bold gradient-text mb-2">
+                  {stat.number}
+                </h4>
+                <p className="text-sm md:text-base text-gray-300">
+                  {stat.label}
+                </p>
+              </GlassSurface>
             </motion.div>
           ))}
         </motion.div>

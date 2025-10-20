@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import GlassSurface from "@/components/GlassSurface";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { SiGmail, SiLinkedin, SiGithub, SiInstagram } from "react-icons/si";
 
@@ -39,7 +40,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="min-h-screen py-20 px-6 bg-gray-50 dark:bg-gray-900 flex items-center"
+      className="min-h-screen py-20 px-6 bg-black dark:bg-gray-50 flex items-center"
     >
       <div className="container mx-auto max-w-4xl">
         <motion.div
@@ -51,10 +52,10 @@ export default function Contact() {
         >
           {/* Header */}
           <motion.div variants={fadeInUp} className="text-center">
-            <h2 className="text-4xl md:text-6xl font-bold mb-4">
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
               Let's <span className="gradient-text">Connect</span>
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
               Feel free to reach out through any of these channels. I'm always
               open to discussing new projects and opportunities.
             </p>
@@ -74,53 +75,71 @@ export default function Contact() {
                 variants={fadeInUp}
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative glass dark:glass-dark rounded-2xl p-8 overflow-hidden transition-all hover:shadow-2xl"
+                className="group relative overflow-hidden transition-all hover:shadow-2xl"
               >
-                {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#7c3aed]/5 via-[#06b6d4]/5 to-[#a855f7]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                <div className="relative z-10 flex flex-col items-center text-center space-y-4">
-                  {/* Icon */}
-                  <div className="relative">
-                    <div
-                      className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
-                      style={{ backgroundColor: contact.color }}
-                    />
-                    <div className="relative w-16 h-16 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                      <contact.icon
-                        className="w-8 h-8 dark:text-white transition-colors"
-                        style={{ color: contact.color }}
+                <GlassSurface
+                  width="100%"
+                  height="auto"
+                  borderRadius={16}
+                  className="p-8"
+                >
+                  {/* Background gradient on hover */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(184,184,184,0.10) 50%, rgba(140,140,140,0.08) 100%)'
+                    }}
+                  />
+                  
+                  <div className="relative z-10 flex flex-col items-center text-center space-y-4">
+                    {/* Icon */}
+                    <div className="relative">
+                      <div
+                        className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+                        style={{ backgroundColor: contact.color }}
                       />
+                      <div className="relative w-16 h-16 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+                        <contact.icon
+                          className="w-8 h-8 dark:text-white transition-colors"
+                          style={{ color: contact.color }}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 text-white transition-all">
+                        {contact.name}
+                      </h3>
+                      <p className="text-sm text-gray-400 group-hover:text-gray-200 transition-colors break-all">
+                        {contact.value}
+                      </p>
+                    </div>
+
+                    {/* Arrow indicator */}
+                    <div 
+                      className="absolute top-4 right-4 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300"
+                      style={{
+                        background: 'linear-gradient(135deg, #ffffff 0%, #e8e8e8 30%, #b8b8b8 60%, #8c8c8c 100%)',
+                        filter: 'saturate(1.3)'
+                      }}
+                    >
+                      <svg
+                        className="w-3 h-3 text-black"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
                     </div>
                   </div>
-
-                  {/* Content */}
-                  <div>
-                    <h3 className="text-xl font-bold mb-2 group-hover:gradient-text transition-all">
-                      {contact.name}
-                    </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-200 transition-colors break-all">
-                      {contact.value}
-                    </p>
-                  </div>
-
-                  {/* Arrow indicator */}
-                  <div className="absolute top-4 right-4 w-6 h-6 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#06b6d4] flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300">
-                    <svg
-                      className="w-3 h-3 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
+                </GlassSurface>
               </motion.a>
             ))}
           </motion.div>
@@ -130,7 +149,7 @@ export default function Contact() {
             variants={fadeInUp}
             className="text-center pt-8"
           >
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-gray-400">
               Available for freelance opportunities
             </p>
             <div className="mt-4 flex items-center justify-center gap-2">
@@ -138,7 +157,7 @@ export default function Contact() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
               </span>
-              <span className="text-sm text-gray-600 dark:text-gray-300">
+              <span className="text-sm text-gray-300">
                 Currently available
               </span>
             </div>
@@ -153,7 +172,7 @@ export default function Contact() {
           transition={{ delay: 0.5 }}
           className="mt-20 pt-8 border-t border-gray-300 dark:border-gray-700 text-center"
         >
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-400">
             © 2025 Your Name. Built with Next.js, TypeScript, and Tailwind CSS.
           </p>
         </motion.footer>
