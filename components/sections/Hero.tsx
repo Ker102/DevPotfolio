@@ -16,10 +16,9 @@ export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
 
   const titles = [
-    "Full Stack Developer",
-    "UI/UX Enthusiast",
-    "Problem Solver",
-    "Creative Coder",
+    "Developer page for Kaelux",
+    "Modern Full-Stack Applications",
+    "Scroll down to discover",
   ];
 
   // Generate star properties once and keep them stable across re-renders
@@ -179,8 +178,8 @@ export default function Hero() {
             opacity={0.95}
           />
           <FloatingDecor
-            src="/images/decorative/liquid-3.png"
-            alt="Decorative element 3"
+            src="/images/decorative/liquid-5.png"
+            alt="Decorative element 5"
             size={200}
             xOffset={5}
             yOffset={70}
@@ -210,10 +209,9 @@ export default function Hero() {
         >
           <motion.h1
             variants={slideInFromLeft}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 text-white"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
           >
-            Hi, I'm{" "}
-            <span className="gradient-text">Your Name</span>
+            <span className="gradient-text">Kaelux Projects</span>
           </motion.h1>
 
           <motion.div
@@ -230,8 +228,8 @@ export default function Hero() {
             variants={fadeInUp}
             className="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto"
           >
-            Crafting beautiful, functional, and user-centric digital experiences
-            with modern web technologies.
+            Crafting innovative solutions and cutting-edge web applications
+            with the latest technologies.
           </motion.p>
 
           <motion.div
@@ -271,7 +269,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          className="mt-16 flex justify-center"
         >
           <motion.div
             animate={{ y: [0, 10, 0] }}
@@ -279,7 +277,7 @@ export default function Hero() {
             className="cursor-pointer"
             onClick={() => scrollToSection("about")}
           >
-            <HiArrowDown className="w-8 h-8 text-gray-400 dark:text-gray-600" />
+            <HiArrowDown className="w-10 h-10 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />
           </motion.div>
         </motion.div>
       </div>
