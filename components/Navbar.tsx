@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState, useLayoutEffect, useRef } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { GoArrowUpRight } from "react-icons/go";
 import { gsap } from "gsap";
+import LogoImage from "../Red White Simple Company Technology Logo.png";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
@@ -244,7 +246,7 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Menu Button */}
-              <div className="md:hidden flex items-center gap-4 relative z-20">
+              <div className="md:hidden flex items-center gap-3 ml-auto relative z-20">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   className="p-2"
@@ -260,6 +262,17 @@ export default function Navbar() {
                     <HiMenu className="w-7 h-7" />
                   )}
                 </button>
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 via-white/30 to-transparent blur-lg opacity-80" />
+                  <Image
+                    src={LogoImage}
+                    alt="Kaelux logo"
+                    width={44}
+                    height={44}
+                    className="relative h-11 w-11 select-none object-contain drop-shadow-[0_0_14px_rgba(255,255,255,0.75)]"
+                    priority={false}
+                  />
+                </div>
               </div>
             </div>
 

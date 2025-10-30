@@ -23,7 +23,7 @@ export default function Home() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3, duration: 0.5 }}
-        className="fixed top-2 left-3 z-[60] md:top-4 md:left-6"
+        className="hidden md:flex fixed top-4 left-6 z-[60]"
       >
         <div className="relative flex items-center justify-center">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 via-white/30 to-transparent blur-xl opacity-80 md:blur-2xl" />
@@ -33,7 +33,7 @@ export default function Home() {
             width={64}
             height={64}
             priority
-            className="relative h-12 w-12 select-none object-contain drop-shadow-[0_0_18px_rgba(255,255,255,0.8)] md:h-16 md:w-16 md:drop-shadow-[0_0_22px_rgba(255,255,255,0.85)]"
+            className="relative h-16 w-16 select-none object-contain drop-shadow-[0_0_22px_rgba(255,255,255,0.85)]"
           />
         </div>
       </motion.div>
