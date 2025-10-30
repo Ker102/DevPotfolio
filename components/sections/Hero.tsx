@@ -114,6 +114,7 @@ export default function Hero() {
             delay={0}
             duration={50}
             opacity={1}
+            className="hidden md:block"
           />
           <FloatingDecor
             src="/images/decorative/liquid-2.png"
@@ -124,6 +125,7 @@ export default function Hero() {
             delay={5}
             duration={55}
             opacity={0.95}
+            className="hidden md:block"
           />
           <FloatingDecor
             src="/images/decorative/liquid-5.png"
@@ -134,6 +136,7 @@ export default function Hero() {
             delay={2.5}
             duration={60}
             opacity={0.95}
+            className="hidden md:block"
           />
           <FloatingDecor
             src="/images/decorative/liquid-4.png"
@@ -144,6 +147,7 @@ export default function Hero() {
             delay={3}
             duration={52}
             opacity={0.98}
+            className="hidden md:block"
           />
         </>
       )}
@@ -232,5 +236,4 @@ export default function Hero() {
     </section>
   );
 }
-
 
