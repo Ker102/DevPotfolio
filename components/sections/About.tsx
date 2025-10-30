@@ -239,41 +239,7 @@ export default function About() {
         </motion.div>
 
         {/* Stats Section */}
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={staggerContainer}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
-        >
-          {[
-            { number: "50+", label: "Projects Completed" },
-            { number: "5+", label: "Years Experience" },
-            { number: "30+", label: "Happy Clients" },
-            { number: "100%", label: "Client Satisfaction" },
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              variants={fadeInUp}
-            >
-              <GlassSurface
-                width="100%"
-                height="auto"
-                borderRadius={12}
-                className="p-6 text-center"
-              >
-                <h4 className="text-4xl md:text-5xl font-bold gradient-text mb-2">
-                  {stat.number}
-                </h4>
-                <p className="text-sm md:text-base text-gray-300">
-                  {stat.label}
-                </p>
-              </GlassSurface>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
 }
-

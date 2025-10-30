@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 
 interface FloatingDecorProps {
   src: string;
@@ -28,8 +29,36 @@ export default function FloatingDecor({
   opacity = 0.3,
   className = '',
 }: FloatingDecorProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
+  const inView = useInView(ref, {
+    margin: '200px',
+    amount: 'some',
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        opacity: [opacity * 0.9, opacity, opacity * 0.9],
+        y: [0, -30, 0],
+        x: [0, 15, 0],
+        scale: [1, 1.05, 1],
+        rotate: rotate ? [0, 360] : 0,
+        transition: {
+          duration,
+          repeat: Infinity,
+          delay,
+          ease: 'easeInOut',
+        },
+      });
+    } else {
+      controls.stop();
+    }
+  }, [controls, delay, duration, inView, opacity, rotate]);
+
   return (
     <motion.div
+      ref={ref}
       className={`absolute pointer-events-none select-none ${className}`}
       style={{
         width: `${size}px`,
@@ -39,19 +68,7 @@ export default function FloatingDecor({
         zIndex: 5,
       }}
       initial={{ opacity: 0, scale: 0.8 }}
-      animate={{
-        opacity: [opacity * 0.9, opacity, opacity * 0.9],
-        y: [0, -30, 0],
-        x: [0, 15, 0],
-        scale: [1, 1.05, 1],
-        rotate: rotate ? [0, 360] : 0,
-      }}
-      transition={{
-        duration: duration,
-        repeat: Infinity,
-        delay: delay,
-        ease: 'easeInOut',
-      }}
+      animate={controls}
     >
       <Image
         src={src}
@@ -68,5 +85,4 @@ export default function FloatingDecor({
     </motion.div>
   );
 }
-
 

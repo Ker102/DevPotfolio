@@ -8,9 +8,11 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { HiExternalLink } from "react-icons/hi";
 import { FaGithub } from "react-icons/fa";
 import { useState, useRef, MouseEvent } from "react";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 // 3D Tilt Component for Project Preview
 function TiltCard({ children, project }: { children: React.ReactNode; project: any }) {
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
   const ref = useRef<HTMLDivElement>(null);
   const [hoveredProject, setHoveredProject] = useState(false);
 
@@ -24,7 +26,7 @@ function TiltCard({ children, project }: { children: React.ReactNode; project: a
   const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7.5deg", "7.5deg"]);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
+    if (!ref.current || !isDesktop) return;
 
     const rect = ref.current.getBoundingClientRect();
     const width = rect.width;
@@ -45,11 +47,15 @@ function TiltCard({ children, project }: { children: React.ReactNode; project: a
     setHoveredProject(false);
   };
 
+  if (!isDesktop) {
+    return <div className="relative">{children}</div>;
+  }
+
   return (
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHoveredProject(true)}
+      onMouseEnter={() => isDesktop && setHoveredProject(true)}
       onMouseLeave={handleMouseLeave}
       style={{
         rotateX,
@@ -277,5 +283,3 @@ export default function Projects() {
     </section>
   );
 }
-
-

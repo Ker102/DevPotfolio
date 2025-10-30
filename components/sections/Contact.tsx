@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import GlassSurface from "@/components/GlassSurface";
 import FloatingDecor from "@/components/FloatingDecor";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { SiGmail, SiLinkedin, SiGithub, SiInstagram } from "react-icons/si";
@@ -10,29 +9,29 @@ const contactInfo = [
   {
     name: "Gmail",
     icon: SiGmail,
-    value: "your.email@gmail.com",
-    href: "mailto:your.email@gmail.com",
+    value: "Kristoferjussmann@gmail.com",
+    href: "mailto:Kristoferjussmann@gmail.com",
     color: "#EA4335",
   },
   {
     name: "LinkedIn",
     icon: SiLinkedin,
-    value: "linkedin.com/in/yourprofile",
-    href: "https://linkedin.com/in/yourprofile",
+    value: "linkedin.com/in/kristofer-jussmann-b8a398382",
+    href: "https://linkedin.com/in/kristofer-jussmann-b8a398382",
     color: "#0A66C2",
   },
   {
     name: "GitHub",
     icon: SiGithub,
-    value: "github.com/yourusername",
-    href: "https://github.com/yourusername",
+    value: "github.com/ker102",
+    href: "https://github.com/ker102",
     color: "#181717",
   },
   {
     name: "Instagram",
     icon: SiInstagram,
-    value: "@yourusername",
-    href: "https://instagram.com/yourusername",
+    value: "instagram.com/kaelux.dev",
+    href: "https://instagram.com/kaelux.dev",
     color: "#E4405F",
   },
 ];
@@ -84,10 +83,10 @@ export default function Contact() {
             </p>
           </motion.div>
 
-          {/* Contact Cards */}
+          {/* Contact Links */}
           <motion.div
             variants={staggerContainer}
-            className="grid sm:grid-cols-2 gap-6"
+            className="flex flex-wrap items-center justify-center gap-12 md:gap-16"
           >
             {contactInfo.map((contact, index) => (
               <motion.a
@@ -96,73 +95,26 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 variants={fadeInUp}
-                whileHover={{ scale: 1.05, y: -5 }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative overflow-hidden transition-all hover:shadow-2xl"
+                whileHover={{ y: -4, scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                className="group flex flex-col items-center text-center space-y-2"
               >
-                <GlassSurface
-                  width="100%"
-                  height="auto"
-                  borderRadius={16}
-                  className="p-8"
-                >
-                  {/* Background gradient on hover */}
-                  <div 
-                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    style={{
-                      background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(184,184,184,0.10) 50%, rgba(140,140,140,0.08) 100%)'
-                    }}
+                <div className="relative">
+                  <div
+                    className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+                    style={{ backgroundColor: contact.color }}
                   />
-                  
-                  <div className="relative z-10 flex flex-col items-center text-center space-y-4">
-                    {/* Icon */}
-                    <div className="relative">
-                      <div
-                        className="absolute inset-0 rounded-full blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300"
-                        style={{ backgroundColor: contact.color }}
-                      />
-                      <div className="relative w-16 h-16 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
-                        <contact.icon
-                          className="w-8 h-8 dark:text-white transition-colors"
-                          style={{ color: contact.color }}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-white transition-all">
-                        {contact.name}
-                      </h3>
-                      <p className="text-sm text-gray-400 group-hover:text-gray-200 transition-colors break-all">
-                        {contact.value}
-                      </p>
-                    </div>
-
-                    {/* Arrow indicator */}
-                    <div 
-                      className="absolute top-4 right-4 w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0 transition-all duration-300"
-                      style={{
-                        background: 'linear-gradient(135deg, #ffffff 0%, #e8e8e8 30%, #b8b8b8 60%, #8c8c8c 100%)',
-                        filter: 'saturate(1.3)'
-                      }}
-                    >
-                      <svg
-                        className="w-3 h-3 text-black"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </div>
+                  <div className="relative w-16 h-16 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+                    <contact.icon
+                      className="w-8 h-8 dark:text-white transition-colors"
+                      style={{ color: contact.color }}
+                    />
                   </div>
-                </GlassSurface>
+                </div>
+
+                <h3 className="text-lg font-semibold text-white transition-colors">
+                  {contact.name}
+                </h3>
               </motion.a>
             ))}
           </motion.div>
@@ -196,7 +148,7 @@ export default function Contact() {
           className="mt-20 pt-8 border-t border-gray-300 dark:border-gray-700 text-center"
         >
           <p className="text-gray-400">
-            © 2025 Your Name. Built with Next.js, TypeScript, and Tailwind CSS.
+            © 2025 Kaelux. Built with Next.js, TypeScript, and Tailwind CSS.
           </p>
         </motion.footer>
       </div>
