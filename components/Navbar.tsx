@@ -246,7 +246,7 @@ export default function Navbar() {
               </div>
 
               {/* Mobile Menu Button */}
-              <div className="md:hidden flex items-center gap-3 ml-auto relative z-20">
+              <div className="md:hidden flex w-full items-center justify-between gap-3 relative z-20">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
                   className="p-2"
