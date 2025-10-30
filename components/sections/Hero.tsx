@@ -102,58 +102,6 @@ export default function Hero() {
         </div>
       )}
 
-      {/* Animated background orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10"
-          style={{
-            background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(184,184,184,0.08) 50%, rgba(140,140,140,0.02) 100%)'
-          }}
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-10"
-          style={{
-            background: 'radial-gradient(circle, rgba(184,184,184,0.15) 0%, rgba(140,140,140,0.08) 50%, rgba(100,100,100,0.02) 100%)'
-          }}
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -50, 0],
-            y: [0, -30, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 right-1/3 w-72 h-72 rounded-full blur-3xl opacity-10"
-          style={{
-            background: 'radial-gradient(circle, rgba(232,232,232,0.15) 0%, rgba(184,184,184,0.08) 50%, rgba(140,140,140,0.02) 100%)'
-          }}
-          animate={{
-            scale: [1, 1.1, 1],
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
-
       {/* Floating Decorative Elements - Only render on client */}
       {isMounted && (
         <>
@@ -284,6 +232,5 @@ export default function Hero() {
     </section>
   );
 }
-
 
 
