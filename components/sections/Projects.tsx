@@ -2,7 +2,6 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { projects } from "@/data/projects";
-import DeviceMockup from "@/components/DeviceMockup";
 import GlassSurface from "@/components/GlassSurface";
 import FloatingDecor from "@/components/FloatingDecor";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -200,11 +199,9 @@ export default function Projects() {
               {/* Project Preview */}
               <div className="w-full lg:w-1/2" style={{ perspective: "1000px" }}>
                 <TiltCard project={project}>
-                  <DeviceMockup
-                    device="laptop"
-                    imageSrc={project.image}
-                    alt={project.name}
-                  />
+                  <div className="flex h-[260px] items-center justify-center rounded-[32px] border border-white/15 bg-white/5 p-8 uppercase tracking-[0.35em] text-white/80 backdrop-blur">
+                    Coming soon
+                  </div>
                 </TiltCard>
               </div>
 
@@ -280,6 +277,5 @@ export default function Projects() {
     </section>
   );
 }
-
 
 
