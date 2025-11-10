@@ -205,9 +205,22 @@ export default function Projects() {
               {/* Project Preview */}
               <div className="w-full lg:w-1/2" style={{ perspective: "1000px" }}>
                 <TiltCard project={project}>
-                  <div className="flex h-[260px] items-center justify-center rounded-[32px] border border-white/15 bg-white/5 p-8 uppercase tracking-[0.35em] text-white/80 backdrop-blur">
-                    Coming soon
-                  </div>
+                  {project.videoUrl ? (
+                    <div className="relative rounded-[32px] overflow-hidden border border-white/15 bg-white/5 backdrop-blur">
+                      <video
+                        src={project.videoUrl}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex h-[260px] items-center justify-center rounded-[32px] border border-white/15 bg-white/5 p-8 uppercase tracking-[0.35em] text-white/80 backdrop-blur">
+                      Coming soon
+                    </div>
+                  )}
                 </TiltCard>
               </div>
 

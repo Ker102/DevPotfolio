@@ -4,6 +4,7 @@ export interface Project {
   description: string;
   techStack: string[];
   image: string;
+  videoUrl?: string;
   liveUrl?: string;
   githubUrl?: string;
 }
@@ -26,11 +27,12 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Ker102/ModelForge",
   },
   {
-    id: "promptrefiner",
-    name: "PromptRefiner",
+    id: "prompttriage",
+    name: "PromptTriage",
     description: "Next.js prompt engineering companion that critiques inputs, gathers clarifying context, and drafts AI-ready prompts using Gemini and optional Firecrawl search.",
     techStack: ["Next.js", "TypeScript", "Google Gemini", "Tailwind CSS", "Firecrawl"],
     image: "/projects/promptrefiner.jpg",
+    videoUrl: "/projects/prompttriage-demo.mp4",
     githubUrl: "https://github.com/Ker102/PromptTriage",
   },
 ];
