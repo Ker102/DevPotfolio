@@ -32,7 +32,7 @@ export const projects: Project[] = [
     description: "Next.js prompt engineering companion that critiques inputs, gathers clarifying context, and drafts AI-ready prompts using Gemini and optional Firecrawl search.",
     techStack: ["Next.js", "TypeScript", "Google Gemini", "Tailwind CSS", "Firecrawl"],
     image: "/projects/promptrefiner.jpg",
-    videoUrl: "/projects/prompttriage-demo.mp4",
+    videoUrl: "https://github.com/Ker102/DevPotfolio/releases/download/v1.0.0-assets/PROMPTTRIAGEdemo.mp4",
     githubUrl: "https://github.com/Ker102/PromptTriage",
   },
 ];
