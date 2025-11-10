@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/Ker102/DevPotfolio/discussions
+    about: Ask questions and discuss with the community
+  - name: 🔒 Security Issues
+    url: https://github.com/Ker102/DevPotfolio/security/advisories/new
+    about: Report a security vulnerability privately
