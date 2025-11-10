@@ -41,5 +41,10 @@ next-env.d.ts
 *.swp
 *.swo
 
+# Large video files (hosted on GitHub Releases)
+public/projects/*.mp4
+public/projects/*.webm
+public/projects/*.mov
+
 
 
