@@ -17,6 +17,7 @@ If you discover a security vulnerability in this portfolio, please report it res
 Instead, please report security vulnerabilities by:
 
 1. **Using GitHub Security Advisories** (Preferred)
+
    - Go to the [Security tab](https://github.com/Ker102/DevPotfolio/security/advisories)
    - Click "Report a vulnerability"
    - Provide detailed information about the vulnerability
@@ -60,6 +61,7 @@ This portfolio implements several security measures:
 ## 🙏 Recognition
 
 Security researchers who responsibly disclose vulnerabilities will be:
+
 - Acknowledged in the CHANGELOG (unless they prefer to remain anonymous)
 - Credited in the security advisory
 - Given permission to publish after the fix is deployed

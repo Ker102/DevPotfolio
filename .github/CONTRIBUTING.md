@@ -94,6 +94,7 @@ footer
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -103,6 +104,7 @@ footer
 - `chore`: Maintenance tasks
 
 **Example:**
+
 ```
 feat(projects): add video preview support
 

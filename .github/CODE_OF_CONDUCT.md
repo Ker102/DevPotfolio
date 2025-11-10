@@ -40,21 +40,25 @@ All complaints will be reviewed and investigated promptly and fairly.
 ## ⚖️ Enforcement Guidelines
 
 ### 1. Correction
+
 **Impact**: Minor inappropriate behavior
 
 **Consequence**: Private, written warning with clarity around the violation
 
 ### 2. Warning
+
 **Impact**: Violation through a single incident or series of actions
 
 **Consequence**: Warning with consequences for continued behavior
 
 ### 3. Temporary Ban
+
 **Impact**: Serious violation of community standards
 
 **Consequence**: Temporary ban from interaction
 
 ### 4. Permanent Ban
+
 **Impact**: Pattern of violations or severe single incident
 
 **Consequence**: Permanent ban from the project

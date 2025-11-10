@@ -2,7 +2,7 @@ name: Close Stale Issues & PRs
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Run daily at midnight
+    - cron: "0 0 * * *" # Run daily at midnight
 
 permissions:
   issues: write
@@ -16,7 +16,7 @@ jobs:
         uses: actions/stale@v9
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          
+
           # Issues
           stale-issue-message: >
             👋 This issue has been automatically marked as stale because it has not had
@@ -27,9 +27,9 @@ jobs:
             Feel free to reopen if you'd like to continue the discussion.
           days-before-issue-stale: 60
           days-before-issue-close: 14
-          stale-issue-label: 'stale'
-          exempt-issue-labels: 'pinned,security,bug,enhancement'
-          
+          stale-issue-label: "stale"
+          exempt-issue-labels: "pinned,security,bug,enhancement"
+
           # Pull Requests
           stale-pr-message: >
             👋 This pull request has been automatically marked as stale because it has not had
@@ -38,9 +38,9 @@ jobs:
             🔒 This pull request has been automatically closed due to inactivity.
           days-before-pr-stale: 30
           days-before-pr-close: 7
-          stale-pr-label: 'stale'
-          exempt-pr-labels: 'pinned,security,work-in-progress'
-          
+          stale-pr-label: "stale"
+          exempt-pr-labels: "pinned,security,work-in-progress"
+
           # General settings
           operations-per-run: 30
           remove-stale-when-updated: true
