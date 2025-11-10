@@ -142,6 +142,73 @@ function TiltCard({ children, project }: { children: React.ReactNode; project: a
   );
 }
 
+// Video Preview Component with Click-to-Play
+function VideoPreview({ videoUrl, projectName }: { videoUrl: string; projectName: string }) {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleVideoClick = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        videoRef.current.play();
+        setIsPlaying(true);
+      }
+    }
+  };
+
+  return (
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+      className="relative rounded-[32px] overflow-hidden border border-white/15 bg-white/5 backdrop-blur cursor-pointer group"
+      onClick={handleVideoClick}
+    >
+      <video
+        ref={videoRef}
+        src={videoUrl}
+        loop
+        muted
+        playsInline
+        className="w-full h-auto object-cover"
+      />
+      
+      {/* Play/Pause Overlay */}
+      {!isPlaying && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+        >
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-2xl"
+          >
+            <svg
+              className="w-10 h-10 text-black ml-1"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </motion.div>
+        </motion.div>
+      )}
+      
+      {/* Hover hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        className="absolute bottom-4 right-4 px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm text-white text-sm font-medium"
+      >
+        {isPlaying ? "Click to pause" : "Click to play"}
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function Projects() {
   return (
     <section
@@ -204,24 +271,15 @@ export default function Projects() {
             >
               {/* Project Preview */}
               <div className="w-full lg:w-1/2" style={{ perspective: "1000px" }}>
-                <TiltCard project={project}>
-                  {project.videoUrl ? (
-                    <div className="relative rounded-[32px] overflow-hidden border border-white/15 bg-white/5 backdrop-blur">
-                      <video
-                        src={project.videoUrl}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-auto object-cover"
-                      />
-                    </div>
-                  ) : (
+                {project.videoUrl ? (
+                  <VideoPreview videoUrl={project.videoUrl} projectName={project.name} />
+                ) : (
+                  <TiltCard project={project}>
                     <div className="flex h-[260px] items-center justify-center rounded-[32px] border border-white/15 bg-white/5 p-8 uppercase tracking-[0.35em] text-white/80 backdrop-blur">
                       Coming soon
                     </div>
-                  )}
-                </TiltCard>
+                  </TiltCard>
+                )}
               </div>
 
               {/* Project Info */}
