@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState, useLayoutEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
 import { GoArrowUpRight } from "react-icons/go";
 import { gsap } from "gsap";
@@ -22,25 +24,72 @@ const navCards = [
     links: [
       { label: "About Me", href: "#about" },
       { label: "My Work", href: "#projects" },
-    ]
+    ],
   },
   {
     label: "Connect",
     links: [
       { label: "Get In Touch", href: "#contact" },
       { label: "View Resume", href: "#" },
-    ]
+    ],
   },
   {
     label: "Resources",
     links: [
       { label: "Blog", href: "#" },
       { label: "Case Studies", href: "#projects" },
-    ]
-  }
+    ],
+  },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/links")) {
+    return <LinkHubNavbar />;
+  }
+  return <PrimaryNavbar />;
+}
+
+function LinkHubNavbar() {
+  return (
+    <motion.nav
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
+      className="fixed top-0 left-0 right-0 z-50"
+    >
+      <div className="mx-auto max-w-4xl px-6 pt-5">
+        <div className="flex items-center justify-between rounded-3xl border border-white/15 bg-white/5 px-5 py-3 backdrop-blur-xl">
+          <div className="flex items-center gap-3">
+            <div className="relative h-10 w-10 overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-1.5">
+              <Image
+                src={LogoImage}
+                alt="Kaelux mark"
+                fill
+                sizes="40px"
+                className="object-contain"
+              />
+            </div>
+            <div className="leading-tight text-white">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-white/60">
+                Kaelux
+              </p>
+              <p className="text-base font-semibold">Link Hub</p>
+            </div>
+          </div>
+          <Link
+            href="/"
+            className="rounded-2xl border border-white/30 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-white/10"
+          >
+            Back to studio
+          </Link>
+        </div>
+      </div>
+    </motion.nav>
+  );
+}
+
+function PrimaryNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
@@ -243,6 +292,30 @@ export default function Navbar() {
                     ></span>
                   </motion.button>
                 ))}
+                <motion.div
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + navLinks.length * 0.1 }}
+                >
+                  <Link
+                    href="/links"
+                    className="font-semibold transition-all duration-300 relative group text-base uppercase tracking-wide"
+                    style={{
+                      color: '#ffffff',
+                      textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+                    }}
+                  >
+                    Link Hub
+                    <span
+                      className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300"
+                      style={{
+                        background: 'linear-gradient(90deg, #ffffff 0%, #b8b8b8 50%, #8c8c8c 100%)',
+                        filter: 'saturate(1.3)',
+                        boxShadow: '0 0 8px rgba(255, 255, 255, 0.5)'
+                      }}
+                    />
+                  </Link>
+                </motion.div>
               </div>
 
               {/* Mobile Menu Button */}
@@ -365,6 +438,28 @@ export default function Navbar() {
                 </button>
               </div>
             ))}
+            <div
+              style={{
+                background: 'rgba(255, 255, 255, 0.08)',
+                backdropFilter: 'blur(16px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(16px) saturate(180%)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                borderRadius: '20px',
+                boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.25)',
+              }}
+            >
+              <Link
+                href="/links"
+                onClick={() => setIsOpen(false)}
+                className="block w-full text-left px-4 py-3 font-semibold uppercase tracking-wide text-sm"
+                style={{ 
+                  color: '#ffffff',
+                  textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+                }}
+              >
+                Link Hub
+              </Link>
+            </div>
           </div>
         </motion.div>
       </div>

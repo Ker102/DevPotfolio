@@ -1,7 +1,7 @@
 {
   "name": "Kaelux Developer Page",
   "short_name": "Kaelux",
-  "description": "Kaelux Projects, Official site for all projects built and hosted by Kaelux, Documentation and Contact.",
+  "description": "Independent studio shipping AI copilots, immersive experiences, and high-performance web systems.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
