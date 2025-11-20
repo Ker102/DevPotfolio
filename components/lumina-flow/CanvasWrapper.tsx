@@ -57,7 +57,9 @@ const FlyingTitle = () => {
       {letters.map((char, i) => (
         <span
           key={i}
-          ref={(el) => (letterRefs.current[i] = el)}
+          ref={(el) => {
+            letterRefs.current[i] = el;
+          }}
           className="inline-block will-change-transform"
         >
           {char}

@@ -2,7 +2,14 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useInView } from "framer-motion";
-import { Suspense, useEffect, useMemo, useRef, useState } from "react";
+import {
+  Suspense,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type MutableRefObject,
+} from "react";
 import * as THREE from "three";
 
 type ClusterProps = {
@@ -18,7 +25,7 @@ const layout: [number, number, number][] = [
   [0, -0.15, 1.25],
 ];
 
-function Starfield({ progress }: { progress: THREE.MutableRefObject<number> }) {
+function Starfield({ progress }: { progress: MutableRefObject<number> }) {
   const positions = useMemo(() => {
     const buffer = new Float32Array(420 * 3);
     for (let i = 0; i < 420; i++) {
@@ -41,12 +48,16 @@ function Starfield({ progress }: { progress: THREE.MutableRefObject<number> }) {
     mat.opacity = THREE.MathUtils.lerp(0, 0.45, progress.current);
   });
 
-  useEffect(() => () => ref.current?.geometry.setAttribute("position", new THREE.BufferAttribute(new Float32Array(), 3)), []);
+  useEffect(() => {
+    return () => {
+      ref.current?.geometry.setAttribute("position", new THREE.BufferAttribute(new Float32Array(), 3));
+    };
+  }, []);
 
   return (
     <points ref={ref}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" array={positions} count={positions.length / 3} itemSize={3} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial color="#fff" size={0.04} sizeAttenuation transparent opacity={0} />
     </points>
@@ -75,7 +86,9 @@ function Cluster({ target }: { target: number }) {
       const { home, hidden } = cube.userData as { home: THREE.Vector3; hidden: THREE.Vector3 };
       cube.position.lerpVectors(hidden, home, progress.current);
       cube.scale.setScalar(THREE.MathUtils.lerp(0.3, 1, progress.current));
-      cube.material.opacity = THREE.MathUtils.lerp(0, 1, progress.current);
+      if (!Array.isArray(cube.material)) {
+        cube.material.opacity = THREE.MathUtils.lerp(0, 1, progress.current);
+      }
     });
   });
 

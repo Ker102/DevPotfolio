@@ -109,8 +109,8 @@ const WaveLineWithScroll: React.FC<WaveLineProps> = ({ index, totalLines, width,
   return (
     <line ref={lineRef as any}>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={numPoints} itemSize={3} array={positions} />
-        <bufferAttribute attach="attributes-color" count={numPoints} itemSize={3} array={colors} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <lineBasicMaterial
         vertexColors

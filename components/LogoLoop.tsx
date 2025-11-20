@@ -11,7 +11,11 @@ const ANIMATION_CONFIG = {
 
 const toCssLength = (value: string | number | undefined) => (typeof value === 'number' ? `${value}px` : (value ?? undefined));
 
-const useResizeObserver = (callback: () => void, elements: React.RefObject<HTMLElement>[], dependencies: any[]) => {
+const useResizeObserver = (
+  callback: () => void,
+  elements: React.RefObject<HTMLElement | null>[],
+  dependencies: any[]
+) => {
   useEffect(() => {
     if (!window.ResizeObserver) {
       const handleResize = () => callback();
@@ -36,7 +40,11 @@ const useResizeObserver = (callback: () => void, elements: React.RefObject<HTMLE
   }, dependencies);
 };
 
-const useImageLoader = (seqRef: React.RefObject<HTMLUListElement>, onLoad: () => void, dependencies: any[]) => {
+const useImageLoader = (
+  seqRef: React.RefObject<HTMLUListElement | null>,
+  onLoad: () => void,
+  dependencies: any[]
+) => {
   useEffect(() => {
     const images = seqRef.current?.querySelectorAll('img') ?? [];
 
@@ -74,7 +82,7 @@ const useImageLoader = (seqRef: React.RefObject<HTMLUListElement>, onLoad: () =>
 };
 
 const useAnimationLoop = (
-  trackRef: React.RefObject<HTMLDivElement>,
+  trackRef: React.RefObject<HTMLDivElement | null>,
   targetVelocity: number,
   seqWidth: number,
   isHovered: boolean,
@@ -316,4 +324,3 @@ export const LogoLoop = memo<LogoLoopProps>(
 LogoLoop.displayName = 'LogoLoop';
 
 export default LogoLoop;
-
