@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense, useRef, useMemo } from 'react';
+import React, { Suspense, useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { WaveScene } from './Wave';
 import { IntroScene } from './IntroScene';
@@ -70,6 +70,16 @@ const FlyingTitle = () => {
 };
 
 export const CanvasWrapper: React.FC = () => {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    setIsReady(true);
+  }, []);
+
+  if (!isReady) {
+    return null;
+  }
+
   return (
     <div className="absolute inset-0 z-0 w-full h-full">
       <Canvas
