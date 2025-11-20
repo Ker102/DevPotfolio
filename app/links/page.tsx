@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LinksExperience from "@/components/LinksExperience";
+import LinksClient from "./LinksClient";
 
 export const metadata: Metadata = {
   title: "Kaelux Links | Immersive Link-In-Bio",
@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function LinksPage() {
-  return <LinksExperience />;
+  return <LinksClient />;
 }

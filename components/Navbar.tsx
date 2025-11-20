@@ -45,48 +45,9 @@ const navCards = [
 export default function Navbar() {
   const pathname = usePathname();
   if (pathname?.startsWith("/links")) {
-    return <LinkHubNavbar />;
+    return null;
   }
   return <PrimaryNavbar />;
-}
-
-function LinkHubNavbar() {
-  return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className="fixed top-0 left-0 right-0 z-50"
-    >
-      <div className="mx-auto max-w-4xl px-6 pt-5">
-        <div className="flex items-center justify-between rounded-3xl border border-white/15 bg-white/5 px-5 py-3 backdrop-blur-xl">
-          <div className="flex items-center gap-3">
-            <div className="relative h-10 w-10 overflow-hidden rounded-2xl border border-white/20 bg-white/10 p-1.5">
-              <Image
-                src={LogoImage}
-                alt="Kaelux mark"
-                fill
-                sizes="40px"
-                className="object-contain"
-              />
-            </div>
-            <div className="leading-tight text-white">
-              <p className="text-[11px] uppercase tracking-[0.3em] text-white/60">
-                Kaelux
-              </p>
-              <p className="text-base font-semibold">Link Hub</p>
-            </div>
-          </div>
-          <Link
-            href="/"
-            className="rounded-2xl border border-white/30 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-white/10"
-          >
-            Back to studio
-          </Link>
-        </div>
-      </div>
-    </motion.nav>
-  );
 }
 
 function PrimaryNavbar() {

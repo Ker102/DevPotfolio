@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
-import ScrollProgress from "@/components/ScrollProgress";
 import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -93,7 +92,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <ScrollProgress />
           <Navbar />
           {children}
         </ThemeProvider>
@@ -101,4 +99,3 @@ export default function RootLayout({
     </html>
   );
 }
-
