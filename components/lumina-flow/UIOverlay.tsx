@@ -84,6 +84,33 @@ export const UIOverlay: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-50 pointer-events-none"></div>
 
             <div className="relative p-6 flex flex-col gap-3">
+
+              {/* Featured Section */}
+              <div className="mb-2">
+                <h4 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-3 px-1">Featured</h4>
+                <a
+                  href="https://ker102.github.io/n8n-ai-automation-workflow-atlas/"
+                  className="group/item relative flex items-center justify-between p-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <div className="flex items-center space-x-4 z-10">
+                    <div className="p-2.5 rounded-xl bg-black/20 text-white/80 group-hover/item:text-white group-hover/item:bg-black/40 transition-colors shadow-inner">
+                      <Github size={20} strokeWidth={1.5} />
+                    </div>
+                    <span className="text-white/90 font-medium tracking-wide text-sm md:text-base">
+                      n8n workflow atlas
+                    </span>
+                  </div>
+
+                  <div className="text-white/20 group-hover/item:text-white/80 group-hover/item:translate-x-1 transition-all z-10">
+                    <ArrowRight size={16} strokeWidth={2} />
+                  </div>
+                </a>
+              </div>
+
+              <div className="w-full h-px bg-white/5 my-1"></div>
+
+              <h4 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-1 px-1">Socials</h4>
+
               {links.map((link) => (
                 <a
                   key={link.id}
