@@ -159,7 +159,7 @@ export default function About() {
             About <span className="gradient-text">Me</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            I'm a passionate developer who loves building exceptional digital
+            I&apos;m a passionate developer who loves building exceptional digital
             experiences. With expertise in modern web technologies, I turn ideas
             into reality through clean code and creative solutions.
           </p>

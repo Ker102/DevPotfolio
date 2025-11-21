@@ -49,8 +49,9 @@ function Starfield({ progress }: { progress: MutableRefObject<number> }) {
   });
 
   useEffect(() => {
+    const currentRef = ref.current;
     return () => {
-      ref.current?.geometry.setAttribute("position", new THREE.BufferAttribute(new Float32Array(), 3));
+      currentRef?.geometry.setAttribute("position", new THREE.BufferAttribute(new Float32Array(), 3));
     };
   }, []);
 

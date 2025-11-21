@@ -241,6 +241,7 @@ export const LogoLoop = memo<LogoLoopProps>(
 
     const renderLogoItem = useCallback((item: LogoItem, key: string) => {
       const content = (
+        /* eslint-disable-next-line @next/next/no-img-element */
         <img
           src={item.src}
           srcSet={item.srcSet}

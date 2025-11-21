@@ -27,6 +27,7 @@ export default function PillNav({ logoSrc, logoAlt = "Logo", items, className = 
           className="flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-white/10"
           aria-label={logoAlt}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={logoSrc} alt={logoAlt} className="h-6 w-6 rounded-full object-cover" />
         </Link>
         <div className="flex items-center rounded-full border border-white/30 bg-black/20 p-1">
@@ -36,9 +37,8 @@ export default function PillNav({ logoSrc, logoAlt = "Logo", items, className = 
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] transition ${
-                  active ? "text-[#05060f]" : "text-slate-200 hover:text-white"
-                }`}
+                className={`relative rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] transition ${active ? "text-[#05060f]" : "text-slate-200 hover:text-white"
+                  }`}
                 aria-label={item.ariaLabel || item.label}
               >
                 {active && (

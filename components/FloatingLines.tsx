@@ -456,7 +456,7 @@ export default function FloatingLines({
 
     return () => {
       cancelAnimationFrame(raf);
-      if (ro && containerRef.current) {
+      if (ro) {
         ro.disconnect();
       }
 
@@ -486,7 +486,13 @@ export default function FloatingLines({
     bendStrength,
     mouseDamping,
     parallax,
-    parallaxStrength
+    parallaxStrength,
+    topLineCount,
+    middleLineCount,
+    bottomLineCount,
+    topLineDistance,
+    middleLineDistance,
+    bottomLineDistance
   ]);
 
   return (

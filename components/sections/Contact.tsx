@@ -75,10 +75,10 @@ export default function Contact() {
           {/* Header */}
           <motion.div variants={fadeInUp} className="text-center">
             <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
-              Let's <span className="gradient-text">Connect</span>
+              Let&apos;s <span className="gradient-text">Connect</span>
             </h2>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-              Feel free to reach out through any of these channels. I'm always
+              Feel free to reach out through any of these channels. I&apos;m always
               open to discussing new projects and opportunities.
             </p>
           </motion.div>
