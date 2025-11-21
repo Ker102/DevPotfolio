@@ -72,3 +72,6 @@ jobs:
             http://localhost:3000
           uploadArtifacts: true
           temporaryPublicStorage: true
+          startServerCommand: PORT=3000 npm run start
+          startServerTimeout: 60000
+          chromeFlags: --no-sandbox --headless --disable-gpu
