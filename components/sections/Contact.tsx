@@ -119,11 +119,20 @@ export default function Contact() {
             ))}
           </motion.div>
 
-          {/* Decorative element */}
+          {/* Collaboration Note */}
           <motion.div
             variants={fadeInUp}
             className="text-center pt-8"
           >
+            <div className="max-w-2xl mx-auto mb-8 p-6 rounded-2xl bg-gradient-to-r from-primary-purple/10 via-primary-cyan/10 to-primary-lavender/10 border border-primary-cyan/20">
+              <p className="text-lg md:text-xl text-white font-semibold mb-2">
+                🤝 Open to Collaboration
+              </p>
+              <p className="text-sm md:text-base text-gray-300">
+                I'm actively seeking opportunities to partner, build innovative projects, and collaborate with like-minded creators. Let's bring ideas to life together!
+              </p>
+            </div>
+
             <p className="text-sm text-gray-400">
               Available for freelance opportunities
             </p>
