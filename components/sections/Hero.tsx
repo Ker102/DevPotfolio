@@ -5,20 +5,21 @@ import { useEffect, useState, useMemo } from "react";
 import MagneticButton from "@/components/MagneticButton";
 import GlassSurface from "@/components/GlassSurface";
 import FloatingDecor from "@/components/FloatingDecor";
+import DecryptedText from "@/components/ui/DecryptedText";
+import ShinyText from "@/components/ui/ShinyText";
 import { HiArrowDown } from "react-icons/hi";
 import { fadeInUp, slideInFromLeft, slideInFromRight } from "@/lib/animations";
 
 export default function Hero() {
-  const [text, setText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+  const [key, setKey] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
 
-  const titles = [
-    "Developer page for Kaelux",
-    "Modern Full-Stack Applications",
-    "Scroll down to discover",
+  const sentences = [
+    "Building AI-Powered Automation Workflows",
+    "Crafting Intelligent Agent Systems",
+    "Engineering LLM-Integrated Applications",
+    "Designing Context-Aware AI Experiences",
   ];
 
   // Generate star properties once and keep them stable across re-renders
@@ -37,31 +38,6 @@ export default function Hero() {
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  useEffect(() => {
-    const handleTyping = () => {
-      const currentTitle = titles[loopNum % titles.length];
-      const updatedText = isDeleting
-        ? currentTitle.substring(0, text.length - 1)
-        : currentTitle.substring(0, text.length + 1);
-
-      setText(updatedText);
-
-      if (!isDeleting && updatedText === currentTitle) {
-        setTimeout(() => setIsDeleting(true), 2000);
-        setTypingSpeed(50);
-      } else if (isDeleting && updatedText === "") {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-        setTypingSpeed(150);
-      } else {
-        setTypingSpeed(isDeleting ? 50 : 150);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed, titles]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -163,17 +139,36 @@ export default function Hero() {
             variants={slideInFromLeft}
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
           >
-            <span className="gradient-text">Kaelux Projects</span>
+            <span className="gradient-text">
+              <ShinyText
+                text="Kaelux Projects"
+                speed={3}
+              />
+            </span>
           </motion.h1>
 
           <motion.div
             variants={slideInFromRight}
             className="text-2xl md:text-4xl lg:text-5xl font-semibold h-20 flex items-center justify-center"
           >
-            <span className="gradient-text">
-              {text}
-              <span className="animate-pulse">|</span>
-            </span>
+            {isMounted && (
+              <DecryptedText
+                key={key}
+                text={sentences[currentSentenceIndex]}
+                className="gradient-text"
+                speed={50}
+                maxIterations={20}
+                sequential={true}
+                revealDirection="center"
+                animateOn="view"
+                onDecryptComplete={() => {
+                  setTimeout(() => {
+                    setCurrentSentenceIndex((prev) => (prev + 1) % sentences.length);
+                    setKey((prev) => prev + 1);
+                  }, 2000);
+                }}
+              />
+            )}
           </motion.div>
 
           <motion.p
