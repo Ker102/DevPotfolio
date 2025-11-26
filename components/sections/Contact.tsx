@@ -129,7 +129,7 @@ export default function Contact() {
                 🤝 Open to Collaboration
               </p>
               <p className="text-sm md:text-base text-gray-300">
-                I'm actively seeking opportunities to partner, build innovative projects, and collaborate with like-minded creators. Let's bring ideas to life together!
+                I&apos;m actively seeking opportunities to partner, build innovative projects, and collaborate with like-minded creators. Let&apos;s bring ideas to life together!
               </p>
             </div>
 
