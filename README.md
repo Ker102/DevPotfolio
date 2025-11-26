@@ -287,6 +287,110 @@ npm run build
 - **Component Architecture** - Modular and reusable components
 - **Clean Code** - Readable and maintainable code structure
 
+---
+
+## 🚀 Featured Projects
+
+These are my flagship projects showcasing AI integration, workflow automation, and full-stack development.
+
+### 🎯 [PromptTriage](https://github.com/Ker102/PromptTriage)
+
+[![Next.js](https://img.shields.io/badge/Next.js-15.1.6-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![Google Gemini](https://img.shields.io/badge/Google_Gemini-API-4285F4?style=flat-square&logo=google)](https://ai.google.dev/)
+
+An intelligent prompt engineering platform using metaprompts, few-shot learning, and orchestrated AI workflows. PromptTriage transforms rough ideas into polished, AI-ready prompts through a two-phase analysis and refinement system.
+
+**Key Features:**
+- 🔍 Deep prompt analysis with gap detection and risk assessment
+- ❓ Dynamic follow-up question generation
+- 🛠️ Multi-model optimization (GPT, Claude, Gemini, Grok, Mistral)
+- 🌐 Optional Firecrawl web enrichment for context
+- 📊 Structured blueprint generation with evaluation criteria
+
+---
+
+### 🌐 [Crosswind Console](https://github.com/Ker102/Crosswind-Console)
+
+[![Svelte](https://img.shields.io/badge/Svelte-5-FF3E00?style=flat-square&logo=svelte)](https://svelte.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Python-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
+
+A unified research dashboard that surfaces job opportunities, travel deals, and social trend insights. Features a Svelte-based immersive UI with a FastAPI orchestration layer coordinating MCP-driven data gathering and Gemini-powered reasoning.
+
+**Key Features:**
+- 🔄 Cross-domain intelligence (Jobs, Travel, Trends)
+- 🤖 Gemini 3 Pro integration for AI-powered analysis
+- 🌍 MCP server orchestration (Firecrawl, Playwright)
+- 🔐 Google OAuth authentication with NextAuth
+- 📊 Real-time data aggregation and visualization
+
+---
+
+### ⚙️ [Kaelux-Automate](https://github.com/Ker102/Kaelux-Automate)
+
+[![Docker](https://img.shields.io/badge/Docker-Compose-0db7ed?style=flat-square&logo=docker)](https://www.docker.com/)
+[![n8n](https://img.shields.io/badge/n8n-Workflows-EA4B71?style=flat-square)](https://n8n.io/)
+
+Enterprise-grade automation builder blending a Next.js control plane, an embedded n8n instance, and a vector-powered retrieval layer for curated workflow examples. The AI assistant synthesizes diffs instead of blindly replacing canvases.
+
+**Key Features:**
+- 🧠 LLM-powered workflow generation from natural language
+- 📚 Vector database (Qdrant) for workflow exemplar retrieval
+- 🔄 Differential updates for safe workflow iteration
+- 🎨 Extended n8n Vue canvas with AI Builder panel
+- 💳 Stripe integration for subscription management
+
+---
+
+### 🌌 [Workflow-Automation-Atlas](https://github.com/Ker102/n8n-ai-automation-workflow-atlas)
+
+[![Workflows](https://img.shields.io/badge/Workflows-3831-blueviolet?style=flat-square)](https://github.com/Ker102/n8n-ai-automation-workflow-atlas)
+[![Vue](https://img.shields.io/badge/Vue-3-41b883?style=flat-square&logo=vue.js)](https://vuejs.org/)
+
+A curated collection of 3,800+ battle-tested n8n workflows organized into themed packs with a Vue + Vite workflow explorer. Everything is trimmed down to ready-to-import JSON exports for rapid automation deployment.
+
+**Key Features:**
+- 📦 6 themed workflow collections (AI Lab, RAG Kits, Community Pack)
+- 🔍 Vue-based workflow explorer with search and filtering
+- 📊 Automatic manifest generation with complexity analysis
+- 🏷️ Integration and credential tagging
+- 📄 Source licenses preserved for redistribution
+
+---
+
+## 🛠️ Other Projects
+
+### 🤖 [Kaelocs-AI](https://github.com/Ker102/Kaelocs)
+
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![Gemini](https://img.shields.io/badge/Gemini-2.5_Flash-4285F4?style=flat-square&logo=google)](https://ai.google.dev/)
+
+A modern Next.js AI chat application with Google Gemini 2.5 Flash integration. Features dual authentication (User & Admin), MCP capabilities (GitMCP, Brave Search, Firecrawl), and beautiful markdown rendering.
+
+**Key Features:**
+- 🔐 NextAuth.js with Google OAuth
+- 🔍 Brave Search integration for real-time web data
+- 📝 Full markdown rendering with syntax highlighting
+- 🎨 Modern landing page with animated sections
+- 🌙 Dark mode support with next-themes
+
+---
+
+### 🔨 [ModelForge (BlenderAI)](https://github.com/Ker102/ModelForge)
+
+[![Electron](https://img.shields.io/badge/Electron-Desktop-47848F?style=flat-square&logo=electron)](https://www.electronjs.org/)
+[![Blender](https://img.shields.io/badge/Blender-MCP-F5792A?style=flat-square&logo=blender)](https://www.blender.org/)
+
+AI-powered Blender assistant that transforms 3D workflows through natural conversation. Features ReAct-style planning with Gemini orchestration, smart material application, and scene auditing.
+
+**Key Features:**
+- 🎨 Natural language control for Blender operations
+- 🧠 Gemini 2.x orchestration with per-step validation
+- 🖥️ Electron desktop app with native MCP connectivity
+- 📊 Project memory with conversation history
+- 💰 Subscription tiers (Free, Starter, Pro)
+
+---
+
 ## 📄 License
 
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat-square)

@@ -35,6 +35,15 @@ export const projects: Project[] = [
     videoUrl: "https://github.com/Ker102/DevPotfolio/releases/download/v1.0.0-assets/PROMPTTRIAGEdemo.mp4",
     githubUrl: "https://github.com/Ker102/PromptTriage",
   },
+  {
+    id: "workflow-automation-atlas",
+    name: "Workflow Automation Atlas",
+    description: "Comprehensive workflow automation platform that streamlines repetitive tasks and orchestrates complex business processes with visual pipeline builders and intelligent triggers.",
+    techStack: ["Next.js", "TypeScript", "Node.js", "Automation", "REST APIs"],
+    image: "/projects/workflow-atlas.jpg",
+    videoUrl: "https://github.com/Ker102/DevPotfolio/releases/download/v1.0.0-assets/Generic.PnP.Monitor.2025-11-21.16.19.55.mp4",
+    githubUrl: "https://github.com/Ker102/Workflow-Automation-Atlas",
+  },
 ];
 
 
