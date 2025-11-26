@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { projects } from "@/data/projects";
+import { featuredProjects, otherProjects, Project } from "@/data/projects";
 import GlassSurface from "@/components/GlassSurface";
 import FloatingDecor from "@/components/FloatingDecor";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -209,6 +209,108 @@ function VideoPreview({ videoUrl, projectName }: { videoUrl: string; projectName
   );
 }
 
+// Helper component to render project list
+function ProjectList({ projects, startIndex = 0 }: { projects: Project[]; startIndex?: number }) {
+  return (
+    <motion.div
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: true, amount: 0.1 }}
+      variants={staggerContainer}
+      className="space-y-24"
+    >
+      {projects.map((project, index) => (
+        <motion.div
+          key={project.id}
+          variants={fadeInUp}
+          className={`flex flex-col ${
+            (startIndex + index) % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+          } gap-12 items-center`}
+        >
+          {/* Project Preview */}
+          <div className="w-full lg:w-1/2" style={{ perspective: "1000px" }}>
+            {project.videoUrl ? (
+              <VideoPreview videoUrl={project.videoUrl} projectName={project.name} />
+            ) : (
+              <TiltCard project={project}>
+                <div className="flex h-[260px] items-center justify-center rounded-[32px] border border-white/15 bg-white/5 p-8 uppercase tracking-[0.35em] text-white/80 backdrop-blur">
+                  Coming soon
+                </div>
+              </TiltCard>
+            )}
+          </div>
+
+          {/* Project Info */}
+          <div className="w-full lg:w-1/2 space-y-4">
+            <h3 className="text-3xl md:text-4xl font-bold gradient-text">
+              {project.name}
+            </h3>
+            <p className="text-lg text-gray-300">
+              {project.description}
+            </p>
+
+            {/* Tech Stack */}
+            <div className="flex flex-wrap gap-2">
+              {project.techStack.map((tech, techIndex) => (
+                <GlassSurface
+                  key={techIndex}
+                  width="auto"
+                  height="auto"
+                  borderRadius={9999}
+                  className="px-4 py-2"
+                >
+                  <span className="text-sm font-medium text-white">{tech}</span>
+                </GlassSurface>
+              ))}
+            </div>
+
+            {/* Links */}
+            <div className="flex gap-4 pt-4">
+              {project.liveUrl && (
+                <motion.a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-6 py-3 text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow"
+                  style={{
+                    background: 'linear-gradient(135deg, #ffffff 0%, #e8e8e8 25%, #b8b8b8 50%, #8c8c8c 75%, #b8b8b8 100%)',
+                    filter: 'saturate(1.3) brightness(1.1)'
+                  }}
+                >
+                  <HiExternalLink className="w-5 h-5" />
+                  Live Demo
+                </motion.a>
+              )}
+              {project.githubUrl && (
+                <motion.a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="shadow-lg hover:shadow-xl transition-shadow"
+                >
+                  <GlassSurface
+                    width="auto"
+                    height="auto"
+                    borderRadius={9999}
+                    className="flex items-center gap-2 px-6 py-3"
+                  >
+                    <FaGithub className="w-5 h-5" />
+                    <span className="font-semibold">View Code</span>
+                  </GlassSurface>
+                </motion.a>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  );
+}
+
 export default function Projects() {
   return (
     <section
@@ -238,6 +340,7 @@ export default function Projects() {
       />
 
       <div className="relative z-10 container mx-auto max-w-7xl">
+        {/* Featured Projects Section */}
         <motion.div
           initial="initial"
           whileInView="animate"
@@ -249,107 +352,29 @@ export default function Projects() {
             Featured <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            A showcase of my recent work and side projects. Each project is
-            crafted with attention to detail and modern best practices.
+            Flagship projects showcasing AI integration, workflow automation, and modern full-stack development.
           </p>
         </motion.div>
 
+        <ProjectList projects={featuredProjects} startIndex={0} />
+
+        {/* Other Projects Section */}
         <motion.div
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={staggerContainer}
-          className="space-y-24"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+          className="text-center mb-16 mt-32"
         >
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              variants={fadeInUp}
-              className={`flex flex-col ${
-                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              } gap-12 items-center`}
-            >
-              {/* Project Preview */}
-              <div className="w-full lg:w-1/2" style={{ perspective: "1000px" }}>
-                {project.videoUrl ? (
-                  <VideoPreview videoUrl={project.videoUrl} projectName={project.name} />
-                ) : (
-                  <TiltCard project={project}>
-                    <div className="flex h-[260px] items-center justify-center rounded-[32px] border border-white/15 bg-white/5 p-8 uppercase tracking-[0.35em] text-white/80 backdrop-blur">
-                      Coming soon
-                    </div>
-                  </TiltCard>
-                )}
-              </div>
-
-              {/* Project Info */}
-              <div className="w-full lg:w-1/2 space-y-4">
-                <h3 className="text-3xl md:text-4xl font-bold gradient-text">
-                  {project.name}
-                </h3>
-                <p className="text-lg text-gray-300">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech, techIndex) => (
-                    <GlassSurface
-                      key={techIndex}
-                      width="auto"
-                      height="auto"
-                      borderRadius={9999}
-                      className="px-4 py-2"
-                    >
-                      <span className="text-sm font-medium text-white">{tech}</span>
-                    </GlassSurface>
-                  ))}
-                </div>
-
-                {/* Links */}
-                <div className="flex gap-4 pt-4">
-                  {project.liveUrl && (
-                    <motion.a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-3 text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow"
-                      style={{
-                        background: 'linear-gradient(135deg, #ffffff 0%, #e8e8e8 25%, #b8b8b8 50%, #8c8c8c 75%, #b8b8b8 100%)',
-                        filter: 'saturate(1.3) brightness(1.1)'
-                      }}
-                    >
-                      <HiExternalLink className="w-5 h-5" />
-                      Live Demo
-                    </motion.a>
-                  )}
-                  {project.githubUrl && (
-                    <motion.a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="shadow-lg hover:shadow-xl transition-shadow"
-                    >
-                      <GlassSurface
-                        width="auto"
-                        height="auto"
-                        borderRadius={9999}
-                        className="flex items-center gap-2 px-6 py-3"
-                      >
-                        <FaGithub className="w-5 h-5" />
-                        <span className="font-semibold">View Code</span>
-                      </GlassSurface>
-                    </motion.a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          <h2 className="text-4xl md:text-6xl font-bold mb-4 text-white">
+            Other <span className="gradient-text">Projects</span>
+          </h2>
+          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+            Additional work and side projects exploring AI assistants, chat applications, and creative tools.
+          </p>
         </motion.div>
+
+        <ProjectList projects={otherProjects} startIndex={featuredProjects.length} />
       </div>
     </section>
   );
