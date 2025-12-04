@@ -139,12 +139,10 @@ export default function Hero() {
             variants={slideInFromLeft}
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
           >
-            <span className="gradient-text">
-              <ShinyText
-                text="Kaelux Projects"
-                speed={3}
-              />
-            </span>
+            <ShinyText
+              text="Kaelux Projects"
+              speed={3}
+            />
           </motion.h1>
 
           <motion.div

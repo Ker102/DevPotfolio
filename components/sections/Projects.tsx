@@ -145,18 +145,47 @@ function TiltCard({ children, project }: { children: React.ReactNode; project: a
 // Video Preview Component with Click-to-Play
 function VideoPreview({ videoUrl, projectName }: { videoUrl: string; projectName: string }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handleVideoClick = () => {
+  const handleVideoClick = async () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
         setIsPlaying(false);
       } else {
-        videoRef.current.play();
-        setIsPlaying(true);
+        try {
+          // Reset video to start if it ended
+          if (videoRef.current.ended) {
+            videoRef.current.currentTime = 0;
+          }
+          // Ensure video is loaded before playing
+          if (videoRef.current.readyState < 2) {
+            videoRef.current.load();
+          }
+          await videoRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.error('Video playback failed:', error);
+          // Fallback: try playing again with user gesture context
+          videoRef.current.muted = true;
+          try {
+            await videoRef.current.play();
+            setIsPlaying(true);
+          } catch (e) {
+            console.error('Fallback playback also failed:', e);
+          }
+        }
       }
     }
+  };
+
+  const handleVideoEnd = () => {
+    setIsPlaying(false);
+  };
+
+  const handleLoadedData = () => {
+    setIsLoaded(true);
   };
 
   return (
@@ -172,7 +201,11 @@ function VideoPreview({ videoUrl, projectName }: { videoUrl: string; projectName
         loop
         muted
         playsInline
+        preload="metadata"
+        onEnded={handleVideoEnd}
+        onLoadedData={handleLoadedData}
         className="w-full h-auto object-cover"
+        style={{ minHeight: isLoaded ? 'auto' : '200px', backgroundColor: '#1a1a1a' }}
       />
       
       {/* Play/Pause Overlay */}
