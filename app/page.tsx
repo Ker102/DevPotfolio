@@ -6,7 +6,7 @@ import Hero from "@/components/sections/Hero";
 import ServiceIntroduction from "@/components/sections/ServiceIntroduction";
 import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
-import ThemeToggle from "@/components/ThemeToggle";
+
 import LogoImage from "../Red White Simple Company Technology Logo.png";
 
 export default function Home() {
@@ -38,9 +38,7 @@ export default function Home() {
         </div>
       </motion.div>
 
-      <div className="hidden md:block">
-        <ThemeToggle />
-      </div>
+
       <Hero />
       <ServiceIntroduction />
       <Projects />
