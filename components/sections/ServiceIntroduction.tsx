@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import MagneticButton from "@/components/MagneticButton";
 import { FaArrowRight } from "react-icons/fa";
 
 // Smoother custom animation variants
@@ -91,16 +90,19 @@ export default function ServiceIntroduction() {
                             </p>
 
                             <div className="flex flex-col items-center lg:items-start space-y-6">
-                                <MagneticButton
+                                <motion.button
                                     onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                                    className="group relative bg-gradient-to-b from-gray-100 to-gray-300 text-black px-12 py-5 text-lg font-bold tracking-wide flex items-center space-x-3 rounded-full hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition-all duration-300"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    className="group relative px-10 py-5 bg-gradient-to-b from-gray-100 to-gray-300 text-black text-lg font-bold tracking-wide flex items-center gap-3 rounded-full overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.5)] transition-shadow duration-300"
                                 >
-                                    {/* Chrome sheen effect */}
-                                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                                    {/* Metallic Sheen Sweep */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent w-full -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
 
-                                    <span>Explore Solutions</span>
-                                    <FaArrowRight className="text-black group-hover:translate-x-1 transition-transform duration-300" />
-                                </MagneticButton>
+                                    <span className="relative z-10">Explore Solutions</span>
+                                    <FaArrowRight className="relative z-10 text-black group-hover:translate-x-1 transition-transform duration-300" />
+                                </motion.button>
 
                                 <p className="text-sm text-gray-500 font-medium tracking-widest uppercase opacity-60">
                                     Tailored for your business
