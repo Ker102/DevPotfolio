@@ -1,6 +1,11 @@
 "use client";
 
-import { CanvasWrapper } from "@/components/lumina-flow/CanvasWrapper";
+import dynamic from "next/dynamic";
+
+const CanvasWrapper = dynamic(
+  () => import("@/components/lumina-flow/CanvasWrapper").then((mod) => mod.CanvasWrapper),
+  { ssr: false }
+);
 
 export default function LinksClient() {
   return (

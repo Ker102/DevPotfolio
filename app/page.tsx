@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
+import ServiceIntroduction from "@/components/sections/ServiceIntroduction";
 import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -42,7 +42,7 @@ export default function Home() {
         <ThemeToggle />
       </div>
       <Hero />
-      <About />
+      <ServiceIntroduction />
       <Projects />
       <Contact />
     </motion.main>
