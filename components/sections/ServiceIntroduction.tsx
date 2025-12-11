@@ -49,16 +49,17 @@ const imageReveal = {
 
 export default function ServiceIntroduction() {
     return (
-        <section className="relative min-h-screen py-24 md:py-32 px-6 bg-[#050505] overflow-hidden flex flex-col justify-center">
+        <section className="relative min-h-screen py-24 md:py-32 px-6 bg-black overflow-hidden flex flex-col justify-center">
 
-            {/* Top Gradient Fade for Smooth Entry */}
-            <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black to-transparent z-20 pointer-events-none" />
+            {/* Top Gradient Fade for Smooth Entry - Extended height for smoother blend */}
+            <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-black via-black/80 to-transparent z-20 pointer-events-none" />
 
             {/* Iridescent Ambient Glows - Metallic Chromatic Theme */}
+            {/* Reduced opacity to ensure the black background remains deep */}
             {/* Deep Purple/Blue Base */}
-            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-indigo-900/10 via-purple-900/10 to-transparent blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
+            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-indigo-900/5 via-purple-900/5 to-transparent blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
             {/* Cyan/Silver Highlight */}
-            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-t from-cyan-900/10 via-slate-800/10 to-transparent blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
+            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-t from-cyan-900/5 via-slate-800/5 to-transparent blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
 
             <div className="relative z-10 container mx-auto max-w-7xl">
 
@@ -85,7 +86,7 @@ export default function ServiceIntroduction() {
 
                         {/* Left Column: Description & CTA */}
                         <motion.div variants={slideUpFade} className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1">
-                            <p className="text-lg md:text-xl lg:text-2xl text-gray-400 font-light leading-relaxed mb-10 max-w-2xl">
+                            <p className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed mb-10 max-w-2xl">
                                 Generic AI models don&apos;t understand your business. We build and tune custom solutions that do. By combining our tailored AI software with hands-on engineering services, we connect LLMs directly to your existing systems—automating complex tasks and workflows.
                             </p>
 
@@ -97,7 +98,7 @@ export default function ServiceIntroduction() {
                                     {/* Chrome sheen effect */}
                                     <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-                                    <span>Start Building</span>
+                                    <span>Explore Solutions</span>
                                     <FaArrowRight className="text-black group-hover:translate-x-1 transition-transform duration-300" />
                                 </MagneticButton>
 
@@ -142,8 +143,8 @@ export default function ServiceIntroduction() {
                 </motion.div>
             </div>
 
-            {/* Bottom Gradient Fade for Smooth Exit */}
-            <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none" />
+            {/* Bottom Gradient Fade for Smooth Exit - Extended height */}
+            <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black via-black/80 to-transparent z-20 pointer-events-none" />
         </section>
     );
 }
