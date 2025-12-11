@@ -49,13 +49,16 @@ const imageReveal = {
 
 export default function ServiceIntroduction() {
     return (
-        <section className="relative min-h-screen py-24 md:py-32 px-6 bg-black overflow-hidden flex flex-col justify-center">
+        <section className="relative min-h-screen py-24 md:py-32 px-6 bg-[#050505] overflow-hidden flex flex-col justify-center">
 
             {/* Top Gradient Fade for Smooth Entry */}
-            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-20 pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black to-transparent z-20 pointer-events-none" />
 
-            {/* Subtle Ambient Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-gradient-to-br from-cyan-900/5 via-purple-900/5 to-pink-900/5 blur-[150px] rounded-full pointer-events-none" />
+            {/* Iridescent Ambient Glows - Metallic Chromatic Theme */}
+            {/* Deep Purple/Blue Base */}
+            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-indigo-900/10 via-purple-900/10 to-transparent blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
+            {/* Cyan/Silver Highlight */}
+            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-t from-cyan-900/10 via-slate-800/10 to-transparent blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
 
             <div className="relative z-10 container mx-auto max-w-7xl">
 
@@ -68,12 +71,12 @@ export default function ServiceIntroduction() {
                 >
                     {/* Top Header Section */}
                     <motion.div variants={slideUpFade} className="mb-12 lg:mb-20 w-full text-center lg:text-left">
-                        <h2 className="text-5xl md:text-6xl lg:text-8xl font-medium tracking-tighter text-white leading-[1.1]">
+                        <h2 className="text-5xl md:text-6xl lg:text-8xl font-medium tracking-tighter leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 drop-shadow-lg">
                             Beyond Chatbots: <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-pink-300 opacity-90">
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300 animate-gradient-x bg-[length:200%_auto]">
                                 Intelligent Infrastructure
                             </span>{" "}
-                            for Business
+                            <span className="text-gray-400">for Business</span>
                         </h2>
                     </motion.div>
 
@@ -89,10 +92,13 @@ export default function ServiceIntroduction() {
                             <div className="flex flex-col items-center lg:items-start space-y-6">
                                 <MagneticButton
                                     onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                                    className="group relative bg-white text-black px-12 py-5 text-lg font-medium tracking-wide flex items-center space-x-3 rounded-full hover:bg-gray-200 transition-colors"
+                                    className="group relative bg-gradient-to-b from-gray-100 to-gray-300 text-black px-12 py-5 text-lg font-bold tracking-wide flex items-center space-x-3 rounded-full hover:shadow-[0_0_25px_rgba(255,255,255,0.3)] transition-all duration-300"
                                 >
+                                    {/* Chrome sheen effect */}
+                                    <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
                                     <span>Start Building</span>
-                                    <FaArrowRight className="text-gray-900 group-hover:translate-x-1 transition-transform duration-300" />
+                                    <FaArrowRight className="text-black group-hover:translate-x-1 transition-transform duration-300" />
                                 </MagneticButton>
 
                                 <p className="text-sm text-gray-500 font-medium tracking-widest uppercase opacity-60">
@@ -101,22 +107,30 @@ export default function ServiceIntroduction() {
                             </div>
                         </motion.div>
 
-                        {/* Right Column: Visual Graphic */}
+                        {/* Right Column: Visual Graphic - FULL SIZE / NO CONSTRAINTS */}
                         <motion.div
                             variants={imageReveal}
                             className="order-1 lg:order-2 w-full flex items-center justify-center lg:justify-end"
                         >
-                            <div className="relative w-full aspect-square md:aspect-[4/3] lg:aspect-square max-w-[600px] group">
-                                {/* Dynamic Glow that reacts to hover */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/20 via-purple-900/20 to-pink-900/20 blur-3xl opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
+                            {/* Removed max-w constraints to allow original size */}
+                            <div className="relative w-full group">
 
-                                <div className="relative w-full h-full">
+                                {/* Iridescent Glow behind image */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 via-cyan-500/20 to-white/10 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-1000" />
+
+                                {/* Image Container - flexible aspect ratio based on natural image size */}
+                                {/* Since user wants "original size", we set a generous aspect ratio or just let it flow. 
+                       Using Next/Image 'fill' requires a parent height. 
+                       Alternatively, we can use width/height if we knew them, but 'fill' + aspect ratio wrapper is safer for responsiveness.
+                       Let's assume the image is roughly 4:3 or 16:9, but allowing it to be large. 
+                   */}
+                                <div className="relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[5/4] xl:aspect-[4/3]">
                                     <Image
                                         src="/architecture-diagram.jpg"
                                         alt="AI Architecture Diagram"
                                         fill
-                                        className="object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.05)]"
-                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        className="object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
+                                        sizes="(max-width: 768px) 100vw, 60vw"
                                         priority
                                     />
                                 </div>
@@ -129,7 +143,7 @@ export default function ServiceIntroduction() {
             </div>
 
             {/* Bottom Gradient Fade for Smooth Exit */}
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent z-20 pointer-events-none" />
         </section>
     );
 }
