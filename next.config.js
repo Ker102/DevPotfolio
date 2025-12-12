@@ -5,6 +5,9 @@ const nextConfig = {
   },
   compress: true,
   reactStrictMode: false,
+  eslint: {
+    dirs: ['app', 'components', 'lib', 'hooks', 'data'],
+  },
 };
 
 module.exports = nextConfig;
