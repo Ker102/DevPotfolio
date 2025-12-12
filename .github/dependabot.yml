@@ -18,6 +18,7 @@ updates:
     labels:
       - "dependencies"
       - "automated"
+      - "npm"
     # Group updates for better PR management
     groups:
       development-dependencies:
@@ -30,7 +31,7 @@ updates:
         update-types:
           - "minor"
           - "patch"
-    # Ignore specific updates
+    # Ignore specific major updates
     ignore:
       - dependency-name: "next"
         update-types: ["version-update:semver-major"]
@@ -48,3 +49,4 @@ updates:
       - "ci/cd"
       - "dependencies"
       - "automated"
+      - "github-actions"
