@@ -122,11 +122,17 @@ function CompactNavbar() {
         }}
         // "Black.out(1.7)"
         transition={{
-          ease: "backOut",
-          duration: 0.6,
-          layout: { duration: 0.6, ease: "backOut" }
+          type: "spring",
+          bounce: 0.15,
+          duration: 0.6
         }}
-        style={glassStyle}
+        style={{
+          background: "rgba(40, 40, 45, 0.6)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
+          border: "1px solid rgba(255, 255, 255, 0.12)",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
+        }}
       >
         {/* Header Row */}
         <div
@@ -146,7 +152,7 @@ function CompactNavbar() {
             }}
             transition={{
               type: "spring",
-              stiffness: 300,
+              stiffness: 400,
               damping: 30
             }}
             aria-label={isOpen ? "Close menu" : "Open menu"}

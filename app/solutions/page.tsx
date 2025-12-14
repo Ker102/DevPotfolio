@@ -3,6 +3,7 @@ import SolutionsHero from "@/components/solutions/SolutionsHero";
 import TrustBar from "@/components/solutions/TrustBar";
 import ThreePillars from "@/components/solutions/ThreePillars";
 import ProblemAgitation from "@/components/solutions/ProblemAgitation";
+import SolutionsArchitecture from "@/components/solutions/SolutionsArchitecture";
 import FeatureShowcase from "@/components/solutions/FeatureShowcase";
 import UseCaseCarousel from "@/components/solutions/UseCaseCarousel";
 import SolutionsFooter from "@/components/solutions/SolutionsFooter";
@@ -14,8 +15,9 @@ export default function SolutionsPage() {
             <Navbar />
             <SolutionsHero />
             <TrustBar />
-            <ThreePillars />
             <ProblemAgitation />
+            <SolutionsArchitecture />
+            <ThreePillars />
             <FeatureShowcase />
             <UseCaseCarousel />
             <SolutionsContact />

@@ -58,7 +58,7 @@ export default function SolutionsContact() {
                                         required
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-colors"
+                                        className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-colors"
                                         placeholder="Jane Doe"
                                     />
                                 </div>
@@ -71,7 +71,7 @@ export default function SolutionsContact() {
                                         required
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-colors"
+                                        className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-colors"
                                         placeholder="jane@company.com"
                                     />
                                 </div>
@@ -86,14 +86,14 @@ export default function SolutionsContact() {
                                     rows={4}
                                     value={formData.details}
                                     onChange={handleChange}
-                                    className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-colors resize-none"
+                                    className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-colors resize-none"
                                     placeholder="Tell us about your automation goals..."
                                 />
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full py-4 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold rounded-lg transition-all transform active:scale-[0.99] flex items-center justify-center gap-2 shadow-lg hover:shadow-cyan-500/25"
+                                className="w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-lg transition-all transform active:scale-[0.99] flex items-center justify-center gap-2 shadow-lg hover:shadow-purple-500/25"
                             >
                                 <FaPaperPlane className="text-sm" />
                                 Send Request

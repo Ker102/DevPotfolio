@@ -13,18 +13,18 @@ const cases = [
         color: "indigo"
     },
     {
-        icon: <FaHeadset className="w-10 h-10 text-cyan-400" />,
+        icon: <FaHeadset className="w-10 h-10 text-purple-400" />,
         title: "Customer Support",
         snippet: "L2 Support Agent capable of database queries.",
         detail: "Go beyond FAQ bots. Our agents can query your SQL database to check order status and process refunds autonomously.",
-        color: "cyan"
+        color: "purple"
     },
     {
-        icon: <FaFileInvoiceDollar className="w-10 h-10 text-emerald-400" />,
+        icon: <FaFileInvoiceDollar className="w-10 h-10 text-pink-400" />,
         title: "Operations",
         snippet: "Automatic Invoice Processing & ERP Entry.",
         detail: "Extract line items from messy invoices and insert them directly into SAP/Oracle/Xero with 100% data validation.",
-        color: "emerald"
+        color: "pink"
     }
 ];
 

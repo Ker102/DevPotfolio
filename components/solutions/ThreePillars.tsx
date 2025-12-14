@@ -5,13 +5,13 @@ import { FaLayerGroup, FaCode, FaServer } from "react-icons/fa";
 
 const pillars = [
     {
-        icon: <FaLayerGroup className="w-8 h-8 text-cyan-400" />,
+        icon: <FaLayerGroup className="w-8 h-8 text-indigo-400" />,
         title: "The Platform (SaaS)",
         subtitle: "Pre-Built Intelligence",
         description: "Access our proprietary LLM tools designed for immediate integration.",
         useCase: "Best for: Quick Wins",
-        gradient: "from-cyan-500/20 to-blue-500/5",
-        border: "border-cyan-500/20"
+        gradient: "from-indigo-500/20 to-purple-500/5",
+        border: "border-indigo-500/20"
     },
     {
         icon: <FaCode className="w-8 h-8 text-purple-400" />,
@@ -23,13 +23,13 @@ const pillars = [
         border: "border-purple-500/20"
     },
     {
-        icon: <FaServer className="w-8 h-8 text-emerald-400" />,
+        icon: <FaServer className="w-8 h-8 text-pink-400" />,
         title: "Managed LLMOps (Sustain)",
         subtitle: "Reliability at Scale",
         description: "We handle the fine-tuning, monitoring, and model updates so you never break.",
         useCase: "Best for: Long-term Stability",
-        gradient: "from-emerald-500/20 to-teal-500/5",
-        border: "border-emerald-500/20"
+        gradient: "from-pink-500/20 to-rose-500/5",
+        border: "border-pink-500/20"
     }
 ];
 

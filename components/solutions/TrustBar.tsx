@@ -22,7 +22,7 @@ export default function TrustBar() {
                             transition={{ delay: index * 0.1, duration: 0.6 }}
                             className="flex flex-col items-center text-center"
                         >
-                            <span className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500 mb-2">
+                            <span className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white to-indigo-300/80 mb-2">
                                 {metric.value}
                             </span>
                             <span className="text-sm font-medium text-gray-500 uppercase tracking-widest">

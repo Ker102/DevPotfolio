@@ -12,6 +12,7 @@ export default function SolutionsHero() {
             {/* Background Ambient Glows */}
             {/* Background Light Pillars (ReactBits) */}
             <div className="absolute inset-0 z-0">
+                {/* Crosswind Theme: Default Beams Color */}
                 <Beams />
             </div>
 
@@ -25,8 +26,8 @@ export default function SolutionsHero() {
                     transition={{ duration: 0.6, ease: "easeOut" }}
                     className="mb-8 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm"
                 >
-                    <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                    <span className="text-xs font-medium text-cyan-200 tracking-wide uppercase">Enterprise AI Infrastructure</span>
+                    <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
+                    <span className="text-xs font-medium text-indigo-200 tracking-wide uppercase">Enterprise AI Infrastructure</span>
                 </motion.div>
 
                 {/* Main Headline */}
@@ -37,7 +38,7 @@ export default function SolutionsHero() {
                     className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-[1.1]"
                 >
                     Enterprise-Grade <br className="hidden md:block" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300 animate-gradient-x bg-[length:200%_auto]">
+                    <span className="text-transparent bg-clip-text bg-[radial-gradient(circle_at_50%_100%,#ff3bff_0%,#ecbfbf_10%,#5c24ff_25%,#1a1a1a_50%)] bg-[length:200%_auto] animate-gradient-x">
                         AI Infrastructure
                     </span> <br className="hidden md:block" />
                     & Automation
