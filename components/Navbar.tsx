@@ -22,7 +22,6 @@ const navCards = [
     links: [
       { label: "Get Started", href: "#services" },
       { label: "Software", href: "#projects" },
-      { label: "Other", href: "#" },
     ],
   },
   {
@@ -36,8 +35,8 @@ const navCards = [
     label: "Additional",
     links: [
       { label: "About me", href: "#about" },
-      { label: "Team", href: "#" },
-      { label: "About Kaelux", href: "#about" },
+      { label: "Team", href: "#team" },
+      { label: "About Kaelux", href: "#about-kaelux" },
     ],
   },
 ];
@@ -68,13 +67,30 @@ function CompactNavbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (e: React.MouseEvent<HTMLElement>, href: string) => {
+    e.preventDefault();
     setIsOpen(false);
+
+    // Offset for fixed navbar (approx 100px)
+    const padding = 100;
+
+    const element = document.querySelector(href);
+    if (!element) {
+      // Fallback if element not found or hash is just "#"
+      if (href === "#") window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - padding;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
   };
 
-  // 'Image 3' Aesthetic: Greyer, more glass-like (Reverted as requested)
+  // 'Image 3' Aesthetic: Greyer, more glass-like
   const glassStyle = {
     background: "rgba(40, 40, 45, 0.6)",
     backdropFilter: "blur(16px) saturate(180%)",
@@ -104,7 +120,7 @@ function CompactNavbar() {
           height: isOpen ? "auto" : CLOSED_HEIGHT,
           borderRadius: isOpen ? 24 : CLOSED_RADIUS,
         }}
-        // "Black.out(1.7)" -> roughly standard Back.out with 1.7 overshoot
+        // "Black.out(1.7)"
         transition={{
           ease: "backOut",
           duration: 0.6,
@@ -117,11 +133,7 @@ function CompactNavbar() {
           className="w-full flex items-center px-1 relative"
           style={{ height: CLOSED_HEIGHT }}
         >
-          {/* 
-             Animated Toggle Button 
-             - closed: left: 50%, x: -50% (Centered)
-             - open: left: 4px, x: 0% (Left aligned)
-          */}
+          {/* Animated Toggle Button */}
           <motion.button
             layout
             onClick={() => setIsOpen(!isOpen)}
@@ -140,7 +152,6 @@ function CompactNavbar() {
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             <div className="relative w-5 h-5 flex items-center justify-center">
-              {/* Burger Icon */}
               <motion.div
                 className="absolute inset-0 flex items-center justify-center"
                 animate={{
@@ -151,8 +162,6 @@ function CompactNavbar() {
               >
                 <HiMenu className="w-5 h-5 text-white" />
               </motion.div>
-
-              {/* X Icon */}
               <motion.div
                 className="absolute inset-0 flex items-center justify-center"
                 initial={{ rotate: -90, opacity: 0 }}
@@ -168,9 +177,7 @@ function CompactNavbar() {
             </div>
           </motion.button>
 
-
-
-          {/* Desktop Nav Links - Only visible when Open */}
+          {/* Desktop Nav Links */}
           <div className="flex-1 flex items-center justify-end overflow-hidden h-full pl-4">
             <AnimatePresence>
               {isOpen && (
@@ -184,7 +191,7 @@ function CompactNavbar() {
                   {navLinks.map((link) => (
                     <button
                       key={link.name}
-                      onClick={() => scrollToSection(link.href)}
+                      onClick={(e) => scrollToSection(e, link.href)}
                       className="px-4 py-1.5 text-sm text-gray-200 hover:text-white transition-colors font-medium rounded-full hover:bg-white/5"
                     >
                       {link.name}
@@ -236,10 +243,7 @@ function CompactNavbar() {
                         <a
                           key={link.label}
                           href={link.href}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            scrollToSection(link.href);
-                          }}
+                          onClick={(e) => scrollToSection(e, link.href)}
                           className="group flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5"
                         >
                           <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
@@ -269,7 +273,7 @@ function CompactNavbar() {
                 {navLinks.map((link) => (
                   <button
                     key={link.name}
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={(e) => scrollToSection(e, link.href)}
                     className="w-full text-left p-3 rounded-xl text-base font-semibold text-gray-200 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10 transition-all"
                   >
                     {link.name}
