@@ -61,7 +61,7 @@ export default function ProblemAgitation() {
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
                         Why &quot;Out of the Box&quot; AI{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 via-gray-400 to-violet-300">
+                        <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
                             Isn't Enough
                         </span>
                     </h2>

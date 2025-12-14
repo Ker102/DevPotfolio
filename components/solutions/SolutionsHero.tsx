@@ -36,7 +36,7 @@ export default function SolutionsHero() {
                     className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-[1.1]"
                 >
                     Enterprise-Grade <br className="hidden md:block" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 via-gray-400 to-violet-300">
+                    <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
                         AI Infrastructure
                     </span> <br className="hidden md:block" />
                     & Automation
