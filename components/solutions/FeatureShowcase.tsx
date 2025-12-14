@@ -49,7 +49,7 @@ export default function FeatureShowcase() {
     return (
         <section id="features" className="py-28 px-6 bg-black relative border-t border-white/5 overflow-hidden">
             <div className="container mx-auto max-w-7xl relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
                     {/* Left: Text Content */}
                     <div>
@@ -117,9 +117,9 @@ export default function FeatureShowcase() {
                             <Image
                                 src="/images/solutions/features-scale-security.jpg"
                                 alt="Feature Showcase: Model Agnostic, Eval Pipelines, Security"
-                                width={800}
-                                height={800}
-                                className="w-full h-auto object-cover"
+                                width={1200}
+                                height={1200}
+                                className="w-full h-auto object-cover scale-110"
                             />
                             {/* Glass overlay */}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />

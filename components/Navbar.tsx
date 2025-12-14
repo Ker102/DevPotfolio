@@ -71,23 +71,35 @@ function CompactNavbar() {
     e.preventDefault();
     setIsOpen(false);
 
-    // Offset for fixed navbar (approx 100px)
-    const padding = 100;
+    // Check if we're on the homepage
+    const isHomePage = window.location.pathname === "/" || window.location.pathname === "";
 
-    const element = document.querySelector(href);
-    if (!element) {
-      // Fallback if element not found or hash is just "#"
-      if (href === "#") window.scrollTo({ top: 0, behavior: "smooth" });
+    if (!isHomePage) {
+      // Navigate to homepage with the hash anchor
+      window.location.href = "/" + href;
       return;
     }
 
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.scrollY - padding;
+    // On homepage - scroll to the section after a brief delay for menu to close
+    setTimeout(() => {
+      const padding = 100;
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth"
-    });
+      if (href === "#" || href === "#hero") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      const element = document.querySelector(href);
+      if (!element) return;
+
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - padding;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }, 100);
   };
 
   // 'Image 3' Aesthetic: Greyer, more glass-like
@@ -108,8 +120,7 @@ function CompactNavbar() {
     <div className="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
       <motion.div
         ref={containerRef}
-        layout
-        className="pointer-events-auto relative overflow-hidden"
+        className="pointer-events-auto relative overflow-hidden will-change-transform"
         initial={{
           width: CLOSED_WIDTH,
           height: CLOSED_HEIGHT,
@@ -120,11 +131,10 @@ function CompactNavbar() {
           height: isOpen ? "auto" : CLOSED_HEIGHT,
           borderRadius: isOpen ? 24 : CLOSED_RADIUS,
         }}
-        // "Black.out(1.7)"
         transition={{
           type: "spring",
-          bounce: 0.15,
-          duration: 0.6
+          stiffness: 300,
+          damping: 30
         }}
         style={{
           background: "rgba(40, 40, 45, 0.6)",
@@ -141,14 +151,12 @@ function CompactNavbar() {
         >
           {/* Animated Toggle Button */}
           <motion.button
-            layout
             onClick={() => setIsOpen(!isOpen)}
-            className="absolute z-20 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors w-10 h-10"
+            className="absolute z-20 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors w-10 h-10 will-change-transform"
             initial={false}
             animate={{
               left: isOpen ? "4px" : "50%",
-              x: isOpen ? "0%" : "-50%",
-              rotate: isOpen ? 0 : 0
+              x: isOpen ? "0%" : "-50%"
             }}
             transition={{
               type: "spring",

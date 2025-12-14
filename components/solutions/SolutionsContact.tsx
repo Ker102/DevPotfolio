@@ -62,7 +62,7 @@ export default function SolutionsContact() {
                         transition={{ type: "spring", stiffness: 80, damping: 18, delay: 0.1 }}
                         className="relative group"
                     >
-                        <div className="relative bg-zinc-950/80 border border-white/10 rounded-2xl p-8 md:p-12 backdrop-blur-sm group-hover:border-white/15 transition-colors duration-500">
+                        <div className="relative bg-zinc-900/90 border border-white/15 rounded-2xl p-8 md:p-12 backdrop-blur-sm group-hover:border-white/25 transition-colors duration-500">
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
@@ -74,8 +74,8 @@ export default function SolutionsContact() {
                                             required
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all duration-300"
-                                            placeholder="Jane Doe"
+                                            className="w-full bg-zinc-900/80 border border-white/15 rounded-xl px-4 py-3.5 text-white placeholder:text-gray-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/30 transition-all duration-300"
+                                            placeholder="Alex from Kaelux"
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -87,8 +87,8 @@ export default function SolutionsContact() {
                                             required
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all duration-300"
-                                            placeholder="jane@company.com"
+                                            className="w-full bg-zinc-900/80 border border-white/15 rounded-xl px-4 py-3.5 text-white placeholder:text-gray-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/30 transition-all duration-300"
+                                            placeholder="alex@kaelux.dev"
                                         />
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@ export default function SolutionsContact() {
                                         rows={4}
                                         value={formData.details}
                                         onChange={handleChange}
-                                        className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3.5 text-white focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 transition-all duration-300 resize-none"
+                                        className="w-full bg-zinc-900/80 border border-white/15 rounded-xl px-4 py-3.5 text-white placeholder:text-gray-500 focus:outline-none focus:border-violet-500/50 focus:ring-1 focus:ring-violet-500/30 transition-all duration-300 resize-none"
                                         placeholder="Tell us about your automation goals..."
                                     />
                                 </div>
