@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const members = [
-    { name: "Ker102", role: "Founder", color: "from-cyan-400 to-blue-500", image: null },
-    { name: "Josh", role: "CTO", color: "from-purple-400 to-pink-500", image: "/team/josh.jpg" },
-    { name: "Randolph", role: "Marketing & Media", color: "from-amber-400 to-orange-500", image: "/team/randolph.jpg" },
-    { name: "Ethan", role: "DevOps Engineer", color: "from-emerald-400 to-green-500", image: "/team/ethan.jpg" },
+    { name: "Ker102", role: "Founder", color: "from-white to-gray-300", image: "/images/team/ker102.jpg" },
+    { name: "Josh", role: "CTO", color: "from-white to-gray-300", image: "/team/josh.jpg" },
+    { name: "Randolph", role: "Marketing & Media", color: "from-white to-gray-300", image: "/team/randolph.jpg" },
+    { name: "Ethan", role: "DevOps Engineer", color: "from-white to-gray-300", image: "/team/ethan.jpg" },
 ];
 
 const container = {
@@ -66,7 +66,7 @@ export default function Team() {
                                                 src={member.image}
                                                 alt={member.name}
                                                 fill
-                                                className="object-cover"
+                                                className="object-cover object-top"
                                                 sizes="(max-width: 768px) 100vw, 33vw"
                                             />
                                         ) : (
