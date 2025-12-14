@@ -9,36 +9,34 @@ export default function SolutionsHero() {
     return (
         <section className="relative min-h-[90vh] flex flex-col justify-center items-center px-6 bg-black overflow-hidden pt-20">
 
-            {/* Background Ambient Glows */}
             {/* Background Light Pillars (ReactBits) */}
             <div className="absolute inset-0 z-0">
-                {/* Crosswind Theme: Default Beams Color */}
                 <Beams />
             </div>
 
             {/* Content Container */}
             <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
 
-                {/* Animated Badge */}
+                {/* Animated Badge - Glass Style */}
                 <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="mb-8 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm"
+                    initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.1 }}
+                    className="mb-8 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md"
                 >
-                    <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
-                    <span className="text-xs font-medium text-indigo-200 tracking-wide uppercase">Enterprise AI Infrastructure</span>
+                    <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
+                    <span className="text-xs font-semibold text-gray-300 tracking-[0.15em] uppercase">Enterprise AI Infrastructure</span>
                 </motion.div>
 
-                {/* Main Headline */}
+                {/* Main Headline - Chrome/Silver gradient */}
                 <motion.h1
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.2 }}
                     className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-[1.1]"
                 >
                     Enterprise-Grade <br className="hidden md:block" />
-                    <span className="text-transparent bg-clip-text bg-[radial-gradient(circle_at_50%_100%,#ff3bff_0%,#ecbfbf_10%,#5c24ff_25%,#1a1a1a_50%)] bg-[length:200%_auto] animate-gradient-x">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 via-gray-400 to-violet-300">
                         AI Infrastructure
                     </span> <br className="hidden md:block" />
                     & Automation
@@ -46,9 +44,9 @@ export default function SolutionsHero() {
 
                 {/* Sub-headline */}
                 <motion.p
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.35 }}
                     className="text-lg md:text-xl text-gray-400 max-w-2xl font-light leading-relaxed mb-12"
                 >
                     We provide the proprietary software, LLMOps engineering, and custom tuning required to turn generic AI into reliable business automation.
@@ -56,27 +54,26 @@ export default function SolutionsHero() {
 
                 {/* CTA Buttons */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.5 }}
                     className="flex flex-col sm:flex-row items-center gap-6"
                 >
-                    {/* Primary CTA */}
-                    <Link
-                        href="#contact-form"
-                        className="group relative px-8 py-4 bg-white text-black text-lg font-bold rounded-full overflow-hidden transition-transform active:scale-95"
-                    >
-                        <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-white to-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <span className="relative z-10 flex items-center gap-2">
+                    {/* Primary CTA - Glass Style (matching badge) */}
+                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                        <Link
+                            href="#contact-form"
+                            className="group relative px-8 py-4 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-lg font-semibold overflow-hidden transition-all duration-300 hover:bg-white/15 hover:border-white/30 flex items-center gap-2"
+                        >
                             Start Your Project
-                            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-                        </span>
-                    </Link>
+                            <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
+                        </Link>
+                    </motion.div>
 
                     {/* Secondary CTA */}
                     <Link
                         href="#features"
-                        className="text-gray-300 hover:text-white font-medium text-lg border-b border-transparent hover:border-white transition-colors pb-0.5"
+                        className="text-gray-400 hover:text-white font-medium text-lg border-b border-transparent hover:border-white/50 transition-all duration-300 pb-0.5"
                     >
                         Learn How It Works
                     </Link>

@@ -21,56 +21,89 @@ const problems = [
     }
 ];
 
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.2,
+            delayChildren: 0.1
+        }
+    }
+};
+
+const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.97 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: {
+            type: "spring",
+            stiffness: 80,
+            damping: 18
+        }
+    }
+};
+
 export default function ProblemAgitation() {
     return (
-        <section className="py-24 px-6 bg-black relative">
-            <div className="container mx-auto max-w-7xl">
+        <section className="py-28 px-6 bg-black relative overflow-hidden">
+            <div className="container mx-auto max-w-7xl relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                    className="text-center mb-20"
                 >
-                    <span className="text-pink-500 font-medium tracking-widest uppercase mb-4 block">
+                    <span className="text-gray-400 font-medium tracking-[0.2em] uppercase mb-4 block text-sm">
                         The Challenge
                     </span>
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-                        Why &quot;Out of the Box&quot; AI <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-500">Isn't Enough</span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+                        Why &quot;Out of the Box&quot; AI{" "}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-100 via-gray-400 to-violet-300">
+                            Isn't Enough
+                        </span>
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
                         Generic models are powerful, but they lack the context and integration required for real enterprise value.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <motion.div
+                    className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                >
                     {problems.map((item, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.2 }}
+                            variants={cardVariants}
                             className="group relative flex flex-col"
                         >
-                            {/* Image Container with Glow */}
-                            <div className="relative aspect-[16/9] mb-6 rounded-2xl overflow-hidden border border-white/10 group-hover:border-pink-500/30 transition-colors duration-500">
+                            {/* Image Container */}
+                            <div className="relative aspect-[16/10] mb-6 rounded-2xl overflow-hidden border border-white/5 shadow-2xl transition-all duration-700 group-hover:border-white/10">
                                 <Image
                                     src={item.image}
                                     alt={item.alt}
                                     width={800}
-                                    height={450}
-                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                    height={500}
+                                    className="w-full h-full object-cover transform group-hover:scale-[1.03] transition-transform duration-700 ease-out"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60" />
+                                {/* Gradient overlay for depth */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
                             </div>
 
                             {/* Solution Text */}
-                            <div className="px-2">
+                            <div className="px-1">
                                 <div className="flex items-start gap-4">
-                                    <div className="h-full w-0.5 bg-gradient-to-b from-pink-500 to-transparent rounded-full mt-1.5" />
+                                    {/* Silver/Chrome accent line */}
+                                    <div className="w-0.5 h-16 bg-gradient-to-b from-gray-300 via-gray-500 to-transparent rounded-full mt-1 shrink-0" />
                                     <div>
-                                        <h4 className="text-white font-bold mb-2 text-lg">The Solution</h4>
-                                        <p className="text-gray-400 leading-relaxed text-sm md:text-base">
+                                        <h4 className="text-white font-semibold mb-2 text-lg">The Solution</h4>
+                                        <p className="text-gray-400 leading-relaxed text-sm">
                                             {item.solution}
                                         </p>
                                     </div>
@@ -78,7 +111,7 @@ export default function ProblemAgitation() {
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );
