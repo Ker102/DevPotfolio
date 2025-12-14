@@ -5,6 +5,9 @@ import Image from "next/image";
 import Hero from "@/components/sections/Hero";
 import ServiceIntroduction from "@/components/sections/ServiceIntroduction";
 import Projects from "@/components/sections/Projects";
+import AboutKaelux from "@/components/sections/AboutKaelux";
+import AboutMe from "@/components/sections/AboutMe";
+import Team from "@/components/sections/Team";
 import Contact from "@/components/sections/Contact";
 
 import LogoImage from "../Red White Simple Company Technology Logo.png";
@@ -42,6 +45,9 @@ export default function Home() {
       <Hero />
       <ServiceIntroduction />
       <Projects />
+      <AboutKaelux />
+      <AboutMe />
+      <Team />
       <Contact />
     </motion.main>
   );

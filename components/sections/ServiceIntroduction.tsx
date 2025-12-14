@@ -48,7 +48,7 @@ const imageReveal = {
 
 export default function ServiceIntroduction() {
     return (
-        <section className="relative min-h-screen py-24 md:py-32 px-6 bg-black overflow-hidden flex flex-col justify-center">
+        <section id="services" className="relative min-h-screen py-24 md:py-32 px-6 bg-black overflow-hidden flex flex-col justify-center">
 
             {/* Top Gradient Fade for Smooth Entry - Extended height for smoother blend */}
             <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-black via-black/80 to-transparent z-20 pointer-events-none" />

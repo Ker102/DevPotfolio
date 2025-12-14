@@ -2,42 +2,42 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useState, useLayoutEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { HiMenu, HiX } from "react-icons/hi";
 import { GoArrowUpRight } from "react-icons/go";
-import { gsap } from "gsap";
-import LogoImage from "../Red White Simple Company Technology Logo.png";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
   { name: "About", href: "#about" },
+  { name: "Services", href: "#services" },
   { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ];
 
-// Navigation cards for expanded menu
 const navCards = [
   {
     label: "Explore",
     links: [
-      { label: "About Me", href: "#about" },
-      { label: "My Work", href: "#projects" },
+      { label: "Get Started", href: "#services" },
+      { label: "Software", href: "#projects" },
+      { label: "Other", href: "#" },
     ],
   },
   {
     label: "Connect",
     links: [
       { label: "Get In Touch", href: "#contact" },
-      { label: "View Resume", href: "#" },
+      { label: "Collaborate", href: "#contact" },
     ],
   },
   {
-    label: "Resources",
+    label: "Additional",
     links: [
-      { label: "Blog", href: "#" },
-      { label: "Case Studies", href: "#projects" },
+      { label: "About me", href: "#about" },
+      { label: "Team", href: "#" },
+      { label: "About Kaelux", href: "#about" },
     ],
   },
 ];
@@ -47,294 +47,192 @@ export default function Navbar() {
   if (pathname?.startsWith("/links")) {
     return null;
   }
-  return <PrimaryNavbar />;
+  return <CompactNavbar />;
 }
 
-function PrimaryNavbar() {
+function CompactNavbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const navRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Close when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     element?.scrollIntoView({ behavior: "smooth" });
     setIsOpen(false);
-    
-    // Close expanded menu when clicking a link
-    if (isExpanded && tlRef.current) {
-      tlRef.current.reverse();
-      setIsExpanded(false);
-    }
   };
 
-  const calculateHeight = () => {
-    const navEl = navRef.current;
-    if (!navEl) return 280;
-
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (isMobile) {
-      return 400; // Mobile expanded height
-    }
-    return 280; // Desktop expanded height
+  // 'Image 3' Aesthetic: Greyer, more glass-like (Reverted as requested)
+  const glassStyle = {
+    background: "rgba(40, 40, 45, 0.6)",
+    backdropFilter: "blur(16px) saturate(180%)",
+    WebkitBackdropFilter: "blur(16px) saturate(180%)",
+    border: "1px solid rgba(255, 255, 255, 0.12)",
+    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
   };
 
-  const createTimeline = () => {
-    const navEl = navRef.current;
-    if (!navEl) return null;
-
-    // Important: Set initial state
-    const collapsedHeight = 60; // Match the minHeight of your GlassSurface
-    gsap.set(navEl, { height: collapsedHeight, overflow: 'hidden' });
-    gsap.set(cardsRef.current, { y: 50, opacity: 0 });
-
-    const tl = gsap.timeline({ paused: true });
-
-    // Expand height with back.out(1.7) ease
-    tl.to(navEl, {
-      height: calculateHeight(),
-      duration: 0.6,
-      ease: 'back.out(1.7)'
-    });
-
-    // Animate cards in with stagger
-    tl.to(cardsRef.current, { 
-      y: 0, 
-      opacity: 1, 
-      duration: 0.5, 
-      ease: 'back.out(1.7)', 
-      stagger: 0.08 
-    }, '-=0.2');
-
-    return tl;
-  };
-
-  useLayoutEffect(() => {
-    const tl = createTimeline();
-    tlRef.current = tl;
-
-    return () => {
-      tl?.kill();
-      tlRef.current = null;
-    };
-  }, []);
-
-  useLayoutEffect(() => {
-    const handleResize = () => {
-      if (!tlRef.current) return;
-
-      if (isExpanded) {
-        const newHeight = calculateHeight();
-        gsap.set(navRef.current, { height: newHeight });
-
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          newTl.progress(1);
-          tlRef.current = newTl;
-        }
-      } else {
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          tlRef.current = newTl;
-        }
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isExpanded]);
-
-  const toggleExpandedMenu = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    const tl = tlRef.current;
-    if (!tl) return;
-    
-    if (!isExpanded) {
-      setIsExpanded(true);
-      tl.play();
-    } else {
-      setIsExpanded(false);
-      tl.reverse();
-    }
-  };
-
-  const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
-    if (el) cardsRef.current[i] = el;
-  };
+  // Dimensions
+  const CLOSED_HEIGHT = 40;
+  const CLOSED_WIDTH = 140;
+  const CLOSED_RADIUS = 20;
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-    >
-      <div className="container mx-auto px-6 py-3">
-        <div ref={navRef} className="relative" style={{ borderRadius: '32px', overflow: 'hidden' }}>
-          <div 
-            className="w-full glass-navbar"
-            style={{ 
-              minHeight: '60px',
-              background: 'rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(20px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-              border: '1px solid rgba(255, 255, 255, 0.18)',
-              borderRadius: '32px',
-              boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
+      <motion.div
+        ref={containerRef}
+        layout
+        className="pointer-events-auto relative overflow-hidden"
+        initial={{
+          width: CLOSED_WIDTH,
+          height: CLOSED_HEIGHT,
+          borderRadius: CLOSED_RADIUS,
+        }}
+        animate={{
+          width: isOpen ? "min(1000px, calc(100vw - 32px))" : CLOSED_WIDTH,
+          height: isOpen ? "auto" : CLOSED_HEIGHT,
+          borderRadius: isOpen ? 24 : CLOSED_RADIUS,
+        }}
+        // "Black.out(1.7)" -> roughly standard Back.out with 1.7 overshoot
+        transition={{
+          ease: "backOut",
+          duration: 0.6,
+          layout: { duration: 0.6, ease: "backOut" }
+        }}
+        style={glassStyle}
+      >
+        {/* Header Row */}
+        <div
+          className="w-full flex items-center px-1 relative"
+          style={{ height: CLOSED_HEIGHT }}
+        >
+          {/* 
+             Animated Toggle Button 
+             - closed: left: 50%, x: -50% (Centered)
+             - open: left: 4px, x: 0% (Left aligned)
+          */}
+          <motion.button
+            layout
+            onClick={() => setIsOpen(!isOpen)}
+            className="absolute z-20 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors w-10 h-10"
+            initial={false}
+            animate={{
+              left: isOpen ? "4px" : "50%",
+              x: isOpen ? "0%" : "-50%",
+              rotate: isOpen ? 0 : 0
             }}
+            transition={{
+              type: "spring",
+              stiffness: 300,
+              damping: 30
+            }}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
           >
-            <div className="flex items-center justify-between w-full px-6 py-3 relative z-10">
-              {/* Hamburger Menu Button - Desktop */}
-              <button
-                onClick={toggleExpandedMenu}
-                className="hidden md:block cursor-pointer p-2 -ml-2 hover:opacity-80 transition-opacity relative z-20"
-                aria-label={isExpanded ? 'Close menu' : 'Open menu'}
-                type="button"
+            <div className="relative w-5 h-5 flex items-center justify-center">
+              {/* Burger Icon */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                animate={{
+                  opacity: isOpen ? 0 : 1,
+                  rotate: isOpen ? 90 : 0
+                }}
+                transition={{ duration: 0.2 }}
               >
-                <div className="flex flex-col gap-2 w-7 h-6 justify-center">
-                  <motion.div
-                    className="h-0.5 w-full rounded-full"
-                    style={{ 
-                      backgroundColor: '#ffffff',
-                      boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)'
-                    }}
-                    animate={{
-                      rotate: isExpanded ? 45 : 0,
-                      y: isExpanded ? 7 : 0,
-                    }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  />
-                  <motion.div
-                    className="h-0.5 w-full rounded-full"
-                    style={{ 
-                      backgroundColor: '#ffffff',
-                      boxShadow: '0 0 10px rgba(255, 255, 255, 0.5)'
-                    }}
-                    animate={{
-                      rotate: isExpanded ? -45 : 0,
-                      y: isExpanded ? -7 : 0,
-                    }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  />
-                </div>
-              </button>
+                <HiMenu className="w-5 h-5 text-white" />
+              </motion.div>
 
-              {/* Empty space for logo (moved outside) */}
-              <div className="hidden md:block w-10"></div>
+              {/* X Icon */}
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{
+                  opacity: isOpen ? 1 : 0,
+                  rotate: isOpen ? 0 : -90,
+                  scale: isOpen ? 1 : 0.5
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                <HiX className="w-5 h-5 text-white" />
+              </motion.div>
+            </div>
+          </motion.button>
 
-              {/* Desktop Navigation */}
-              <div className="hidden md:flex items-center gap-8 relative z-20">
-                {navLinks.map((link, index) => (
-                  <motion.button
-                    key={link.name}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
-                    onClick={() => scrollToSection(link.href)}
-                    className="font-semibold transition-all duration-300 relative group text-base"
-                    style={{
-                      color: '#ffffff',
-                      textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
-                    }}
-                  >
-                    {link.name}
-                    <span 
-                      className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300"
-                      style={{
-                        background: 'linear-gradient(90deg, #ffffff 0%, #b8b8b8 50%, #8c8c8c 100%)',
-                        filter: 'saturate(1.3)',
-                        boxShadow: '0 0 8px rgba(255, 255, 255, 0.5)'
-                      }}
-                    ></span>
-                  </motion.button>
-                ))}
+
+
+          {/* Desktop Nav Links - Only visible when Open */}
+          <div className="flex-1 flex items-center justify-end overflow-hidden h-full pl-4">
+            <AnimatePresence>
+              {isOpen && (
                 <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + navLinks.length * 0.1 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                  transition={{ duration: 0.2, delay: 0.1 }}
+                  className="hidden md:flex items-center gap-2 pr-2"
                 >
+                  {navLinks.map((link) => (
+                    <button
+                      key={link.name}
+                      onClick={() => scrollToSection(link.href)}
+                      className="px-4 py-1.5 text-sm text-gray-200 hover:text-white transition-colors font-medium rounded-full hover:bg-white/5"
+                    >
+                      {link.name}
+                    </button>
+                  ))}
+                  <div className="w-px h-4 bg-white/20 mx-2" />
                   <Link
                     href="/links"
-                    className="font-semibold transition-all duration-300 relative group text-base uppercase tracking-wide"
-                    style={{
-                      color: '#ffffff',
-                      textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
-                    }}
+                    className="px-4 py-1.5 text-xs font-bold bg-white text-black rounded-full hover:bg-gray-200 transition-colors uppercase tracking-wider"
                   >
                     Link Hub
-                    <span
-                      className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300"
-                      style={{
-                        background: 'linear-gradient(90deg, #ffffff 0%, #b8b8b8 50%, #8c8c8c 100%)',
-                        filter: 'saturate(1.3)',
-                        boxShadow: '0 0 8px rgba(255, 255, 255, 0.5)'
-                      }}
-                    />
                   </Link>
                 </motion.div>
-              </div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
 
-              {/* Mobile Menu Button */}
-              <div className="md:hidden flex w-full items-center justify-between gap-3 relative z-20">
-                <button
-                  onClick={() => setIsOpen(!isOpen)}
-                  className="p-2"
-                  style={{ 
-                    color: '#ffffff',
-                    filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))'
-                  }}
-                  aria-label="Toggle menu"
-                >
-                  {isOpen ? (
-                    <HiX className="w-7 h-7" />
-                  ) : (
-                    <HiMenu className="w-7 h-7" />
-                  )}
-                </button>
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 via-white/30 to-transparent blur-lg opacity-80" />
-                  <Image
-                    src={LogoImage}
-                    alt="Kaelux logo"
-                    width={44}
-                    height={44}
-                    className="relative h-11 w-11 select-none object-contain drop-shadow-[0_0_14px_rgba(255,255,255,0.75)]"
-                    priority={false}
-                  />
-                </div>
-              </div>
-            </div>
+        {/* Divider */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="w-full h-px bg-white/10"
+            />
+          )}
+        </AnimatePresence>
 
-            {/* Expanded Navigation Cards - Desktop Only - Always rendered for GSAP */}
-            <div className="hidden md:grid grid-cols-3 gap-4 px-6 pb-6 pt-4 relative z-10">
-              {navCards.map((card, idx) => (
-                <div
-                  key={card.label}
-                  ref={setCardRef(idx)}
-                  className="opacity-0"
-                  style={{ pointerEvents: isExpanded ? 'auto' : 'none' }}
-                >
-                  <div
-                    className="p-6 hover:scale-105 transition-transform duration-300 cursor-pointer"
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.08)',
-                      backdropFilter: 'blur(16px) saturate(180%)',
-                      WebkitBackdropFilter: 'blur(16px) saturate(180%)',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
-                      borderRadius: '16px',
-                      boxShadow: '0 4px 24px 0 rgba(0, 0, 0, 0.25)',
-                    }}
-                  >
-                    <h4 className="text-lg font-bold mb-4 gradient-text">
+        {/* Expanded Content (Desktop Cards) */}
+        <AnimatePresence>
+          {isOpen && (
+            <div className="hidden md:block overflow-hidden">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                transition={{ delay: 0.15, duration: 0.3 }}
+                className="p-6 grid grid-cols-3 gap-8 min-w-[600px]"
+              >
+                {navCards.map((card) => (
+                  <div key={card.label} className="flex flex-col gap-4">
+                    <span className="text-xs font-bold text-gray-500 uppercase tracking-widest pl-2">
                       {card.label}
-                    </h4>
-                    <div className="space-y-3">
-                      {card.links?.map((link) => (
+                    </span>
+                    <div className="flex flex-col gap-1">
+                      {card.links.map((link) => (
                         <a
                           key={link.label}
                           href={link.href}
@@ -342,88 +240,55 @@ function PrimaryNavbar() {
                             e.preventDefault();
                             scrollToSection(link.href);
                           }}
-                          className="flex items-center gap-2 transition-colors group"
-                          style={{ color: '#d1d5db' }}
+                          className="group flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5"
                         >
-                          <GoArrowUpRight 
-                            className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" 
-                            style={{ color: '#d1d5db' }}
-                          />
-                          <span 
-                            className="text-sm font-medium group-hover:text-white transition-colors"
-                          >
+                          <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
                             {link.label}
                           </span>
+                          <GoArrowUpRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100" />
                         </a>
                       ))}
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </motion.div>
             </div>
-          </div>
-        </div>
+          )}
+        </AnimatePresence>
 
-        {/* Mobile Navigation */}
-        <motion.div
-          initial={false}
-          animate={{
-            height: isOpen ? "auto" : 0,
-            opacity: isOpen ? 1 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden mt-4"
-        >
-          <div className="py-4 space-y-4">
-            {navLinks.map((link) => (
-              <div
-                key={link.name}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.08)',
-                  backdropFilter: 'blur(16px) saturate(180%)',
-                  WebkitBackdropFilter: 'blur(16px) saturate(180%)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  borderRadius: '20px',
-                  boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.25)',
-                }}
-              >
-                <button
-                  onClick={() => scrollToSection(link.href)}
-                  className="block w-full text-left px-4 py-3 font-semibold transition-all"
-                  style={{ 
-                    color: '#ffffff',
-                    textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
-                  }}
-                >
-                  {link.name}
-                </button>
-              </div>
-            ))}
-            <div
-              style={{
-                background: 'rgba(255, 255, 255, 0.08)',
-                backdropFilter: 'blur(16px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(16px) saturate(180%)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                borderRadius: '20px',
-                boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.25)',
-              }}
+        {/* Expanded Content (Mobile List) */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden overflow-hidden"
             >
-              <Link
-                href="/links"
-                onClick={() => setIsOpen(false)}
-                className="block w-full text-left px-4 py-3 font-semibold uppercase tracking-wide text-sm"
-                style={{ 
-                  color: '#ffffff',
-                  textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
-                }}
-              >
-                Link Hub
-              </Link>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    </motion.nav>
+              <div className="p-4 flex flex-col gap-2 min-w-[300px]">
+                {navLinks.map((link) => (
+                  <button
+                    key={link.name}
+                    onClick={() => scrollToSection(link.href)}
+                    className="w-full text-left p-3 rounded-xl text-base font-semibold text-gray-200 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10 transition-all"
+                  >
+                    {link.name}
+                  </button>
+                ))}
+                <div className="h-px bg-white/10 my-2" />
+                <Link
+                  href="/links"
+                  onClick={() => setIsOpen(false)}
+                  className="w-full block text-center p-3 rounded-xl bg-white text-black font-bold text-sm uppercase tracking-wide"
+                >
+                  Link Hub
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+      </motion.div>
+    </div>
   );
 }
