@@ -6,7 +6,7 @@ import { WaveScene } from './Wave';
 import { IntroScene } from './IntroScene';
 import { ScrollControls, Scroll, useScroll } from '@react-three/drei';
 import { UIOverlay } from './UIOverlay';
-import { RotateCcw, X, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const FlyingTitle = () => {
   const scroll = useScroll();
@@ -104,16 +104,6 @@ export const CanvasWrapper: React.FC = () => {
 
               {/* Page 1: Intro */}
               <section className="w-screen h-screen relative flex flex-col items-center justify-center pointer-events-none">
-
-                {/* Top Right Buttons (Visual only based on screenshot) */}
-                <div className="absolute top-8 right-8 flex gap-3 z-50 pointer-events-auto">
-                  <button className="w-10 h-10 rounded-full border border-black/10 bg-white/50 backdrop-blur-md flex items-center justify-center text-black/70 hover:bg-white hover:scale-110 transition-all shadow-sm">
-                    <RotateCcw size={16} strokeWidth={1.5} />
-                  </button>
-                  <button className="w-10 h-10 rounded-full border border-black/10 bg-white/50 backdrop-blur-md flex items-center justify-center text-black/70 hover:bg-white hover:scale-110 transition-all shadow-sm">
-                    <X size={16} strokeWidth={1.5} />
-                  </button>
-                </div>
 
                 {/* Main Title Content */}
                 <div className="relative z-10 text-center flex flex-col items-center transform -translate-y-12">
