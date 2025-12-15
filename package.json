@@ -34,7 +34,7 @@
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^9.39.1",
     "@next/eslint-plugin-next": "^16.0.10",
-    "@types/node": "^22.10.1",
+    "@types/node": "^25.0.2",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.22",
