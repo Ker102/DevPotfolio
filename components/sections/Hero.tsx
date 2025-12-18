@@ -140,7 +140,7 @@ export default function Hero() {
                         className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
                     >
                         <ShinyText
-                            text="Kaelux Projects"
+                            text="Kaelux"
                             speed={3}
                         />
                     </motion.h1>
@@ -173,8 +173,8 @@ export default function Hero() {
                         variants={fadeInUp}
                         className="text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto"
                     >
-                        Crafting innovative solutions and cutting-edge web applications
-                        with the latest technologies.
+                        Tailored LLM infrastructure, AI engineering, and full-stack web services—
+                        we build and host the complete technology backbone for your business.
                     </motion.p>
 
                     <motion.div
@@ -182,7 +182,7 @@ export default function Hero() {
                         className="flex flex-wrap gap-4 justify-center mt-8"
                     >
                         <MagneticButton
-                            onClick={() => scrollToSection("projects")}
+                            onClick={() => scrollToSection("services")}
                             className="px-8 py-4 text-black font-semibold rounded-full shadow-lg hover:shadow-2xl transition-shadow relative overflow-hidden"
                             style={{
                                 background: 'linear-gradient(135deg, #ffffff 0%, #e8e8e8 25%, #b8b8b8 50%, #8c8c8c 75%, #b8b8b8 100%)',
@@ -191,7 +191,7 @@ export default function Hero() {
                                 filter: 'saturate(1.3) brightness(1.1)'
                             }}
                         >
-                            View My Work
+                            Our Services
                         </MagneticButton>
                         <MagneticButton
                             onClick={() => scrollToSection("contact")}
