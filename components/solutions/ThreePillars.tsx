@@ -1,25 +1,25 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaLayerGroup, FaCode, FaServer } from "react-icons/fa";
+import { HiOutlineCubeTransparent, HiOutlineWrenchScrewdriver, HiOutlineCog8Tooth } from "react-icons/hi2";
 
 const pillars = [
     {
-        icon: <FaLayerGroup className="w-8 h-8" />,
+        Icon: HiOutlineCubeTransparent,
         title: "The Platform (SaaS)",
         subtitle: "Pre-Built Intelligence",
         description: "Access our proprietary LLM tools designed for immediate integration.",
         useCase: "Best for: Quick Wins"
     },
     {
-        icon: <FaCode className="w-8 h-8" />,
+        Icon: HiOutlineWrenchScrewdriver,
         title: "Custom Engineering (Build)",
         subtitle: "Tailored Automation",
         description: "We build custom agents and RAG pipelines specific to your data.",
         useCase: "Best for: Complex Workflows"
     },
     {
-        icon: <FaServer className="w-8 h-8" />,
+        Icon: HiOutlineCog8Tooth,
         title: "Managed LLMOps (Sustain)",
         subtitle: "Reliability at Scale",
         description: "We handle the fine-tuning, monitoring, and model updates so you never break.",
@@ -87,16 +87,16 @@ export default function ThreePillars() {
                             key={index}
                             variants={cardVariants}
                             whileHover={{ y: -8, transition: { type: "spring", stiffness: 300, damping: 20 } }}
-                            className="group relative p-8 rounded-2xl border border-gray-200 bg-white hover:border-violet-300 transition-all duration-500 overflow-hidden shadow-lg hover:shadow-xl"
+                            className="group relative p-8 rounded-2xl border border-gray-200 bg-white hover:border-gray-300 transition-all duration-500 overflow-hidden shadow-lg hover:shadow-xl"
                         >
                             <div className="relative z-10 flex flex-col items-start h-full">
-                                {/* Icon with purple gradient */}
-                                <div className="mb-6 p-4 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white group-hover:scale-110 transition-transform duration-300 shadow-md">
-                                    {pillar.icon}
+                                {/* Icon with chrome/silver gradient */}
+                                <div className="mb-6 p-4 rounded-xl bg-gradient-to-br from-gray-200 via-white to-gray-300 border border-gray-300 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                    <pillar.Icon className="w-8 h-8 text-gray-700" />
                                 </div>
 
                                 <h3 className="text-2xl font-bold text-gray-900 mb-2">{pillar.title}</h3>
-                                <span className="text-xs font-semibold text-violet-600 uppercase tracking-[0.15em] mb-4 block">
+                                <span className="text-xs font-semibold text-gray-500 uppercase tracking-[0.15em] mb-4 block">
                                     {pillar.subtitle}
                                 </span>
 

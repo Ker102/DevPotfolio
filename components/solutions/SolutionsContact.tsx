@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { FaPaperPlane, FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { FaPaperPlane, FaLinkedin, FaGithub, FaTwitter, FaEnvelope, FaInstagram } from "react-icons/fa";
 import Link from "next/link";
 
 export default function SolutionsContact() {
@@ -27,7 +27,8 @@ export default function SolutionsContact() {
         { icon: FaEnvelope, href: "mailto:ker102@kaelux.dev", label: "Email" },
         { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
         { icon: FaGithub, href: "https://github.com/ker102", label: "GitHub" },
-        { icon: FaTwitter, href: "https://twitter.com", label: "Twitter" }
+        { icon: FaTwitter, href: "https://x.com/kerprocessing", label: "Twitter" },
+        { icon: FaInstagram, href: "https://instagram.com/kaelux.dev", label: "Instagram" }
     ];
 
     return (
@@ -54,7 +55,7 @@ export default function SolutionsContact() {
 
                 <div className="grid grid-cols-1 gap-12">
 
-                    {/* Contact Form - Glass Style */}
+                    {/* Contact Form - Glass Style with Underglow */}
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +63,14 @@ export default function SolutionsContact() {
                         transition={{ type: "spring", stiffness: 80, damping: 18, delay: 0.1 }}
                         className="relative group"
                     >
-                        <div className="relative bg-zinc-900/90 border border-white/15 rounded-2xl p-8 md:p-12 backdrop-blur-sm group-hover:border-white/25 transition-colors duration-500">
+                        {/* Gradient Underglow */}
+                        <div
+                            className="absolute -inset-1 rounded-2xl opacity-60 blur-xl group-hover:opacity-80 transition-opacity duration-500"
+                            style={{
+                                background: "linear-gradient(90deg, #FF3BFF 0%, #ECBFBF 38%, #5C24FF 76%, #D94FD5 100%)"
+                            }}
+                        />
+                        <div className="relative bg-zinc-900/95 border border-white/15 rounded-2xl p-8 md:p-12 backdrop-blur-sm group-hover:border-white/25 transition-colors duration-500">
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">

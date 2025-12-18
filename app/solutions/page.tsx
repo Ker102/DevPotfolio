@@ -27,7 +27,7 @@ export default function SolutionsPage() {
             {/* Gradient Transition: Black → Purple → White */}
             <GradientTransitionSection direction="toWhite">
                 {/* Spacer div for gradient visual */}
-                <div className="h-32" />
+                <div className="h-64" />
             </GradientTransitionSection>
 
             {/* White background sections */}
@@ -39,7 +39,7 @@ export default function SolutionsPage() {
             {/* Gradient Transition: White → Purple → Black */}
             <GradientTransitionSection direction="toBlack">
                 {/* Spacer div for gradient visual */}
-                <div className="h-32" />
+                <div className="h-64" />
             </GradientTransitionSection>
 
             {/* Back to Black background sections */}

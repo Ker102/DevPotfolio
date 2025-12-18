@@ -2,45 +2,39 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaCloud, FaPalette, FaServer, FaRocket, FaArrowRight } from "react-icons/fa";
+import {
+    HiOutlinePaintBrush,
+    HiOutlineCodeBracket,
+    HiOutlineCloud,
+    HiOutlineRocketLaunch
+} from "react-icons/hi2";
+import { FaArrowRight } from "react-icons/fa";
 
 const services = [
     {
-        icon: <FaPalette className="w-6 h-6" />,
+        icon: HiOutlinePaintBrush,
         title: "UI/UX Design",
         description: "Modern, responsive interfaces designed for optimal user experience and engagement."
     },
     {
-        icon: <FaServer className="w-6 h-6" />,
+        icon: HiOutlineCodeBracket,
         title: "Full-Stack Development",
         description: "End-to-end application development with robust backends and polished frontends."
     },
     {
-        icon: <FaCloud className="w-6 h-6" />,
+        icon: HiOutlineCloud,
         title: "Cloud Infrastructure",
         description: "Scalable hosting solutions with managed databases, CDN, and automated deployments."
     },
     {
-        icon: <FaRocket className="w-6 h-6" />,
+        icon: HiOutlineRocketLaunch,
         title: "Continuous Delivery",
         description: "CI/CD pipelines, monitoring, and maintenance to keep your platform running smoothly."
     }
 ];
 
-const container = {
-    hidden: { opacity: 0 },
-    show: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.15,
-        },
-    },
-};
-
-const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 80, damping: 18 } },
-};
+// Double the services for infinite loop effect
+const duplicatedServices = [...services, ...services];
 
 export default function AdditionalServicesSolutions() {
     return (
@@ -80,41 +74,55 @@ export default function AdditionalServicesSolutions() {
                     </p>
                 </motion.div>
 
-                {/* Services Grid */}
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, margin: "-10%" }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
-                >
-                    {services.map((service) => (
-                        <motion.div
-                            key={service.title}
-                            variants={item}
-                            className="group relative p-6 rounded-2xl bg-white/80 backdrop-blur-sm border border-gray-200 hover:border-gray-300 shadow-lg hover:shadow-xl transition-all duration-300"
-                        >
-                            <div className="flex flex-col gap-4">
-                                {/* Icon */}
-                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300 shadow-md">
-                                    {service.icon}
-                                </div>
+                {/* Infinite Carousel */}
+                <div className="relative mb-12 overflow-hidden">
+                    {/* Gradient fade edges */}
+                    <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+                    <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-                                {/* Content */}
-                                <div>
-                                    <h3 className="text-lg font-bold text-gray-900 mb-2">
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-sm text-gray-600 leading-relaxed">
-                                        {service.description}
-                                    </p>
+                    <motion.div
+                        className="flex gap-6"
+                        animate={{
+                            x: [0, -50 * services.length + "%"],
+                        }}
+                        transition={{
+                            x: {
+                                repeat: Infinity,
+                                repeatType: "loop",
+                                duration: 30,
+                                ease: "linear",
+                            },
+                        }}
+                    >
+                        {duplicatedServices.map((service, index) => (
+                            <div
+                                key={index}
+                                className="group flex-shrink-0 w-72 p-6 rounded-2xl bg-gray-50 border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
+                            >
+                                <div className="flex flex-col gap-4">
+                                    {/* Icon with chrome gradient */}
+                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gray-200 via-white to-gray-300 border border-gray-300 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                        <service.icon className="w-7 h-7 text-transparent bg-clip-text bg-gradient-to-b from-gray-600 via-gray-500 to-gray-700" style={{ stroke: 'url(#chrome-gradient)' }} />
+                                        {/* Fallback: use gray color */}
+                                        <service.icon className="w-7 h-7 text-gray-600 absolute opacity-100" />
+                                    </div>
+
+                                    {/* Content */}
+                                    <div>
+                                        <h3 className="text-lg font-bold text-gray-900 mb-2">
+                                            {service.title}
+                                        </h3>
+                                        <p className="text-sm text-gray-600 leading-relaxed">
+                                            {service.description}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
 
-                {/* CTA Button */}
+                {/* CTA Button - Chrome/Gray metallic style */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -126,13 +134,13 @@ export default function AdditionalServicesSolutions() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                            className="group relative px-10 py-5 bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white text-lg font-bold tracking-wide flex items-center gap-3 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                            className="group relative px-10 py-5 bg-gradient-to-b from-gray-100 to-gray-300 text-black text-lg font-bold tracking-wide flex items-center gap-3 rounded-full overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.1)] hover:shadow-[0_0_25px_rgba(0,0,0,0.15)] transition-shadow duration-300"
                         >
-                            {/* Sheen Sweep */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                            {/* Metallic Sheen Sweep */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent w-full -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
 
                             <span className="relative z-10">Get Started</span>
-                            <FaArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                            <FaArrowRight className="relative z-10 text-black group-hover:translate-x-1 transition-transform duration-300" />
                         </motion.button>
                     </Link>
                 </motion.div>
