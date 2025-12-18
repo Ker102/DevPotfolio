@@ -137,12 +137,14 @@ export default function Hero() {
                 >
                     <motion.h1
                         variants={slideInFromLeft}
-                        className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4"
+                        className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 text-transparent bg-clip-text drop-shadow-lg"
+                        style={{
+                            backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #f3f4f6 25%, #d1d5db 50%, #9ca3af 75%, #6b7280 100%)',
+                            backgroundSize: '100% 300%',
+                            animation: 'gradientShift 3s ease-in-out infinite',
+                        }}
                     >
-                        <ShinyText
-                            text="Kaelux"
-                            speed={3}
-                        />
+                        Kaelux
                     </motion.h1>
 
                     <motion.div
