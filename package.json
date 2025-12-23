@@ -9,9 +9,12 @@
     "lint": "eslint app components lib hooks data --max-warnings 999"
   },
   "dependencies": {
+    "@ai-sdk/groq": "^3.0.0",
+    "@ai-sdk/react": "^3.0.1",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
     "@types/three": "^0.182.0",
+    "ai": "^6.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
@@ -28,7 +31,8 @@
     "simplex-noise": "^4.0.3",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.182.0"
+    "three": "^0.182.0",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
