@@ -8,6 +8,20 @@ Automation,LangChain (Python),The heavy lifter. Runs on GitHub Actions to scrape
 Summarization,Google Vertex AI,Used ONLY in the backend script to summarize long articles cheaply (using your credits).
 Guardrails,Zod,Used in the Vercel AI SDK to validate the chat stream.
 
+We are building an AI-Powered Diagnostic Agent for Kaelux.dev.
+
+    Goal: Automatically interview leads, diagnose their business problems, and propose tailored Kaelux solutions (RAG, Agents, etc.).
+
+    Core Feature: A "Smart" Hybrid Architecture that uses Groq for instant client-side speed and Redis for semantic caching (memory).
+
+1. The High-Level Logic
+
+Your app acts as a bridge between two worlds:
+
+    The "Deep Brain" (Backend): A Python-based factory that runs weekly. It uses LangChain and Google Vertex to digest complex engineering blogs into vector knowledge.
+
+    The "Fast Agent" (Frontend): A Next.js Edge system. It uses Groq (Speed) and Hugging Face Tools (Live Data) to construct the perfect client proposal instantly.
+
 STRATEGY:
     1. **Intake:** You must gather: [Industry, Technical Maturity, Data Volume, Pain Point].
        - If you do NOT have these, output type="interview_question" and ask ONE clear question.
@@ -34,3 +48,69 @@ The Logic: The model acts as a "State Machine."
         If NO: Ask one relevant question to get the missing info.
 
         If YES: Move to "Diagnosis Mode" (Query Database -> Generate Proposal).
+
+        Flow:
+
+    Semantic Cache Check: Calculate embedding (Together AI). Check Redis kaelux_cache for >0.95 similarity. If hit -> Return cached JSON immediately.
+
+    RAG Retrieval: If no cache, search kaelux_knowledge for top 3 matches.
+
+    Interview Logic (System Prompt):
+
+        System Prompt: "You are Kaelux-Bot. Gather [Industry, Pain Point, Tech Stack]. If missing, ask 1 question. If complete, propose solution."
+
+    Generation (Groq): Call streamObject using groq('llama-3.3-70b-versatile').
+
+    Schema (Zod): Enforce strict output:
+
+    Part A: The "Brain" (Backend Automation)
+
+This runs invisibly on GitHub Actions.
+
+    Tool: LangChain (Python).
+
+    Reason: LangChain is unrivaled for data processing pipelines.
+
+    Workflow (scripts/ingest.py):
+
+        Loader: Scrape specific engineering blogs (Lil'Log, etc.).
+
+        Summarizer: Use Google Vertex AI (since you have credits) to summarize articles.
+
+        Embedder: Use Together AI (Model: m2-bert-80M-8k-retrieval).
+
+        Database: Upsert vectors to Redis Cloud.
+
+Part B: The "Agent" (Frontend API)
+
+This runs on the Edge for speed.
+
+    Tool: Vercel AI SDK Core.
+
+    Runtime: Edge (Not Node.js).
+
+    Logic (app/api/chat/route.ts):
+
+        Step 1 (The RAG): Before calling the LLM, we manually convert the user's query to a vector (Together AI) and search Redis. We inject the found text into the System Prompt.
+
+        Step 2 (The Tools): We give the LLM the huggingFaceTool.
+
+        Step 3 (The Loop): We set maxSteps: 5.
+
+            Turn 1: LLM says "I need to check the latest vision models." (Calls Tool).
+
+            Turn 2: Tool returns "ResNet, ViT, CLIP".
+
+            Turn 3: LLM analyzes results + RAG context -> Final Answer.
+
+Part C: The "Experience" (Frontend UI)
+
+This is the missing piece.
+
+    Tool: useChat hook.
+
+    Feature: Collapsible Reasoning.
+
+        When the Agent calls a tool, show a small badge: ⚙️ Checking Hugging Face....
+
+        When the Agent is reading RAG data, show: 📚 Reading Knowledge Base....

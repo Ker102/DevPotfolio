@@ -30,21 +30,18 @@ async function getRedisClient() {
     }
 
     try {
-        // Build connection URL with password if provided
-        let connectionUrl = redisUrl;
-        if (redisPassword && !redisUrl.includes('@')) {
-            // Parse URL and inject password
-            const urlObj = new URL(redisUrl.startsWith('redis://') ? redisUrl : `redis://${redisUrl}`);
-            urlObj.password = redisPassword;
-            connectionUrl = urlObj.toString();
+        // Build connection URL with password
+        // Format: redis://default:password@host:port
+        let connectionUrl: string;
+        if (redisUrl.startsWith('redis://') || redisUrl.startsWith('rediss://')) {
+            connectionUrl = redisUrl;
+        } else {
+            // Assume format is host:port
+            connectionUrl = `redis://default:${redisPassword}@${redisUrl}`;
         }
 
         redisClient = createClient({
             url: connectionUrl,
-            socket: {
-                tls: true, // Redis Cloud requires TLS
-                rejectUnauthorized: false, // For self-signed certs
-            },
         });
 
         redisClient.on('error', (err) => console.error('Redis Client Error:', err));

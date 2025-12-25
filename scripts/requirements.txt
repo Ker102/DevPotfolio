@@ -1,0 +1,6 @@
+# Kaelux Ingestion Pipeline - Python Dependencies
+# Install: pip install -r requirements.txt
+
+redis>=5.0.0
+requests>=2.31.0
+google-generativeai>=0.8.0
