@@ -39,7 +39,14 @@ const duplicatedServices = [...services, ...services];
 export default function AdditionalServicesSolutions() {
     return (
         <section className="relative py-20 px-6 bg-white overflow-hidden">
-            <div className="container mx-auto max-w-6xl">
+            {/* Aurora Background Effect */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute -top-[20%] right-[10%] w-[1000px] h-[1000px] bg-purple-300/20 blur-[120px] rounded-full mix-blend-multiply opacity-70 animate-pulse" style={{ animationDuration: '8s' }} />
+                <div className="absolute top-[20%] left-[0%] w-[800px] h-[800px] bg-blue-200/20 blur-[100px] rounded-full mix-blend-multiply opacity-60" />
+                <div className="absolute bottom-[0%] right-[20%] w-[900px] h-[900px] bg-pink-200/20 blur-[120px] rounded-full mix-blend-multiply opacity-60" />
+            </div>
+
+            <div className="container mx-auto max-w-6xl relative z-10">
                 {/* OR-style Divider */}
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -63,7 +70,7 @@ export default function AdditionalServicesSolutions() {
                 >
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6">
                         Complete{" "}
-                        <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
+                        <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#000000_0%,#434343_50%,#000000_100%)]">
                             Platform Solutions
                         </span>
                     </h2>
@@ -97,14 +104,12 @@ export default function AdditionalServicesSolutions() {
                         {duplicatedServices.map((service, index) => (
                             <div
                                 key={index}
-                                className="group flex-shrink-0 w-72 p-6 rounded-2xl bg-gray-50 border border-gray-200 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
+                                className="group flex-shrink-0 w-72 p-6 rounded-2xl bg-white border border-gray-200 hover:border-black/20 transition-all duration-300 hover:shadow-xl hover:shadow-black/5"
                             >
                                 <div className="flex flex-col gap-4">
-                                    {/* Icon with chrome gradient */}
-                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gray-200 via-white to-gray-300 border border-gray-300 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm">
-                                        <service.icon className="w-7 h-7 text-transparent bg-clip-text bg-gradient-to-b from-gray-600 via-gray-500 to-gray-700" style={{ stroke: 'url(#chrome-gradient)' }} />
-                                        {/* Fallback: use gray color */}
-                                        <service.icon className="w-7 h-7 text-gray-600 absolute opacity-100" />
+                                    {/* Icon with Black/Chrome gradient */}
+                                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-gray-100 to-white border border-gray-200 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm group-hover:shadow-md">
+                                        <service.icon className="w-7 h-7 text-gray-700 group-hover:text-black transition-colors" />
                                     </div>
 
                                     {/* Content */}
@@ -122,7 +127,7 @@ export default function AdditionalServicesSolutions() {
                     </motion.div>
                 </div>
 
-                {/* CTA Button - Chrome/Gray metallic style */}
+                {/* CTA Button - Black Pill Style */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -134,13 +139,13 @@ export default function AdditionalServicesSolutions() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                            className="group relative px-10 py-5 bg-gradient-to-b from-gray-100 to-gray-300 text-black text-lg font-bold tracking-wide flex items-center gap-3 rounded-full overflow-hidden shadow-[0_0_0_1px_rgba(0,0,0,0.1)] hover:shadow-[0_0_25px_rgba(0,0,0,0.15)] transition-shadow duration-300"
+                            className="group relative px-8 py-4 bg-black text-white text-lg font-medium tracking-wide flex items-center gap-2 rounded-full overflow-hidden hover:shadow-2xl hover:shadow-black/20 transition-all duration-300"
                         >
-                            {/* Metallic Sheen Sweep */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent w-full -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
+                            <span className="relative z-10 text-white group-hover:tracking-wider transition-all duration-300">Get Started</span>
+                            <FaArrowRight className="relative z-10 text-white ml-1 group-hover:translate-x-1 transition-transform duration-300" />
 
-                            <span className="relative z-10">Get Started</span>
-                            <FaArrowRight className="relative z-10 text-black group-hover:translate-x-1 transition-transform duration-300" />
+                            {/* Subtle Shine Effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
                         </motion.button>
                     </Link>
                 </motion.div>

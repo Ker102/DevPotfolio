@@ -2,28 +2,25 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FaCloud, FaPalette, FaServer, FaRocket, FaArrowRight } from "react-icons/fa";
+import Image from "next/image";
+import { FaArrowRight } from "react-icons/fa";
 
 const services = [
     {
-        icon: <FaPalette className="w-6 h-6" />,
         title: "UI/UX Design",
-        description: "Modern, responsive interfaces designed for optimal user experience and engagement."
+        image: "/services/uiux.jpg",
     },
     {
-        icon: <FaServer className="w-6 h-6" />,
         title: "Full-Stack Development",
-        description: "End-to-end application development with robust backends and polished frontends."
+        image: "/services/fullstack.jpg",
     },
     {
-        icon: <FaCloud className="w-6 h-6" />,
         title: "Cloud Infrastructure",
-        description: "Scalable hosting solutions with managed databases, CDN, and automated deployments."
+        image: "/services/cloud.jpg",
     },
     {
-        icon: <FaRocket className="w-6 h-6" />,
         title: "Continuous Delivery",
-        description: "CI/CD pipelines, monitoring, and maintenance to keep your platform running smoothly."
+        image: "/services/cicd.jpg",
     }
 ];
 
@@ -38,14 +35,14 @@ const container = {
 };
 
 const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 80, damping: 18 } },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    show: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, stiffness: 50, damping: 15 } },
 };
 
 export default function PlatformServices() {
     return (
-        <section className="relative py-16 px-6 overflow-hidden bg-white">
-            <div className="container mx-auto max-w-6xl relative z-10">
+        <section className="relative py-20 px-6 overflow-hidden bg-white">
+            <div className="container mx-auto max-w-5xl relative z-10">
                 {/* OR-style Divider */}
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -65,7 +62,7 @@ export default function PlatformServices() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-12"
+                    className="text-center mb-16"
                 >
                     <h2 className="text-4xl md:text-5xl font-medium tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-gray-900 via-gray-700 to-gray-500 mb-6">
                         Complete Platform Solutions
@@ -77,39 +74,34 @@ export default function PlatformServices() {
                     </p>
                 </motion.div>
 
-                {/* Services Grid */}
+                {/* Services Grid (Images) */}
                 <motion.div
                     variants={container}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, margin: "-10%" }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
                 >
-                    {services.map((service) => (
+                    {services.map((service, index) => (
                         <motion.div
-                            key={service.title}
+                            key={index}
                             variants={item}
-                            className="group relative p-6 rounded-2xl bg-gray-50 border border-gray-200 hover:border-purple-300 transition-all duration-300 hover:bg-white hover:shadow-xl hover:shadow-purple-100"
+                            whileHover={{ scale: 1.03, y: -5 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer bg-gray-100"
                         >
-                            <div className="flex flex-col gap-4">
-                                {/* Icon */}
-                                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-purple-800 border border-purple-400/30 flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-purple-200">
-                                    {service.icon}
-                                </div>
+                            {/* Image */}
+                            <div className="relative aspect-[16/9] w-full">
+                                <Image
+                                    src={service.image}
+                                    alt={service.title}
+                                    fill
+                                    className="object-cover"
+                                />
 
-                                {/* Content */}
-                                <div>
-                                    <h3 className="text-lg font-bold text-gray-900 mb-2">
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-sm text-gray-600 leading-relaxed">
-                                        {service.description}
-                                    </p>
-                                </div>
+                                {/* Hover Overlay - Optional Shine/Tint */}
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
                             </div>
-
-                            {/* Hover Glow */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-purple-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 rounded-2xl" />
                         </motion.div>
                     ))}
                 </motion.div>
