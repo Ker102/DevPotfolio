@@ -48,16 +48,20 @@ export default function Home() {
       <Hero />
       <ServiceIntroduction />
 
-      {/* Gradient transition: black → purple → white */}
-      <GradientSpacer direction="toWhite" />
+      {/* Image-based Gradient transition: black → white */}
+      <GradientSpacer direction="toWhite" className="-my-16 relative z-0" />
 
-      <PlatformServices />
-      <DiagnoserCTA />
+      <div className="relative z-10">
+        <PlatformServices />
+        <DiagnoserCTA />
+      </div>
 
-      {/* Gradient transition: white → purple → black */}
-      <GradientSpacer direction="toBlack" />
+      {/* Image-based Gradient transition: white → black */}
+      <GradientSpacer direction="toBlack" className="-my-16 relative z-0" />
 
-      <Projects />
+      <div className="relative z-10">
+        <Projects />
+      </div>
       <AboutKaelux />
       <AboutMe />
       <Team />

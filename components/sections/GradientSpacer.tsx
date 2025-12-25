@@ -1,80 +1,60 @@
 "use client";
 
+import Image from "next/image";
+
 interface GradientSpacerProps {
     direction: "toWhite" | "toBlack";
     height?: string;
+    className?: string;
 }
 
 /**
- * Ultra-smooth gradient transition matching the inspiration image.
- * Uses a tall blending area with exponential gradient stops to avoid banding.
+ * Image-based smooth gradient transition.
+ * Uses custom-designed liquid chrome waves to ensure perfect transition
+ * without CSS banding or cutoff artifacts.
  */
-export default function GradientSpacer({ direction, height = "h-[600px]" }: GradientSpacerProps) {
-    // Top Spacer: Black Section -> White Section
-    // Transition: Pure Black -> Deep Indigo/Purple -> Soft Violet -> White
-    const gradientToWhite = `linear-gradient(
-        to bottom,
-        #000000 0%,
-        #020103 10%,
-        #080410 20%,
-        #110825 30%,
-        #1d0d3d 40%,
-        #2e1065 50%,        /* Deep Violet */
-        #4c1d95 60%,
-        #7c3aed 70%,        /* Bright Purple */
-        #a78bfa 80%,
-        #ddd6fe 90%,
-        #ffffff 100%
-    )`;
+export default function GradientSpacer({ direction, height = "h-[500px]", className = "" }: GradientSpacerProps) {
+    const isToWhite = direction === "toWhite";
+    const imageSrc = isToWhite
+        ? "/transitions/transition-to-white.jpg"
+        : "/transitions/transition-to-black.jpg";
 
-    // Bottom Spacer: White Section -> Black Section
-    // Transition: White -> Soft Violet -> Bright Purple -> Deep Indigo -> Black
-    const gradientToBlack = `linear-gradient(
-        to bottom,
-        #ffffff 0%,
-        #ddd6fe 10%,
-        #a78bfa 20%,
-        #7c3aed 30%,
-        #4c1d95 40%,
-        #2e1065 50%,
-        #1d0d3d 60%,
-        #110825 70%,
-        #080410 80%,
-        #020103 90%,
-        #000000 100%
-    )`;
-
+    // Background gradient ensures strict color matching at the edges
+    // even if the image is masked out.
     return (
         <div
-            className={`relative ${height} w-full`}
-            style={{
-                background: direction === "toWhite" ? gradientToWhite : gradientToBlack,
-                // Negative margin to pull sections closer if needed, but for now just smooth transition
-            }}
+            className={`relative ${height} w-full overflow-hidden z-0 ${className}`}
         >
             {/* 
-               Overlay Gradient to smooth out banding: 
-               Adds a secondary layer of noise/dither or just a soft fade 
+               Background Generator
+               Strictly enforces the transition colors (Solid Black -> Solid White).
+               This ensures that if the image is masked out, the background matches the adjacent sections perfectly.
             */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay">
-                <div
-                    className="w-full h-full"
-                    style={{
-                        background: "radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.4), transparent 70%)"
-                    }}
+            <div
+                className={`absolute inset-0 w-full h-full ${direction === "toWhite"
+                    ? "bg-gradient-to-b from-black to-white"
+                    : "bg-gradient-to-b from-white to-black"
+                    }`}
+            />
+
+            {/* 
+               Masked Image Layer
+               The image is faded out at the top (10%) and bottom (10%) using a CSS mask.
+               This allows the "Background Generator" (above) to show through at the edges,
+               guaranteeing a 100% color match with the sections above and below.
+            */}
+            <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_85%,transparent_100%)]">
+                <Image
+                    src={imageSrc}
+                    alt={direction === "toWhite" ? "Transition to white" : "Transition to black"}
+                    fill
+                    className="object-fill select-none pointer-events-none"
+                    priority
+                    quality={100}
+                    unoptimized
+                    sizes="100vw"
                 />
             </div>
-
-            {/* Large glow orb to match top-right inspiration source */}
-            <div
-                className="absolute left-1/2 -translate-x-1/2 w-[800px] h-full opacity-40 pointer-events-none"
-                style={{
-                    background: direction === "toWhite"
-                        ? "radial-gradient(ellipse at top, rgba(124, 58, 237, 0.4), transparent 70%)"
-                        : "radial-gradient(ellipse at bottom, rgba(124, 58, 237, 0.4), transparent 70%)",
-                    filter: "blur(80px)",
-                }}
-            />
         </div>
     );
 }
