@@ -26,7 +26,7 @@ import requests
 import google.generativeai as genai
 
 # Configuration
-TOGETHER_MODEL = "togethercomputer/m2-bert-80M-8k-retrieval"  # Must match frontend!
+TOGETHER_MODEL = "togethercomputer/m2-bert-80M-32k-retrieval"  # Must match frontend!
 CHUNK_SIZE = 1500  # Characters per chunk
 OVERLAP = 200  # Overlap between chunks
 

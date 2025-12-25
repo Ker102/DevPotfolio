@@ -1,7 +1,7 @@
 // Together AI Embeddings Helper
 // CRITICAL: Must use the same model in both backend (Python) and frontend (Edge)
 
-const TOGETHER_EMBEDDING_MODEL = 'togethercomputer/m2-bert-80M-8k-retrieval';
+const TOGETHER_EMBEDDING_MODEL = 'togethercomputer/m2-bert-80M-32k-retrieval';
 
 export interface EmbeddingResponse {
     embedding: number[];
