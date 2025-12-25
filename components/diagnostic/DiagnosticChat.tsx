@@ -3,8 +3,72 @@
 import { useChat } from '@ai-sdk/react';
 import { DefaultChatTransport } from 'ai';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, User, Loader2, Sparkles, Search, Send } from 'lucide-react';
+import { Bot, User, Loader2, Sparkles, Search, Send, ChevronDown, ChevronUp, BookOpen, Cpu, CheckCircle2 } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
+
+interface CollapsibleSectionProps {
+    title: string;
+    icon: React.ReactNode;
+    badge: string;
+    isLoading?: boolean;
+    children?: React.ReactNode;
+    defaultOpen?: boolean;
+}
+
+function CollapsibleSection({ title, icon, badge, isLoading, children, defaultOpen = false }: CollapsibleSectionProps) {
+    const [isOpen, setIsOpen] = useState(defaultOpen);
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-3 overflow-hidden"
+        >
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all
+                    ${isLoading
+                        ? 'bg-gradient-to-r from-cyan-500/20 to-green-500/20 border border-cyan-500/30'
+                        : 'bg-white/5 border border-white/10 hover:bg-white/10'
+                    }`}
+            >
+                <span className={`flex-shrink-0 ${isLoading ? 'text-cyan-400' : 'text-gray-400'}`}>
+                    {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : icon}
+                </span>
+                <span className={`flex-1 text-left font-medium ${isLoading ? 'text-cyan-300' : 'text-gray-300'}`}>
+                    {title}
+                </span>
+                <span className={`text-xs px-2 py-0.5 rounded-full ${isLoading
+                        ? 'bg-cyan-500/30 text-cyan-300'
+                        : 'bg-green-500/30 text-green-300'
+                    }`}>
+                    {badge}
+                </span>
+                {children && !isLoading && (
+                    <span className="text-gray-500">
+                        {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </span>
+                )}
+            </button>
+
+            <AnimatePresence>
+                {isOpen && children && !isLoading && (
+                    <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                    >
+                        <div className="p-3 mt-1 bg-white/5 border border-white/10 rounded-lg text-sm">
+                            {children}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.div>
+    );
+}
 
 export function DiagnosticChat() {
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -44,58 +108,65 @@ export function DiagnosticChat() {
         return message.parts.filter((p) => p.type.startsWith('tool-'));
     };
 
+    // Render collapsible tool sections
     const renderToolPart = (part: { type: string; state?: string; input?: unknown; output?: unknown }) => {
         const toolState = part.state;
 
+        // Tool is being called (streaming/loading)
         if (toolState === 'input-streaming' || toolState === 'input-available') {
             return (
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex items-center gap-2 text-cyan-400 text-sm bg-cyan-500/10 rounded-lg px-3 py-2 mt-2"
-                >
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    {part.type.includes('HuggingFace') && (
-                        <>
-                            <Search className="w-4 h-4" />
-                            <span>Searching AI models on Hugging Face...</span>
-                        </>
-                    )}
-                    {!part.type.includes('HuggingFace') && <span>Processing...</span>}
-                </motion.div>
+                <CollapsibleSection
+                    title="Searching AI Models"
+                    icon={<Search className="w-4 h-4" />}
+                    badge="⚙️ Working..."
+                    isLoading={true}
+                />
             );
         }
 
+        // Tool completed with results
         if (toolState === 'output-available' && part.output) {
             const typedOutput = part.output as {
-                models?: Array<{ id: string; downloads: string; task: string }>;
+                models?: Array<{ id: string; downloads: string; task: string; likes: number }>;
+                recommendation?: string;
             };
 
             return (
-                <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-white/5 border border-white/10 rounded-lg p-3 text-sm mt-2"
+                <CollapsibleSection
+                    title="Model Search Results"
+                    icon={<Cpu className="w-4 h-4" />}
+                    badge={`✅ Found ${typedOutput.models?.length || 0}`}
+                    defaultOpen={true}
                 >
-                    <div className="flex items-center gap-2 text-green-400 mb-2">
-                        <Sparkles className="w-4 h-4" />
-                        <span className="font-medium">
-                            Found {typedOutput.models?.length || 0} models
-                        </span>
-                    </div>
-                    {typedOutput.models && typedOutput.models.length > 0 && (
-                        <div className="space-y-1 text-gray-300">
-                            {typedOutput.models.slice(0, 3).map((model, idx) => (
-                                <div key={idx} className="flex items-center justify-between text-xs">
-                                    <span className="font-mono text-cyan-300">{model.id}</span>
-                                    <span className="text-gray-500">
-                                        {model.downloads} downloads • {model.task}
-                                    </span>
+                    {typedOutput.models && typedOutput.models.length > 0 ? (
+                        <div className="space-y-2">
+                            {typedOutput.models.slice(0, 5).map((model, idx) => (
+                                <div
+                                    key={idx}
+                                    className="flex items-center justify-between p-2 bg-white/5 rounded-lg"
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <CheckCircle2 className="w-3 h-3 text-green-400" />
+                                        <span className="font-mono text-xs text-cyan-300">{model.id}</span>
+                                    </div>
+                                    <div className="flex items-center gap-3 text-xs text-gray-500">
+                                        <span>{model.downloads} downloads</span>
+                                        <span className="px-2 py-0.5 bg-white/10 rounded text-gray-400">
+                                            {model.task}
+                                        </span>
+                                    </div>
                                 </div>
                             ))}
+                            {typedOutput.recommendation && (
+                                <div className="mt-2 pt-2 border-t border-white/10 text-xs text-gray-400">
+                                    💡 {typedOutput.recommendation}
+                                </div>
+                            )}
                         </div>
+                    ) : (
+                        <p className="text-gray-400">No models found matching the criteria.</p>
                     )}
-                </motion.div>
+                </CollapsibleSection>
             );
         }
 
@@ -126,7 +197,7 @@ export function DiagnosticChat() {
                             className={`w-2 h-2 rounded-full ${isLoading ? 'bg-yellow-400 animate-pulse' : 'bg-green-400'}`}
                         />
                         <span className="text-xs text-gray-400">
-                            {isLoading ? 'Thinking...' : 'Online'}
+                            {isLoading ? 'Analyzing...' : 'Online'}
                         </span>
                         {isLoading && stop && (
                             <button
@@ -153,7 +224,10 @@ export function DiagnosticChat() {
                             </div>
                             <div className="max-w-[80%] bg-white/10 text-gray-100 rounded-2xl px-4 py-3">
                                 <p className="whitespace-pre-wrap leading-relaxed">
-                                    Hello! I&apos;m the Kaelux Diagnostic Agent. I&apos;m here to understand your business needs and recommend tailored AI solutions. Let&apos;s start with a quick conversation - what industry does your business operate in?
+                                    Hello! I&apos;m the Kaelux Diagnostic Agent. I&apos;m here to understand your business and recommend the right AI solutions for you.
+                                </p>
+                                <p className="mt-2 whitespace-pre-wrap leading-relaxed text-gray-300">
+                                    To get started, tell me a bit about your business — what industry are you in?
                                 </p>
                             </div>
                         </motion.div>
@@ -179,15 +253,15 @@ export function DiagnosticChat() {
                                 {/* Message Bubble */}
                                 <div
                                     className={`max-w-[80%] ${message.role === 'user'
-                                            ? 'bg-gradient-to-r from-cyan-500 to-green-500 text-white'
-                                            : 'bg-white/10 text-gray-100'
+                                        ? 'bg-gradient-to-r from-cyan-500 to-green-500 text-white'
+                                        : 'bg-white/10 text-gray-100'
                                         } rounded-2xl px-4 py-3`}
                                 >
                                     <p className="whitespace-pre-wrap leading-relaxed">
                                         {getMessageText(message)}
                                     </p>
 
-                                    {/* Tool Parts */}
+                                    {/* Collapsible Tool Results */}
                                     {getToolParts(message).map((part, i) => (
                                         <div key={i}>
                                             {renderToolPart(
@@ -212,7 +286,7 @@ export function DiagnosticChat() {
                         ))}
                     </AnimatePresence>
 
-                    {/* Typing Indicator */}
+                    {/* Enhanced Loading Indicator */}
                     {isLoading && (
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -223,19 +297,9 @@ export function DiagnosticChat() {
                                 <Bot className="w-4 h-4 text-white" />
                             </div>
                             <div className="bg-white/10 rounded-2xl px-4 py-3">
-                                <div className="flex items-center gap-1">
-                                    <span
-                                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                                        style={{ animationDelay: '0ms' }}
-                                    />
-                                    <span
-                                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                                        style={{ animationDelay: '150ms' }}
-                                    />
-                                    <span
-                                        className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                                        style={{ animationDelay: '300ms' }}
-                                    />
+                                <div className="flex items-center gap-2">
+                                    <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
+                                    <span className="text-sm text-gray-300">Analyzing your needs...</span>
                                 </div>
                             </div>
                         </motion.div>
