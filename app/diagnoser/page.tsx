@@ -11,7 +11,14 @@ export const metadata: Metadata = {
     },
 };
 
-export default function DiagnoserPage() {
+interface PageProps {
+    searchParams: Promise<{ q?: string }>;
+}
+
+export default async function DiagnoserPage({ searchParams }: PageProps) {
+    const params = await searchParams;
+    const initialMessage = params.q || '';
+
     return (
         <main className="min-h-screen bg-black relative overflow-hidden">
             {/* Background Gradient Effects */}
@@ -37,7 +44,7 @@ export default function DiagnoserPage() {
                 </div>
 
                 {/* Chat Component */}
-                <DiagnosticChat />
+                <DiagnosticChat initialMessage={initialMessage} />
 
                 {/* Footer Info */}
                 <div className="mt-8 text-center">
@@ -51,3 +58,4 @@ export default function DiagnoserPage() {
         </main>
     );
 }
+

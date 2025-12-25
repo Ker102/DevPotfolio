@@ -39,8 +39,8 @@ function CollapsibleSection({ title, icon, badge, isLoading, children, defaultOp
                     {title}
                 </span>
                 <span className={`text-xs px-2 py-0.5 rounded-full ${isLoading
-                        ? 'bg-cyan-500/30 text-cyan-300'
-                        : 'bg-green-500/30 text-green-300'
+                    ? 'bg-cyan-500/30 text-cyan-300'
+                    : 'bg-green-500/30 text-green-300'
                     }`}>
                     {badge}
                 </span>
@@ -70,15 +70,28 @@ function CollapsibleSection({ title, icon, badge, isLoading, children, defaultOp
     );
 }
 
-export function DiagnosticChat() {
+interface DiagnosticChatProps {
+    initialMessage?: string;
+}
+
+export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const [input, setInput] = useState('');
+    const [hasSentInitial, setHasSentInitial] = useState(false);
 
     const { messages, sendMessage, status, stop } = useChat({
         transport: new DefaultChatTransport({ api: '/api/chat' }),
     });
 
     const isLoading = status === 'streaming' || status === 'submitted';
+
+    // Auto-send initial message from query param
+    useEffect(() => {
+        if (initialMessage && !hasSentInitial && status === 'ready') {
+            sendMessage({ text: initialMessage });
+            setHasSentInitial(true);
+        }
+    }, [initialMessage, hasSentInitial, status, sendMessage]);
 
     // Auto-scroll to bottom
     useEffect(() => {

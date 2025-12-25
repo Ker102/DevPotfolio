@@ -5,6 +5,7 @@ import Image from "next/image";
 import Hero from "@/components/sections/Hero";
 import ServiceIntroduction from "@/components/sections/ServiceIntroduction";
 import PlatformServices from "@/components/sections/PlatformServices";
+import DiagnoserCTA from "@/components/sections/DiagnoserCTA";
 import Projects from "@/components/sections/Projects";
 import AboutKaelux from "@/components/sections/AboutKaelux";
 import AboutMe from "@/components/sections/AboutMe";
@@ -46,6 +47,7 @@ export default function Home() {
       <Hero />
       <ServiceIntroduction />
       <PlatformServices />
+      <DiagnoserCTA />
       <Projects />
       <AboutKaelux />
       <AboutMe />
