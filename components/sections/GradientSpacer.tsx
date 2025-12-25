@@ -39,11 +39,9 @@ export default function GradientSpacer({ direction, height = "h-[500px]", classN
 
             {/* 
                Masked Image Layer
-               The image is faded out at the top (10%) and bottom (10%) using a CSS mask.
-               This allows the "Background Generator" (above) to show through at the edges,
-               guaranteeing a 100% color match with the sections above and below.
+               The image is faded out at the top (15%) and bottom (15%) using a CSS mask.
             */}
-            <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_bottom,transparent_0%,black_15%,black_85%,transparent_100%)]">
+            <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_75%,transparent_100%)]">
                 <Image
                     src={imageSrc}
                     alt={direction === "toWhite" ? "Transition to white" : "Transition to black"}
@@ -55,6 +53,27 @@ export default function GradientSpacer({ direction, height = "h-[500px]", classN
                     sizes="100vw"
                 />
             </div>
+
+            {/* 
+               HARD EDGE BLENDING OVERLAYS (The "Blur" Fix)
+               These sit ON TOP of the image and force the edges to be 100% the target color.
+               This covers any "cutoff" lines from the image file itself.
+            */}
+            {direction === "toWhite" ? (
+                <>
+                    {/* Top: Black -> Transparent */}
+                    <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black via-black/80 to-transparent z-10" />
+                    {/* Bottom: White -> Transparent */}
+                    <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent z-10" />
+                </>
+            ) : (
+                <>
+                    {/* Top: White -> Transparent */}
+                    <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-white via-white/80 to-transparent z-10" />
+                    {/* Bottom: Black -> Transparent */}
+                    <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent z-10" />
+                </>
+            )}
         </div>
     );
 }
