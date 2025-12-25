@@ -8,7 +8,7 @@ import FeatureShowcase from "@/components/solutions/FeatureShowcase";
 import UseCaseCarousel from "@/components/solutions/UseCaseCarousel";
 import SolutionsFooter from "@/components/solutions/SolutionsFooter";
 import SolutionsContact from "@/components/solutions/SolutionsContact";
-import GradientTransitionSection from "@/components/solutions/GradientTransitionSection";
+import GradientSpacer from "@/components/sections/GradientSpacer";
 import AdditionalServicesSolutions from "@/components/solutions/AdditionalServicesSolutions";
 
 export default function SolutionsPage() {
@@ -24,11 +24,12 @@ export default function SolutionsPage() {
                 <FeatureShowcase />
             </div>
 
-            {/* Gradient Transition: Black → Purple → White */}
-            <GradientTransitionSection direction="toWhite">
-                {/* Spacer div for gradient visual */}
-                <div className="h-64" />
-            </GradientTransitionSection>
+            {/* Gradient Transition: Black -> Purple -> White */}
+            <GradientSpacer
+                direction="toWhite"
+                imageSrc="/solutions/transition-to-white.jpg"
+                className="-my-16 relative z-10"
+            />
 
             {/* White background sections */}
             <div className="bg-white text-gray-900">
@@ -36,11 +37,12 @@ export default function SolutionsPage() {
                 <AdditionalServicesSolutions />
             </div>
 
-            {/* Gradient Transition: White → Purple → Black */}
-            <GradientTransitionSection direction="toBlack">
-                {/* Spacer div for gradient visual */}
-                <div className="h-64" />
-            </GradientTransitionSection>
+            {/* Gradient Transition: White -> Purple → Black */}
+            <GradientSpacer
+                direction="toBlack"
+                imageSrc="/solutions/transition-to-black.jpg"
+                className="-my-16 relative z-10"
+            />
 
             {/* Back to Black background sections */}
             <div className="bg-black">

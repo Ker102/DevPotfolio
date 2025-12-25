@@ -6,6 +6,7 @@ interface GradientSpacerProps {
     direction: "toWhite" | "toBlack";
     height?: string;
     className?: string;
+    imageSrc?: string;
 }
 
 /**
@@ -13,11 +14,13 @@ interface GradientSpacerProps {
  * Uses custom-designed liquid chrome waves to ensure perfect transition
  * without CSS banding or cutoff artifacts.
  */
-export default function GradientSpacer({ direction, height = "h-[500px]", className = "" }: GradientSpacerProps) {
+export default function GradientSpacer({ direction, height = "h-[500px]", className = "", imageSrc }: GradientSpacerProps) {
     const isToWhite = direction === "toWhite";
-    const imageSrc = isToWhite
+
+    // If no custom image provided, use defaults
+    const finalImageSrc = imageSrc || (isToWhite
         ? "/transitions/transition-to-white.jpg"
-        : "/transitions/transition-to-black.jpg";
+        : "/transitions/transition-to-black.jpg");
 
     // Background gradient ensures strict color matching at the edges
     // even if the image is masked out.
@@ -43,7 +46,7 @@ export default function GradientSpacer({ direction, height = "h-[500px]", classN
             */}
             <div className="absolute inset-0 w-full h-full [mask-image:linear-gradient(to_bottom,transparent_0%,black_25%,black_75%,transparent_100%)]">
                 <Image
-                    src={imageSrc}
+                    src={finalImageSrc}
                     alt={direction === "toWhite" ? "Transition to white" : "Transition to black"}
                     fill
                     className="object-fill select-none pointer-events-none"
