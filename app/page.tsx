@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Hero from "@/components/sections/Hero";
 import ServiceIntroduction from "@/components/sections/ServiceIntroduction";
+import GradientSpacer from "@/components/sections/GradientSpacer";
 import PlatformServices from "@/components/sections/PlatformServices";
 import DiagnoserCTA from "@/components/sections/DiagnoserCTA";
 import Projects from "@/components/sections/Projects";
@@ -46,8 +47,16 @@ export default function Home() {
 
       <Hero />
       <ServiceIntroduction />
+
+      {/* Gradient transition: black → purple → white */}
+      <GradientSpacer direction="toWhite" />
+
       <PlatformServices />
       <DiagnoserCTA />
+
+      {/* Gradient transition: white → purple → black */}
+      <GradientSpacer direction="toBlack" />
+
       <Projects />
       <AboutKaelux />
       <AboutMe />

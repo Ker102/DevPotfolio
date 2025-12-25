@@ -23,9 +23,9 @@ export default function DiagnoserCTA() {
     };
 
     return (
-        <section className="relative py-24 px-6 bg-black overflow-hidden">
-            {/* Background glow effects */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-cyan-500/10 via-transparent to-green-500/10 rounded-full blur-3xl" />
+        <section className="relative py-24 px-6 overflow-hidden bg-white">
+            {/* Background glow effects - subtle purple accents */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-200/30 via-transparent to-pink-200/30 rounded-full blur-3xl" />
 
             <div className="container mx-auto max-w-3xl relative z-10">
                 {/* Header */}
@@ -36,33 +36,34 @@ export default function DiagnoserCTA() {
                     transition={{ duration: 0.5 }}
                     className="text-center mb-10"
                 >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
-                        <Sparkles className="w-4 h-4 text-cyan-400" />
-                        <span className="text-sm text-gray-400">AI-Powered Consulting</span>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 border border-purple-200 mb-6">
+                        <Sparkles className="w-4 h-4 text-purple-600" />
+                        <span className="text-sm text-purple-700 font-medium">AI-Powered Consulting</span>
                     </div>
 
-                    <h2 className="text-4xl md:text-5xl font-medium tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 drop-shadow-lg mb-4">
+                    <h2 className="text-4xl md:text-5xl font-medium tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-gray-900 via-gray-700 to-gray-500 mb-4">
                         Not Sure Where to Start?
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
                         Let our AI consultant analyze your business needs and recommend the perfect solution.
                     </p>
                 </motion.div>
 
-                {/* Chat Preview Box */}
+                {/* Chat Preview Box - Dark themed card on white background */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className={`relative backdrop-blur-xl bg-white/5 border rounded-2xl overflow-hidden shadow-2xl transition-all duration-300 ${isFocused
-                            ? "border-cyan-500/50 shadow-cyan-500/20"
-                            : "border-white/10"
+                    className={`relative rounded-2xl overflow-hidden shadow-2xl shadow-gray-300/50 transition-all duration-300 ${isFocused
+                        ? "shadow-purple-300/50 ring-2 ring-purple-400"
+                        : ""
                         }`}
+                    style={{ background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%)' }}
                 >
                     {/* Chat Header */}
                     <div className="flex items-center gap-3 px-6 py-4 border-b border-white/10 bg-white/5">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-green-500 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
                             <Bot className="w-5 h-5 text-white" />
                         </div>
                         <div>
@@ -78,7 +79,7 @@ export default function DiagnoserCTA() {
                     {/* Initial Question from Bot */}
                     <div className="p-6">
                         <div className="flex gap-3">
-                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-cyan-500 to-green-500 flex items-center justify-center">
+                            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
                                 <Bot className="w-4 h-4 text-white" />
                             </div>
                             <div className="bg-white/10 text-gray-100 rounded-2xl px-4 py-3 max-w-[85%]">
@@ -91,7 +92,7 @@ export default function DiagnoserCTA() {
                     </div>
 
                     {/* Input Area */}
-                    <form onSubmit={handleSubmit} className="p-4 border-t border-white/10 bg-white/5">
+                    <form onSubmit={handleSubmit} className="p-4 border-t border-white/10 bg-black/20">
                         <div className="flex items-center gap-3">
                             <input
                                 value={input}
@@ -99,22 +100,22 @@ export default function DiagnoserCTA() {
                                 onFocus={() => setIsFocused(true)}
                                 onBlur={() => setIsFocused(false)}
                                 placeholder="E.g., Healthcare, E-commerce, Finance..."
-                                className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 
-                                   text-white placeholder-gray-500 focus:outline-none focus:ring-2 
-                                   focus:ring-cyan-500/50 focus:border-cyan-500/50 transition-all"
+                                className="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 
+                                   text-white placeholder-gray-400 focus:outline-none focus:ring-2 
+                                   focus:ring-purple-500/50 focus:border-purple-500/50 transition-all"
                             />
                             <motion.button
                                 type="submit"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-r from-cyan-500 to-green-500 
+                                className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 
                                    flex items-center justify-center text-white
-                                   hover:shadow-lg hover:shadow-cyan-500/25 transition-all"
+                                   hover:shadow-lg hover:shadow-purple-500/30 transition-all"
                             >
                                 <Send className="w-5 h-5" />
                             </motion.button>
                         </div>
-                        <p className="text-xs text-gray-500 mt-3 text-center">
+                        <p className="text-xs text-gray-400 mt-3 text-center">
                             Press send to start your consultation →
                         </p>
                     </form>
