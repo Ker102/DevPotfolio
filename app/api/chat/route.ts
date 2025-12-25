@@ -1,12 +1,12 @@
-// Kaelux Diagnostic Agent - Edge API Route
-// High-performance RAG agent with interview state machine
+// Kaelux Diagnostic Agent - API Route
+// Node.js runtime for full Redis Cloud support (RediSearch, LangCache)
 
 import { streamText, convertToModelMessages, UIMessage } from 'ai';
 import { createGroq } from '@ai-sdk/groq';
 import { z } from 'zod';
 import { generateEmbedding, queryKnowledgeBase, searchHuggingFaceModels } from '@/lib/tools';
 
-export const runtime = 'edge';
+// Node.js runtime (NOT edge) - enables TCP connections to Redis Cloud
 export const maxDuration = 30;
 
 // Initialize Groq client

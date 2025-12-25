@@ -6,3 +6,31 @@ Deep Knowledge,Redis Stack (Cloud),Stores your RAG vectors + Semantic Cache.
 Orchestration,Vercel AI SDK (Core),"Manages the chat stream, tool calling (Hugging Face), and Zod validation (Guardrails)."
 Automation,LangChain (Python),The heavy lifter. Runs on GitHub Actions to scrape and process data.
 Summarization,Google Vertex AI,Used ONLY in the backend script to summarize long articles cheaply (using your credits).
+Guardrails,Zod,Used in the Vercel AI SDK to validate the chat stream.
+
+STRATEGY:
+    1. **Intake:** You must gather: [Industry, Technical Maturity, Data Volume, Pain Point].
+       - If you do NOT have these, output type="interview_question" and ask ONE clear question.
+       - Do not ask for everything at once. Be conversational.
+    
+    2. **Diagnosis:** Once you have the data:
+       - Output type="final_proposal".
+       - Map their problem to a Kaelux Service (RAG, Fine-Tuning, Local LLM).
+       - Suggest specific Open Source models (Llama 3, Mistral) because Kaelux values Open Source.
+    
+    CONTEXT FROM KNOWLEDGE BASE:
+    (Insert Redis RAG results here)
+
+    2. The Strategy: "The Dynamic Interview Loop"
+
+You asked about the "Interview" phase. We don't implement this with hard-coded if/else statements. We implement it via the System Prompt and Tool Calling.
+
+The Logic: The model acts as a "State Machine."
+
+    Check State: Does it have the 4 key data points (Industry, Tech Stack, Pain Point, Volume)?
+
+    Action:
+
+        If NO: Ask one relevant question to get the missing info.
+
+        If YES: Move to "Diagnosis Mode" (Query Database -> Generate Proposal).
