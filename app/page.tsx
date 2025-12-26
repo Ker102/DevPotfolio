@@ -31,15 +31,25 @@ export default function Home() {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="hidden md:flex fixed top-4 left-6 z-[60]"
       >
-        <div className="relative flex items-center justify-center">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/70 via-white/30 to-transparent blur-xl opacity-80 md:blur-2xl" />
+        <div className="relative flex items-center gap-3">
+          {/* Icon */}
           <Image
-            src={LogoImage}
-            alt="Site logo"
-            width={64}
-            height={64}
+            src="/kaelux-icon-v3.png"
+            alt="Kaelux Icon"
+            width={80}
+            height={80}
             priority
-            className="relative h-16 w-16 select-none object-contain drop-shadow-[0_0_22px_rgba(255,255,255,0.85)]"
+            className="relative h-20 w-20 select-none object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] rounded-[18px]"
+          />
+
+          {/* Text Brand */}
+          <Image
+            src="/kaelux-text-new.png"
+            alt="Kaelux"
+            width={133}
+            height={40}
+            priority
+            className="relative h-10 w-auto select-none object-contain drop-shadow-md"
           />
         </div>
       </motion.div>

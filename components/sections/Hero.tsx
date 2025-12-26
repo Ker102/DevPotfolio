@@ -135,39 +135,43 @@ export default function Hero() {
                     variants={fadeInUp}
                     className="space-y-6"
                 >
-                    <motion.h1
-                        variants={slideInFromLeft}
-                        className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 text-transparent bg-clip-text drop-shadow-lg"
-                        style={{
-                            backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #f3f4f6 25%, #d1d5db 50%, #9ca3af 75%, #6b7280 100%)',
-                            backgroundSize: '100% 300%',
-                            animation: 'gradientShift 3s ease-in-out infinite',
-                        }}
-                    >
-                        Kaelux
-                    </motion.h1>
-
+                    {/* Main Title - Glitch Text with Gradient */}
                     <motion.div
                         variants={slideInFromRight}
-                        className="text-2xl md:text-4xl lg:text-5xl font-semibold h-20 flex items-center justify-center"
+                        className="min-h-[140px] flex items-center justify-center -mt-8"
                     >
                         {isMounted && (
-                            <DecryptedText
-                                key={key}
-                                text={sentences[currentSentenceIndex]}
-                                className="gradient-text"
-                                speed={50}
-                                maxIterations={20}
-                                sequential={true}
-                                revealDirection="center"
-                                animateOn="view"
-                                onDecryptComplete={() => {
-                                    setTimeout(() => {
-                                        setCurrentSentenceIndex((prev) => (prev + 1) % sentences.length);
-                                        setKey((prev) => prev + 1);
-                                    }, 2000);
+                            <div
+                                className="relative z-10"
+                                style={{
+                                    backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #f3f4f6 25%, #d1d5db 50%, #9ca3af 75%, #6b7280 100%)',
+                                    backgroundSize: '100% 300%',
+                                    animation: 'gradientShift 3s ease-in-out infinite',
+                                    WebkitBackgroundClip: 'text',
+                                    backgroundClip: 'text',
+                                    color: 'transparent',
                                 }}
-                            />
+                            >
+                                <DecryptedText
+                                    key={key}
+                                    text={sentences[currentSentenceIndex]}
+                                    // Apply layout styles here
+                                    className="text-5xl md:text-7xl lg:text-8xl font-bold text-center leading-tight drop-shadow-2xl"
+                                    // Ensure the parent span gets the gradient clip
+                                    parentClassName="block text-transparent bg-clip-text"
+                                    speed={80}
+                                    maxIterations={20}
+                                    sequential={true}
+                                    revealDirection="center"
+                                    animateOn="view"
+                                    onDecryptComplete={() => {
+                                        setTimeout(() => {
+                                            setCurrentSentenceIndex((prev) => (prev + 1) % sentences.length);
+                                            setKey((prev) => prev + 1);
+                                        }, 4000);
+                                    }}
+                                />
+                            </div>
                         )}
                     </motion.div>
 
