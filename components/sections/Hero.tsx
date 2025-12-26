@@ -125,6 +125,11 @@ export default function Hero() {
                     variants={fadeInUp}
                     className="space-y-6"
                 >
+                    {/* SEO: Visually hidden H1 for search engines and screen readers */}
+                    <h1 className="sr-only">
+                        AI That Works for You - Kaelux AI Engineering Agency
+                    </h1>
+
                     {/* Main Title - Image */}
                     <motion.div
                         variants={slideInFromRight}
