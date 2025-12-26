@@ -13,6 +13,7 @@ const navLinks = [
   { name: "About", href: "#about" },
   { name: "Services", href: "#services" },
   { name: "Projects", href: "#projects" },
+  { name: "Wiki", href: "/wiki", isExternal: true },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -29,6 +30,16 @@ const navCards = [
     links: [
       { label: "Get In Touch", href: "#contact" },
       { label: "Collaborate", href: "#contact" },
+    ],
+  },
+  {
+    label: "Wiki",
+    links: [
+      { label: "Agentic AI", href: "/wiki/agentic-ai-workflows", isExternal: true },
+      { label: "RAG Security", href: "/wiki/rag-security-compliance", isExternal: true },
+      { label: "SLMs vs LLMs", href: "/wiki/small-language-models", isExternal: true },
+      { label: "Hallucinations", href: "/wiki/ai-hallucination-prevention", isExternal: true },
+      { label: "Structured Output", href: "/wiki/structured-generation", isExternal: true },
     ],
   },
   {
@@ -202,15 +213,26 @@ function CompactNavbar() {
                   transition={{ duration: 0.2, delay: 0.1 }}
                   className="hidden md:flex items-center gap-2 pr-2"
                 >
-                  {navLinks.map((link) => (
-                    <button
-                      key={link.name}
-                      onClick={(e) => scrollToSection(e, link.href)}
-                      className="px-4 py-1.5 text-sm text-gray-200 hover:text-white transition-colors font-medium rounded-full hover:bg-white/5"
-                    >
-                      {link.name}
-                    </button>
-                  ))}
+                  {navLinks.map((link) =>
+                    'isExternal' in link && link.isExternal ? (
+                      <Link
+                        key={link.name}
+                        href={link.href}
+                        onClick={() => setIsOpen(false)}
+                        className="px-4 py-1.5 text-sm text-gray-200 hover:text-white transition-colors font-medium rounded-full hover:bg-white/5"
+                      >
+                        {link.name}
+                      </Link>
+                    ) : (
+                      <button
+                        key={link.name}
+                        onClick={(e) => scrollToSection(e, link.href)}
+                        className="px-4 py-1.5 text-sm text-gray-200 hover:text-white transition-colors font-medium rounded-full hover:bg-white/5"
+                      >
+                        {link.name}
+                      </button>
+                    )
+                  )}
                   <div className="w-px h-4 bg-white/20 mx-2" />
                   <Link
                     href="/links"
@@ -245,7 +267,7 @@ function CompactNavbar() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.15 } }}
                 transition={{ delay: 0.15, duration: 0.3 }}
-                className="p-6 grid grid-cols-3 gap-8 min-w-[600px]"
+                className="p-6 grid grid-cols-4 gap-6 min-w-[700px]"
               >
                 {navCards.map((card) => (
                   <div key={card.label} className="flex flex-col gap-4">
@@ -253,19 +275,33 @@ function CompactNavbar() {
                       {card.label}
                     </span>
                     <div className="flex flex-col gap-1">
-                      {card.links.map((link) => (
-                        <a
-                          key={link.label}
-                          href={link.href}
-                          onClick={(e) => scrollToSection(e, link.href)}
-                          className="group flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5"
-                        >
-                          <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
-                            {link.label}
-                          </span>
-                          <GoArrowUpRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100" />
-                        </a>
-                      ))}
+                      {card.links.map((link) =>
+                        'isExternal' in link && link.isExternal ? (
+                          <Link
+                            key={link.label}
+                            href={link.href}
+                            onClick={() => setIsOpen(false)}
+                            className="group flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5"
+                          >
+                            <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
+                              {link.label}
+                            </span>
+                            <GoArrowUpRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100" />
+                          </Link>
+                        ) : (
+                          <a
+                            key={link.label}
+                            href={link.href}
+                            onClick={(e) => scrollToSection(e, link.href)}
+                            className="group flex items-center justify-between p-2 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5"
+                          >
+                            <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">
+                              {link.label}
+                            </span>
+                            <GoArrowUpRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100" />
+                          </a>
+                        )
+                      )}
                     </div>
                   </div>
                 ))}
@@ -284,15 +320,26 @@ function CompactNavbar() {
               className="md:hidden overflow-hidden"
             >
               <div className="p-4 flex flex-col gap-2 min-w-[300px]">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.name}
-                    onClick={(e) => scrollToSection(e, link.href)}
-                    className="w-full text-left p-3 rounded-xl text-base font-semibold text-gray-200 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10 transition-all"
-                  >
-                    {link.name}
-                  </button>
-                ))}
+                {navLinks.map((link) =>
+                  'isExternal' in link && link.isExternal ? (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className="w-full text-left p-3 rounded-xl text-base font-semibold text-gray-200 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10 transition-all"
+                    >
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <button
+                      key={link.name}
+                      onClick={(e) => scrollToSection(e, link.href)}
+                      className="w-full text-left p-3 rounded-xl text-base font-semibold text-gray-200 hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10 transition-all"
+                    >
+                      {link.name}
+                    </button>
+                  )
+                )}
                 <div className="h-px bg-white/10 my-2" />
                 <Link
                   href="/links"
