@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { motion, HTMLMotionProps } from 'framer-motion';
 
 interface DecryptedTextProps extends HTMLMotionProps<'span'> {
@@ -34,15 +34,36 @@ export default function DecryptedText({
     ...props
 }: DecryptedTextProps) {
     const [displayText, setDisplayText] = useState<string>(text);
-    const [isHovering, setIsHovering] = useState<boolean>(false);
-    const [isScrambling, setIsScrambling] = useState<boolean>(false);
+    const [isAnimating, setIsAnimating] = useState<boolean>(false);
     const [revealedIndices, setRevealedIndices] = useState<Set<number>>(new Set());
-    const [hasAnimated, setHasAnimated] = useState<boolean>(false);
     const containerRef = useRef<HTMLSpanElement>(null);
+    const hasStartedRef = useRef<boolean>(false);
+    const completedRef = useRef<boolean>(false);
 
+    // Reset state when text changes (for looping through sentences)
     useEffect(() => {
+        setDisplayText(text);
+        setRevealedIndices(new Set());
+        hasStartedRef.current = false;
+        completedRef.current = false;
+    }, [text]);
+
+    const startDecryption = useCallback(() => {
+        if (hasStartedRef.current || completedRef.current) return;
+        hasStartedRef.current = true;
+        setIsAnimating(true);
+    }, []);
+
+    // Main animation effect
+    useEffect(() => {
+        if (!isAnimating) return;
+
         let interval: NodeJS.Timeout;
         let currentIteration = 0;
+
+        const availableChars = useOriginalCharsOnly
+            ? Array.from(new Set(text.split(''))).filter(char => char !== ' ')
+            : characters.split('');
 
         const getNextIndex = (revealedSet: Set<number>): number => {
             const textLength = text.length;
@@ -55,7 +76,6 @@ export default function DecryptedText({
                     const middle = Math.floor(textLength / 2);
                     const offset = Math.floor(revealedSet.size / 2);
                     const nextIndex = revealedSet.size % 2 === 0 ? middle + offset : middle - offset - 1;
-
                     if (nextIndex >= 0 && nextIndex < textLength && !revealedSet.has(nextIndex)) {
                         return nextIndex;
                     }
@@ -68,10 +88,6 @@ export default function DecryptedText({
                     return revealedSet.size;
             }
         };
-
-        const availableChars = useOriginalCharsOnly
-            ? Array.from(new Set(text.split(''))).filter(char => char !== ' ')
-            : characters.split('');
 
         const shuffleText = (originalText: string, currentRevealed: Set<number>): string => {
             if (useOriginalCharsOnly) {
@@ -109,66 +125,60 @@ export default function DecryptedText({
             }
         };
 
-        if (isHovering) {
-            setIsScrambling(true);
-            interval = setInterval(() => {
-                setRevealedIndices(prevRevealed => {
-                    if (sequential) {
-                        if (prevRevealed.size < text.length) {
-                            const nextIndex = getNextIndex(prevRevealed);
-                            const newRevealed = new Set(prevRevealed);
-                            newRevealed.add(nextIndex);
-                            setDisplayText(shuffleText(text, newRevealed));
-                            return newRevealed;
-                        } else {
-                            clearInterval(interval);
-                            setIsScrambling(false);
-                            onDecryptComplete?.();
-                            return prevRevealed;
-                        }
+        interval = setInterval(() => {
+            setRevealedIndices(prevRevealed => {
+                if (sequential) {
+                    if (prevRevealed.size < text.length) {
+                        const nextIndex = getNextIndex(prevRevealed);
+                        const newRevealed = new Set(prevRevealed);
+                        newRevealed.add(nextIndex);
+                        setDisplayText(shuffleText(text, newRevealed));
+                        return newRevealed;
                     } else {
-                        setDisplayText(shuffleText(text, prevRevealed));
-                        currentIteration++;
-                        if (currentIteration >= maxIterations) {
-                            clearInterval(interval);
-                            setIsScrambling(false);
-                            setDisplayText(text);
-                            onDecryptComplete?.();
-                        }
+                        clearInterval(interval);
+                        setIsAnimating(false);
+                        completedRef.current = true;
+                        onDecryptComplete?.();
                         return prevRevealed;
                     }
-                });
-            }, speed);
-        } else {
-            setDisplayText(text);
-            setRevealedIndices(new Set());
-            setIsScrambling(false);
-        }
+                } else {
+                    setDisplayText(shuffleText(text, prevRevealed));
+                    currentIteration++;
+                    if (currentIteration >= maxIterations) {
+                        clearInterval(interval);
+                        setIsAnimating(false);
+                        setDisplayText(text);
+                        completedRef.current = true;
+                        onDecryptComplete?.();
+                    }
+                    return prevRevealed;
+                }
+            });
+        }, speed);
 
         return () => {
             if (interval) clearInterval(interval);
         };
-    }, [isHovering, text, speed, maxIterations, sequential, revealDirection, characters, useOriginalCharsOnly, onDecryptComplete]);
+    }, [isAnimating, text, speed, maxIterations, sequential, revealDirection, characters, useOriginalCharsOnly, onDecryptComplete]);
 
+    // Intersection Observer for 'view' animation trigger
     useEffect(() => {
         if (animateOn !== 'view' && animateOn !== 'both') return;
 
         const observerCallback = (entries: IntersectionObserverEntry[]) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && !hasAnimated) {
-                    setIsHovering(true);
-                    setHasAnimated(true);
+                if (entry.isIntersecting) {
+                    startDecryption();
                 }
             });
         };
 
-        const observerOptions = {
+        const observer = new IntersectionObserver(observerCallback, {
             root: null,
             rootMargin: '0px',
             threshold: 0.1
-        };
+        });
 
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
         const currentRef = containerRef.current;
         if (currentRef) {
             observer.observe(currentRef);
@@ -177,13 +187,12 @@ export default function DecryptedText({
         return () => {
             if (currentRef) observer.unobserve(currentRef);
         };
-    }, [animateOn, hasAnimated]);
+    }, [animateOn, startDecryption]);
 
     const hoverProps =
         animateOn === 'hover' || animateOn === 'both'
             ? {
-                onMouseEnter: () => setIsHovering(true),
-                onMouseLeave: () => setIsHovering(false)
+                onMouseEnter: startDecryption,
             }
             : {};
 
@@ -194,11 +203,11 @@ export default function DecryptedText({
             {...hoverProps}
             {...props}
         >
-            <span className="sr-only">{displayText}</span>
+            <span className="sr-only">{text}</span>
 
             <span aria-hidden="true">
                 {displayText.split('').map((char, index) => {
-                    const isRevealedOrDone = revealedIndices.has(index) || !isScrambling || !isHovering;
+                    const isRevealedOrDone = revealedIndices.has(index) || !isAnimating;
 
                     return (
                         <span key={index} className={isRevealedOrDone ? className : encryptedClassName}>

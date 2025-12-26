@@ -2,25 +2,15 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState, useMemo } from "react";
+import Image from "next/image";
 import MagneticButton from "@/components/MagneticButton";
 import GlassSurface from "@/components/GlassSurface";
 import FloatingDecor from "@/components/FloatingDecor";
-import DecryptedText from "@/components/ui/DecryptedText";
-import ShinyText from "@/components/ui/ShinyText";
 import { HiArrowDown } from "react-icons/hi";
 import { fadeInUp, slideInFromLeft, slideInFromRight } from "@/lib/animations";
 
 export default function Hero() {
-    const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
-    const [key, setKey] = useState(0);
     const [isMounted, setIsMounted] = useState(false);
-
-    const sentences = [
-        "Building AI-Powered Automation Workflows",
-        "Crafting Intelligent Agent Systems",
-        "Engineering LLM-Integrated Applications",
-        "Designing Context-Aware AI Experiences",
-    ];
 
     // Generate star properties once and keep them stable across re-renders
     const stars = useMemo(() => {
@@ -135,44 +125,22 @@ export default function Hero() {
                     variants={fadeInUp}
                     className="space-y-6"
                 >
-                    {/* Main Title - Glitch Text with Gradient */}
+                    {/* Main Title - Image */}
                     <motion.div
                         variants={slideInFromRight}
-                        className="min-h-[140px] flex items-center justify-center -mt-8"
+                        className="flex items-center justify-center"
                     >
-                        {isMounted && (
-                            <div
-                                className="relative z-10"
-                                style={{
-                                    backgroundImage: 'linear-gradient(180deg, #ffffff 0%, #f3f4f6 25%, #d1d5db 50%, #9ca3af 75%, #6b7280 100%)',
-                                    backgroundSize: '100% 300%',
-                                    animation: 'gradientShift 3s ease-in-out infinite',
-                                    WebkitBackgroundClip: 'text',
-                                    backgroundClip: 'text',
-                                    color: 'transparent',
-                                }}
-                            >
-                                <DecryptedText
-                                    key={key}
-                                    text={sentences[currentSentenceIndex]}
-                                    // Apply layout styles here
-                                    className="text-5xl md:text-7xl lg:text-8xl font-bold text-center leading-tight drop-shadow-2xl"
-                                    // Ensure the parent span gets the gradient clip
-                                    parentClassName="block text-transparent bg-clip-text"
-                                    speed={80}
-                                    maxIterations={20}
-                                    sequential={true}
-                                    revealDirection="center"
-                                    animateOn="view"
-                                    onDecryptComplete={() => {
-                                        setTimeout(() => {
-                                            setCurrentSentenceIndex((prev) => (prev + 1) % sentences.length);
-                                            setKey((prev) => prev + 1);
-                                        }, 4000);
-                                    }}
-                                />
-                            </div>
-                        )}
+                        <Image
+                            src="/hero-title.png"
+                            alt="AI That Works for You"
+                            width={900}
+                            height={120}
+                            priority
+                            className="w-auto h-auto max-w-[90vw] md:max-w-[70vw] lg:max-w-[800px] select-none drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+                            style={{
+                                filter: 'brightness(1.05) contrast(1.02)',
+                            }}
+                        />
                     </motion.div>
 
                     <motion.p
