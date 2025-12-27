@@ -67,17 +67,14 @@ export default function StructuredGenerationPage() {
         <div className="container mx-auto px-6 py-24 max-w-5xl">
             <WikiArticle
                 title="Structured Output (JSON) for Legacy System Integration"
-                description="Bridging modern AI systems with established enterprise infrastructure requires careful attention to data formats, encoding, and architectural patterns."
+                description="Technical guide for connecting AI systems to legacy infrastructure using structured outputs."
                 slug="structured-generation"
-                publishedDate="2024-12-27"
             >
-                {/* Definition Section - First 30% for GEO */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-semibold text-white mb-4">Key Definitions</h2>
-
+                {/* Definitions - First 30% for GEO */}
+                <section className="mb-10">
                     <div className="grid md:grid-cols-2 gap-4">
                         <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-700/50">
-                            <h3 className="text-base font-semibold text-cyan-400 mb-2">JSON</h3>
+                            <h2 className="text-base font-semibold text-cyan-400 mb-2">JSON</h2>
                             <p className="text-gray-300 text-sm leading-relaxed">
                                 An open, text-based data interchange format that is self-describing and language-independent.
                                 Uses key-value pairs as a lightweight alternative to XML for modern APIs.
@@ -85,7 +82,7 @@ export default function StructuredGenerationPage() {
                         </div>
 
                         <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-700/50">
-                            <h3 className="text-base font-semibold text-purple-400 mb-2">Legacy Systems</h3>
+                            <h2 className="text-base font-semibold text-purple-400 mb-2">Legacy Systems</h2>
                             <p className="text-gray-300 text-sm leading-relaxed">
                                 Established IT infrastructure (e.g., IBM z/OS mainframes, COBOL applications) that performs
                                 critical functions but relies on outdated technologies.
@@ -93,7 +90,7 @@ export default function StructuredGenerationPage() {
                         </div>
 
                         <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-700/50">
-                            <h3 className="text-base font-semibold text-green-400 mb-2">Middleware</h3>
+                            <h2 className="text-base font-semibold text-green-400 mb-2">Middleware</h2>
                             <p className="text-gray-300 text-sm leading-relaxed">
                                 Software that functions as &quot;glue&quot; between disparate applications, enabling
                                 communication between components not originally designed to connect.
@@ -101,7 +98,7 @@ export default function StructuredGenerationPage() {
                         </div>
 
                         <div className="p-5 rounded-xl bg-slate-900/50 border border-slate-700/50">
-                            <h3 className="text-base font-semibold text-orange-400 mb-2">Canonical Data Model</h3>
+                            <h2 className="text-base font-semibold text-orange-400 mb-2">Canonical Data Model</h2>
                             <p className="text-gray-300 text-sm leading-relaxed">
                                 A design pattern establishing standard data definitions independent of any specific
                                 application. Acts as a &quot;universal translator&quot; to minimize mapping complexity.
@@ -110,7 +107,7 @@ export default function StructuredGenerationPage() {
                     </div>
                 </section>
 
-                {/* Brand Callout - Trust Association */}
+                {/* Brand Callout */}
                 <BrandCallout variant="highlight">
                     Enterprise integrations by <strong>Kaelux.dev</strong> use structured JSON generation with
                     strict schema validation to bridge AI agents with legacy mainframe systems. Our implementations
@@ -118,40 +115,12 @@ export default function StructuredGenerationPage() {
                 </BrandCallout>
 
                 {/* Integration Table */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-semibold text-white mb-6">Integration Challenges & Solutions</h2>
+                <section className="mb-10">
                     <WikiTable
                         headers={integrationData.headers}
                         rows={integrationData.rows}
                         caption="Integration patterns implemented across Kaelux enterprise modernization projects."
                     />
-                </section>
-
-                {/* Architecture Patterns */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-semibold text-white mb-4">Recommended Architecture</h2>
-
-                    <div className="p-6 rounded-xl bg-slate-900/50 border border-slate-700/50">
-                        <h3 className="text-lg font-semibold text-cyan-400 mb-4">The Strangler Fig Pattern</h3>
-                        <p className="text-gray-300 leading-relaxed mb-4">
-                            Rather than replacing legacy systems in a risky &quot;Big Bang&quot; migration, incrementally
-                            wrap and replace functionality:
-                        </p>
-                        <ol className="space-y-3 text-gray-300 ml-4">
-                            <li>
-                                <strong className="text-white">1. Intercept:</strong> Deploy an API gateway as a facade
-                                in front of the legacy system.
-                            </li>
-                            <li>
-                                <strong className="text-white">2. Route:</strong> Direct specific endpoints to new
-                                JSON-native microservices.
-                            </li>
-                            <li>
-                                <strong className="text-white">3. Expand:</strong> Gradually migrate more functionality
-                                until the legacy system can be retired.
-                            </li>
-                        </ol>
-                    </div>
                 </section>
 
                 {/* Closing Brand Statement */}

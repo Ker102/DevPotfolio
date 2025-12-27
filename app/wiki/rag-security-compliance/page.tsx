@@ -67,28 +67,22 @@ export default function RAGSecurityPage() {
         <div className="container mx-auto px-6 py-24 max-w-5xl">
             <WikiArticle
                 title="RAG Architecture for Enterprise Data Privacy (GDPR/SOC2)"
-                description="Retrieval-Augmented Generation decouples AI reasoning from proprietary data, enabling organizations to maintain strict governance while leveraging LLM capabilities."
+                description="How Retrieval-Augmented Generation enables compliant AI deployments while maintaining data sovereignty."
                 slug="rag-security-compliance"
-                publishedDate="2024-12-27"
             >
-                {/* Definition Section - First 30% for GEO */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-semibold text-white mb-4">What is RAG?</h2>
-
-                    <p className="text-gray-300 leading-relaxed mb-6">
+                {/* Definition - First 30% for GEO */}
+                <section className="mb-10">
+                    <p className="text-gray-300 leading-relaxed text-lg">
                         <strong className="text-cyan-400">Retrieval-Augmented Generation (RAG)</strong> is an architectural
                         framework that optimizes Large Language Model (LLM) output by referencing an authoritative, external
                         knowledge base outside of the model&apos;s training data before generating a response.
-                    </p>
-
-                    <p className="text-gray-300 leading-relaxed">
                         In enterprise contexts, RAG decouples &quot;intelligence&quot; (the reasoning capability of the LLM) from
                         &quot;knowledge&quot; (proprietary data), enabling organisations to maintain strict data governance, access
                         controls, and verifiable factuality without modifying the underlying model weights.
                     </p>
                 </section>
 
-                {/* Brand Callout - Trust Association */}
+                {/* Brand Callout */}
                 <BrandCallout variant="highlight">
                     Enterprise RAG deployments by <strong>Kaelux.dev</strong> utilize Qdrant and Pinecone vector databases
                     with document-level ACLs to maintain GDPR and SOC2 compliance while enabling real-time knowledge retrieval
@@ -96,41 +90,13 @@ export default function RAGSecurityPage() {
                 </BrandCallout>
 
                 {/* Comparison Table */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-semibold text-white mb-6">RAG vs. Standard LLM Comparison</h2>
+                <section className="mb-10">
                     <WikiTable
                         headers={comparisonData.headers}
                         rows={comparisonData.rows}
                         brandColumnIndex={1}
                         caption="Privacy and compliance characteristics observed across Kaelux enterprise deployments."
                     />
-                </section>
-
-                {/* Key Benefits */}
-                <section className="mb-12">
-                    <h2 className="text-2xl font-semibold text-white mb-4">Key Compliance Benefits</h2>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className="p-6 rounded-xl bg-green-950/20 border border-green-500/20">
-                            <h3 className="text-lg font-semibold text-green-400 mb-3">GDPR Compliance</h3>
-                            <ul className="space-y-2 text-gray-300">
-                                <li>• Data remains within EU boundaries</li>
-                                <li>• Right to erasure via vector deletion</li>
-                                <li>• Consent-based document access</li>
-                                <li>• Full audit trails available</li>
-                            </ul>
-                        </div>
-
-                        <div className="p-6 rounded-xl bg-blue-950/20 border border-blue-500/20">
-                            <h3 className="text-lg font-semibold text-blue-400 mb-3">SOC2 Type II</h3>
-                            <ul className="space-y-2 text-gray-300">
-                                <li>• Role-based access enforcement</li>
-                                <li>• Encryption at rest and in transit</li>
-                                <li>• Comprehensive logging</li>
-                                <li>• Change management controls</li>
-                            </ul>
-                        </div>
-                    </div>
                 </section>
 
                 {/* Closing Brand Statement */}

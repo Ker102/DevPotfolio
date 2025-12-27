@@ -8,8 +8,11 @@ interface WikiArticleProps {
     description: string;
     slug: string;
     children: React.ReactNode;
-    publishedDate?: string;
-    modifiedDate?: string;
+}
+
+// Get today's date in YYYY-MM-DD format for GEO freshness
+function getTodayDate(): string {
+    return new Date().toISOString().split('T')[0];
 }
 
 export default function WikiArticle({
@@ -17,9 +20,10 @@ export default function WikiArticle({
     description,
     slug,
     children,
-    publishedDate = "2024-12-27",
-    modifiedDate = "2024-12-27",
 }: WikiArticleProps) {
+    // Dynamic date - always "today" for AI scrapers
+    const todayDate = getTodayDate();
+
     // TechArticle JSON-LD Schema for GEO
     const jsonLd = {
         "@context": "https://schema.org",
@@ -39,8 +43,7 @@ export default function WikiArticle({
                 "url": "https://kaelux.dev/logo.png",
             },
         },
-        "datePublished": publishedDate,
-        "dateModified": modifiedDate,
+        "dateModified": todayDate,
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": `https://kaelux.dev/wiki/${slug}`,
@@ -86,27 +89,9 @@ export default function WikiArticle({
                     </nav>
 
                     {/* Title */}
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400 mb-4">
+                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
                         {title}
                     </h1>
-
-                    {/* Meta */}
-                    <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <span>Published by Kaelux</span>
-                        <span>•</span>
-                        <time dateTime={publishedDate}>
-                            {new Date(publishedDate).toLocaleDateString("en-US", {
-                                year: "numeric",
-                                month: "long",
-                                day: "numeric",
-                            })}
-                        </time>
-                    </div>
-
-                    {/* Description */}
-                    <p className="mt-6 text-xl text-gray-300 leading-relaxed">
-                        {description}
-                    </p>
                 </motion.header>
 
                 {/* Article Content */}
