@@ -30,16 +30,7 @@ export default function WikiLayout({
 }) {
     return (
         <main className="min-h-screen bg-black text-white">
-            {/* Background effects */}
-            <div className="fixed inset-0 pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-purple-900/10 rounded-full blur-[150px]" />
-                <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-900/10 rounded-full blur-[120px]" />
-            </div>
-
-            {/* Content */}
-            <div className="relative z-10">
-                {children}
-            </div>
+            {children}
         </main>
     );
 }

@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Script from "next/script";
 
 interface WikiArticleProps {
@@ -21,7 +18,6 @@ export default function WikiArticle({
     slug,
     children,
 }: WikiArticleProps) {
-    // Dynamic date - always "today" for AI scrapers
     const todayDate = getTodayDate();
 
     // TechArticle JSON-LD Schema for GEO
@@ -59,7 +55,6 @@ export default function WikiArticle({
 
     return (
         <>
-            {/* TechArticle Schema for GEO */}
             <Script
                 id={`jsonld-${slug}`}
                 type="application/ld+json"
@@ -68,47 +63,24 @@ export default function WikiArticle({
             />
 
             <article className="max-w-4xl">
-                {/* Article Header */}
-                <motion.header
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="mb-12"
-                >
-                    {/* Breadcrumb */}
-                    <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-                        <a href="/" className="hover:text-cyan-400 transition-colors">
-                            Home
-                        </a>
-                        <span>/</span>
-                        <a href="/wiki" className="hover:text-cyan-400 transition-colors">
-                            Wiki
-                        </a>
-                        <span>/</span>
-                        <span className="text-gray-400">{slug}</span>
-                    </nav>
+                {/* Breadcrumb */}
+                <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+                    <a href="/" className="hover:text-white transition-colors">Home</a>
+                    <span>/</span>
+                    <a href="/wiki" className="hover:text-white transition-colors">Wiki</a>
+                    <span>/</span>
+                    <span className="text-gray-400">{slug}</span>
+                </nav>
 
-                    {/* Title */}
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
-                        {title}
-                    </h1>
-                </motion.header>
+                {/* Title */}
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-10">
+                    {title}
+                </h1>
 
-                {/* Article Content */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="prose prose-invert prose-lg max-w-none
-                        prose-headings:text-white prose-headings:font-semibold
-                        prose-p:text-gray-300 prose-p:leading-relaxed
-                        prose-strong:text-cyan-400 prose-strong:font-semibold
-                        prose-a:text-cyan-400 prose-a:no-underline hover:prose-a:underline
-                        prose-ul:text-gray-300 prose-ol:text-gray-300
-                        prose-li:marker:text-cyan-500"
-                >
+                {/* Content */}
+                <div className="space-y-6 text-gray-300 leading-relaxed">
                     {children}
-                </motion.div>
+                </div>
             </article>
         </>
     );
