@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Send, Bot, Sparkles } from "lucide-react";
+import { Send } from "lucide-react";
 
 export default function DiagnoserCTA() {
     const [input, setInput] = useState("");
@@ -37,10 +37,8 @@ export default function DiagnoserCTA() {
                         <span className="text-sm text-gray-600 font-semibold tracking-wide">Intelligent Diagnostics</span>
                     </div>
 
-                    <h2 className="text-5xl md:text-6xl font-semibold tracking-tighter mb-6 drop-shadow-sm">
-                        <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#000000_0%,#434343_50%,#000000_100%)]">
-                            Not Sure Where to Start?
-                        </span>
+                    <h2 className="text-5xl md:text-6xl font-semibold tracking-tighter mb-6 text-transparent bg-clip-text bg-gradient-to-b from-gray-900 via-gray-700 to-gray-500">
+                        Not Sure Where to Start?
                     </h2>
                     <p className="text-gray-500 text-xl max-w-2xl mx-auto leading-relaxed font-light">
                         Let our neural engine analyze your business infrastructure and architect the perfect solution.
@@ -57,7 +55,7 @@ export default function DiagnoserCTA() {
                         ? "shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] ring-1 ring-white/20 scale-[1.02]"
                         : "shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)]"
                         }`}
-                    style={{ background: '#09090b' }} // Zinc-950
+                    style={{ background: '#09090b' }}
                 >
                     {/* Glass Sheen */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
@@ -87,25 +85,12 @@ export default function DiagnoserCTA() {
                             </div>
                         </div>
 
-                        {/* Initial Question */}
+                        {/* Initial Question - Clean, no avatar */}
                         <div className="p-8">
-                            <div className="flex gap-5">
-                                <div className="flex-shrink-0 mt-1">
-                                    <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-white/10 flex items-center justify-center">
-                                        <svg className="w-4 h-4 text-zinc-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                            <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            <path d="M9 10a1 1 0 00-1 1v4a1 1 0 102 0v-2.5" />
-                                            <path d="M14 13.5V11a1 1 0 10-2 0v4a1 1 0 102 0" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div className="bg-zinc-900/80 border border-white/10 text-zinc-300 rounded-2xl rounded-tl-sm px-6 py-5 shadow-inner max-w-[90%] backdrop-blur-sm">
-                                    <p className="leading-relaxed font-light text-[15px]">
-                                        Analyzing system parameters... <br />
-                                        I can help optimize your infrastructure.
-                                        <span className="block mt-3 font-medium text-white">Which sector should we focus on?</span>
-                                    </p>
-                                </div>
+                            <div className="bg-zinc-900/80 border border-white/10 text-zinc-300 rounded-2xl px-6 py-5 shadow-inner backdrop-blur-sm">
+                                <p className="text-[15px] font-medium text-white">
+                                    Describe your business and what you&apos;re looking to achieve.
+                                </p>
                             </div>
                         </div>
 
@@ -117,7 +102,7 @@ export default function DiagnoserCTA() {
                                     onChange={(e) => setInput(e.target.value)}
                                     onFocus={() => setIsFocused(true)}
                                     onBlur={() => setIsFocused(false)}
-                                    placeholder="Describe your architecture needs..."
+                                    placeholder="Tell us about your business..."
                                     className="w-full bg-zinc-900/50 border border-white/10 rounded-xl pl-5 pr-14 py-4 
                                    text-white placeholder-zinc-600 focus:outline-none focus:ring-1 
                                    focus:ring-white/20 focus:border-white/20 transition-all font-light text-sm"

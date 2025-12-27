@@ -20,26 +20,21 @@ export default async function DiagnoserPage({ searchParams }: PageProps) {
     const initialMessage = params.q || '';
 
     return (
-        <main className="min-h-screen bg-black relative overflow-hidden">
-            {/* Background Gradient Effects */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-[128px]" />
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-green-500/20 rounded-full blur-[128px]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-cyan-500/10 to-transparent rounded-full" />
-            </div>
-
+        <main className="min-h-screen bg-white relative overflow-hidden">
             {/* Content */}
             <div className="relative z-10 container mx-auto px-4 pt-24 pb-12">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                        <span className="bg-gradient-to-r from-cyan-400 via-green-400 to-yellow-400 bg-clip-text text-transparent">
-                            Kaelux Diagnostic Agent
-                        </span>
+                    <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-white/80 border border-gray-200/50 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] mb-8">
+                        <div className="w-2 h-2 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 animate-pulse" />
+                        <span className="text-sm text-gray-600 font-semibold tracking-wide">Intelligent Diagnostics</span>
+                    </div>
+
+                    <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-b from-gray-900 via-gray-700 to-gray-500">
+                        Kaelux Diagnostic Agent
                     </h1>
-                    <p className="text-gray-400 max-w-xl mx-auto text-lg">
+                    <p className="text-gray-500 max-w-xl mx-auto text-lg font-light">
                         Let our AI understand your business needs and recommend tailored solutions.
-                        Just answer a few questions to get started.
                     </p>
                 </div>
 
@@ -47,15 +42,10 @@ export default async function DiagnoserPage({ searchParams }: PageProps) {
                 <DiagnosticChat initialMessage={initialMessage} />
 
                 {/* Footer Info */}
-                <div className="mt-8 text-center">
-                    <p className="text-gray-500 text-sm">
-                        Powered by <span className="text-cyan-400">Groq</span> •
-                        <span className="text-green-400"> Llama 3.3</span> •
-                        Real-time model search via <span className="text-yellow-400">Hugging Face</span>
-                    </p>
+                <div className="mt-12 text-center">
+                    <span className="text-xs font-mono text-gray-400">Powered by Enterprise Neural Engine v3.5</span>
                 </div>
             </div>
         </main>
     );
 }
-
