@@ -489,7 +489,7 @@ export default function Hero() {
                 <div
                     ref={scrollIndicatorRef}
                     className="mt-16 flex justify-center cursor-pointer opacity-0"
-                    onClick={() => scrollToSection("about")}
+                    onClick={() => scrollToSection("services")}
                 >
                     <HiArrowDown className="w-10 h-10 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />
                 </div>

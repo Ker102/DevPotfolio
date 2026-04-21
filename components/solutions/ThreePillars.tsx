@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { HiOutlineCubeTransparent, HiOutlineWrenchScrewdriver, HiOutlineCog8Tooth } from "react-icons/hi2";
+import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
 
 const pillars = [
     {
@@ -73,6 +74,9 @@ export default function ThreePillars() {
                     <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
                         We bridge the gap between abstract AI potential and concrete business infrastructure.
                     </p>
+                    <div className="mt-5">
+                        <NeedHelpLink label="Not sure where to start?" className="text-gray-500 hover:text-gray-900 hover:decoration-gray-900" />
+                    </div>
                 </motion.div>
 
                 <motion.div

@@ -49,7 +49,7 @@ const navCards = [
   {
     label: "Additional",
     links: [
-      { label: "About me", href: "#about" },
+      { label: "Meet the Founder", href: "#about" },
       { label: "Team", href: "#team" },
       { label: "About Kaelux", href: "/about", isExternal: true },
     ],

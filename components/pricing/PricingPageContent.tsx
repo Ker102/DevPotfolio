@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
 import { services, openclawPlans, ServicePlan } from "@/data/services";
-import { HiOutlineCpuChip } from "react-icons/hi2";
+import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
 
 interface PricingCategoryProps {
     title: string;
@@ -27,6 +27,9 @@ function PricingCategory({ title, description, plans, href, delay = 0 }: Pricing
                 <div>
                     <h3 className="text-2xl font-bold text-white">{title}</h3>
                     <p className="text-gray-500 text-sm mt-1">{description}</p>
+                    <div className="mt-3">
+                        <NeedHelpLink />
+                    </div>
                 </div>
                 <Link
                     href={href}

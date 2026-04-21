@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 
+import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
 import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 import { fadeInUp, premiumEase, staggerContainer, textStagger, textReveal } from "@/lib/animations";
 
@@ -149,7 +150,7 @@ export default function PlatformServices() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.8 }}
                     transition={{ duration: 0.55, ease: premiumEase }}
-                    className="flex justify-center"
+                    className="flex flex-col items-center gap-5"
                 >
                     <Link href="#contact">
                         <motion.button
@@ -164,6 +165,8 @@ export default function PlatformServices() {
                             <FaArrowRight className="relative z-10 text-white transition-transform duration-300 group-hover:translate-x-1" />
                         </motion.button>
                     </Link>
+
+                    <NeedHelpLink label="Not sure what to do?" className="text-gray-500 hover:text-gray-900 hover:decoration-gray-900" />
                 </motion.div>
             </div>
         </section>

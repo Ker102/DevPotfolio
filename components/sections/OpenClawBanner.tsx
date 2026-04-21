@@ -7,6 +7,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { HiOutlineCloud, HiOutlineShieldCheck, HiOutlineBolt } from "react-icons/hi2";
 
 import { AnimatedNumericText } from "@/components/ui/AnimatedNumberText";
+import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
 import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 
 const highlights = [
@@ -140,6 +141,7 @@ export default function OpenClawBanner() {
                         className="text-sm text-gray-500"
                         numberClassName="font-bold text-gray-900"
                     />
+                    <NeedHelpLink label="Need help choosing?" className="text-gray-500 hover:text-gray-900 hover:decoration-gray-900" />
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-[0.15em] uppercase bg-gradient-to-b from-gray-900 via-gray-600 to-gray-300 text-white shadow-sm">
                         <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                         New Service

@@ -27,10 +27,13 @@ export async function searchHuggingFaceModels(input: HuggingFaceToolInput): Prom
     url.searchParams.set('sort', 'downloads');
     url.searchParams.set('direction', '-1');
 
+    const apiKey = process.env.HUGGINGFACE_API_KEY;
     const res = await fetch(url.toString(), {
-        headers: {
-            'Authorization': `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
-        },
+        headers: apiKey
+            ? {
+                Authorization: `Bearer ${apiKey}`,
+            }
+            : undefined,
     });
 
     if (!res.ok) {

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { HiCheck, HiOutlineCubeTransparent, HiOutlineWrenchScrewdriver, HiOutlineCog8Tooth } from "react-icons/hi2";
 import { FaArrowRight } from "react-icons/fa";
+import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
 
 const corePlans = [
     {
@@ -203,6 +204,9 @@ export default function CorePricing() {
                 >
                     All plans include initial consultation. Volume discounts available for annual commitments.
                 </motion.p>
+                <div className="mt-4 flex justify-center">
+                    <NeedHelpLink label="Need help choosing a plan?" />
+                </div>
             </div>
         </section>
     );

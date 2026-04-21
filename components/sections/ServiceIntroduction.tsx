@@ -12,6 +12,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
+import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
 import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 import { staggerContainer, fadeInUp, textStagger, textReveal } from "@/lib/animations";
 
@@ -139,6 +140,8 @@ export default function ServiceIntroduction() {
                                 <p className="text-sm text-gray-500 font-medium tracking-widest uppercase opacity-60">
                                     Tailored for your business
                                 </p>
+
+                                <NeedHelpLink />
                             </motion.div>
                         </motion.div>
 

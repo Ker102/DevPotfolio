@@ -53,7 +53,7 @@ export default function DiagnoserCTA() {
                 </motion.div>
             </div>
 
-            <section className="relative py-24 md:py-12 px-6 overflow-hidden bg-white">
+            <section id="diagnoser" className="relative py-24 md:py-12 px-6 overflow-hidden bg-white">
                 <div className="container mx-auto max-w-3xl relative z-10">
                     {/* Header */}
                     <motion.div
