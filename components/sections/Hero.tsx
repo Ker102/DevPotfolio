@@ -3,6 +3,7 @@
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useEffect, useState, useMemo, useRef } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import MagneticButton from "@/components/MagneticButton";
 import GlassSurface from "@/components/GlassSurface";
@@ -132,6 +133,7 @@ const SubtitleRotator = ({
 
 export default function Hero() {
     const [isMounted, setIsMounted] = useState(false);
+    const router = useRouter();
 
     // Refs for GSAP entrance animations
     const sectionRef = useRef<HTMLElement>(null);
@@ -147,7 +149,8 @@ export default function Hero() {
 
     const mobileTexts = [
         "Tailored LLM infrastructure, AI engineering, and full-stack web services.",
-        "We build and host the complete technology backbone for your business."
+        "We build and host the complete technology backbone for your business.",
+        "Kaelux MedAI supports retinal and medical imaging research teams with secure AI infrastructure and tooling."
     ];
     const [mobileTextIndex, setMobileTextIndex] = useState(0);
 
@@ -464,7 +467,7 @@ export default function Hero() {
 
                         {/* Secondary Glass Button with Modern Hover */}
                         <motion.button
-                            onClick={() => scrollToSection("contact")}
+                            onClick={() => router.push("/medai")}
                             className="group relative px-8 py-4 rounded-full overflow-hidden opacity-0
                                 bg-white/10 backdrop-blur-xl border border-white/20
                                 text-white font-semibold"
@@ -480,7 +483,7 @@ export default function Hero() {
                             <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                             {/* Glow effect on hover */}
                             <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-white/10 to-transparent" />
-                            <span className="relative z-10">Get In Touch</span>
+                            <span className="relative z-10">For Labs &amp; Researchers</span>
                         </motion.button>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Hero from "@/components/sections/Hero";
 import Supporters from "@/components/sections/Supporters";
 import ServiceIntroduction from "@/components/sections/ServiceIntroduction";
+import MedAIIntro from "@/components/sections/MedAIIntro";
 import GradientSpacer from "@/components/sections/GradientSpacer";
 import PlatformServices from "@/components/sections/PlatformServices";
 import DiagnoserCTA from "@/components/sections/DiagnoserCTA";
@@ -14,8 +15,6 @@ import AboutKaelux from "@/components/sections/AboutKaelux";
 import AboutMe from "@/components/sections/AboutMe";
 import Team from "@/components/sections/Team";
 import Contact from "@/components/sections/Contact";
-
-import LogoImage from "../Red White Simple Company Technology Logo.png";
 
 export default function Home() {
   return (
@@ -76,8 +75,10 @@ export default function Home() {
         </div>
       </div>
 
+      <MedAIIntro />
+
       {/* Image-based Gradient transition: black → white */}
-      <GradientSpacer direction="toWhite" className="-mb-16 mt-10 md:mt-14 lg:mt-16 relative z-0" />
+      <GradientSpacer direction="toWhite" className="-mb-16 mt-0 md:mt-4 lg:mt-6 relative z-0" />
 
       <div className="relative z-10">
         <PlatformServices />

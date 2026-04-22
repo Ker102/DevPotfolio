@@ -11,6 +11,7 @@ import { GoArrowUpRight } from "react-icons/go";
 const navLinks = [
   { name: "Home", href: "#hero" },
   { name: "About", href: "/about", isExternal: true },
+  { name: "MedAI", href: "/medai", isExternal: true },
   { name: "Services", href: "#services" },
   { name: "Projects", href: "#projects" },
   { name: "OpenClaw", href: "/openclaw", isExternal: true },
@@ -33,7 +34,7 @@ const navCards = [
     label: "Connect",
     links: [
       { label: "Get In Touch", href: "#contact" },
-      { label: "Collaborate", href: "#contact" },
+      { label: "MedAI Collaboration", href: "/medai", isExternal: true },
     ],
   },
   {
@@ -67,6 +68,7 @@ export default function Navbar() {
 function CompactNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   // Close when clicking outside
   useEffect(() => {
@@ -82,14 +84,18 @@ function CompactNavbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLElement>, href: string) => {
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLElement>,
+    href: string,
+    options?: { localOnly?: boolean }
+  ) => {
     e.preventDefault();
     setIsOpen(false);
 
     // Check if we're on the homepage
     const isHomePage = window.location.pathname === "/" || window.location.pathname === "";
 
-    if (!isHomePage) {
+    if (!options?.localOnly && !isHomePage) {
       // Navigate to homepage with the hash anchor
       window.location.href = "/" + href;
       return;
@@ -117,19 +123,12 @@ function CompactNavbar() {
     }, 100);
   };
 
-  // 'Image 3' Aesthetic: Greyer, more glass-like
-  const glassStyle = {
-    background: "rgba(40, 40, 45, 0.6)",
-    backdropFilter: "blur(16px) saturate(180%)",
-    WebkitBackdropFilter: "blur(16px) saturate(180%)",
-    border: "1px solid rgba(255, 255, 255, 0.12)",
-    boxShadow: "0 8px 32px rgba(0, 0, 0, 0.3)",
-  };
-
   // Dimensions
   const CLOSED_HEIGHT = 40;
   const CLOSED_WIDTH = 140;
   const CLOSED_RADIUS = 20;
+  const isMedAIPage = pathname === "/medai";
+  const contactAnchor = isMedAIPage ? "#medai-contact" : "#contact";
 
   return (
     <div className="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
@@ -147,6 +146,13 @@ function CompactNavbar() {
           className="h-10 w-10 rounded-[12px] object-contain drop-shadow-[0_0_14px_rgba(255,255,255,0.22)]"
         />
       </Link>
+
+      <button
+        onClick={(e) => scrollToSection(e, contactAnchor, { localOnly: isMedAIPage })}
+        className="fixed right-4 top-6 z-50 rounded-full border border-white/12 bg-[rgba(40,40,45,0.58)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-[16px] saturate-[180%] transition-colors hover:text-white hover:bg-white/10 md:right-6"
+      >
+        Contact
+      </button>
 
       <motion.div
         ref={containerRef}
