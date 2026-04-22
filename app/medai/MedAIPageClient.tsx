@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 import MedAIContactForm from "@/components/medai/MedAIContactForm";
+import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 
 const whoWeHelp = [
     "Retina research labs and ophthalmology departments working with imaging, infrastructure, or AI workflows.",
@@ -52,20 +53,27 @@ export default function MedAIPageClient() {
         <main className="min-h-screen bg-black text-white">
             <section className="relative overflow-hidden px-6 pb-20 pt-32 md:pb-24 md:pt-40">
                 <div className="pointer-events-none absolute inset-0">
-                    <div className="absolute left-[8%] top-24 h-72 w-72 rounded-full bg-cyan-400/10 blur-[160px]" />
-                    <div className="absolute right-[10%] top-16 h-80 w-80 rounded-full bg-violet-400/12 blur-[180px]" />
+                    <div className="absolute left-[8%] top-24 h-72 w-72 rounded-full bg-white/[0.05] blur-[160px]" />
+                    <div className="absolute right-[10%] top-16 h-80 w-80 rounded-full bg-violet-300/[0.1] blur-[180px]" />
+                    <div className="absolute bottom-0 left-1/2 h-64 w-[28rem] -translate-x-1/2 rounded-full bg-white/[0.04] blur-[160px]" />
                 </div>
 
                 <div className="relative z-10 container mx-auto max-w-6xl">
                     <motion.div
-                        initial={{ opacity: 0, y: 28 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        className="grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.75fr)] lg:items-end"
+                        initial={{ opacity: 0, y: 34, scale: 0.988, filter: "blur(14px)" }}
+                        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+                        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                        className="relative grid gap-12 overflow-hidden rounded-[36px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,rgba(255,255,255,0.04)_24%,rgba(255,255,255,0.025)_100%)] p-8 shadow-[0_28px_90px_rgba(0,0,0,0.34)] backdrop-blur-[28px] md:p-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.75fr)] lg:items-end"
                     >
+                        <div className="pointer-events-none absolute inset-0">
+                            <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/55 to-transparent" />
+                            <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(188,170,255,0.12),transparent_30%)]" />
+                            <div className="absolute inset-[1px] rounded-[35px] border border-white/[0.04]" />
+                        </div>
+
                         <div className="space-y-8">
                             <div className="space-y-4">
-                                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-100/80">
+                                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/72">
                                     Kaelux MedAI
                                 </p>
                                 <p className="text-xs font-medium uppercase tracking-[0.24em] text-white/45">
@@ -83,7 +91,11 @@ export default function MedAIPageClient() {
                                     secure tooling for research environments that need more than experiments.
                                 </p>
                                 <p>
-                                    The current focus areas are retina and ophthalmology-related work together
+                                    The current focus areas are{" "}
+                                    <ScrollUnderline underlineClassName="via-white/72">
+                                        retina
+                                    </ScrollUnderline>{" "}
+                                    and ophthalmology-related work together
                                     with hearing and tinnitus research: imaging workflows, secure pipelines,
                                     rare disease and sensory-disease tooling, and the engineering layer needed
                                     to move serious research programs forward.
@@ -107,7 +119,7 @@ export default function MedAIPageClient() {
                             </div>
                         </div>
 
-                        <div className="rounded-[30px] border border-white/10 bg-white/[0.03] p-7">
+                        <div className="rounded-[30px] border border-white/10 bg-black/18 p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md">
                             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/55">
                                 Scope
                             </p>
@@ -145,7 +157,7 @@ export default function MedAIPageClient() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                            className="space-y-6"
+                            className="space-y-6 rounded-[30px] border border-white/10 bg-white/[0.03] p-7 shadow-[0_22px_80px_rgba(0,0,0,0.24)] backdrop-blur-[24px]"
                         >
                             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/55">
                                 Mission and Focus
@@ -171,14 +183,14 @@ export default function MedAIPageClient() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.5, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-                            className="space-y-6"
+                            className="space-y-6 rounded-[30px] border border-white/10 bg-white/[0.03] p-7 shadow-[0_22px_80px_rgba(0,0,0,0.24)] backdrop-blur-[24px]"
                         >
                             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/55">
                                 Who We Help
                             </p>
                             <ul className="space-y-4 text-lg leading-8 text-gray-300">
                                 {whoWeHelp.map((item) => (
-                                    <li key={item} className="rounded-[24px] border border-white/10 bg-white/[0.02] p-5">
+                                    <li key={item} className="rounded-[24px] border border-white/10 bg-black/18 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md">
                                         {item}
                                     </li>
                                 ))}
@@ -192,14 +204,14 @@ export default function MedAIPageClient() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                            className="space-y-6"
+                            className="space-y-6 rounded-[30px] border border-white/10 bg-white/[0.03] p-7 shadow-[0_22px_80px_rgba(0,0,0,0.24)] backdrop-blur-[24px]"
                         >
                             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/55">
                                 How We Collaborate
                             </p>
                             <ul className="space-y-4 text-lg leading-8 text-gray-300">
                                 {collaborationModes.map((item) => (
-                                    <li key={item} className="border-l border-cyan-300/35 pl-5">
+                                    <li key={item} className="border-l border-white/18 pl-5">
                                         {item}
                                     </li>
                                 ))}
@@ -216,7 +228,7 @@ export default function MedAIPageClient() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.2 }}
                             transition={{ duration: 0.5, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-                            className="space-y-6 rounded-[30px] border border-white/10 bg-white/[0.03] p-7"
+                            className="space-y-6 rounded-[30px] border border-white/10 bg-white/[0.03] p-7 shadow-[0_22px_80px_rgba(0,0,0,0.24)] backdrop-blur-[24px]"
                         >
                             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/55">
                                 Current Stage
@@ -224,7 +236,7 @@ export default function MedAIPageClient() {
                             <ul className="space-y-4 text-lg leading-8 text-gray-300">
                                 {stageSignals.map((item) => (
                                     <li key={item} className="flex gap-3">
-                                        <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-200" />
+                                        <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-white/75" />
                                         <span>{item}</span>
                                     </li>
                                 ))}
@@ -258,7 +270,7 @@ export default function MedAIPageClient() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.15 }}
                                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                className="rounded-[26px] border border-white/10 bg-white/[0.02] p-6"
+                                className="rounded-[26px] border border-white/10 bg-white/[0.03] p-6 shadow-[0_20px_72px_rgba(0,0,0,0.22)] backdrop-blur-[24px]"
                             >
                                 <h3 className="text-xl font-semibold text-white">{item.question}</h3>
                                 <p className="mt-3 text-base leading-7 text-gray-300">{item.answer}</p>

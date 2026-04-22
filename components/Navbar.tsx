@@ -147,12 +147,22 @@ function CompactNavbar() {
         />
       </Link>
 
-      <button
+      <motion.button
         onClick={(e) => scrollToSection(e, contactAnchor, { localOnly: isMedAIPage })}
-        className="fixed right-4 top-6 z-50 rounded-full border border-white/12 bg-[rgba(40,40,45,0.58)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-[16px] saturate-[180%] transition-colors hover:text-white hover:bg-white/10 md:right-6"
+        whileHover={{
+          y: -1,
+          scale: 1.03,
+          boxShadow: "0 14px 38px rgba(0,0,0,0.38), 0 0 0 1px rgba(255,255,255,0.12)",
+        }}
+        whileTap={{ scale: 0.97, y: 0 }}
+        transition={{ type: "spring", stiffness: 420, damping: 22 }}
+        className="group fixed right-4 top-6 z-50 overflow-hidden rounded-full border border-white/12 bg-[rgba(40,40,45,0.58)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-[16px] saturate-[180%] transition-colors hover:text-white md:right-6"
       >
-        Contact
-      </button>
+        <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent opacity-80" />
+        <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_55%)]" />
+        <span className="pointer-events-none absolute inset-y-0 left-[-35%] w-[40%] rotate-[14deg] bg-gradient-to-r from-transparent via-white/18 to-transparent opacity-0 blur-md transition-all duration-500 group-hover:left-[110%] group-hover:opacity-100" />
+        <span className="relative z-10">Contact</span>
+      </motion.button>
 
       <motion.div
         ref={containerRef}

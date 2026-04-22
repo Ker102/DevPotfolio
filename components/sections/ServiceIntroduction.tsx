@@ -9,13 +9,12 @@ import {
 } from "framer-motion";
 import { Geist } from "next/font/google";
 import { useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
 import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
-import { staggerContainer, fadeInUp, textStagger, textReveal } from "@/lib/animations";
+import { staggerContainer, textStagger, textReveal } from "@/lib/animations";
 
 const geist = Geist({
     subsets: ["latin"],
@@ -83,13 +82,13 @@ export default function ServiceIntroduction() {
                     </motion.div>
 
                     {/* Split Content Section: Text Left, Image Right */}
-                    <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:items-start lg:gap-24">
+                    <div className="grid grid-cols-1 items-center gap-12">
 
                         {/* Left Column: Description & CTA */}
                         <motion.div
                             variants={textStagger}
                             style={{ y: copyY }}
-                            className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1 will-change-transform"
+                            className="flex flex-col items-center lg:items-start text-center lg:text-left will-change-transform"
                         >
                             <motion.p variants={textReveal} className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed mb-6 max-w-2xl">
                                 Generic AI models don&apos;t understand your{" "}
@@ -136,36 +135,6 @@ export default function ServiceIntroduction() {
 
                                 <NeedHelpLink className="text-white/72 decoration-white/45 hover:text-white hover:decoration-white" />
                             </motion.div>
-                        </motion.div>
-
-                        {/* Right Column: Visual Graphic - FULL SIZE / NO CONSTRAINTS */}
-                        <motion.div
-                            variants={fadeInUp}
-                            className="order-1 flex w-full items-center justify-center lg:order-2 lg:-translate-y-24 lg:self-start lg:justify-end xl:-translate-y-28"
-                        >
-                            {/* Removed max-w constraints to allow original size */}
-                            <div className="relative w-full group">
-
-                                {/* Iridescent Glow behind image */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/20 via-cyan-500/20 to-white/10 blur-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-1000" />
-
-                                {/* Image Container - flexible aspect ratio based on natural image size */}
-                                {/* Since user wants "original size", we set a generous aspect ratio or just let it flow. 
-                       Using Next/Image 'fill' requires a parent height. 
-                       Alternatively, we can use width/height if we knew them, but 'fill' + aspect ratio wrapper is safer for responsiveness.
-                       Let's assume the image is roughly 4:3 or 16:9, but allowing it to be large. 
-                   */}
-                                <div className="relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[5/4] xl:aspect-[4/3]">
-                                    <Image
-                                        src="/architecture-diagram.jpg"
-                                        alt="AI Architecture Diagram"
-                                        fill
-                                        className="object-contain drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
-                                        sizes="(max-width: 768px) 100vw, 60vw"
-                                        priority
-                                    />
-                                </div>
-                            </div>
                         </motion.div>
 
                     </div>
