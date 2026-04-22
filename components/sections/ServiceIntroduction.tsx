@@ -7,6 +7,7 @@ import {
     useSpring,
     useTransform,
 } from "framer-motion";
+import { Geist } from "next/font/google";
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -16,7 +17,10 @@ import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
 import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 import { staggerContainer, fadeInUp, textStagger, textReveal } from "@/lib/animations";
 
-// Removed local implementations of stagger, slideUpFade, imageReveal since we use the optimized ones from lib/animations
+const geist = Geist({
+    subsets: ["latin"],
+    weight: ["500", "600"],
+});
 
 export default function ServiceIntroduction() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -48,19 +52,8 @@ export default function ServiceIntroduction() {
         <section
             ref={sectionRef}
             id="services"
-            className="relative min-h-screen pt-12 md:pt-24 pb-24 px-6 bg-black overflow-hidden flex flex-col justify-start"
+            className="relative min-h-screen overflow-hidden bg-transparent px-6 pb-64 pt-32 md:pb-72 md:pt-40 lg:pb-[26rem] lg:pt-48 xl:pb-[30rem]"
         >
-
-            {/* Top Gradient Fade for Smooth Entry - Extended height for smoother blend */}
-            <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-black via-black/40 to-transparent z-20 pointer-events-none" />
-
-            {/* Iridescent Ambient Glows - Metallic Chromatic Theme */}
-            {/* Reduced opacity to ensure the black background remains deep */}
-            {/* Deep Purple/Blue Base */}
-            <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-indigo-900/5 via-purple-900/5 to-transparent blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
-            {/* Cyan/Silver Highlight */}
-            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-t from-cyan-900/5 via-slate-800/5 to-transparent blur-[100px] rounded-full pointer-events-none mix-blend-screen" />
-
             <div className="relative z-10 container mx-auto max-w-7xl">
 
                 <motion.div
@@ -76,21 +69,21 @@ export default function ServiceIntroduction() {
                         style={{ y: headerY }}
                         className="mb-12 lg:mb-20 w-full text-center lg:text-left will-change-transform"
                     >
-                        <h2 className="text-5xl md:text-6xl lg:text-8xl font-medium tracking-tighter leading-[1.1] flex flex-col gap-2">
-                            <motion.span variants={textReveal} className="text-transparent bg-clip-text bg-gradient-to-b from-gray-800 via-white to-white drop-shadow-lg inline-block">
+                        <h2 className={`${geist.className} flex flex-col gap-2 text-5xl font-medium leading-[1.05] tracking-[-0.04em] text-white md:text-6xl lg:text-[5.25rem]`}>
+                            <motion.span variants={textReveal} className="inline-block text-white">
                                 Beyond Chatbots:
                             </motion.span>
-                            <motion.span variants={textReveal} className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300 animate-gradient-x bg-[length:200%_auto] inline-block">
+                            <motion.span variants={textReveal} className="inline-block text-white">
                                 Intelligent Infrastructure
                             </motion.span>
-                            <motion.span variants={textReveal} className="text-gray-400 inline-block">
+                            <motion.span variants={textReveal} className="inline-block text-white">
                                 for Business
                             </motion.span>
                         </h2>
                     </motion.div>
 
                     {/* Split Content Section: Text Left, Image Right */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                    <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:items-start lg:gap-24">
 
                         {/* Left Column: Description & CTA */}
                         <motion.div
@@ -137,18 +130,18 @@ export default function ServiceIntroduction() {
                                     </motion.button>
                                 </Link>
 
-                                <p className="text-sm text-gray-500 font-medium tracking-widest uppercase opacity-60">
+                                <p className="text-sm font-medium uppercase tracking-widest text-white/62">
                                     Tailored for your business
                                 </p>
 
-                                <NeedHelpLink />
+                                <NeedHelpLink className="text-white/72 decoration-white/45 hover:text-white hover:decoration-white" />
                             </motion.div>
                         </motion.div>
 
                         {/* Right Column: Visual Graphic - FULL SIZE / NO CONSTRAINTS */}
                         <motion.div
                             variants={fadeInUp}
-                            className="order-1 lg:order-2 w-full flex items-center justify-center lg:justify-end"
+                            className="order-1 flex w-full items-center justify-center lg:order-2 lg:-translate-y-24 lg:self-start lg:justify-end xl:-translate-y-28"
                         >
                             {/* Removed max-w constraints to allow original size */}
                             <div className="relative w-full group">
@@ -179,9 +172,6 @@ export default function ServiceIntroduction() {
 
                 </motion.div>
             </div>
-
-            {/* Bottom Gradient Fade for Smooth Exit - Extended height */}
-            <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black via-black/80 to-transparent z-20 pointer-events-none" />
         </section>
     );
 }
