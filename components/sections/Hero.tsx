@@ -150,7 +150,7 @@ export default function Hero() {
     const mobileTexts = [
         "Tailored LLM infrastructure, AI engineering, and full-stack web services.",
         "We build and host the complete technology backbone for your business.",
-        "Kaelux MedAI supports retinal and medical imaging research teams with secure AI infrastructure and tooling."
+        "Kaelux MedAI supports retina, hearing, and medical imaging research teams with secure AI infrastructure and tooling."
     ];
     const [mobileTextIndex, setMobileTextIndex] = useState(0);
 

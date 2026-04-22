@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 
 const focusPoints = [
-    "Retina-first research tooling",
+    "Retina research tooling",
+    "Hearing and tinnitus tooling",
     "Secure AI infrastructure",
     "Early collaborator program",
 ] as const;
@@ -43,9 +44,9 @@ export default function MedAIIntro() {
                                 not another fragile prototype.
                             </p>
                             <p>
-                                The division starts with retina and ophthalmology work, then expands toward
-                                hearing and tinnitus research, with longer-term interest in cancer imaging and
-                                treatment-planning support.
+                                The division is currently focused on retina and ophthalmology work together
+                                with hearing and tinnitus research, with longer-term interest in cancer
+                                imaging and treatment-planning support.
                             </p>
                         </div>
 
@@ -72,8 +73,8 @@ export default function MedAIIntro() {
                                 and engineering support around medical AI work.
                             </p>
                             <p className="text-sm leading-7 text-white/62">
-                                Early collaborators are especially welcome in retinal imaging, rare disease,
-                                and ophthalmology-adjacent projects.
+                                Early collaborators are especially welcome in retinal imaging, hearing and
+                                tinnitus research, rare disease work, and ophthalmology-adjacent projects.
                             </p>
                         </div>
 

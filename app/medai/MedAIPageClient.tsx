@@ -7,8 +7,9 @@ import MedAIContactForm from "@/components/medai/MedAIContactForm";
 
 const whoWeHelp = [
     "Retina research labs and ophthalmology departments working with imaging, infrastructure, or AI workflows.",
+    "Audiology, hearing, and tinnitus research groups that need stronger engineering, secure tooling, or workflow infrastructure.",
     "Disease foundations and medical AI teams that need stronger DevSecOps, MLOps, and research tooling.",
-    "Future collaborators in audiology, tinnitus research, and oncology imaging programs as the division expands.",
+    "Future collaborators in oncology imaging programs and broader disease-focused medical AI efforts as the division expands.",
 ] as const;
 
 const collaborationModes = [
@@ -18,9 +19,32 @@ const collaborationModes = [
 ] as const;
 
 const stageSignals = [
-    "Retina-first and ophthalmology-adjacent projects are the current focus.",
+    "Retina and ophthalmology work sit at the current focus level together with hearing and tinnitus research.",
     "We are actively looking for early collaborators in labs, hospitals, universities, and foundations.",
-    "The long-term path is retina first, then hearing and tinnitus, then cancer imaging and treatment-planning support.",
+    "Cancer imaging, treatment-planning support, and other disease areas remain the longer-term expansion path.",
+] as const;
+
+const faqItems = [
+    {
+        question: "What is Kaelux MedAI?",
+        answer:
+            "Kaelux MedAI is the medical-research engineering division of Kaelux, focused on secure AI infrastructure, research tooling, DevSecOps, and MLOps for retina, hearing, and medical imaging teams.",
+    },
+    {
+        question: "What are the current focus areas?",
+        answer:
+            "The current focus areas are retinal and ophthalmology-related work together with hearing and tinnitus research. Cancer imaging and other disease areas are part of the longer-term roadmap.",
+    },
+    {
+        question: "What kind of collaboration is Kaelux MedAI looking for?",
+        answer:
+            "Kaelux MedAI is looking for labs, universities, hospitals, and foundations that need a technical infra and tooling partner for research collaborations, grant-funded infrastructure, or open-source and early-stage engineering work.",
+    },
+    {
+        question: "Does Kaelux MedAI provide clinical diagnosis systems?",
+        answer:
+            "No. Kaelux MedAI is positioned around research infrastructure, secure tooling, workflow engineering, DevSecOps, and MLOps rather than clinical decision-making or patient-facing diagnosis.",
+    },
 ] as const;
 
 export default function MedAIPageClient() {
@@ -44,6 +68,9 @@ export default function MedAIPageClient() {
                                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan-100/80">
                                     Kaelux MedAI
                                 </p>
+                                <p className="text-xs font-medium uppercase tracking-[0.24em] text-white/45">
+                                    Last updated April 22, 2026
+                                </p>
                                 <h1 className="max-w-4xl text-5xl font-semibold tracking-[-0.05em] text-white md:text-6xl lg:text-7xl">
                                     Practical AI infrastructure and research tooling for medical teams.
                                 </h1>
@@ -56,9 +83,10 @@ export default function MedAIPageClient() {
                                     secure tooling for research environments that need more than experiments.
                                 </p>
                                 <p>
-                                    The current focus is retina first: retinal imaging, ophthalmology-related
-                                    workflows, and rare disease or eye-disease projects that need stronger
-                                    infrastructure, MLOps, and engineering support.
+                                    The current focus areas are retina and ophthalmology-related work together
+                                    with hearing and tinnitus research: imaging workflows, secure pipelines,
+                                    rare disease and sensory-disease tooling, and the engineering layer needed
+                                    to move serious research programs forward.
                                 </p>
                             </div>
 
@@ -94,6 +122,16 @@ export default function MedAIPageClient() {
                                     and tooling for research teams.
                                 </p>
                             </div>
+                            <div className="mt-7 border-t border-white/10 pt-6">
+                                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/55">
+                                    At a glance
+                                </p>
+                                <ul className="mt-4 space-y-3 text-sm leading-6 text-white/72">
+                                    <li>Current focus: retina, ophthalmology, hearing, and tinnitus research support.</li>
+                                    <li>Core work: secure AI infra, research tooling, DevSecOps, and MLOps.</li>
+                                    <li>Stage: actively seeking early collaborators and pilot projects.</li>
+                                </ul>
+                            </div>
                         </div>
                     </motion.div>
                 </div>
@@ -114,14 +152,16 @@ export default function MedAIPageClient() {
                             </p>
                             <div className="space-y-4 text-lg leading-8 text-gray-300">
                                 <p>
-                                    The immediate path is retina and ophthalmology work: retinal disease,
-                                    retinal imaging pipelines, rare disease-related tooling, and the secure
-                                    operational layer around research AI systems.
+                                The immediate path is retina and ophthalmology work: retinal disease,
+                                retinal imaging pipelines, rare disease-related tooling, and the secure
+                                operational layer around research AI systems.
                                 </p>
                                 <p>
-                                    Over time, the division expands from retina into hearing and tinnitus
-                                    research, and later into cancer imaging and treatment-planning support
-                                    where strong infrastructure and workflow reliability matter.
+                                    At the same current-focus level, the division is also targeting hearing and
+                                    tinnitus research where better tooling, data pipelines, and engineering
+                                    support can accelerate technical work. After that foundation is established,
+                                    cancer imaging, treatment-planning support, and broader disease programs are
+                                    the long-term expansion path.
                                 </p>
                             </div>
                         </motion.section>
@@ -199,6 +239,35 @@ export default function MedAIPageClient() {
                 </div>
             </section>
 
+            <section className="border-t border-white/8 px-6 py-20">
+                <div className="container mx-auto max-w-6xl">
+                    <div className="mb-10 max-w-3xl space-y-4">
+                        <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/55">
+                            FAQ
+                        </p>
+                        <h2 className="text-4xl font-semibold tracking-[-0.04em] text-white md:text-5xl">
+                            Clear answers for labs and collaborators evaluating the division.
+                        </h2>
+                    </div>
+
+                    <div className="grid gap-4 md:grid-cols-2">
+                        {faqItems.map((item) => (
+                            <motion.article
+                                key={item.question}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.15 }}
+                                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                                className="rounded-[26px] border border-white/10 bg-white/[0.02] p-6"
+                            >
+                                <h3 className="text-xl font-semibold text-white">{item.question}</h3>
+                                <p className="mt-3 text-base leading-7 text-gray-300">{item.answer}</p>
+                            </motion.article>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             <section id="medai-contact" className="border-t border-white/8 px-6 py-20">
                 <div className="container mx-auto max-w-6xl">
                     <div className="mb-10 max-w-3xl space-y-4">
@@ -212,6 +281,10 @@ export default function MedAIPageClient() {
                             If your lab, department, hospital group, university team, or foundation needs
                             infrastructure, tooling, DevSecOps, MLOps, or engineering support around a
                             research program, send the context here or email us directly.
+                        </p>
+                        <p className="text-base leading-7 text-white/68">
+                            We are especially interested in early collaborators working on retinal imaging,
+                            ophthalmology, hearing, tinnitus, and rare disease-related technical problems.
                         </p>
                         <a
                             href="mailto:business@kaelux.dev"
