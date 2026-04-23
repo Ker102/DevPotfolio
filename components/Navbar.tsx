@@ -216,11 +216,11 @@ function CompactNavbar() {
           <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 md:hidden">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10"
+              className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-white/10"
               aria-label={isOpen ? "Close menu" : "Open menu"}
               whileTap={{ scale: 0.96 }}
             >
-              <div className="relative flex h-4 w-4 items-center justify-center">
+              <div className="relative flex h-5 w-5 items-center justify-center">
                 <motion.div
                   className="absolute inset-0 flex items-center justify-center"
                   animate={{
@@ -229,7 +229,7 @@ function CompactNavbar() {
                   }}
                   transition={{ duration: 0.18 }}
                 >
-                  <HiMenu className="h-4 w-4 text-white" />
+                  <HiMenu className="h-5 w-5 text-white" />
                 </motion.div>
                 <motion.div
                   className="absolute inset-0 flex items-center justify-center"
@@ -241,7 +241,7 @@ function CompactNavbar() {
                   }}
                   transition={{ duration: 0.18 }}
                 >
-                  <HiX className="h-4 w-4 text-white" />
+                  <HiX className="h-5 w-5 text-white" />
                 </motion.div>
               </div>
             </motion.button>
