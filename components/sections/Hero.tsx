@@ -447,12 +447,12 @@ export default function Hero() {
 
                     <div
                         ref={buttonsRef}
-                        className="mt-8 flex flex-nowrap justify-center gap-3 md:gap-4"
+                        className="mt-8 flex flex-nowrap justify-center gap-2.5 md:gap-4"
                     >
                         {/* Primary White Button with Modern Hover */}
                         <motion.button
                             onClick={() => scrollToSection("services")}
-                            className="group relative w-[10.5rem] overflow-hidden rounded-full bg-white px-4 py-4 text-sm font-semibold text-black opacity-0 md:w-auto md:px-8 md:text-base"
+                            className="group relative w-[9.75rem] overflow-hidden rounded-full bg-white px-4 py-3 text-[0.92rem] font-semibold text-black opacity-0 md:w-auto md:px-8 md:py-4 md:text-base"
                             whileHover={{
                                 scale: 1.05,
                                 boxShadow: "0 0 35px rgba(255,255,255,0.5), 0 10px 40px rgba(0,0,0,0.3)"
@@ -468,9 +468,9 @@ export default function Hero() {
                         {/* Secondary Glass Button with Modern Hover */}
                         <motion.button
                             onClick={() => router.push("/medai")}
-                            className="group relative w-[10.5rem] overflow-hidden rounded-full px-4 py-4 text-sm opacity-0
+                            className="group relative w-[9.75rem] overflow-hidden rounded-full px-4 py-3 text-[0.92rem] opacity-0
                                 bg-white/10 backdrop-blur-xl border border-white/20
-                                text-white font-semibold md:w-auto md:px-8 md:text-base"
+                                text-white font-semibold md:w-auto md:px-8 md:py-4 md:text-base"
                             whileHover={{
                                 scale: 1.05,
                                 y: -2,
