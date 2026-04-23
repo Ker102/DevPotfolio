@@ -67,7 +67,7 @@ export default function Supporters() {
                                                 ease: [0.22, 1, 0.36, 1],
                                             }}
                                             className={`grid w-[7.75rem] grid-cols-[1rem,5.9rem] items-center justify-center gap-2 text-left text-white/70 transition-colors duration-200 hover:text-white md:flex md:min-w-0 md:w-auto md:items-center md:justify-center md:gap-2.5 md:text-center ${
-                                                itemIndex % 2 === 1 ? "md:translate-x-0 translate-x-1" : ""
+                                                itemIndex % 2 === 1 ? "md:translate-x-0 translate-x-3" : ""
                                             }`}
                                         >
                                             <Icon className="h-[0.95rem] w-[0.95rem] shrink-0 justify-self-center" />
