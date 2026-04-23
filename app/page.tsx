@@ -58,7 +58,7 @@ export default function Home() {
 
       <Hero />
       <div className="relative overflow-visible bg-black">
-        <div className="pointer-events-none absolute inset-x-0 top-[17.6rem] -bottom-56 md:top-0 md:-bottom-72 lg:-bottom-[22rem] xl:-bottom-[26rem]">
+        <div className="pointer-events-none absolute inset-x-0 top-[16.8rem] -bottom-56 md:top-0 md:-bottom-72 lg:-bottom-[22rem] xl:-bottom-[26rem]">
           <Image
             src="/Same_background_but_202604212151.jpg"
             alt=""
