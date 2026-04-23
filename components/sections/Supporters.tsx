@@ -53,7 +53,7 @@ export default function Supporters() {
                                     {group.title}
                                 </p>
 
-                                <div className="mx-auto grid max-w-[19.5rem] grid-cols-2 items-start justify-items-center gap-x-3 gap-y-4 md:max-w-none md:flex md:flex-wrap md:justify-center md:gap-x-12 md:gap-y-5">
+                                <div className="mx-auto grid max-w-[17.25rem] grid-cols-2 items-start justify-items-center gap-x-2 gap-y-4 md:max-w-none md:flex md:flex-wrap md:justify-center md:gap-x-12 md:gap-y-5">
                                     {group.items.map(({ label, Icon }, itemIndex) => (
                                         <motion.div
                                             key={label}
@@ -66,10 +66,10 @@ export default function Supporters() {
                                                 delay: groupIndex * 0.08 + itemIndex * 0.05,
                                                 ease: [0.22, 1, 0.36, 1],
                                             }}
-                                            className="grid w-[8.8rem] grid-cols-[1.1rem,1fr] items-center gap-2 text-left text-white/70 transition-colors duration-200 hover:text-white md:flex md:min-w-0 md:w-auto md:items-center md:justify-center md:gap-2.5 md:text-center"
+                                            className="grid w-[7.9rem] grid-cols-[0.95rem,1fr] items-center gap-2 text-left text-white/70 transition-colors duration-200 hover:text-white md:flex md:min-w-0 md:w-auto md:items-center md:justify-center md:gap-2.5 md:text-center"
                                         >
-                                            <Icon className="h-[1.05rem] w-[1.05rem] shrink-0" />
-                                            <span className="text-sm font-semibold tracking-tight md:text-base">
+                                            <Icon className="h-[0.95rem] w-[0.95rem] shrink-0" />
+                                            <span className="text-[0.95rem] font-semibold tracking-tight md:text-base">
                                                 {label}
                                             </span>
                                         </motion.div>
