@@ -37,7 +37,7 @@ const groups = [
 
 export default function Supporters() {
     return (
-        <section className={`relative overflow-hidden px-6 pb-4 pt-16 md:pb-2 md:pt-20 ${geist.className}`}>
+        <section className={`relative overflow-hidden px-6 pb-8 pt-16 md:pb-2 md:pt-20 ${geist.className}`}>
             <div className="relative z-10 container mx-auto max-w-5xl">
                 <motion.div
                     initial={{ opacity: 0, y: 18 }}
@@ -53,7 +53,11 @@ export default function Supporters() {
                                     {group.title}
                                 </p>
 
-                                <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5 md:gap-x-12">
+                                <div
+                                    className={`mx-auto grid max-w-[22rem] items-center justify-items-center gap-x-6 gap-y-5 md:max-w-none md:flex md:flex-wrap md:justify-center md:gap-x-12 ${
+                                        group.items.length > 2 ? "grid-cols-2" : "grid-cols-2"
+                                    }`}
+                                >
                                     {group.items.map(({ label, Icon }, itemIndex) => (
                                         <motion.div
                                             key={label}
@@ -66,7 +70,7 @@ export default function Supporters() {
                                                 delay: groupIndex * 0.08 + itemIndex * 0.05,
                                                 ease: [0.22, 1, 0.36, 1],
                                             }}
-                                            className="flex items-center gap-2.5 text-white/70 transition-colors duration-200 hover:text-white"
+                                            className="flex min-w-[9rem] items-center justify-center gap-2.5 text-center text-white/70 transition-colors duration-200 hover:text-white md:min-w-0"
                                         >
                                             <Icon className="h-5 w-5 shrink-0" />
                                             <span className="text-sm font-semibold tracking-tight md:text-base">
