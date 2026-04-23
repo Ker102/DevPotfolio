@@ -48,7 +48,10 @@ export default function MedAIIntro() {
                             </p>
                             <h2 className="max-w-3xl text-4xl font-semibold tracking-[-0.04em] text-white md:text-5xl">
                                 A{" "}
-                                <ScrollUnderline underlineClassName="via-white/72">
+                                <ScrollUnderline
+                                    className="pb-[0.2em]"
+                                    underlineClassName="h-[0.11em] bottom-[0.01em] via-violet-200/85 from-white/18 to-white/14"
+                                >
                                     new
                                 </ScrollUnderline>{" "}
                                 Kaelux division for secure medical research infrastructure.

@@ -149,18 +149,35 @@ function CompactNavbar() {
 
       <motion.button
         onClick={(e) => scrollToSection(e, contactAnchor, { localOnly: isMedAIPage })}
+        initial={{ opacity: 0, y: -8, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
         whileHover={{
-          y: -1,
-          scale: 1.03,
-          boxShadow: "0 14px 38px rgba(0,0,0,0.38), 0 0 0 1px rgba(255,255,255,0.12)",
+          y: -2,
+          scale: 1.035,
+          backgroundColor: "rgba(62,62,68,0.72)",
+          borderColor: "rgba(255,255,255,0.2)",
+          boxShadow: "0 18px 44px rgba(0,0,0,0.42), 0 0 0 1px rgba(255,255,255,0.14)",
         }}
         whileTap={{ scale: 0.97, y: 0 }}
-        transition={{ type: "spring", stiffness: 420, damping: 22 }}
-        className="group fixed right-4 top-6 z-50 overflow-hidden rounded-full border border-white/12 bg-[rgba(40,40,45,0.58)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-[16px] saturate-[180%] transition-colors hover:text-white md:right-6"
+        transition={{
+          opacity: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+          y: { type: "spring", stiffness: 420, damping: 24 },
+          scale: { type: "spring", stiffness: 420, damping: 24 },
+          backgroundColor: { duration: 0.22 },
+          borderColor: { duration: 0.22 },
+          boxShadow: { duration: 0.22 },
+        }}
+        className="group pointer-events-auto fixed right-4 top-6 z-50 cursor-pointer overflow-hidden rounded-full border border-white/12 bg-[rgba(40,40,45,0.58)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-[16px] saturate-[180%] transition-colors hover:text-white md:right-6"
       >
         <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent opacity-80" />
         <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_55%)]" />
         <span className="pointer-events-none absolute inset-y-0 left-[-35%] w-[40%] rotate-[14deg] bg-gradient-to-r from-transparent via-white/18 to-transparent opacity-0 blur-md transition-all duration-500 group-hover:left-[110%] group-hover:opacity-100" />
+        <motion.span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 left-[-38%] w-[34%] rotate-[14deg] bg-gradient-to-r from-transparent via-white/10 to-transparent blur-md"
+          animate={{ left: ["-38%", "118%"] }}
+          transition={{ duration: 3.4, repeat: Infinity, repeatDelay: 1.8, ease: "easeInOut" }}
+        />
         <span className="relative z-10">Contact</span>
       </motion.button>
 
