@@ -37,7 +37,7 @@ const groups = [
 
 export default function Supporters() {
     return (
-        <section className={`relative overflow-hidden px-6 pb-8 pt-16 md:pb-2 md:pt-20 ${geist.className}`}>
+        <section className={`relative overflow-hidden px-6 pb-3 pt-16 md:pb-2 md:pt-20 ${geist.className}`}>
             <div className="relative z-10 container mx-auto max-w-5xl">
                 <motion.div
                     initial={{ opacity: 0, y: 18 }}
@@ -53,11 +53,7 @@ export default function Supporters() {
                                     {group.title}
                                 </p>
 
-                                <div
-                                    className={`mx-auto grid max-w-[22rem] items-center justify-items-center gap-x-6 gap-y-5 md:max-w-none md:flex md:flex-wrap md:justify-center md:gap-x-12 ${
-                                        group.items.length > 2 ? "grid-cols-2" : "grid-cols-2"
-                                    }`}
-                                >
+                                <div className="mx-auto grid max-w-[19.5rem] grid-cols-2 items-start justify-items-center gap-x-3 gap-y-4 md:max-w-none md:flex md:flex-wrap md:justify-center md:gap-x-12 md:gap-y-5">
                                     {group.items.map(({ label, Icon }, itemIndex) => (
                                         <motion.div
                                             key={label}
@@ -70,9 +66,9 @@ export default function Supporters() {
                                                 delay: groupIndex * 0.08 + itemIndex * 0.05,
                                                 ease: [0.22, 1, 0.36, 1],
                                             }}
-                                            className="flex min-w-[9rem] items-center justify-center gap-2.5 text-center text-white/70 transition-colors duration-200 hover:text-white md:min-w-0"
+                                            className="grid w-[8.8rem] grid-cols-[1.1rem,1fr] items-center gap-2 text-left text-white/70 transition-colors duration-200 hover:text-white md:flex md:min-w-0 md:w-auto md:items-center md:justify-center md:gap-2.5 md:text-center"
                                         >
-                                            <Icon className="h-5 w-5 shrink-0" />
+                                            <Icon className="h-[1.05rem] w-[1.05rem] shrink-0" />
                                             <span className="text-sm font-semibold tracking-tight md:text-base">
                                                 {label}
                                             </span>
