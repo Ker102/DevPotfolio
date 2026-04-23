@@ -51,7 +51,7 @@ export default function ServiceIntroduction() {
         <section
             ref={sectionRef}
             id="services"
-            className="relative min-h-screen overflow-hidden bg-transparent px-6 pb-64 pt-12 md:pb-72 md:pt-40 lg:pb-[26rem] lg:pt-48 xl:pb-[30rem]"
+            className="relative min-h-screen overflow-hidden bg-transparent px-6 pb-36 pt-12 md:pb-72 md:pt-40 lg:pb-[26rem] lg:pt-48 xl:pb-[30rem]"
         >
             <div className="relative z-10 container mx-auto max-w-7xl">
 
