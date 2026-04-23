@@ -213,41 +213,39 @@ function CompactNavbar() {
           style={{ height: CLOSED_HEIGHT }}
         >
           {/* Animated Toggle Button - Mobile stays centered */}
-          <motion.button
-            onClick={() => setIsOpen(!isOpen)}
-            className="absolute left-1/2 top-1/2 z-20 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition-colors hover:bg-white/10 md:hidden"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            whileTap={{ scale: 0.96 }}
-          >
-            <div className="relative h-4 w-5">
-              <motion.span
-                className="absolute left-0 top-0 block h-[2px] w-5 rounded-full bg-white"
-                animate={{
-                  rotate: isOpen ? 45 : 0,
-                  y: isOpen ? 7 : 0,
-                  width: "20px",
-                }}
-                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              />
-              <motion.span
-                className="absolute left-0 top-[7px] block h-[2px] w-5 rounded-full bg-white"
-                animate={{
-                  opacity: isOpen ? 0 : 1,
-                  scaleX: isOpen ? 0.6 : 1,
-                }}
-                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-              />
-              <motion.span
-                className="absolute left-0 top-[14px] block h-[2px] w-5 rounded-full bg-white"
-                animate={{
-                  rotate: isOpen ? -45 : 0,
-                  y: isOpen ? -7 : 0,
-                  width: "20px",
-                }}
-                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-              />
-            </div>
-          </motion.button>
+          <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 md:hidden">
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              whileTap={{ scale: 0.96 }}
+            >
+              <div className="relative flex h-4 w-4 items-center justify-center">
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  animate={{
+                    opacity: isOpen ? 0 : 1,
+                    rotate: isOpen ? 90 : 0,
+                  }}
+                  transition={{ duration: 0.18 }}
+                >
+                  <HiMenu className="h-4 w-4 text-white" />
+                </motion.div>
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0, rotate: -90, scale: 0.7 }}
+                  animate={{
+                    opacity: isOpen ? 1 : 0,
+                    rotate: isOpen ? 0 : -90,
+                    scale: isOpen ? 1 : 0.7,
+                  }}
+                  transition={{ duration: 0.18 }}
+                >
+                  <HiX className="h-4 w-4 text-white" />
+                </motion.div>
+              </div>
+            </motion.button>
+          </div>
 
           {/* Animated Toggle Button - Desktop slides left when expanded */}
           <motion.button
