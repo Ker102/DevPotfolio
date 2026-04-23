@@ -167,7 +167,7 @@ function CompactNavbar() {
           borderColor: { duration: 0.22 },
           boxShadow: { duration: 0.22 },
         }}
-        className="group pointer-events-auto fixed right-4 top-6 z-50 cursor-pointer overflow-hidden rounded-full border border-white/12 bg-[rgba(40,40,45,0.58)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-[16px] saturate-[180%] transition-colors hover:text-white md:right-6"
+        className="group pointer-events-auto fixed right-3 top-[1.72rem] z-50 cursor-pointer overflow-hidden rounded-full border border-white/12 bg-[rgba(40,40,45,0.58)] px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/85 shadow-[0_8px_32px_rgba(0,0,0,0.3)] backdrop-blur-[16px] saturate-[180%] transition-colors hover:text-white md:right-6 md:top-6 md:px-4 md:py-2 md:text-xs md:tracking-[0.22em]"
       >
         <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent opacity-80" />
         <span className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_55%)]" />
@@ -212,10 +212,47 @@ function CompactNavbar() {
           className="w-full flex items-center px-1 relative"
           style={{ height: CLOSED_HEIGHT }}
         >
-          {/* Animated Toggle Button */}
+          {/* Animated Toggle Button - Mobile stays centered */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="absolute z-20 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors w-10 h-10 will-change-transform"
+            className="absolute left-1/2 top-1/2 z-20 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition-colors hover:bg-white/10 md:hidden"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            whileTap={{ scale: 0.96 }}
+          >
+            <div className="relative h-4 w-5">
+              <motion.span
+                className="absolute left-0 top-0 block h-[2px] w-5 rounded-full bg-white"
+                animate={{
+                  rotate: isOpen ? 45 : 0,
+                  y: isOpen ? 7 : 0,
+                  width: "20px",
+                }}
+                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.span
+                className="absolute left-0 top-[7px] block h-[2px] w-5 rounded-full bg-white"
+                animate={{
+                  opacity: isOpen ? 0 : 1,
+                  scaleX: isOpen ? 0.6 : 1,
+                }}
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.span
+                className="absolute left-0 top-[14px] block h-[2px] w-5 rounded-full bg-white"
+                animate={{
+                  rotate: isOpen ? -45 : 0,
+                  y: isOpen ? -7 : 0,
+                  width: "20px",
+                }}
+                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+          </motion.button>
+
+          {/* Animated Toggle Button - Desktop slides left when expanded */}
+          <motion.button
+            onClick={() => setIsOpen(!isOpen)}
+            className="absolute z-20 hidden h-10 w-10 items-center justify-center rounded-full transition-colors will-change-transform hover:bg-white/10 md:flex"
             initial={false}
             animate={{
               left: isOpen ? "4px" : "50%",

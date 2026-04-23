@@ -65,7 +65,7 @@ const SubtitleRotator = ({
     return (
         <div className="w-full px-2">
             <div className="mx-auto max-w-md md:max-w-[31rem] lg:max-w-[36rem]">
-                <div className="relative min-h-[4.75rem] md:min-h-[5.85rem] lg:min-h-[6.4rem] overflow-hidden">
+                <div className="relative min-h-[5.85rem] md:min-h-[5.85rem] lg:min-h-[6.4rem] overflow-hidden">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeIndex}
@@ -83,7 +83,7 @@ const SubtitleRotator = ({
                             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                             className="absolute inset-0 flex items-center justify-center text-center"
                         >
-                            <p className="max-w-[18rem] text-[1.02rem] font-medium leading-snug text-gray-200 md:max-w-[29rem] md:text-[1.28rem] md:leading-[1.42] lg:max-w-[34rem] lg:text-[1.52rem] lg:leading-[1.35]">
+                            <p className="max-w-[20.5rem] text-[0.94rem] font-medium leading-[1.36] text-gray-200 md:max-w-[29rem] md:text-[1.28rem] md:leading-[1.42] lg:max-w-[34rem] lg:text-[1.52rem] lg:leading-[1.35]">
                                 {activePhrase.split(" ").map((word, wordIndex) => (
                                     <motion.span
                                         key={`${activeIndex}-${word}-${wordIndex}`}
@@ -447,12 +447,12 @@ export default function Hero() {
 
                     <div
                         ref={buttonsRef}
-                        className="flex flex-wrap gap-4 justify-center mt-8"
+                        className="mt-8 flex flex-nowrap justify-center gap-3 md:gap-4"
                     >
                         {/* Primary White Button with Modern Hover */}
                         <motion.button
                             onClick={() => scrollToSection("services")}
-                            className="group relative px-8 py-4 bg-white text-black font-semibold rounded-full overflow-hidden opacity-0"
+                            className="group relative w-[10.5rem] overflow-hidden rounded-full bg-white px-4 py-4 text-sm font-semibold text-black opacity-0 md:w-auto md:px-8 md:text-base"
                             whileHover={{
                                 scale: 1.05,
                                 boxShadow: "0 0 35px rgba(255,255,255,0.5), 0 10px 40px rgba(0,0,0,0.3)"
@@ -468,9 +468,9 @@ export default function Hero() {
                         {/* Secondary Glass Button with Modern Hover */}
                         <motion.button
                             onClick={() => router.push("/medai")}
-                            className="group relative px-8 py-4 rounded-full overflow-hidden opacity-0
+                            className="group relative w-[10.5rem] overflow-hidden rounded-full px-4 py-4 text-sm opacity-0
                                 bg-white/10 backdrop-blur-xl border border-white/20
-                                text-white font-semibold"
+                                text-white font-semibold md:w-auto md:px-8 md:text-base"
                             whileHover={{
                                 scale: 1.05,
                                 y: -2,
