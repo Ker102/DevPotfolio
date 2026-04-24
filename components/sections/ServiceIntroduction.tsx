@@ -128,7 +128,7 @@ export default function ServiceIntroduction() {
                             <motion.span
                                 variants={textReveal}
                                 aria-hidden="true"
-                                className={`${geist.className} pointer-events-none absolute left-[18rem] top-[6.35rem] z-30 origin-left -rotate-[2.5deg] select-none text-[4.65rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_0_24px_rgba(216,180,254,0.55)] xl:left-[20rem] xl:top-[6.75rem] xl:text-[5.15rem]`}
+                                className={`${geist.className} pointer-events-none absolute left-[25rem] top-[5.65rem] z-40 origin-left rotate-[4deg] select-none text-[4.45rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_0_26px_rgba(216,180,254,0.72)] xl:left-[27rem] xl:top-[5.9rem] xl:text-[4.95rem]`}
                             >
                                 Infrastructure
                             </motion.span>
