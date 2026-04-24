@@ -96,7 +96,7 @@ export default function ServiceIntroduction() {
                             </motion.span>
                         </h2>
 
-                        <div className="relative hidden min-h-[17.5rem] lg:block xl:min-h-[20rem]">
+                        <div className="relative hidden min-h-[18.5rem] lg:block xl:min-h-[20.5rem]">
                             <h2 className={`${geist.className} relative z-10 flex flex-col gap-2 text-[5.25rem] font-medium leading-[1.05] tracking-[-0.04em] text-white xl:text-[5.65rem]`}>
                                 <motion.span variants={textReveal} className="inline-block text-white">
                                     Beyond Chatbots:
@@ -111,7 +111,7 @@ export default function ServiceIntroduction() {
 
                             <motion.div
                                 variants={textReveal}
-                                className="pointer-events-none absolute -top-7 left-[12rem] z-20 w-[48rem] select-none xl:-top-10 xl:left-[14rem] xl:w-[56rem]"
+                                className="pointer-events-none absolute top-6 left-[18rem] z-20 w-[56rem] select-none xl:top-3 xl:left-[20rem] xl:w-[64rem]"
                                 aria-hidden="true"
                             >
                                 <Image
@@ -119,7 +119,7 @@ export default function ServiceIntroduction() {
                                     alt=""
                                     width={1376}
                                     height={768}
-                                    sizes="(min-width: 1280px) 56rem, 48rem"
+                                    sizes="(min-width: 1280px) 64rem, 56rem"
                                     className="h-auto w-full object-contain drop-shadow-[0_24px_70px_rgba(168,85,247,0.26)]"
                                     priority={false}
                                 />
