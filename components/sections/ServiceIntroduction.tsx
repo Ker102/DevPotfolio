@@ -10,6 +10,7 @@ import {
 import { Geist } from "next/font/google";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 
 import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
@@ -81,9 +82,9 @@ export default function ServiceIntroduction() {
                     <motion.div
                         variants={textStagger}
                         style={{ y: headerY, x: headerX }}
-                        className="mb-12 lg:mb-20 w-full text-center lg:text-left will-change-transform"
+                        className="relative mb-12 w-full text-center will-change-transform lg:mb-20 lg:text-left"
                     >
-                        <h2 className={`${geist.className} flex flex-col gap-2 text-5xl font-medium leading-[1.05] tracking-[-0.04em] text-white md:text-6xl lg:text-[5.25rem]`}>
+                        <h2 className={`${geist.className} flex flex-col gap-2 text-5xl font-medium leading-[1.05] tracking-[-0.04em] text-white md:text-6xl lg:hidden`}>
                             <motion.span variants={textReveal} className="inline-block text-white">
                                 Beyond Chatbots:
                             </motion.span>
@@ -94,6 +95,36 @@ export default function ServiceIntroduction() {
                                 for Business
                             </motion.span>
                         </h2>
+
+                        <div className="relative hidden min-h-[17.5rem] lg:block xl:min-h-[20rem]">
+                            <h2 className={`${geist.className} relative z-10 flex flex-col gap-2 text-[5.25rem] font-medium leading-[1.05] tracking-[-0.04em] text-white xl:text-[5.65rem]`}>
+                                <motion.span variants={textReveal} className="inline-block text-white">
+                                    Beyond Chatbots:
+                                </motion.span>
+                                <motion.span variants={textReveal} className="inline-block text-white">
+                                    Intelligent
+                                </motion.span>
+                                <motion.span variants={textReveal} className="inline-block text-white">
+                                    for Business
+                                </motion.span>
+                            </h2>
+
+                            <motion.div
+                                variants={textReveal}
+                                className="pointer-events-none absolute -top-7 left-[12rem] z-20 w-[48rem] select-none xl:-top-10 xl:left-[14rem] xl:w-[56rem]"
+                                aria-hidden="true"
+                            >
+                                <Image
+                                    src="/Robot_holding_word_202604232332.png"
+                                    alt=""
+                                    width={1376}
+                                    height={768}
+                                    sizes="(min-width: 1280px) 56rem, 48rem"
+                                    className="h-auto w-full object-contain drop-shadow-[0_24px_70px_rgba(168,85,247,0.26)]"
+                                    priority={false}
+                                />
+                            </motion.div>
+                        </div>
                     </motion.div>
 
                     {/* Split Content Section: Text Left, Image Right */}
