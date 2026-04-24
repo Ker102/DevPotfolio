@@ -111,19 +111,27 @@ export default function ServiceIntroduction() {
 
                             <motion.div
                                 variants={textReveal}
-                                className="pointer-events-none absolute top-6 left-[18rem] z-20 w-[56rem] select-none xl:top-3 xl:left-[20rem] xl:w-[64rem]"
+                                className="pointer-events-none absolute -right-[8rem] -top-14 z-20 h-[31rem] w-[44rem] select-none overflow-hidden xl:-right-[10rem] xl:-top-20 xl:h-[36rem] xl:w-[52rem]"
                                 aria-hidden="true"
                             >
                                 <Image
-                                    src="/Robot_holding_word_202604232332.png"
+                                    src="/Now_remove_all_202604241650-Picsart-BackgroundRemover.png"
                                     alt=""
-                                    width={1376}
-                                    height={768}
-                                    sizes="(min-width: 1280px) 64rem, 56rem"
-                                    className="h-auto w-full object-contain drop-shadow-[0_24px_70px_rgba(168,85,247,0.26)]"
+                                    width={2752}
+                                    height={1536}
+                                    sizes="(min-width: 1280px) 52rem, 44rem"
+                                    className="absolute -right-[1rem] top-0 h-full w-auto max-w-none object-contain drop-shadow-[0_26px_76px_rgba(168,85,247,0.3)]"
                                     priority={false}
                                 />
                             </motion.div>
+
+                            <motion.span
+                                variants={textReveal}
+                                aria-hidden="true"
+                                className={`${geist.className} pointer-events-none absolute left-[18rem] top-[6.35rem] z-30 origin-left -rotate-[2.5deg] select-none text-[4.65rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_0_24px_rgba(216,180,254,0.55)] xl:left-[20rem] xl:top-[6.75rem] xl:text-[5.15rem]`}
+                            >
+                                Infrastructure
+                            </motion.span>
                         </div>
                     </motion.div>
 
