@@ -112,7 +112,7 @@ export default function ServiceIntroduction() {
                             <motion.div
                                 variants={textReveal}
                                 aria-hidden="true"
-                                className="pointer-events-none absolute left-[19.4rem] top-[4.55rem] z-30 h-[26rem] w-[45rem] select-none xl:left-[21rem] xl:top-[4.75rem] xl:h-[30rem] xl:w-[52rem]"
+                                className="pointer-events-none absolute left-[20.25rem] top-[5.1rem] z-30 h-[26rem] w-[45rem] select-none xl:left-[22rem] xl:top-[5.45rem] xl:h-[30rem] xl:w-[52rem]"
                             >
                                 <span
                                     className={`${geist.className} absolute left-[3.7rem] top-[1.15rem] z-20 origin-left rotate-[5deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white xl:left-[4.35rem] xl:top-[1.45rem] xl:text-[5rem]`}
@@ -120,7 +120,7 @@ export default function ServiceIntroduction() {
                                     Infrastructure
                                 </span>
 
-                                <div className="absolute right-0 top-[-5.8rem] z-30 h-[33rem] w-[30rem] overflow-hidden xl:top-[-6.8rem] xl:h-[38rem] xl:w-[35rem]">
+                                <div className="absolute right-[-3rem] top-[-5.15rem] z-30 h-[33rem] w-[30rem] overflow-hidden xl:right-[-3.45rem] xl:top-[-6.05rem] xl:h-[38rem] xl:w-[35rem]">
                                     <Image
                                         src="/Now_remove_all_202604241650-Picsart-BackgroundRemover.png"
                                         alt=""
@@ -129,6 +129,7 @@ export default function ServiceIntroduction() {
                                         sizes="(min-width: 1280px) 35rem, 30rem"
                                         className="absolute right-0 top-0 h-full w-auto max-w-none object-contain drop-shadow-[0_26px_76px_rgba(168,85,247,0.3)]"
                                         priority={false}
+                                        unoptimized
                                     />
                                 </div>
                             </motion.div>
