@@ -8,7 +8,7 @@ import {
     useTransform,
 } from "framer-motion";
 import { Geist } from "next/font/google";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaMicrosoft } from "react-icons/fa";
 import {
     SiDocker,
@@ -42,9 +42,26 @@ const groups = [
     },
 ] as const;
 
+function useIsMobile() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const query = window.matchMedia("(max-width: 767px)");
+        const update = () => setIsMobile(query.matches);
+
+        update();
+        query.addEventListener("change", update);
+
+        return () => query.removeEventListener("change", update);
+    }, []);
+
+    return isMobile;
+}
+
 export default function Supporters() {
     const sectionRef = useRef<HTMLElement>(null);
     const prefersReducedMotion = useReducedMotion();
+    const isMobile = useIsMobile();
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -70,12 +87,12 @@ export default function Supporters() {
     const leftGroupX = useTransform(
         progress,
         [0, 0.5, 1],
-        [prefersReducedMotion ? -4 : -18, 0, prefersReducedMotion ? 3 : 14]
+        [prefersReducedMotion || isMobile ? 0 : -18, 0, prefersReducedMotion || isMobile ? 0 : 14]
     );
     const rightGroupX = useTransform(
         progress,
         [0, 0.5, 1],
-        [prefersReducedMotion ? 4 : 18, 0, prefersReducedMotion ? -3 : -14]
+        [prefersReducedMotion || isMobile ? 0 : 18, 0, prefersReducedMotion || isMobile ? 0 : -14]
     );
 
     return (
@@ -107,12 +124,20 @@ export default function Supporters() {
                                     {group.items.map(({ label, Icon }, itemIndex) => (
                                         <motion.div
                                             key={label}
-                                            initial={{ opacity: 0, y: 12 }}
-                                            whileInView={{ opacity: 0.82, y: 0 }}
+                                            initial={{
+                                                opacity: 0,
+                                                y: prefersReducedMotion ? 4 : 10,
+                                                x: prefersReducedMotion || !isMobile
+                                                    ? 0
+                                                    : itemIndex % 2 === 0
+                                                        ? -22
+                                                        : 22,
+                                            }}
+                                            whileInView={{ opacity: 0.82, y: 0, x: 0 }}
                                             whileHover={{ opacity: 1, y: -1 }}
                                             viewport={{ once: false, amount: 0.6 }}
                                             transition={{
-                                                duration: 0.35,
+                                                duration: isMobile ? 0.5 : 0.35,
                                                 delay: groupIndex * 0.08 + itemIndex * 0.05,
                                                 ease: [0.22, 1, 0.36, 1],
                                             }}
