@@ -115,7 +115,7 @@ export default function ServiceIntroduction() {
                                 className="pointer-events-none absolute left-[19.4rem] top-[4.55rem] z-30 h-[26rem] w-[45rem] select-none xl:left-[21rem] xl:top-[4.75rem] xl:h-[30rem] xl:w-[52rem]"
                             >
                                 <span
-                                    className={`${geist.className} absolute left-0 top-[1.35rem] z-20 origin-left rotate-[5deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_5px_14px_rgba(0,0,0,0.6)] xl:top-[1.65rem] xl:text-[5rem]`}
+                                    className={`${geist.className} absolute left-[3.7rem] top-[1.15rem] z-20 origin-left rotate-[5deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white xl:left-[4.35rem] xl:top-[1.45rem] xl:text-[5rem]`}
                                 >
                                     Infrastructure
                                 </span>
