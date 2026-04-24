@@ -1,14 +1,49 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import {
+    motion,
+    useReducedMotion,
+    useScroll,
+    useSpring,
+    useTransform,
+} from "framer-motion";
 import { Send } from "lucide-react";
 
 export default function DiagnoserCTA() {
     const [input, setInput] = useState("");
     const [isFocused, setIsFocused] = useState(false);
     const router = useRouter();
+    const sectionRef = useRef<HTMLElement>(null);
+    const prefersReducedMotion = useReducedMotion();
+
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"],
+    });
+
+    const progress = useSpring(scrollYProgress, {
+        stiffness: 170,
+        damping: 28,
+        mass: 0.24,
+    });
+
+    const headerY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 8 : 22, 0, prefersReducedMotion ? -4 : -16]
+    );
+    const terminalY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 10 : 30, 0, prefersReducedMotion ? -5 : -18]
+    );
+    const trustY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 6 : 16, 0, prefersReducedMotion ? -3 : -10]
+    );
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -53,15 +88,16 @@ export default function DiagnoserCTA() {
                 </motion.div>
             </div>
 
-            <section id="diagnoser" className="relative py-24 md:py-12 px-6 overflow-hidden bg-white">
+            <section ref={sectionRef} id="diagnoser" className="relative overflow-hidden bg-white px-6 py-24 md:py-12">
                 <div className="container mx-auto max-w-3xl relative z-10">
                     {/* Header */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ duration: 0.5 }}
-                        className="text-center mb-16"
+                        style={{ y: headerY }}
+                        className="mb-16 text-center will-change-transform"
                     >
                         {/* Professional Badge */}
                         <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-white/80 border border-gray-200/50 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] mb-8 transition-all hover:border-gray-300/50">
@@ -81,13 +117,13 @@ export default function DiagnoserCTA() {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ duration: 0.5, delay: 0.2 }}
+                        style={{ y: terminalY, background: "#09090b" }}
                         className={`relative rounded-2xl overflow-hidden transition-all duration-500 ${isFocused
                             ? "shadow-[0_20px_50px_-12px_rgba(0,0,0,0.5)] ring-1 ring-white/20 scale-[1.02]"
                             : "shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)]"
-                            }`}
-                        style={{ background: '#09090b' }}
+                            } will-change-transform`}
                     >
                         {/* Glass Sheen */}
                         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
@@ -188,9 +224,10 @@ export default function DiagnoserCTA() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ delay: 0.4 }}
-                        className="flex justify-center items-center gap-6 mt-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500 relative z-10 pb-16 md:pb-0"
+                        style={{ y: trustY }}
+                        className="relative z-10 mt-12 flex items-center justify-center gap-6 pb-16 opacity-60 grayscale transition-all duration-500 hover:grayscale-0 will-change-transform md:pb-0"
                     >
                         <span className="text-xs font-mono text-gray-400">Powered by Enterprise Neural Engine v3.5</span>
                     </motion.div>

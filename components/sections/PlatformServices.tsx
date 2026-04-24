@@ -1,9 +1,16 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import {
+    motion,
+    useReducedMotion,
+    useScroll,
+    useSpring,
+    useTransform,
+} from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
+import { useRef } from "react";
 
 import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
 import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
@@ -34,15 +41,19 @@ const services = [
     },
 ] as const;
 
-function ServiceCard({ service }: { service: (typeof services)[number] }) {
+function ServiceCard({ service, index }: { service: (typeof services)[number]; index: number }) {
     const prefersReducedMotion = useReducedMotion();
 
     return (
         <Link href={`/services/${service.slug}`} aria-label={service.title}>
             <motion.div
-                variants={fadeInUp}
-                initial="initial"
-                whileInView="animate"
+                initial={{
+                    opacity: 0,
+                    y: prefersReducedMotion ? 12 : 34,
+                    x: prefersReducedMotion ? 0 : index % 2 === 0 ? -34 : 34,
+                    scale: 0.97,
+                }}
+                whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
                 viewport={{ once: false, amount: 0.28 }}
                 whileHover={
                     prefersReducedMotion
@@ -54,8 +65,8 @@ function ServiceCard({ service }: { service: (typeof services)[number] }) {
                         }
                 }
                 whileTap={{ scale: 0.99 }}
-                transition={{ duration: 0.45, ease: premiumEase }}
-                className="group relative cursor-pointer overflow-hidden rounded-3xl bg-gray-100 shadow-lg transition-shadow duration-300 hover:shadow-2xl"
+                transition={{ duration: 0.55, ease: premiumEase }}
+                className="group relative cursor-pointer overflow-hidden rounded-3xl bg-gray-100 shadow-lg transition-shadow duration-300 hover:shadow-2xl will-change-transform"
             >
                 <div className="relative aspect-[16/9] w-full overflow-hidden">
                     <motion.div
@@ -83,16 +94,50 @@ function ServiceCard({ service }: { service: (typeof services)[number] }) {
 
 export default function PlatformServices() {
     const prefersReducedMotion = useReducedMotion();
+    const sectionRef = useRef<HTMLElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"],
+    });
+
+    const progress = useSpring(scrollYProgress, {
+        stiffness: 170,
+        damping: 28,
+        mass: 0.24,
+    });
+
+    const dividerY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 4 : 14, 0, prefersReducedMotion ? -2 : -10]
+    );
+    const headingY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 8 : 26, 0, prefersReducedMotion ? -4 : -18]
+    );
+    const gridY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 10 : 30, 0, prefersReducedMotion ? -5 : -20]
+    );
+    const ctaY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 6 : 18, 0, prefersReducedMotion ? -3 : -14]
+    );
 
     return (
-        <section className="relative overflow-hidden bg-white px-6 py-20">
+        <section ref={sectionRef} className="relative overflow-hidden bg-white px-6 py-20">
             <div className="relative z-10 container mx-auto max-w-5xl">
                 <motion.div
                     initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.8 }}
                     transition={{ duration: 0.55, ease: premiumEase }}
-                    className="mb-16 flex items-center justify-center gap-6"
+                    style={{ y: dividerY }}
+                    className="mb-16 flex items-center justify-center gap-6 will-change-transform"
                 >
                     <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300 to-gray-300" />
                     <span className="text-xl font-medium uppercase tracking-[0.2em] text-gray-500 md:text-2xl">
@@ -106,7 +151,8 @@ export default function PlatformServices() {
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: false, amount: 0.35 }}
-                    className="mb-16 text-center"
+                    style={{ y: headingY }}
+                    className="mb-16 text-center will-change-transform"
                 >
                     <h2 className="mb-6 flex flex-col gap-2 text-4xl font-medium tracking-tighter md:text-5xl">
                         <motion.span
@@ -138,10 +184,11 @@ export default function PlatformServices() {
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: false, amount: 0.18, margin: "-6%" }}
-                    className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2"
+                    style={{ y: gridY }}
+                    className="mb-16 grid grid-cols-1 gap-8 will-change-transform md:grid-cols-2"
                 >
-                    {services.map((service) => (
-                        <ServiceCard key={service.slug} service={service} />
+                    {services.map((service, index) => (
+                        <ServiceCard key={service.slug} service={service} index={index} />
                     ))}
                 </motion.div>
 
@@ -150,7 +197,8 @@ export default function PlatformServices() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.8 }}
                     transition={{ duration: 0.55, ease: premiumEase }}
-                    className="flex flex-col items-center gap-5"
+                    style={{ y: ctaY }}
+                    className="flex flex-col items-center gap-5 will-change-transform"
                 >
                     <Link href="#contact">
                         <motion.button

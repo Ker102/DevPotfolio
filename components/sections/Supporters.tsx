@@ -1,7 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+    motion,
+    useReducedMotion,
+    useScroll,
+    useSpring,
+    useTransform,
+} from "framer-motion";
 import { Geist } from "next/font/google";
+import { useRef } from "react";
 import { FaMicrosoft } from "react-icons/fa";
 import {
     SiDocker,
@@ -36,19 +43,62 @@ const groups = [
 ] as const;
 
 export default function Supporters() {
+    const sectionRef = useRef<HTMLElement>(null);
+    const prefersReducedMotion = useReducedMotion();
+
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"],
+    });
+
+    const progress = useSpring(scrollYProgress, {
+        stiffness: 170,
+        damping: 28,
+        mass: 0.24,
+    });
+
+    const sectionY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 6 : 22, 0, prefersReducedMotion ? -4 : -18]
+    );
+    const headingY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 4 : 14, 0, prefersReducedMotion ? -2 : -10]
+    );
+    const leftGroupX = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? -4 : -18, 0, prefersReducedMotion ? 3 : 14]
+    );
+    const rightGroupX = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 4 : 18, 0, prefersReducedMotion ? -3 : -14]
+    );
+
     return (
-        <section className={`relative overflow-hidden px-6 pb-3 pt-16 md:pb-2 md:pt-20 ${geist.className}`}>
+        <section ref={sectionRef} className={`relative overflow-hidden px-6 pb-3 pt-16 md:pb-2 md:pt-20 ${geist.className}`}>
             <div className="relative z-10 container mx-auto max-w-5xl">
                 <motion.div
                     initial={{ opacity: 0, y: 18 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.55 }}
+                    viewport={{ once: false, amount: 0.55 }}
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-center"
+                    style={{ y: sectionY }}
+                    className="text-center will-change-transform"
                 >
                     <div className="space-y-8">
                         {groups.map((group, groupIndex) => (
-                            <div key={group.title} className="space-y-4">
+                            <motion.div
+                                key={group.title}
+                                style={{
+                                    x: groupIndex === 0 ? leftGroupX : rightGroupX,
+                                    y: headingY,
+                                }}
+                                className="space-y-4 will-change-transform"
+                            >
                                 <p className="text-sm font-semibold uppercase tracking-[0.24em] text-white/95 md:text-[15px]">
                                     {group.title}
                                 </p>
@@ -60,7 +110,7 @@ export default function Supporters() {
                                             initial={{ opacity: 0, y: 12 }}
                                             whileInView={{ opacity: 0.82, y: 0 }}
                                             whileHover={{ opacity: 1, y: -1 }}
-                                            viewport={{ once: true, amount: 0.6 }}
+                                            viewport={{ once: false, amount: 0.6 }}
                                             transition={{
                                                 duration: 0.35,
                                                 delay: groupIndex * 0.08 + itemIndex * 0.05,
@@ -77,7 +127,7 @@ export default function Supporters() {
                                         </motion.div>
                                     ))}
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </motion.div>

@@ -46,6 +46,21 @@ export default function ServiceIntroduction() {
         [0, 0.5, 1],
         [prefersReducedMotion ? 8 : 22, 0, prefersReducedMotion ? -4 : -12]
     );
+    const headerX = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? -4 : -24, 0, prefersReducedMotion ? 3 : 14]
+    );
+    const copyX = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 4 : 18, 0, prefersReducedMotion ? -3 : -12]
+    );
+    const ctaY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 4 : 16, 0, prefersReducedMotion ? -2 : -10]
+    );
 
     return (
         <section
@@ -65,7 +80,7 @@ export default function ServiceIntroduction() {
                     {/* Top Header Section */}
                     <motion.div
                         variants={textStagger}
-                        style={{ y: headerY }}
+                        style={{ y: headerY, x: headerX }}
                         className="mb-12 lg:mb-20 w-full text-center lg:text-left will-change-transform"
                     >
                         <h2 className={`${geist.className} flex flex-col gap-2 text-5xl font-medium leading-[1.05] tracking-[-0.04em] text-white md:text-6xl lg:text-[5.25rem]`}>
@@ -87,7 +102,7 @@ export default function ServiceIntroduction() {
                         {/* Left Column: Description & CTA */}
                         <motion.div
                             variants={textStagger}
-                            style={{ y: copyY }}
+                            style={{ y: copyY, x: copyX }}
                             className="flex flex-col items-center lg:items-start text-center lg:text-left will-change-transform"
                         >
                             <motion.p variants={textReveal} className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed mb-6 max-w-2xl">
@@ -113,7 +128,7 @@ export default function ServiceIntroduction() {
                                 .
                             </motion.p>
 
-                            <motion.div variants={textReveal} className="flex flex-col items-center lg:items-start space-y-6">
+                            <motion.div variants={textReveal} style={{ y: ctaY }} className="flex flex-col items-center lg:items-start space-y-6 will-change-transform">
                                 <Link href="/solutions" passHref>
                                     <motion.button
                                         whileHover={{ scale: 1.05 }}

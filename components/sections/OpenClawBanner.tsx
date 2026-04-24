@@ -1,10 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+    motion,
+    useReducedMotion,
+    useScroll,
+    useSpring,
+    useTransform,
+} from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
 import { HiOutlineCloud, HiOutlineShieldCheck, HiOutlineBolt } from "react-icons/hi2";
+import { useRef } from "react";
 
 import { AnimatedNumericText } from "@/components/ui/AnimatedNumberText";
 import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
@@ -29,12 +36,52 @@ const highlights = [
 ];
 
 export default function OpenClawBanner() {
+    const sectionRef = useRef<HTMLElement>(null);
+    const prefersReducedMotion = useReducedMotion();
+
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"],
+    });
+
+    const progress = useSpring(scrollYProgress, {
+        stiffness: 170,
+        damping: 28,
+        mass: 0.24,
+    });
+
+    const glowY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? -8 : -24, 0, prefersReducedMotion ? 5 : 16]
+    );
+    const panelY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 10 : 28, 0, prefersReducedMotion ? -5 : -18]
+    );
+    const heroY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 6 : 18, 0, prefersReducedMotion ? -3 : -12]
+    );
+    const highlightsY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 10 : 30, 0, prefersReducedMotion ? -5 : -16]
+    );
+    const footerY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 6 : 18, 0, prefersReducedMotion ? -3 : -12]
+    );
+
     return (
-        <section className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white">
+        <section ref={sectionRef} className="relative overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white px-6 py-24">
             {/* Subtle radial accent */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <motion.div className="absolute inset-0 pointer-events-none overflow-hidden will-change-transform" style={{ y: glowY }}>
                 <div className="absolute top-1/2 left-1/2 h-[720px] w-[980px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/55 blur-3xl" />
-            </div>
+            </motion.div>
 
             <div className="container mx-auto max-w-5xl relative z-10">
                 <div className="pointer-events-none absolute inset-x-8 top-10 bottom-10 overflow-hidden rounded-[2.4rem] md:inset-x-12 md:top-12 md:bottom-12">
@@ -44,9 +91,10 @@ export default function OpenClawBanner() {
                 <motion.div
                     initial={{ opacity: 0, y: 24 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
+                    viewport={{ once: false, margin: "-60px" }}
                     transition={{ type: "spring", stiffness: 60, damping: 18 }}
-                    className="relative overflow-hidden rounded-[2rem] border border-white/55 bg-white/18 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.12)] backdrop-blur-[32px] md:rounded-[2.4rem] md:p-10"
+                    style={{ y: panelY }}
+                    className="relative overflow-hidden rounded-[2rem] border border-white/55 bg-white/18 p-6 shadow-[0_24px_60px_rgba(15,23,42,0.12)] backdrop-blur-[32px] will-change-transform md:rounded-[2.4rem] md:p-10"
                 >
                     <div className="pointer-events-none absolute inset-0 overflow-hidden">
                         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/80 to-transparent" />
@@ -73,9 +121,10 @@ export default function OpenClawBanner() {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
+                                viewport={{ once: false, margin: "-50px" }}
                                 transition={{ type: "spring", stiffness: 60, damping: 18 }}
-                                className="mb-4 flex justify-center"
+                                style={{ y: heroY }}
+                                className="mb-4 flex justify-center will-change-transform"
                             >
                                 <Image
                                     src="/openclaw-logo.png"
@@ -91,9 +140,10 @@ export default function OpenClawBanner() {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.1 }}
-                                className="mx-auto mb-10 max-w-2xl text-center"
+                                style={{ y: heroY }}
+                                className="mx-auto mb-10 max-w-2xl text-center will-change-transform"
                             >
                                 <h3 className="mb-3 bg-gradient-to-b from-gray-900 via-gray-700 to-gray-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
                                     OpenClaw in the Cloud
@@ -121,9 +171,10 @@ export default function OpenClawBanner() {
                         <motion.div
                             initial={{ opacity: 0, y: 25 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.2 }}
-                            className="mx-auto mb-8 grid max-w-3xl grid-cols-1 gap-5 md:grid-cols-3"
+                            style={{ y: highlightsY }}
+                            className="mx-auto mb-8 grid max-w-3xl grid-cols-1 gap-5 will-change-transform md:grid-cols-3"
                         >
                             {highlights.map((h, i) => (
                                 <div
@@ -149,9 +200,10 @@ export default function OpenClawBanner() {
                         <motion.div
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             transition={{ delay: 0.3 }}
-                            className="flex flex-col items-center gap-3"
+                            style={{ y: footerY }}
+                            className="flex flex-col items-center gap-3 will-change-transform"
                         >
                             <AnimatedNumericText
                                 text="Starting at $29/mo"

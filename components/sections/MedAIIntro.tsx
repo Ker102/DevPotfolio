@@ -1,8 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import {
+    motion,
+    useReducedMotion,
+    useScroll,
+    useSpring,
+    useTransform,
+} from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
+import { useRef } from "react";
 import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 
 const focusPoints = [
@@ -13,21 +20,72 @@ const focusPoints = [
 ] as const;
 
 export default function MedAIIntro() {
+    const sectionRef = useRef<HTMLElement>(null);
+    const prefersReducedMotion = useReducedMotion();
+
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start end", "end start"],
+    });
+
+    const progress = useSpring(scrollYProgress, {
+        stiffness: 170,
+        damping: 28,
+        mass: 0.24,
+    });
+
+    const shellY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 8 : 26, 0, prefersReducedMotion ? -5 : -18]
+    );
+    const shellScale = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [0.985, 1, 0.992]
+    );
+    const leftColumnY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 6 : 18, 0, prefersReducedMotion ? -4 : -12]
+    );
+    const rightColumnY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 8 : 26, 0, prefersReducedMotion ? -5 : -16]
+    );
+    const leftColumnX = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? -4 : -18, 0, prefersReducedMotion ? 3 : 12]
+    );
+    const rightColumnX = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? 4 : 20, 0, prefersReducedMotion ? -3 : -12]
+    );
+    const glowY = useTransform(
+        progress,
+        [0, 0.5, 1],
+        [prefersReducedMotion ? -8 : -24, 0, prefersReducedMotion ? 6 : 18]
+    );
+
     return (
-        <section className="relative overflow-hidden bg-black px-6 py-24 md:py-28">
-            <div className="pointer-events-none absolute inset-0">
+        <section ref={sectionRef} className="relative overflow-hidden bg-black px-6 py-24 md:py-28">
+            <motion.div className="pointer-events-none absolute inset-0 will-change-transform" style={{ y: glowY }}>
                 <div className="absolute left-[10%] top-16 h-56 w-56 rounded-full bg-white/[0.05] blur-[120px]" />
                 <div className="absolute right-[12%] top-8 h-72 w-72 rounded-full bg-violet-300/[0.08] blur-[140px]" />
                 <div className="absolute bottom-0 left-1/2 h-64 w-[28rem] -translate-x-1/2 rounded-full bg-white/[0.04] blur-[150px]" />
-            </div>
+            </motion.div>
 
             <div className="relative z-10 container mx-auto max-w-6xl">
                 <motion.div
                     initial={{ opacity: 0, y: 42, scale: 0.985, filter: "blur(14px)" }}
                     whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: false, amount: 0.3 }}
                     transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative grid gap-10 overflow-hidden rounded-[34px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,rgba(255,255,255,0.04)_24%,rgba(255,255,255,0.025)_100%)] p-8 shadow-[0_28px_90px_rgba(0,0,0,0.34)] backdrop-blur-[28px] md:grid-cols-[minmax(0,1.45fr)_minmax(0,0.9fr)] md:p-12"
+                    style={{ y: shellY, scale: shellScale }}
+                    className="relative grid gap-10 overflow-hidden rounded-[34px] border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,rgba(255,255,255,0.04)_24%,rgba(255,255,255,0.025)_100%)] p-8 shadow-[0_28px_90px_rgba(0,0,0,0.34)] backdrop-blur-[28px] will-change-transform md:grid-cols-[minmax(0,1.45fr)_minmax(0,0.9fr)] md:p-12"
                 >
                     <div className="pointer-events-none absolute inset-0">
                         <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/55 to-transparent" />
@@ -38,9 +96,10 @@ export default function MedAIIntro() {
                     <motion.div
                         initial={{ opacity: 0, y: 22 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        viewport={{ once: false, amount: 0.3 }}
                         transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-                        className="space-y-6"
+                        style={{ y: leftColumnY, x: leftColumnX }}
+                        className="space-y-6 will-change-transform"
                     >
                         <div className="space-y-3">
                             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/72">
@@ -77,7 +136,7 @@ export default function MedAIIntro() {
                                     key={point}
                                     initial={{ opacity: 0, y: 12 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, amount: 0.4 }}
+                                    viewport={{ once: false, amount: 0.4 }}
                                     transition={{ duration: 0.55, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                                     className="rounded-full border border-white/12 bg-black/18 px-4 py-2 text-sm font-medium text-white/78 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md"
                                 >
@@ -90,9 +149,10 @@ export default function MedAIIntro() {
                     <motion.div
                         initial={{ opacity: 0, x: 18, filter: "blur(10px)" }}
                         whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                        viewport={{ once: true, amount: 0.3 }}
+                        viewport={{ once: false, amount: 0.3 }}
                         transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                        className="relative flex flex-col justify-between gap-8 rounded-[28px] border border-white/10 bg-black/14 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md md:border-l md:border-t md:pl-8 md:pt-6"
+                        style={{ y: rightColumnY, x: rightColumnX }}
+                        className="relative flex flex-col justify-between gap-8 rounded-[28px] border border-white/10 bg-black/14 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md will-change-transform md:border-l md:border-t md:pl-8 md:pt-6"
                     >
                         <div className="space-y-4">
                             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/55">
