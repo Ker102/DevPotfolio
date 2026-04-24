@@ -111,27 +111,27 @@ export default function ServiceIntroduction() {
 
                             <motion.div
                                 variants={textReveal}
-                                className="pointer-events-none absolute -right-[8rem] -top-14 z-20 h-[31rem] w-[44rem] select-none overflow-hidden xl:-right-[10rem] xl:-top-20 xl:h-[36rem] xl:w-[52rem]"
                                 aria-hidden="true"
+                                className="pointer-events-none absolute left-[19.4rem] top-[4.55rem] z-30 h-[26rem] w-[45rem] select-none xl:left-[21rem] xl:top-[4.75rem] xl:h-[30rem] xl:w-[52rem]"
                             >
-                                <Image
-                                    src="/Now_remove_all_202604241650-Picsart-BackgroundRemover.png"
-                                    alt=""
-                                    width={2752}
-                                    height={1536}
-                                    sizes="(min-width: 1280px) 52rem, 44rem"
-                                    className="absolute -right-[1rem] top-0 h-full w-auto max-w-none object-contain drop-shadow-[0_26px_76px_rgba(168,85,247,0.3)]"
-                                    priority={false}
-                                />
-                            </motion.div>
+                                <span
+                                    className={`${geist.className} absolute left-0 top-[1.35rem] z-20 origin-left rotate-[5deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_5px_14px_rgba(0,0,0,0.6)] xl:top-[1.65rem] xl:text-[5rem]`}
+                                >
+                                    Infrastructure
+                                </span>
 
-                            <motion.span
-                                variants={textReveal}
-                                aria-hidden="true"
-                                className={`${geist.className} pointer-events-none absolute left-[21.5rem] top-[4.95rem] z-40 origin-left rotate-[6deg] select-none text-[4.15rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.55)] xl:left-[23.5rem] xl:top-[5.05rem] xl:text-[4.75rem]`}
-                            >
-                                Infrastructure
-                            </motion.span>
+                                <div className="absolute right-0 top-[-5.8rem] z-30 h-[33rem] w-[30rem] overflow-hidden xl:top-[-6.8rem] xl:h-[38rem] xl:w-[35rem]">
+                                    <Image
+                                        src="/Now_remove_all_202604241650-Picsart-BackgroundRemover.png"
+                                        alt=""
+                                        width={2752}
+                                        height={1536}
+                                        sizes="(min-width: 1280px) 35rem, 30rem"
+                                        className="absolute right-0 top-0 h-full w-auto max-w-none object-contain drop-shadow-[0_26px_76px_rgba(168,85,247,0.3)]"
+                                        priority={false}
+                                    />
+                                </div>
+                            </motion.div>
                         </div>
                     </motion.div>
 
