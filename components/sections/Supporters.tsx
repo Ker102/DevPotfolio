@@ -11,9 +11,7 @@ import { Geist } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
 import { FaMicrosoft } from "react-icons/fa";
 import {
-    SiDocker,
     SiGooglecloud,
-    SiKubernetes,
     SiNotion,
     SiPosthog,
 } from "react-icons/si";
@@ -29,8 +27,6 @@ const groups = [
         items: [
             { label: "Microsoft", Icon: FaMicrosoft },
             { label: "Google Cloud", Icon: SiGooglecloud },
-            { label: "Kubernetes", Icon: SiKubernetes },
-            { label: "Docker", Icon: SiDocker },
         ],
     },
     {
