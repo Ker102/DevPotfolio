@@ -67,6 +67,7 @@ export default function Home() {
             sizes="100vw"
             className="object-contain object-top"
           />
+          <div className="pointer-events-none absolute inset-x-0 top-[calc(78.779vw-40rem)] hidden h-[42rem] bg-gradient-to-b from-transparent via-black to-black min-[2400px]:block" />
           <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black via-black/82 to-transparent md:h-36" />
         </div>
         <div className="relative z-10">
