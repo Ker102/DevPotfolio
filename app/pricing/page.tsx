@@ -5,19 +5,19 @@ import PricingPageContent from "@/components/pricing/PricingPageContent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Pricing | Kaelux - AI Solutions & Platform Services",
+    title: "Engagements | Kaelux Venture Studio",
     description:
-        "Transparent pricing for all Kaelux services. From managed OpenClaw hosting to custom UI/UX design, full-stack development, cloud infrastructure, and CI/CD pipelines.",
+        "Engagement paths for investors, strategic partners, venture collaborators, selective business builds, and personal AI agent setup with Kaelux.",
     keywords: [
-        "kaelux pricing",
-        "AI services pricing",
-        "openclaw pricing",
-        "web development pricing",
-        "cloud hosting pricing",
+        "Kaelux engagements",
+        "AI venture studio",
+        "AI venture partners",
+        "Kaelux investors",
+        "personal AI agent setup",
     ],
     openGraph: {
-        title: "Pricing | Kaelux",
-        description: "Transparent pricing for all Kaelux services.",
+        title: "Engagements | Kaelux",
+        description: "Investor, partner, venture, and selective build engagement paths for Kaelux.",
         type: "website",
         url: "https://kaelux.dev/pricing",
     },
@@ -60,17 +60,17 @@ function PricingContact() {
         <section className="py-24 px-6">
             <div className="container mx-auto max-w-3xl text-center">
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-gray-900 via-gray-700 to-gray-400 mb-6">
-                    Need a Custom Quote?
+                    Start the Right Conversation
                 </h2>
                 <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Every project is unique. Reach out to discuss your requirements and
-                    get a tailored proposal within 24 hours.
+                    Send context on the venture, partnership, investment, or agent setup you want to discuss.
+                    The next step is a focused founder-led conversation, not a generic quote.
                 </p>
                 <a
-                    href="/solutions#contact-form"
+                    href="/#contact"
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gray-900 text-white text-lg font-semibold hover:bg-black transition-colors duration-300"
                 >
-                    Contact Us →
+                    Contact Kaelux →
                 </a>
             </div>
         </section>
