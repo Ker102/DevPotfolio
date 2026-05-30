@@ -2,32 +2,31 @@ import type { Metadata } from "next";
 import AboutPageClient from "./AboutPageClient";
 
 export const metadata: Metadata = {
-    title: "About Kaelux | AI, Infrastructure, and Platform Engineering",
+    title: "About Kaelux | AI Venture Studio and Holding Brand",
     description:
-        "Learn what Kaelux is: an engineering and platform company founded by Kristofer Jussmann in Estonia that builds AI systems, managed infrastructure, and software platforms across IaaS, PaaS, and SaaS.",
+        "Learn what Kaelux is: the founder-led parent brand for AI ventures and product labs founded by Kristofer Jussmann in Estonia.",
     keywords: [
         "Kaelux",
-        "Kaelux AI",
         "Kaelux.dev",
-        "Kaelux infrastructure",
-        "Kaelux platform engineering",
-        "AI engineering company",
+        "Kaelux ventures",
+        "AI venture studio",
+        "AI holding company",
+        "AI product lab",
         "Kristofer Jussmann",
         "who is Kaelux",
         "about Kaelux",
-        "IaaS provider",
-        "PaaS engineering",
-        "SaaS development",
-        "custom AI systems",
-        "enterprise AI infrastructure",
+        "MedAI",
+        "ViperMesh",
+        "PromptTriage",
+        "Nullstate",
     ],
     authors: [{ name: "Kaelux" }, { name: "Kristofer Jussmann" }],
     creator: "Kaelux",
     publisher: "Kaelux",
     openGraph: {
-        title: "About Kaelux | AI, Infrastructure, and Platform Engineering",
+        title: "About Kaelux | AI Venture Studio and Holding Brand",
         description:
-            "Kaelux is an engineering and platform company founded by Kristofer Jussmann, focused on AI systems, managed infrastructure, and software platforms.",
+            "Kaelux is a founder-led parent brand for AI ventures, divisions, and product labs.",
         type: "website",
         url: "https://kaelux.dev/about",
         siteName: "Kaelux",
@@ -36,15 +35,15 @@ export const metadata: Metadata = {
                 url: "https://kaelux.dev/kaelux-icon-v3.png",
                 width: 512,
                 height: 512,
-                alt: "Kaelux – AI Engineering Agency Logo",
+                alt: "Kaelux venture studio logo",
             },
         ],
     },
     twitter: {
         card: "summary",
-        title: "About Kaelux | AI, Infrastructure, and Platform Engineering",
+        title: "About Kaelux | AI Venture Studio and Holding Brand",
         description:
-            "Kaelux builds AI systems, managed infrastructure, and software platforms across IaaS, PaaS, and SaaS.",
+            "Kaelux is the parent brand for AI ventures and product labs by Kristofer Jussmann.",
         images: ["https://kaelux.dev/kaelux-icon-v3.png"],
     },
     robots: {
@@ -70,7 +69,7 @@ export default function AboutPage() {
             name: "What is Kaelux?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Kaelux is an engineering and platform company that builds AI systems, managed infrastructure, internal platforms, and software products for businesses.",
+                text: "Kaelux is the founder-led parent brand for AI ventures, divisions, and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
             },
         },
         {
@@ -78,7 +77,7 @@ export default function AboutPage() {
             name: "Who founded Kaelux?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Kaelux was founded by Kristofer Jussmann, an Estonia-based agentic systems architect and cloud engineer focused on production-grade AI and infrastructure delivery.",
+                text: "Kaelux was founded by Kristofer Jussmann, an Estonia-based builder focused on AI ventures, agentic systems, and product labs.",
             },
         },
         {
@@ -86,7 +85,7 @@ export default function AboutPage() {
             name: "What kind of work does Kaelux do?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Kaelux delivers production AI systems, retrieval infrastructure, agentic automation, managed cloud environments, and platform offerings across IaaS, PaaS, and SaaS.",
+                text: "Kaelux builds and organizes ventures such as MedAI, ViperMesh, PromptTriage, and Nullstate, while remaining open to selective investor, partner, and build conversations.",
             },
         },
         {
@@ -94,7 +93,7 @@ export default function AboutPage() {
             name: "Is Kaelux a software company or a content channel?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Kaelux is an engineering company and product builder, not a media or entertainment channel.",
+                text: "Kaelux is a venture-building parent brand and product builder, not a generic portfolio page or media channel.",
             },
         },
     ];
@@ -106,37 +105,34 @@ export default function AboutPage() {
             name: "About Kaelux",
             url: "https://kaelux.dev/about",
             description:
-                "About page for Kaelux, an engineering and platform company founded by Kristofer Jussmann.",
+                "About page for Kaelux, the AI venture studio and holding brand founded by Kristofer Jussmann.",
             mainEntity: {
-                "@type": ["Organization", "ProfessionalService"],
+                "@type": "Organization",
                 name: "Kaelux",
                 alternateName: [
                     "Kaelux.dev",
-                    "Kaelux Infrastructure",
-                    "Kaelux Platform Engineering",
+                    "Kaelux Ventures",
+                    "Kaelux Venture Studio",
                 ],
                 url: "https://kaelux.dev",
                 logo: "https://kaelux.dev/kaelux-icon-v3.png",
                 description:
-                    "Kaelux is an engineering and platform company that builds AI systems, managed infrastructure, platform layers, and software products for businesses worldwide.",
+                    "Kaelux is the founder-led parent brand for AI ventures and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
                 areaServed: "Worldwide",
                 knowsAbout: [
                     "Artificial Intelligence",
                     "Large Language Models (LLMs)",
-                    "Retrieval-Augmented Generation (RAG)",
-                    "Intelligent Automation",
-                    "Cloud Infrastructure",
-                    "Infrastructure as a Service (IaaS)",
-                    "Platform as a Service (PaaS)",
-                    "Software as a Service (SaaS)",
-                    "AI Agent Development",
-                    "Distributed Systems",
-                    "Enterprise Software Architecture",
+                    "AI Venture Building",
+                    "Medical AI Research Tooling",
+                    "Creative AI Tooling",
+                    "Prompt Engineering",
+                    "Infrastructure Security",
+                    "Agentic Systems",
                 ],
                 founder: {
                     "@type": "Person",
                     name: "Kristofer Jussmann",
-                    jobTitle: "Founder and Lead Engineer",
+                    jobTitle: "Founder",
                     url: "https://github.com/Ker102",
                 },
                 sameAs: [
@@ -177,7 +173,7 @@ export default function AboutPage() {
         <>
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
             />
             <AboutPageClient />
         </>

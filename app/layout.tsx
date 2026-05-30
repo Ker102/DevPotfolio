@@ -3,13 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navbar from "@/components/Navbar";
+import { coreVentures } from "@/data/ventures";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Kaelux | AI Systems, Platforms, and Infrastructure",
-  description: "Kaelux builds AI systems, software platforms, and production infrastructure for businesses. From retrieval pipelines and agentic workflows to IaaS, PaaS, and SaaS delivery, we ship systems built to keep pace with fast-moving technology.",
-  keywords: ["AI engineering company", "custom AI systems", "AI automation", "RAG pipelines", "workflow agents", "AI infrastructure", "IaaS", "PaaS", "SaaS", "enterprise AI", "platform engineering"],
+  title: "Kaelux | Founder-Led AI Venture Studio",
+  description: "Kaelux is the founder-led parent brand for AI ventures and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
+  keywords: ["Kaelux", "AI venture studio", "AI ventures", "venture builder", "Kristofer Jussmann", "MedAI", "ViperMesh", "PromptTriage", "Nullstate"],
   authors: [{ name: "Kaelux" }],
   creator: "Kaelux",
   publisher: "Kaelux",
@@ -30,8 +31,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Kaelux | AI Systems, Platforms, and Infrastructure",
-    description: "Kaelux builds AI systems, software platforms, and production infrastructure for businesses across IaaS, PaaS, and SaaS.",
+    title: "Kaelux | Founder-Led AI Venture Studio",
+    description: "The parent brand for Kaelux AI ventures, divisions, and product labs.",
     type: "website",
     url: "https://kaelux.dev",
     siteName: "Kaelux",
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
         url: "https://kaelux.dev/kaelux-icon-v3.png",
         width: 512,
         height: 512,
-        alt: "Kaelux – AI Systems, Platforms, and Infrastructure",
+          alt: "Kaelux - AI venture studio",
         type: "image/png",
       },
     ],
@@ -48,8 +49,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Kaelux | AI Systems, Platforms, and Infrastructure",
-    description: "AI systems, platform engineering, and production infrastructure for businesses across IaaS, PaaS, and SaaS.",
+    title: "Kaelux | Founder-Led AI Venture Studio",
+    description: "AI ventures, product labs, and selective partner builds by Kaelux.",
     images: ["https://kaelux.dev/kaelux-icon-v3.png"],
   },
   robots: {
@@ -73,30 +74,33 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const absoluteUrl = (href: string) =>
+    href.startsWith("http") ? href : `https://kaelux.dev${href}`;
+
   const jsonLd = [
     {
       "@context": "https://schema.org",
-      "@type": ["Organization", "ProfessionalService"],
+      "@type": "Organization",
       "name": "Kaelux",
-      "alternateName": ["Kaelux.dev", "Kaelux Infrastructure", "Kaelux Platform Engineering"],
+      "alternateName": ["Kaelux.dev", "Kaelux Ventures", "Kaelux Venture Studio"],
       "url": "https://kaelux.dev",
       "logo": "https://kaelux.dev/kaelux-icon-v3.png",
       "image": "https://kaelux.dev/kaelux-icon-v3.png",
-      "description": "Kaelux builds AI systems, software platforms, and production infrastructure for businesses worldwide.",
+      "description": "Kaelux is the founder-led parent brand for AI ventures and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
       "areaServed": "Worldwide",
       "knowsAbout": [
         "Artificial Intelligence",
-        "Large Language Models (LLMs)",
-        "Intelligent Automation",
-        "Retrieval-Augmented Generation (RAG)",
-        "Cloud Infrastructure",
-        "Infrastructure as a Service (IaaS)",
-        "Platform as a Service (PaaS)",
-        "Software as a Service (SaaS)"
+        "AI Venture Building",
+        "Medical AI Research Tooling",
+        "Agentic Workflows",
+        "Creative AI Tooling",
+        "Prompt Engineering",
+        "Infrastructure Security"
       ],
       "founder": {
         "@type": "Person",
-        "name": "Kristofer Jussmann"
+        "name": "Kristofer Jussmann",
+        "url": "https://github.com/Ker102"
       },
       "sameAs": [
         "https://github.com/Ker102",
@@ -104,6 +108,34 @@ export default function RootLayout({
         "https://x.com/ker102dev",
         "https://www.linkedin.com/company/kaelux-dev/"
       ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kristofer Jussmann",
+      "url": "https://github.com/Ker102",
+      "jobTitle": "Founder",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Kaelux",
+        "url": "https://kaelux.dev"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Kaelux ventures",
+      "itemListElement": coreVentures.map((venture, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": venture.id === "medai" ? "Organization" : "SoftwareApplication",
+          "name": venture.name,
+          "url": absoluteUrl(venture.href),
+          "description": venture.description,
+          "applicationCategory": venture.category
+        }
+      }))
     },
     {
       "@context": "https://schema.org",
@@ -123,7 +155,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
         />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Navbar />
