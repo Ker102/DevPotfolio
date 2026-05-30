@@ -447,12 +447,12 @@ export default function Hero() {
 
                     <div
                         ref={buttonsRef}
-                        className="mt-8 flex flex-nowrap justify-center gap-2.5 md:gap-4"
+                        className="mt-8 flex flex-wrap justify-center gap-2.5 md:gap-4"
                     >
                         {/* Primary White Button with Modern Hover */}
                         <motion.button
                             onClick={() => scrollToSection("ventures")}
-                            className="group relative w-[9.75rem] overflow-hidden rounded-full bg-white px-4 py-3 text-[0.92rem] font-semibold text-black opacity-0 md:w-auto md:px-8 md:py-4 md:text-base"
+                            className="group relative w-[10.5rem] overflow-hidden rounded-full bg-white px-3 py-3 text-[0.82rem] font-semibold text-black opacity-0 sm:w-[11.25rem] sm:text-[0.9rem] md:w-auto md:px-8 md:py-4 md:text-base"
                             whileHover={{
                                 scale: 1.05,
                                 boxShadow: "0 0 35px rgba(255,255,255,0.5), 0 10px 40px rgba(0,0,0,0.3)"
@@ -462,15 +462,15 @@ export default function Hero() {
                         >
                             {/* Shine sweep effect */}
                             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
-                            <span className="relative z-10">Explore Ventures</span>
+                            <span className="relative z-10">Explore our ventures</span>
                         </motion.button>
 
                         {/* Secondary Glass Button with Modern Hover */}
                         <motion.button
                             onClick={() => router.push("/pricing")}
-                            className="group relative w-[9.75rem] overflow-hidden rounded-full px-4 py-3 text-[0.92rem] opacity-0
+                            className="group relative w-[10.5rem] overflow-hidden rounded-full px-3 py-3 text-[0.82rem] opacity-0
                                 bg-white/10 backdrop-blur-xl border border-white/20
-                                text-white font-semibold md:w-auto md:px-8 md:py-4 md:text-base"
+                                text-white font-semibold sm:w-[11.25rem] sm:text-[0.9rem] md:w-auto md:px-8 md:py-4 md:text-base"
                             whileHover={{
                                 scale: 1.05,
                                 y: -2,
@@ -483,7 +483,7 @@ export default function Hero() {
                             <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                             {/* Glow effect on hover */}
                             <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-white/10 to-transparent" />
-                            <span className="relative z-10">Investors &amp; Partners</span>
+                            <span className="relative z-10">For investors &amp; partners</span>
                         </motion.button>
                     </div>
                 </div>
