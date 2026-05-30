@@ -20,18 +20,18 @@ import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 const highlights = [
     {
         icon: HiOutlineBolt,
-        label: "Always-On",
-        desc: "99.9% uptime SLA",
+        label: "Tool-Aware",
+        desc: "Configured around your daily workflows",
     },
     {
         icon: HiOutlineCloud,
-        label: "Zero Hardware",
-        desc: "No Mac Mini needed",
+        label: "Local or Cloud",
+        desc: "Match the setup to your risk profile",
     },
     {
         icon: HiOutlineShieldCheck,
-        label: "Fully Managed",
-        desc: "Security & updates included",
+        label: "Framework-Agnostic",
+        desc: "OpenClaw, Hermes, NanoClaw, or another fit",
     },
 ];
 
@@ -111,7 +111,7 @@ export default function OpenClawBanner() {
                         >
                             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/35 to-white/35" />
                             <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-700">
-                                Featured
+                                Secondary offer
                             </span>
                             <div className="h-px flex-1 bg-gradient-to-l from-transparent via-white/35 to-white/35" />
                         </motion.div>
@@ -128,7 +128,7 @@ export default function OpenClawBanner() {
                             >
                                 <Image
                                     src="/openclaw-logo.png"
-                                    alt="OpenClaw"
+                                    alt="Personal AI agent setup"
                                     width={480}
                                     height={160}
                                     className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.18)] group-hover:drop-shadow-[0_35px_60px_rgba(94,32,74,0.22)] group-hover:scale-[1.03] transition-all duration-500"
@@ -146,22 +146,22 @@ export default function OpenClawBanner() {
                                 className="mx-auto mb-10 max-w-2xl text-center will-change-transform"
                             >
                                 <h3 className="mb-3 bg-gradient-to-b from-gray-900 via-gray-700 to-gray-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
-                                    OpenClaw in the Cloud
+                                    Personal AI agent setup
                                 </h3>
                                 <p className="mb-5 text-base leading-relaxed text-gray-600">
-                                    Skip the Mac Mini. We deploy, secure, and manage your OpenClaw AI agent
-                                    in{" "}
+                                    For founders, creators, and operators who want a practical agentic workspace
+                                    without weeks of setup. We help choose and configure{" "}
                                     <ScrollUnderline underlineClassName="via-gray-900/75">
-                                        production-grade cloud infrastructure
+                                        OpenClaw, Hermes, NanoClaw
                                     </ScrollUnderline>{" "}
-                                    for{" "}
+                                    or another agent stack around your{" "}
                                     <ScrollUnderline underlineClassName="via-gray-900/75">
-                                        always-on delivery
+                                        real tools and accounts
                                     </ScrollUnderline>
-                                    , zero headaches.
+                                    .
                                 </p>
                                 <span className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 transition-all duration-300 group-hover:gap-3">
-                                    Learn More
+                                    Explore setup
                                     <FaArrowRight className="text-gray-500 transition-colors duration-300 group-hover:text-gray-900" />
                                 </span>
                             </motion.div>
@@ -206,14 +206,18 @@ export default function OpenClawBanner() {
                             className="flex flex-col items-center gap-3 will-change-transform"
                         >
                             <AnimatedNumericText
-                                text="Starting at $29/mo"
+                                text="Scoped for your workspace"
                                 className="text-sm text-gray-600"
                                 numberClassName="font-bold text-gray-900"
                             />
-                            <NeedHelpLink label="Need help choosing?" className="text-gray-600 hover:text-gray-900 hover:decoration-gray-900" />
+                            <NeedHelpLink
+                                label="Compare engagement options"
+                                href="/pricing"
+                                className="text-gray-600 hover:text-gray-900 hover:decoration-gray-900"
+                            />
                             <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-b from-gray-900 via-gray-600 to-gray-300 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white shadow-sm">
                                 <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                                New Service
+                                Selective service
                             </span>
                         </motion.div>
                     </div>

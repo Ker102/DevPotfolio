@@ -148,9 +148,9 @@ export default function Hero() {
     const liquidFlow3Ref = useRef<HTMLDivElement>(null);
 
     const mobileTexts = [
-        "Tailored LLM infrastructure, AI engineering, and full-stack web services.",
-        "We build and host the complete technology backbone for your business.",
-        "Kaelux MedAI supports retina, hearing, and medical imaging research teams with secure AI infrastructure and tooling."
+        "A founder-led holding studio for AI ventures, product labs, and selective build partnerships.",
+        "MedAI, ViperMesh, PromptTriage, and Nullstate sit under the Kaelux venture group.",
+        "Built for investors, strategic partners, collaborators, and businesses inspired by the ventures."
     ];
     const [mobileTextIndex, setMobileTextIndex] = useState(0);
 
@@ -417,7 +417,7 @@ export default function Hero() {
                 <div ref={contentRef}>
                     {/* SEO: Visually hidden H1 for search engines and screen readers */}
                     <h1 className="sr-only">
-                        AI That Works for You - Kaelux AI Engineering Agency
+                        Kaelux builds AI ventures.
                     </h1>
 
                     {/* Main Title - Image */}
@@ -427,7 +427,7 @@ export default function Hero() {
                     >
                         <Image
                             src="/hero-title.png"
-                            alt="AI That Works for You"
+                            alt="Kaelux builds AI ventures"
                             width={900}
                             height={120}
                             priority
@@ -451,7 +451,7 @@ export default function Hero() {
                     >
                         {/* Primary White Button with Modern Hover */}
                         <motion.button
-                            onClick={() => scrollToSection("services")}
+                            onClick={() => scrollToSection("ventures")}
                             className="group relative w-[9.75rem] overflow-hidden rounded-full bg-white px-4 py-3 text-[0.92rem] font-semibold text-black opacity-0 md:w-auto md:px-8 md:py-4 md:text-base"
                             whileHover={{
                                 scale: 1.05,
@@ -462,12 +462,12 @@ export default function Hero() {
                         >
                             {/* Shine sweep effect */}
                             <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out" />
-                            <span className="relative z-10">Our Services</span>
+                            <span className="relative z-10">Explore Ventures</span>
                         </motion.button>
 
                         {/* Secondary Glass Button with Modern Hover */}
                         <motion.button
-                            onClick={() => router.push("/medai")}
+                            onClick={() => router.push("/pricing")}
                             className="group relative w-[9.75rem] overflow-hidden rounded-full px-4 py-3 text-[0.92rem] opacity-0
                                 bg-white/10 backdrop-blur-xl border border-white/20
                                 text-white font-semibold md:w-auto md:px-8 md:py-4 md:text-base"
@@ -483,7 +483,7 @@ export default function Hero() {
                             <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
                             {/* Glow effect on hover */}
                             <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-white/10 to-transparent" />
-                            <span className="relative z-10">For Labs &amp; Researchers</span>
+                            <span className="relative z-10">Investors &amp; Partners</span>
                         </motion.button>
                     </div>
                 </div>
@@ -492,7 +492,7 @@ export default function Hero() {
                 <div
                     ref={scrollIndicatorRef}
                     className="mt-16 flex justify-center cursor-pointer opacity-0"
-                    onClick={() => scrollToSection("services")}
+                    onClick={() => scrollToSection("ventures")}
                 >
                     <HiArrowDown className="w-10 h-10 text-white" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.5))' }} />
                 </div>

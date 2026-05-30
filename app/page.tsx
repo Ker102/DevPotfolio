@@ -5,15 +5,11 @@ import Image from "next/image";
 import Hero from "@/components/sections/Hero";
 import Supporters from "@/components/sections/Supporters";
 import ServiceIntroduction from "@/components/sections/ServiceIntroduction";
-import MedAIIntro from "@/components/sections/MedAIIntro";
 import GradientSpacer from "@/components/sections/GradientSpacer";
-import PlatformServices from "@/components/sections/PlatformServices";
-import DiagnoserCTA from "@/components/sections/DiagnoserCTA";
 import OpenClawBanner from "@/components/sections/OpenClawBanner";
 import Projects from "@/components/sections/Projects";
 import AboutKaelux from "@/components/sections/AboutKaelux";
 import AboutMe from "@/components/sections/AboutMe";
-import Team from "@/components/sections/Team";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -76,26 +72,22 @@ export default function Home() {
         </div>
       </div>
 
-      <MedAIIntro />
+      <div className="relative z-10">
+        <Projects />
+      </div>
 
       {/* Image-based Gradient transition: black → white */}
       <GradientSpacer direction="toWhite" className="-mb-16 mt-0 md:mt-4 lg:mt-6 relative z-0" />
 
       <div className="relative z-10">
-        <PlatformServices />
         <OpenClawBanner />
-        <DiagnoserCTA />
       </div>
 
       {/* Image-based Gradient transition: white → black */}
       <GradientSpacer direction="toBlack" className="-my-16 relative z-0" />
 
-      <div className="relative z-10">
-        <Projects />
-      </div>
       <AboutKaelux />
       <AboutMe />
-      <Team />
       <Contact />
     </motion.main>
   );

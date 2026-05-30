@@ -1,448 +1,152 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { featuredProjects, otherProjects, Project } from "@/data/projects";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { HiExternalLink } from "react-icons/hi";
+
+import { coreVentures, labVentures, Venture } from "@/data/ventures";
 import GlassSurface from "@/components/GlassSurface";
-import { AnimatedNumericText } from "@/components/ui/AnimatedNumberText";
 import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import { HiExternalLink } from "react-icons/hi";
-import { FaGithub } from "react-icons/fa";
-import { useState, useRef, useEffect, MouseEvent } from "react";
-import useMediaQuery from "@/hooks/useMediaQuery";
 
-// 3D Tilt Component for Project Preview
-function TiltCard({ children, project }: { children: React.ReactNode; project: any }) {
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
-  const ref = useRef<HTMLDivElement>(null);
-  const [hoveredProject, setHoveredProject] = useState(false);
+function VentureCard({ venture, index }: { venture: Venture; index: number }) {
+  const content = (
+    <motion.article
+      variants={fadeInUp}
+      whileHover={{ y: -6, scale: 1.01 }}
+      transition={{ type: "spring", stiffness: 280, damping: 24 }}
+      className="group relative h-full overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.035] p-6 shadow-[0_22px_80px_rgba(0,0,0,0.24)] backdrop-blur"
+    >
+      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-70" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_28%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+      <div className="relative z-10 flex h-full flex-col">
+        <div className="mb-6 flex items-start justify-between gap-4">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/48">
+              {venture.stage}
+            </p>
+            <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white md:text-4xl">
+              {venture.name}
+            </h3>
+          </div>
+          <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/58">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+        </div>
 
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-white/62">
+          {venture.category}
+        </p>
+        <p className="text-base leading-7 text-gray-300">{venture.description}</p>
+        <p className="mt-5 text-sm leading-6 text-white/56">{venture.audience}</p>
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["7.5deg", "-7.5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-7.5deg", "7.5deg"]);
+        <div className="mt-6 flex flex-wrap gap-2">
+          {venture.tags.map((tag) => (
+            <GlassSurface
+              key={tag}
+              width="auto"
+              height="auto"
+              borderRadius={9999}
+              className="px-3 py-1.5"
+            >
+              <span className="text-xs font-medium text-white/82">{tag}</span>
+            </GlassSurface>
+          ))}
+        </div>
 
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!ref.current || !isDesktop) return;
+        <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 group-hover:gap-3">
+          {venture.linkLabel}
+          <HiExternalLink className="h-4 w-4 text-white/50 transition-colors group-hover:text-white" />
+        </span>
+      </div>
+    </motion.article>
+  );
 
-    const rect = ref.current.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    setHoveredProject(false);
-  };
-
-  if (!isDesktop) {
-    return <div className="relative">{children}</div>;
+  if (venture.isExternal) {
+    return (
+      <a href={venture.href} target="_blank" rel="noopener noreferrer" className="block h-full">
+        {content}
+      </a>
+    );
   }
 
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => isDesktop && setHoveredProject(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      className="relative"
-    >
-      <motion.div
-        style={{
-          transform: "translateZ(50px)",
-          transformStyle: "preserve-3d",
-        }}
-        animate={{
-          boxShadow: hoveredProject
-            ? "0 25px 50px -12px rgba(255, 255, 255, 0.3), 0 0 60px rgba(184, 184, 184, 0.2), 0 0 100px rgba(140, 140, 140, 0.1)"
-            : "0 10px 15px -3px rgba(0, 0, 0, 0.3)",
-        }}
-        transition={{ duration: 0.3 }}
-        className="relative rounded-xl"
-      >
-        {children}
-
-        {/* Glow effect overlay */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: hoveredProject ? 1 : 0,
-          }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 rounded-xl flex items-center justify-center gap-4 pointer-events-none"
-          style={{
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(184,184,184,0.12) 50%, rgba(140,140,140,0.15) 100%)',
-            transform: "translateZ(75px)",
-          }}
-        >
-          <motion.div
-            className="flex gap-4"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{
-              scale: hoveredProject ? 1 : 0.8,
-              opacity: hoveredProject ? 1 : 0,
-            }}
-            transition={{ duration: 0.2, delay: 0.1 }}
-          >
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pointer-events-auto hover:scale-110 transition-transform shadow-2xl"
-              >
-                <GlassSurface
-                  width={64}
-                  height={64}
-                  borderRadius={9999}
-                  className="flex items-center justify-center"
-                >
-                  <HiExternalLink className="w-8 h-8" />
-                </GlassSurface>
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pointer-events-auto hover:scale-110 transition-transform shadow-2xl"
-              >
-                <GlassSurface
-                  width={64}
-                  height={64}
-                  borderRadius={9999}
-                  className="flex items-center justify-center"
-                >
-                  <FaGithub className="w-8 h-8" />
-                </GlassSurface>
-              </a>
-            )}
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </motion.div>
-  );
-}
-
-// Video Preview Component with Click-to-Play
-function VideoPreview({ videoUrl, projectName }: { videoUrl: string; projectName: string }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  // Detect touch device on mount (for mobile-specific native controls)
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    }
-  }, []);
-
-  // Get video MIME type based on extension
-  const getVideoMimeType = (url: string): string => {
-    if (url.endsWith('.webm')) return 'video/webm';
-    if (url.endsWith('.mov')) return 'video/quicktime';
-    if (url.endsWith('.m4v')) return 'video/x-m4v';
-    return 'video/mp4';
-  };
-
-  const handleVideoClick = async (e: React.MouseEvent) => {
-    // Prevent click if using native controls (touch devices)
-    if (isTouchDevice) return;
-
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        try {
-          // Reset video to start if it ended
-          if (videoRef.current.ended) {
-            videoRef.current.currentTime = 0;
-          }
-          // Ensure video is loaded before playing
-          if (videoRef.current.readyState < 2) {
-            videoRef.current.load();
-          }
-          await videoRef.current.play();
-          setIsPlaying(true);
-        } catch (error) {
-          console.error('Video playback failed:', error);
-          // Fallback: try playing again with user gesture context
-          videoRef.current.muted = true;
-          try {
-            await videoRef.current.play();
-            setIsPlaying(true);
-          } catch (e) {
-            console.error('Fallback playback also failed:', e);
-          }
-        }
-      }
-    }
-  };
-
-  const handleVideoEnd = () => {
-    setIsPlaying(false);
-  };
-
-  const handleLoadedData = () => {
-    setIsLoaded(true);
-  };
-
-  const handlePlay = () => {
-    setIsPlaying(true);
-  };
-
-  const handlePause = () => {
-    setIsPlaying(false);
-  };
-
-  return (
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3 }}
-      className="relative rounded-[32px] overflow-hidden border border-white/15 bg-white/5 backdrop-blur cursor-pointer group"
-      onClick={handleVideoClick}
-    >
-      <video
-        ref={videoRef}
-        loop
-        muted
-        playsInline
-        webkit-playsinline="true"
-        preload="metadata"
-        controls={isTouchDevice}
-        onEnded={handleVideoEnd}
-        onLoadedData={handleLoadedData}
-        onPlay={handlePlay}
-        onPause={handlePause}
-        className="w-full h-auto object-cover"
-        style={{ minHeight: isLoaded ? 'auto' : '200px', backgroundColor: '#1a1a1a' }}
-      >
-        <source src={videoUrl} type={getVideoMimeType(videoUrl)} />
-        {/* Fallback MP4 source */}
-        <source src={videoUrl} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-
-      {/* Play/Pause Overlay - Hide on touch devices since they use native controls */}
-      {!isPlaying && !isTouchDevice && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm"
-        >
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-2xl"
-          >
-            <svg
-              className="w-10 h-10 text-black ml-1"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </motion.div>
-        </motion.div>
-      )}
-
-      {/* Hover hint - Hide on touch devices */}
-      {!isTouchDevice && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          className="absolute bottom-4 right-4 px-3 py-1 rounded-full bg-black/50 backdrop-blur-sm text-white text-sm font-medium"
-        >
-          {isPlaying ? "Click to pause" : "Click to play"}
-        </motion.div>
-      )}
-    </motion.div>
-  );
-}
-
-// Helper component to render project list
-function ProjectList({ projects, startIndex = 0 }: { projects: Project[]; startIndex?: number }) {
-  return (
-    <motion.div
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true, amount: 0.1 }}
-      variants={staggerContainer}
-      className="space-y-24"
-    >
-      {projects.map((project, index) => (
-        <motion.div
-          key={project.id}
-          variants={fadeInUp}
-          className={`flex flex-col ${(startIndex + index) % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-            } gap-12 items-center`}
-        >
-          {/* Project Preview */}
-          <div className="w-full lg:w-1/2" style={{ perspective: "1000px" }}>
-            {project.videoUrl ? (
-              <VideoPreview videoUrl={project.videoUrl} projectName={project.name} />
-            ) : (
-              <TiltCard project={project}>
-                <div className="flex h-[260px] items-center justify-center rounded-[32px] border border-white/15 bg-white/5 p-8 uppercase tracking-[0.35em] text-white/80 backdrop-blur">
-                  Coming soon
-                </div>
-              </TiltCard>
-            )}
-          </div>
-
-          {/* Project Info */}
-          <div className="w-full lg:w-1/2 space-y-4">
-            <h3 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500">
-              {project.name}
-            </h3>
-            <AnimatedNumericText
-              text={project.description}
-              className="text-lg text-gray-300"
-              numberClassName="font-semibold text-white"
-            />
-
-            {/* Tech Stack */}
-            <div className="flex flex-wrap gap-2">
-              {project.techStack.map((tech, techIndex) => (
-                <GlassSurface
-                  key={techIndex}
-                  width="auto"
-                  height="auto"
-                  borderRadius={9999}
-                  className="px-4 py-2"
-                >
-                  <span className="text-sm font-medium text-white">{tech}</span>
-                </GlassSurface>
-              ))}
-            </div>
-
-            {/* Links */}
-            <div className="flex gap-4 pt-4">
-              {project.liveUrl && (
-                <motion.a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-6 py-3 text-black font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow"
-                  style={{
-                    background: 'linear-gradient(135deg, #ffffff 0%, #e8e8e8 25%, #b8b8b8 50%, #8c8c8c 75%, #b8b8b8 100%)',
-                    filter: 'saturate(1.3) brightness(1.1)'
-                  }}
-                >
-                  <HiExternalLink className="w-5 h-5" />
-                  Live Demo
-                </motion.a>
-              )}
-              {project.githubUrl && (
-                <motion.a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <GlassSurface
-                    width="auto"
-                    height="auto"
-                    borderRadius={9999}
-                    className="flex items-center gap-2 px-6 py-3"
-                  >
-                    <FaGithub className="w-5 h-5" />
-                    <span className="font-semibold">View Code</span>
-                  </GlassSurface>
-                </motion.a>
-              )}
-            </div>
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
+    <Link href={venture.href} className="block h-full">
+      {content}
+    </Link>
   );
 }
 
 export default function Projects() {
   return (
-    <section
-      id="projects"
-      className="relative min-h-screen py-20 px-6 bg-black dark:bg-white overflow-hidden"
-    >
-
+    <section id="ventures" className="relative overflow-hidden bg-black px-6 py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[8%] top-24 h-72 w-72 rounded-full bg-white/[0.04] blur-[150px]" />
+        <div className="absolute right-[12%] top-[36rem] h-80 w-80 rounded-full bg-violet-300/[0.08] blur-[170px]" />
+      </div>
 
       <div className="relative z-10 container mx-auto max-w-7xl">
-        {/* Featured Projects Section */}
         <motion.div
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.25 }}
           variants={fadeInUp}
-          className="text-center mb-16"
+          className="mb-16 max-w-4xl"
         >
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500">
-            Our Work
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-white/45">
+            Our ventures
+          </p>
+          <h2 className="text-5xl font-semibold tracking-[-0.055em] text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 md:text-7xl">
+            Kaelux is the label over the work that can become companies.
           </h2>
-          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Platforms and tools built by Kaelux — showcasing{" "}
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-400 md:text-xl">
+            The public site should make the group easy to understand:{" "}
             <ScrollUnderline underlineClassName="via-white/80">
-              AI integration
+              MedAI
             </ScrollUnderline>
-            , workflow automation, and{" "}
-            <ScrollUnderline underlineClassName="via-white/80">
-              enterprise-grade engineering
-            </ScrollUnderline>
-            .
+            , ViperMesh, PromptTriage, and Nullstate are the main signals. Older experiments sit lower as labs.
           </p>
         </motion.div>
 
-        <ProjectList projects={featuredProjects} startIndex={0} />
-
-        {/* Other Projects Section */}
         <motion.div
           initial="initial"
           whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeInUp}
-          className="text-center mb-16 mt-32"
+          viewport={{ once: true, amount: 0.12 }}
+          variants={staggerContainer}
+          className="grid gap-6 md:grid-cols-2"
         >
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500">
-            Open Source
-          </h2>
-          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Community-driven projects exploring{" "}
-            <ScrollUnderline underlineClassName="via-white/80">
-              AI assistants
-            </ScrollUnderline>
-            , conversational interfaces, and{" "}
-            <ScrollUnderline underlineClassName="via-white/80">
-              creative developer tooling
-            </ScrollUnderline>
-            .
-          </p>
+          {coreVentures.map((venture, index) => (
+            <VentureCard key={venture.id} venture={venture} index={index} />
+          ))}
         </motion.div>
 
-        <ProjectList projects={otherProjects} startIndex={featuredProjects.length} />
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={fadeInUp}
+          className="mb-10 mt-28 max-w-3xl"
+        >
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-white/45">
+            Labs / experiments
+          </p>
+          <h2 className="text-4xl font-semibold tracking-[-0.045em] text-white md:text-5xl">
+            Supporting projects that prove range without diluting the venture story.
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={staggerContainer}
+          className="grid gap-5 md:grid-cols-2 lg:grid-cols-4"
+        >
+          {labVentures.map((venture, index) => (
+            <VentureCard key={venture.id} venture={venture} index={index + coreVentures.length} />
+          ))}
+        </motion.div>
       </div>
     </section>
   );

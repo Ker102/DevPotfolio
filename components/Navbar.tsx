@@ -10,12 +10,11 @@ import { GoArrowUpRight } from "react-icons/go";
 
 const navLinks = [
   { name: "Home", href: "#hero" },
-  { name: "About", href: "/about", isExternal: true },
+  { name: "Ventures", href: "#ventures" },
   { name: "MedAI", href: "/medai", isExternal: true },
-  { name: "Services", href: "#services" },
-  { name: "Projects", href: "#projects" },
-  { name: "OpenClaw", href: "/openclaw", isExternal: true },
-  { name: "Pricing", href: "/pricing", isExternal: true },
+  { name: "Agent Setup", href: "/openclaw", isExternal: true },
+  { name: "Engagements", href: "/pricing", isExternal: true },
+  { name: "About", href: "/about", isExternal: true },
   { name: "Wiki", href: "/wiki", isExternal: true },
   { name: "Contact", href: "#contact" },
 ];
@@ -24,17 +23,18 @@ const navCards = [
   {
     label: "Explore",
     links: [
-      { label: "Get Started", href: "#services" },
-      { label: "Software", href: "#projects" },
-      { label: "OpenClaw Cloud", href: "/openclaw", isExternal: true },
-      { label: "Pricing", href: "/pricing", isExternal: true },
+      { label: "How We Build", href: "#approach" },
+      { label: "Ventures", href: "#ventures" },
+      { label: "Agent Setup", href: "/openclaw", isExternal: true },
+      { label: "Engagements", href: "/pricing", isExternal: true },
     ],
   },
   {
     label: "Connect",
     links: [
       { label: "Get In Touch", href: "#contact" },
-      { label: "MedAI Collaboration", href: "/medai", isExternal: true },
+      { label: "MedAI", href: "/medai", isExternal: true },
+      { label: "Investor Conversation", href: "/pricing", isExternal: true },
     ],
   },
   {
@@ -51,7 +51,6 @@ const navCards = [
     label: "Additional",
     links: [
       { label: "Meet the Founder", href: "#about" },
-      { label: "Team", href: "#team" },
       { label: "About Kaelux", href: "/about", isExternal: true },
     ],
   },

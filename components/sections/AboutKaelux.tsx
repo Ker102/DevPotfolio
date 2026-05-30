@@ -45,12 +45,11 @@ export default function AboutKaelux() {
                         variants={slideUpFade}
                         className="text-lg md:text-xl text-gray-300 font-light leading-relaxed max-w-3xl"
                     >
-                        Kaelux builds AI systems, software platforms, and cloud
-                        infrastructure for companies that need more than generic
-                        digital services. From retrieval pipelines and agentic
-                        workflows to managed environments across IaaS, PaaS, and
-                        SaaS, the focus is on shipping systems that stay useful
-                        as the market and the underlying technology keep moving.
+                        Kaelux is the parent brand for a founder-led group of AI
+                        ventures and product labs. The company exists to identify
+                        sharp technical markets, build the first serious systems,
+                        and create room for investors, partners, and businesses to
+                        work with the ventures as they mature.
                     </motion.p>
                 </motion.div>
             </div>
