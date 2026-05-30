@@ -6,36 +6,34 @@ import { HiChevronDown } from "react-icons/hi2";
 
 const faqs = [
     {
-        question: "What is OpenClaw?",
-        answer: "OpenClaw is a free, open-source autonomous AI agent that runs on your machine and connects to messaging platforms like WhatsApp, Telegram, and Discord. It uses LLM APIs (Claude, GPT, DeepSeek) to execute real-world tasks including browser automation, file management, and shell commands."
+        question: "Is this still OpenClaw hosting?",
+        answer:
+            "The route remains for compatibility, but the offer is broader now: personal AI agent setup. OpenClaw can be one option, alongside Hermes, NanoClaw, or another agent framework if it fits better.",
     },
     {
-        question: "Why not just buy a Mac Mini and self-host?",
-        answer: "A Mac Mini costs $599+ upfront, plus ongoing electricity, internet uptime, and security management. Self-hosting means you're responsible for updates, firewall configuration, SSL certificates, and keeping the instance online 24/7. Our cloud hosting eliminates all of that for a fraction of the cost."
+        question: "Who is this for?",
+        answer:
+            "Founders, creators, solo operators, and small teams who want an agentic workspace configured around real daily work instead of a demo-only tool.",
     },
     {
-        question: "Which cloud providers do you use?",
-        answer: "We deploy on Google Cloud Platform (GCP), Microsoft Azure, or DigitalOcean — depending on your requirements and geographic preferences. All deployments follow cloud security best practices."
+        question: "Do you always deploy to the cloud?",
+        answer:
+            "No. Some setups should stay local because of privacy, filesystem access, browser profiles, or cost. Others benefit from a hosted environment. The deployment shape is part of the scoping.",
     },
     {
-        question: "Can I bring my own LLM API keys?",
-        answer: "Yes. OpenClaw supports any LLM provider — Claude (Anthropic), GPT (OpenAI), DeepSeek, and more. You provide your own API keys, which means you maintain full control over model costs and usage."
+        question: "Can I bring my own model or API keys?",
+        answer:
+            "Yes. The setup can work with the model providers and keys you already use, assuming the selected framework supports them and the access pattern is reasonable.",
     },
     {
-        question: "What messaging platforms are supported?",
-        answer: "OpenClaw integrates with WhatsApp, Telegram, and Discord out of the box. We configure the integration of your choice during setup. Additional integrations can be added at any time."
+        question: "What integrations can be included?",
+        answer:
+            "Messaging, browser workflows, local files, shell tasks, and tool-specific routines can be considered. The final scope depends on security, reliability, and what the agent can do safely.",
     },
     {
-        question: "How secure is a cloud-hosted OpenClaw instance?",
-        answer: "Very. We implement network isolation, strict firewall rules, encrypted connections (SSL/TLS), role-based access controls, and automated security patching. Your data never leaves your dedicated instance unless you explicitly configure it to."
-    },
-    {
-        question: "What does the One-Time Setup tier include?",
-        answer: "The One-Time Setup tier is for organizations with specific infrastructure, compliance, or scale requirements. It includes multi-instance deployments, custom cloud provider selection, advanced security configurations, priority support, and dedicated on-call engineering. Contact us for a tailored proposal."
-    },
-    {
-        question: "Can I switch from Managed Hosting to One-Time Setup later?",
-        answer: "Absolutely. You can start with our Managed Hosting plan and upgrade to a One-Time Setup at any time. We'll handle the migration seamlessly with zero downtime."
+        question: "Is this a subscription product?",
+        answer:
+            "Not by default. The first step is a scoped setup. Ongoing support can be discussed only if the workflow is important enough to justify maintenance.",
     },
 ];
 
@@ -45,7 +43,6 @@ export default function OpenClawFAQ() {
     return (
         <section className="py-28 px-6 bg-white relative overflow-hidden">
             <div className="container mx-auto max-w-3xl relative z-10">
-                {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -57,18 +54,17 @@ export default function OpenClawFAQ() {
                         FAQ
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-                        Frequently Asked{" "}
+                        Agent setup{" "}
                         <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
-                            Questions
+                            questions
                         </span>
                     </h2>
                 </motion.div>
 
-                {/* FAQ Items */}
                 <div className="space-y-3">
                     {faqs.map((faq, index) => (
                         <motion.div
-                            key={index}
+                            key={faq.question}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -76,10 +72,11 @@ export default function OpenClawFAQ() {
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className={`w-full text-left p-5 rounded-xl border transition-all duration-300 ${openIndex === index
-                                    ? "border-gray-300 bg-gray-50 shadow-sm"
-                                    : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50"
-                                    }`}
+                                className={`w-full text-left p-5 rounded-xl border transition-all duration-300 ${
+                                    openIndex === index
+                                        ? "border-gray-300 bg-gray-50 shadow-sm"
+                                        : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50"
+                                }`}
                             >
                                 <div className="flex items-center justify-between gap-4">
                                     <h3 className="text-base font-semibold text-gray-900">

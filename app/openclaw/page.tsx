@@ -10,22 +10,20 @@ import GradientSpacer from "@/components/sections/GradientSpacer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "OpenClaw Cloud Hosting | Managed AI Agent Deployment | Kaelux",
-    description: "Skip the Mac Mini. Kaelux deploys, secures, and manages your OpenClaw AI agent in production-grade cloud infrastructure. Always-on, zero headaches.",
+    title: "Personal AI Agent Setup | Kaelux",
+    description: "Personal AI agent setup for founders, creators, and operators. Kaelux helps configure OpenClaw, Hermes, NanoClaw, or the right agent stack for your workspace.",
     keywords: [
-        "openclaw hosting",
-        "openclaw cloud",
-        "openclaw managed service",
-        "openclaw without mac mini",
-        "openclaw setup service",
-        "openclaw enterprise deployment",
-        "self-host openclaw alternative",
-        "managed AI agent",
+        "personal AI agent setup",
+        "OpenClaw setup",
+        "Hermes agent setup",
+        "NanoClaw setup",
+        "AI agent workspace",
+        "agentic workflow setup",
         "Kaelux",
     ],
     openGraph: {
-        title: "OpenClaw Cloud Hosting | Kaelux",
-        description: "Your OpenClaw AI agent, fully managed in the cloud. No hardware, no security headaches, no downtime.",
+        title: "Personal AI Agent Setup | Kaelux",
+        description: "Configure a practical personal AI agent workspace with Kaelux.",
         type: "website",
         url: "https://kaelux.dev/openclaw",
     },

@@ -1,26 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HiOutlineChatBubbleLeftRight, HiOutlineCloudArrowUp, HiOutlineRocketLaunch } from "react-icons/hi2";
+import { HiOutlineChatBubbleLeftRight, HiOutlineCog8Tooth, HiOutlineRocketLaunch } from "react-icons/hi2";
 
 const steps = [
     {
         number: "01",
         Icon: HiOutlineChatBubbleLeftRight,
-        title: "Book a Call",
-        description: "Tell us your needs — which messaging platforms, what LLM provider, and how you plan to use OpenClaw. We handle the rest.",
+        title: "Map the workflow",
+        description:
+            "We identify what the agent should actually do, which tools it may touch, and what should stay out of scope.",
     },
     {
         number: "02",
-        Icon: HiOutlineCloudArrowUp,
-        title: "We Deploy & Secure",
-        description: "We spin up your dedicated OpenClaw instance in the cloud, configure integrations, set up SSL, firewalls, and monitoring.",
+        Icon: HiOutlineCog8Tooth,
+        title: "Configure the agent stack",
+        description:
+            "We set up the framework, model/API keys, local or hosted environment, integrations, and practical access boundaries.",
     },
     {
         number: "03",
         Icon: HiOutlineRocketLaunch,
-        title: "You Use It",
-        description: "Your AI agent is live. Connect via WhatsApp, Telegram, or Discord. We manage updates, uptime, and security ongoing.",
+        title: "Test real routines",
+        description:
+            "We validate the setup against daily tasks, document how to operate it, and decide whether ongoing support is worth scoping.",
     },
 ];
 
@@ -29,9 +32,9 @@ const containerVariants = {
     visible: {
         transition: {
             staggerChildren: 0.2,
-            delayChildren: 0.15
-        }
-    }
+            delayChildren: 0.15,
+        },
+    },
 };
 
 const stepVariants = {
@@ -42,16 +45,15 @@ const stepVariants = {
         transition: {
             type: "spring" as const,
             stiffness: 80,
-            damping: 18
-        }
-    }
+            damping: 18,
+        },
+    },
 };
 
 export default function OpenClawHowItWorks() {
     return (
         <section className="py-28 px-6 bg-white relative overflow-hidden">
             <div className="container mx-auto max-w-5xl relative z-10">
-                {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -63,17 +65,16 @@ export default function OpenClawHowItWorks() {
                         How It Works
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-                        Three Steps to Your{" "}
+                        Three steps to a{" "}
                         <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
-                            AI Agent
+                            useful agent
                         </span>
                     </h2>
                     <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-                        From zero to a fully managed OpenClaw instance in days, not weeks.
+                        The goal is a setup that survives first contact with your real work.
                     </p>
                 </motion.div>
 
-                {/* Steps */}
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12"
                     variants={containerVariants}
@@ -82,17 +83,11 @@ export default function OpenClawHowItWorks() {
                     viewport={{ once: true, margin: "-50px" }}
                 >
                     {steps.map((step, index) => (
-                        <motion.div
-                            key={index}
-                            variants={stepVariants}
-                            className="group relative text-center"
-                        >
-                            {/* Step Number — dark gradient for visibility on white */}
+                        <motion.div key={step.number} variants={stepVariants} className="group relative text-center">
                             <div className="text-7xl font-black tracking-tighter select-none mb-4 text-transparent bg-clip-text bg-gradient-to-b from-gray-300 to-gray-400/60 group-hover:from-gray-400 group-hover:to-gray-500/60 transition-all duration-500">
                                 {step.number}
                             </div>
 
-                            {/* Icon — silver gradient matching POPULAR badge */}
                             <motion.div
                                 whileHover={{ scale: 1.1, y: -3 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -106,7 +101,6 @@ export default function OpenClawHowItWorks() {
                                 {step.description}
                             </p>
 
-                            {/* Connector line (hidden on last item and mobile) */}
                             {index < steps.length - 1 && (
                                 <div className="hidden md:block absolute top-[4.5rem] right-0 translate-x-1/2 w-full h-px bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 z-0" />
                             )}
