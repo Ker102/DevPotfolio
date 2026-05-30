@@ -2,7 +2,7 @@
 
 Kaelux.dev is the public site for Kaelux, the founder-led parent brand for AI ventures and product labs by Kristofer Jussmann.
 
-The site is no longer positioned as a generic AI agency, IaaS/PaaS provider, or broad service menu. Its job is to make the Kaelux group legible to investors, strategic partners, collaborators, and businesses inspired by the ventures.
+The site is no longer positioned as a generic AI agency, infrastructure provider, or broad service menu. Its job is to make the Kaelux group legible to investors, strategic partners, collaborators, and businesses inspired by the ventures.
 
 ## Public Positioning
 

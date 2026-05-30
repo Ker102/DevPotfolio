@@ -16,7 +16,7 @@
 
 4. Engagements page
 - Rewrite `/pricing` as an engagements page.
-- Remove old fixed SaaS, LLMOps, platform-service, and OpenClaw Cloud pricing cards.
+- Remove old fixed package, LLMOps, platform-service, and OpenClaw Cloud pricing cards.
 - Reuse the existing contact flow and route users to the correct inquiry context.
 
 5. Personal AI agent setup
