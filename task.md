@@ -17,7 +17,7 @@ The site should communicate:
 - Do not edit `public/hero-title.png`; the hero header is an image that will be regenerated separately.
 - Preserve the current visual system and section styling where practical.
 - Commit after each meaningful change so the work can be reverted in small chunks.
-- Remove fabricated team claims and any public references to Josh, Randolph, and Ethan.
+- Remove fabricated team claims and generated team-member assets.
 - Soft-retire old `/solutions` and `/services/*` pages without breaking routes.
 - Keep `/api/contact` unchanged.
 
