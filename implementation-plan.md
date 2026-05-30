@@ -1,29 +1,39 @@
-# Implementation Plan: Kaelux MedAI
+# Implementation Plan: Kaelux Holding Studio
 
-1. Homepage and navigation
-- Add `MedAI` to the navbar.
-- Add a persistent minimal `Contact` pill to the navbar shell.
-- Update hero subtitle rotation and secondary CTA.
-- Insert a new homepage MedAI intro section after `ServiceIntroduction`.
+1. Documentation baseline
+- Replace the old MedAI-only task definition with the holding-studio reposition objective.
+- Track the required commit discipline, preserved hero image, and route constraints.
 
-2. New route
-- Create `/medai` page metadata and page body.
-- Build the page in section order:
-  - hero / intro
-  - mission and focus
-  - who we help
-  - how we collaborate
-  - current stage
-  - collaboration form
+2. Shared content data
+- Add typed venture data for MedAI, ViperMesh, PromptTriage, Nullstate, and lower-priority lab projects.
+- Add typed engagement-track data for investors, strategic partners, business-build inquiries, and personal AI agent setup.
 
-3. Contact flow reuse
-- Reuse `submitContactForm`.
-- Map fields to the current backend contract without changing the API route.
+3. Homepage and navigation
+- Update hero semantic H1, rotating subtitles, CTAs, and scroll targets.
+- Replace service-led homepage sections with holding-company sections.
+- Remove fake team rendering and navigation references.
+- Keep current visuals and transitions wherever possible.
 
-4. Discoverability
-- Add `/medai` to `app/sitemap.ts`.
-- Add page-specific JSON-LD for the new division.
+4. Engagements page
+- Rewrite `/pricing` as an engagements page.
+- Remove old fixed SaaS, LLMOps, platform-service, and OpenClaw Cloud pricing cards.
+- Reuse the existing contact flow and route users to the correct inquiry context.
 
-5. Validation
-- Run `npx tsc --noEmit`.
-- Run eslint on touched files.
+5. Personal AI agent setup
+- Reframe `/openclaw` from OpenClaw Cloud hosting to personal AI agent setup.
+- Keep route compatibility while making OpenClaw one supported agent option alongside Hermes and NanoClaw-style setups.
+
+6. Soft retirement
+- Remove `/solutions` and `/services/*` from navigation and sitemap.
+- Add `noindex` metadata to old service routes and replace their body copy with compact bridge pages.
+
+7. SEO, docs, and stale claim cleanup
+- Update root/about/pricing/openclaw metadata and JSON-LD.
+- Escape JSON-LD `<` characters before rendering.
+- Update README to remove stale agency pricing and old service positioning.
+- Delete unused generated team images if no references remain.
+
+8. Verification
+- Run stale-claim searches for fabricated team members and old positioning.
+- Run lint, typecheck, and build.
+- Start the dev server and visually verify homepage, pricing, about, MedAI, and openclaw on desktop and mobile.

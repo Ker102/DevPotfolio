@@ -1,28 +1,33 @@
-# Kaelux MedAI Launch
+# Kaelux Holding-Studio Reposition
 
 ## Objective
 
-Launch `Kaelux MedAI` as a new division on `kaelux.dev` with:
-- homepage visibility
-- top-level navigation
-- a dedicated `/medai` landing page
-- a MedAI-specific collaboration form using the existing contact backend
-- metadata, structured data, and sitemap coverage
+Reposition `kaelux.dev` from a generic AI services and platform-engineering site into the founder-led parent brand for Kaelux ventures.
+
+The site should communicate:
+
+- Kaelux is a holding/studio company, not a generic portfolio and not a broad AI agency.
+- Kristofer Jussmann is the founder behind the venture group.
+- The primary public proof is the venture directory: MedAI, ViperMesh, PromptTriage, and Nullstate.
+- Businesses can still contact Kaelux for selective partnership builds inspired by those ventures.
+- Investors, strategic partners, collaborators, and co-founder-level partners are the main audience.
 
 ## Constraints
 
-- Reuse the existing `/api/contact` contract.
-- Do not create extra MedAI subpages.
-- Keep the tone serious, early-stage, and collaboration-oriented.
-- Keep MedAI visually inside the Kaelux brand system.
-- Preserve existing homepage background work in `app/page.tsx`.
+- Do not edit `public/hero-title.png`; the hero header is an image that will be regenerated separately.
+- Preserve the current visual system and section styling where practical.
+- Commit after each meaningful change so the work can be reverted in small chunks.
+- Remove fabricated team claims and any public references to Josh, Randolph, and Ethan.
+- Soft-retire old `/solutions` and `/services/*` pages without breaking routes.
+- Keep `/api/contact` unchanged.
 
 ## Success Criteria
 
-- Homepage hero includes MedAI in the subtitle rotation.
-- Hero secondary CTA routes to `/medai`.
-- Navbar exposes `MedAI` and an always-visible minimal `Contact` CTA.
-- Homepage includes a MedAI section after `ServiceIntroduction` and before `PlatformServices`.
-- `/medai` contains the required sections and a working collaboration form.
-- `/medai` metadata, JSON-LD, and sitemap entry are present.
-- Typecheck and eslint pass for touched files.
+- Homepage copy and CTAs frame Kaelux as a venture studio / holding company.
+- Homepage sections are ordered around how Kaelux builds, ventures, labs, personal agent setup, founder, and contact.
+- Pricing becomes an engagements page instead of SaaS/service-package pricing.
+- `/openclaw` is reframed as personal AI agent setup, with OpenClaw as one supported option.
+- Old service routes are removed from navigation and sitemap and are marked `noindex`.
+- Metadata, JSON-LD, README, and sitemap match the new positioning.
+- Animated numeric text renders real values in server/no-JS output instead of `0`.
+- `npm run lint`, `npx tsc --noEmit`, and `npm run build` pass.
