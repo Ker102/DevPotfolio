@@ -1,22 +1,22 @@
-import ServicePageLayout from "@/components/services/ServicePageLayout";
 import type { Metadata } from "next";
+import LegacyBridgePage from "@/components/legacy/LegacyBridgePage";
 
 export const metadata: Metadata = {
-    title: "Full-Stack Development Services | Kaelux",
+    title: "Full-Stack Services Retired | Kaelux",
     description:
-        "End-to-end application development with robust backends and polished frontends. We build fast, scalable, and maintainable software.",
-    keywords: ["full-stack development", "web development", "React", "Next.js", "Node.js", "API development", "Kaelux"],
-    openGraph: {
-        title: "Full-Stack Development Services | Kaelux",
-        description: "End-to-end application development with robust backends and polished frontends.",
-        type: "website",
-        url: "https://kaelux.dev/services/full-stack-development",
-    },
-    alternates: {
-        canonical: "https://kaelux.dev/services/full-stack-development",
+        "Kaelux has retired standalone full-stack service positioning. Explore ventures, engagements, and selective build partnerships instead.",
+    robots: {
+        index: false,
+        follow: true,
     },
 };
 
 export default function FullStackDevelopmentPage() {
-    return <ServicePageLayout slug="full-stack-development" />;
+    return (
+        <LegacyBridgePage
+            label="Retired service route"
+            title="Standalone full-stack service pages are retired."
+            description="Software development remains central to Kaelux, but the public site now routes serious build interest through venture partnerships and selective engagement paths."
+        />
+    );
 }

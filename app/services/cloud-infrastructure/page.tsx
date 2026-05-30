@@ -1,22 +1,22 @@
-import ServicePageLayout from "@/components/services/ServicePageLayout";
 import type { Metadata } from "next";
+import LegacyBridgePage from "@/components/legacy/LegacyBridgePage";
 
 export const metadata: Metadata = {
-    title: "Cloud Infrastructure Services | Kaelux",
+    title: "Cloud Infrastructure Services Retired | Kaelux",
     description:
-        "Scalable hosting solutions with managed databases, CDN, and automated deployments. Your infrastructure, handled by experts.",
-    keywords: ["cloud infrastructure", "AWS", "GCP", "Azure", "DevOps", "cloud hosting", "Kaelux"],
-    openGraph: {
-        title: "Cloud Infrastructure Services | Kaelux",
-        description: "Scalable hosting solutions with managed databases, CDN, and automated deployments.",
-        type: "website",
-        url: "https://kaelux.dev/services/cloud-infrastructure",
-    },
-    alternates: {
-        canonical: "https://kaelux.dev/services/cloud-infrastructure",
+        "Kaelux has retired standalone cloud infrastructure service positioning. Explore ventures, engagements, and selective build partnerships instead.",
+    robots: {
+        index: false,
+        follow: true,
     },
 };
 
 export default function CloudInfrastructurePage() {
-    return <ServicePageLayout slug="cloud-infrastructure" />;
+    return (
+        <LegacyBridgePage
+            label="Retired service route"
+            title="Standalone cloud infrastructure service pages are retired."
+            description="Infrastructure remains part of the Kaelux build discipline, but the parent site no longer markets generic cloud work as a horizontal service package."
+        />
+    );
 }
