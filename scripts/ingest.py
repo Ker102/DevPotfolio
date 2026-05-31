@@ -2,8 +2,8 @@
 """
 Kaelux Knowledge Base Ingestion Pipeline
 
-Scrapes engineering blogs, summarizes with Google Gemini,
-embeds with Together AI, and stores in Redis Cloud.
+Collects Kaelux-owned intake content, summarizes with Google Gemini,
+embeds with Together AI, and stores it in Redis Cloud.
 
 Usage: python scripts/ingest.py
 Runs on: GitHub Actions (weekly) or manually
@@ -30,32 +30,42 @@ TOGETHER_MODEL = "togethercomputer/m2-bert-80M-32k-retrieval"  # Must match fron
 CHUNK_SIZE = 1500  # Characters per chunk
 OVERLAP = 200  # Overlap between chunks
 
-# Target blogs to scrape
+# Kaelux-owned sources for the intake agent.
 SOURCES = [
     {
-        "name": "Lil'Log",
-        "url": "https://lilianweng.github.io/",
-        "type": "rss",
+        "name": "Kaelux README",
+        "path": "README.md",
+        "type": "local",
     },
     {
-        "name": "Chip Huyen",
-        "url": "https://huyenchip.com/blog/",
-        "type": "html",
+        "name": "Kaelux Intake Agent",
+        "path": "docs/KAELUX_INTAKE_AGENT.md",
+        "type": "local",
     },
     {
-        "name": "Eugene Yan",
-        "url": "https://eugeneyan.com/",
-        "type": "rss",
+        "name": "Kaelux Homepage",
+        "url": "https://kaelux.dev/",
+        "type": "web",
     },
     {
-        "name": "Simon Willison",
-        "url": "https://simonwillison.net/",
-        "type": "rss",
+        "name": "Kaelux About",
+        "url": "https://kaelux.dev/about",
+        "type": "web",
     },
     {
-        "name": "Hamel Husain",
-        "url": "https://hamel.dev/",
-        "type": "html",
+        "name": "Kaelux Engagements",
+        "url": "https://kaelux.dev/pricing",
+        "type": "web",
+    },
+    {
+        "name": "Kaelux MedAI",
+        "url": "https://kaelux.dev/medai",
+        "type": "web",
+    },
+    {
+        "name": "Personal AI Agent Setup",
+        "url": "https://kaelux.dev/openclaw",
+        "type": "web",
     },
 ]
 
@@ -95,6 +105,16 @@ def connect_redis() -> redis.Redis:
         exit(1)
     
     return r
+
+
+def read_local_file(path: str) -> str:
+    """Read a local knowledge source from the repository."""
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            return handle.read()
+    except Exception as e:
+        print(f"  ⚠ Failed to read {path}: {e}")
+        return ""
 
 
 def scrape_url(url: str) -> str:
@@ -141,10 +161,10 @@ def summarize_text(text: str, model: genai.GenerativeModel) -> str:
         return text  # Too short to summarize
     
     try:
-        prompt = f"""Summarize this article excerpt concisely, focusing on:
-- Key technical concepts
-- Implementation details
-- Best practices mentioned
+        prompt = f"""Summarize this Kaelux intake knowledge excerpt concisely, focusing on:
+- Factual Kaelux positioning
+- Venture names, routes, and engagement paths
+- Guardrails about what the site or agent should not claim
 
 Keep it under 300 words.
 
@@ -208,10 +228,15 @@ def process_source(
 ) -> int:
     """Process a single source and return count of documents stored."""
     print(f"\n📚 Processing: {source['name']}")
-    print(f"   URL: {source['url']}")
+    source_ref = source.get("path") or source.get("url") or source["name"]
+    print(f"   Source: {source_ref}")
     
-    # Scrape content
-    content = scrape_url(source["url"])
+    # Collect content
+    if source.get("type") == "local":
+        content = read_local_file(source_ref)
+    else:
+        content = scrape_url(source_ref)
+
     if not content:
         print("   ⚠ No content found")
         return 0
@@ -225,7 +250,7 @@ def process_source(
     stored = 0
     for i, chunk in enumerate(chunks[:10]):  # Limit to 10 chunks per source
         # Create unique ID
-        doc_id = hashlib.md5(f"{source['url']}:{i}".encode()).hexdigest()[:12]
+        doc_id = hashlib.md5(f"{source_ref}:{i}".encode()).hexdigest()[:12]
         
         # Check if already exists
         if r.exists(f"knowledge:{doc_id}"):
@@ -241,7 +266,7 @@ def process_source(
             continue
         
         # Store
-        if store_in_redis(r, doc_id, summary, source["url"], source["name"], embedding):
+        if store_in_redis(r, doc_id, summary, source_ref, source["name"], embedding):
             stored += 1
             print(f"   ✓ Stored chunk {i+1}")
         

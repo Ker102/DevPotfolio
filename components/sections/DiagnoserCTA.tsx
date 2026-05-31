@@ -1,6 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { useChat } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
 import Link from "next/link";
 import {
     motion,
@@ -18,40 +20,40 @@ const quickPrompts = [
     "Tell me about personal AI agent setup.",
 ];
 
-function getAgentReply(input: string) {
-    const normalized = input.toLowerCase();
-
-    if (normalized.includes("invest") || normalized.includes("partner") || normalized.includes("fund")) {
-        return "Kaelux is a founder-led AI venture group. The right path is an investor or strategic partner conversation around the venture thesis, current projects, and where outside capital or distribution could help.";
-    }
-
-    if (normalized.includes("build") || normalized.includes("business") || normalized.includes("similar")) {
-        return "Kaelux can evaluate selective build partnerships when a business wants something inspired by a Kaelux venture: a focused product, agent workflow, or technical system with a clear market and operator owner.";
-    }
-
-    if (normalized.includes("agent") || normalized.includes("openclaw") || normalized.includes("hermes") || normalized.includes("nanoclaw")) {
-        return "Personal AI agent setup is the secondary service path: OpenClaw, Hermes, NanoClaw, or another stack configured around your real accounts, files, browser work, terminal flows, and risk profile.";
-    }
-
-    if (normalized.includes("medai") || normalized.includes("medical") || normalized.includes("health")) {
-        return "MedAI is the Kaelux medical-research division. It focuses on research infrastructure, secure tooling, DevSecOps, MLOps, and practical workflows for medical AI programs.";
-    }
-
-    if (normalized.includes("vipermesh") || normalized.includes("prompttriage") || normalized.includes("nullstate")) {
-        return "The current venture directory highlights MedAI, ViperMesh, PromptTriage, and Nullstate. Kaelux is the parent label that makes those projects legible to investors, partners, and future collaborators.";
-    }
-
-    return "Kaelux builds and organizes AI ventures. For most people the next step is either exploring the venture directory, choosing an engagement path, or sending context through the contact form.";
-}
+const initialAgentReply =
+    "Ask about Kaelux, its ventures, investor/partner fit, similar-business builds, or personal AI agent setup.";
 
 export default function DiagnoserCTA() {
     const [input, setInput] = useState("");
     const [isFocused, setIsFocused] = useState(false);
-    const [agentReply, setAgentReply] = useState(
-        "Ask about Kaelux, its ventures, investor/partner fit, similar-business builds, or personal AI agent setup."
-    );
     const sectionRef = useRef<HTMLElement>(null);
     const prefersReducedMotion = useReducedMotion();
+    const { messages, sendMessage, status } = useChat({
+        transport: new DefaultChatTransport({ api: "/api/chat" }),
+    });
+    const isLoading = status === "streaming" || status === "submitted";
+
+    const latestAssistantText = useMemo(() => {
+        for (let i = messages.length - 1; i >= 0; i -= 1) {
+            const message = messages[i];
+
+            if (message.role !== "assistant" || !message.parts) {
+                continue;
+            }
+
+            return message.parts
+                .filter((part): part is { type: "text"; text: string } => part.type === "text")
+                .map((part) => part.text)
+                .join("")
+                .trim();
+        }
+
+        return "";
+    }, [messages]);
+
+    const agentReply = isLoading
+        ? "Reading the Kaelux knowledge base and routing your question..."
+        : latestAssistantText || initialAgentReply;
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
@@ -82,7 +84,23 @@ export default function DiagnoserCTA() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        setAgentReply(getAgentReply(input.trim()));
+        const prompt = input.trim();
+
+        if (!prompt || status !== "ready") {
+            return;
+        }
+
+        sendMessage({ text: prompt });
+        setInput("");
+    };
+
+    const sendPrompt = (prompt: string) => {
+        if (status !== "ready") {
+            return;
+        }
+
+        sendMessage({ text: prompt });
+        setInput("");
     };
 
     return (
@@ -205,11 +223,9 @@ export default function DiagnoserCTA() {
                                         <button
                                             key={prompt}
                                             type="button"
-                                            onClick={() => {
-                                                setInput(prompt);
-                                                setAgentReply(getAgentReply(prompt));
-                                            }}
-                                            className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-left text-[11px] text-zinc-400 transition-colors hover:border-white/20 hover:text-white"
+                                            onClick={() => sendPrompt(prompt)}
+                                            disabled={status !== "ready"}
+                                            className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-left text-[11px] text-zinc-400 transition-colors hover:border-white/20 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                                         >
                                             {prompt}
                                         </button>
@@ -228,6 +244,7 @@ export default function DiagnoserCTA() {
                                             onFocus={() => setIsFocused(true)}
                                             onBlur={() => setIsFocused(false)}
                                             placeholder=""
+                                            disabled={status !== "ready"}
                                             className="w-full bg-transparent border-none rounded-none pl-0 pr-14 py-3
                                        text-white placeholder-zinc-600 focus:outline-none font-mono text-sm caret-transparent"
                                         />
@@ -245,10 +262,11 @@ export default function DiagnoserCTA() {
                                     </div>
                                     <motion.button
                                         type="submit"
+                                        disabled={status !== "ready" || !input.trim()}
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         className="absolute right-0 p-2.5 rounded-lg bg-white text-black
-                                   hover:bg-gray-100 transition-colors shadow-lg shadow-white/5"
+                                   hover:bg-gray-100 transition-colors shadow-lg shadow-white/5 disabled:cursor-not-allowed disabled:opacity-50"
                                     >
                                         <Send className="w-4 h-4" />
                                     </motion.button>
