@@ -34,8 +34,8 @@ export default function Home() {
           <Image
             src="/kaelux-icon-v3.png"
             alt="Kaelux Icon"
-            width={64}
-            height={64}
+            width={1536}
+            height={1565}
             priority
             style={{ width: "auto", height: "64px" }}
             className="relative select-none object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] rounded-[15px]"

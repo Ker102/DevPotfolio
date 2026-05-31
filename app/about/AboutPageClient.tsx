@@ -102,9 +102,10 @@ export default function AboutPageClient() {
                             <Image
                                 src="/kaelux-icon-v3.png"
                                 alt="Kaelux venture studio logo"
-                                width={120}
-                                height={120}
+                                width={1536}
+                                height={1565}
                                 priority
+                                style={{ width: "auto", height: "120px" }}
                                 className="rounded-2xl shadow-2xl shadow-cyan-500/10"
                             />
                         </motion.div>

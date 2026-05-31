@@ -139,8 +139,8 @@ function CompactNavbar() {
         <Image
           src="/kaelux-icon-v3.png"
           alt="Kaelux Icon"
-          width={40}
-          height={40}
+          width={1536}
+          height={1565}
           priority
           style={{ width: "auto", height: "40px" }}
           className="rounded-[12px] object-contain drop-shadow-[0_0_14px_rgba(255,255,255,0.22)]"
