@@ -37,7 +37,7 @@ export default function Home() {
             width={64}
             height={64}
             priority
-            className="relative h-16 w-16 select-none object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] rounded-[15px]"
+            className="relative h-16 w-auto select-none object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.3)] rounded-[15px]"
           />
 
           {/* Text Brand */}
