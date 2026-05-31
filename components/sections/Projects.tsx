@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { HiExternalLink } from "react-icons/hi";
 
-import { coreVentures, labVentures, Venture } from "@/data/ventures";
+import { coreVentures, Venture } from "@/data/ventures";
 import GlassSurface from "@/components/GlassSurface";
 import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
@@ -105,7 +105,8 @@ export default function Projects() {
             <ScrollUnderline underlineClassName="via-white/80">
               MedAI
             </ScrollUnderline>
-            , ViperMesh, PromptTriage, and Nullstate are the main signals. Older experiments sit lower as labs.
+            , ViperMesh, PromptTriage, and Nullstate are the main signals for investors, partners, and businesses
+            looking for comparable product builds.
           </p>
         </motion.div>
 
@@ -118,33 +119,6 @@ export default function Projects() {
         >
           {coreVentures.map((venture, index) => (
             <VentureCard key={venture.id} venture={venture} index={index} />
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={fadeInUp}
-          className="mb-10 mt-28 max-w-3xl"
-        >
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-white/45">
-            Labs / experiments
-          </p>
-          <h2 className="text-4xl font-semibold tracking-[-0.045em] text-white md:text-5xl">
-            Supporting projects that prove range without diluting the venture story.
-          </h2>
-        </motion.div>
-
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={staggerContainer}
-          className="grid gap-5 md:grid-cols-2 lg:grid-cols-4"
-        >
-          {labVentures.map((venture, index) => (
-            <VentureCard key={venture.id} venture={venture} index={index + coreVentures.length} />
           ))}
         </motion.div>
       </div>

@@ -104,7 +104,7 @@ export default function ServiceIntroduction() {
                                 <motion.span variants={textReveal} className="inline-block text-white">
                                     builds AI
                                 </motion.span>
-                                <motion.span variants={textReveal} className="inline-block text-white">
+                                <motion.span variants={textReveal} className="sr-only">
                                     ventures
                                 </motion.span>
                             </h2>
@@ -115,9 +115,9 @@ export default function ServiceIntroduction() {
                                 className="pointer-events-none absolute left-[20.25rem] top-[5.1rem] z-30 h-[26rem] w-[45rem] select-none xl:left-[22rem] xl:top-[5.45rem] xl:h-[30rem] xl:w-[52rem]"
                             >
                                 <span
-                                    className={`${geist.className} absolute left-[3.7rem] top-[1.15rem] z-20 origin-left rotate-[5deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white xl:left-[4.35rem] xl:top-[1.45rem] xl:text-[5rem]`}
+                                    className={`${geist.className} absolute left-[14.5rem] top-[3.8rem] z-20 origin-left -rotate-[6deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_18px_42px_rgba(0,0,0,0.5)] xl:left-[16rem] xl:top-[4.45rem] xl:text-[5rem]`}
                                 >
-                                    Ventures
+                                    ventures
                                 </span>
 
                                 <div className="absolute right-[-3rem] top-[-5.15rem] z-30 h-[33rem] w-[30rem] overflow-hidden xl:right-[-3.45rem] xl:top-[-6.05rem] xl:h-[38rem] xl:w-[35rem]">
