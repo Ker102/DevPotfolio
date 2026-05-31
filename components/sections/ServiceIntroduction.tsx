@@ -115,7 +115,7 @@ export default function ServiceIntroduction() {
                                 className="pointer-events-none absolute left-[20.25rem] top-[5.1rem] z-30 h-[26rem] w-[45rem] select-none xl:left-[22rem] xl:top-[5.45rem] xl:h-[30rem] xl:w-[52rem]"
                             >
                                 <span
-                                    className={`${geist.className} absolute left-[14.5rem] top-[5.35rem] z-20 origin-left -rotate-[5deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_18px_42px_rgba(0,0,0,0.5)] xl:left-[16rem] xl:top-[6.15rem] xl:text-[5rem]`}
+                                    className={`${geist.className} absolute left-[9rem] top-[5.95rem] z-20 origin-left -rotate-[6deg] text-[3.9rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_18px_42px_rgba(0,0,0,0.5)] xl:left-[10.5rem] xl:top-[6.85rem] xl:text-[4.45rem]`}
                                 >
                                     ventures
                                 </span>
