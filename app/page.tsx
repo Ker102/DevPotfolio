@@ -48,6 +48,7 @@ export default function Home() {
             height={32}
             priority
             className="relative h-8 w-auto select-none object-contain drop-shadow-md"
+            style={{ width: "auto" }}
           />
         </div>
       </motion.div>

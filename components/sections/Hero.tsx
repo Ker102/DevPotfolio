@@ -10,7 +10,7 @@ import GlassSurface from "@/components/GlassSurface";
 import FloatingDecor from "@/components/FloatingDecor";
 import { HiArrowDown } from "react-icons/hi";
 
-const MotionImage = motion(Image);
+const MotionImage = motion.create(Image);
 
 // Original star animation - unchanged
 const starAnimation = {
@@ -359,6 +359,7 @@ export default function Hero() {
                             height={600}
                             className="w-[400px] md:w-[700px] lg:w-[900px] object-contain"
                             style={{
+                                height: "auto",
                                 maskImage: 'linear-gradient(to right, transparent 0%, black 25%)',
                                 WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%)'
                             }}
