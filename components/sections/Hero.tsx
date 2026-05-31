@@ -355,11 +355,10 @@ export default function Hero() {
                         <MotionImage
                             src="/images/decorative/liquid-flow-3.png"
                             alt="Liquid Flow Bottom"
-                            width={900}
-                            height={600}
+                            width={1024}
+                            height={571}
                             className="w-[400px] md:w-[700px] lg:w-[900px] object-contain"
                             style={{
-                                height: "auto",
                                 maskImage: 'linear-gradient(to right, transparent 0%, black 25%)',
                                 WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%)'
                             }}

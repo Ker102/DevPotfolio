@@ -44,11 +44,10 @@ export default function Home() {
           <Image
             src="/kaelux-text-new.png"
             alt="Kaelux"
-            width={106}
-            height={32}
+            width={1024}
+            height={248}
             priority
             className="relative h-8 w-auto select-none object-contain drop-shadow-md"
-            style={{ width: "auto" }}
           />
         </div>
       </motion.div>

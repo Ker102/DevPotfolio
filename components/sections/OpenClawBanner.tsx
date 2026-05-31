@@ -129,10 +129,9 @@ export default function OpenClawBanner() {
                                 <Image
                                     src="/openclaw-logo.png"
                                     alt="Personal AI agent setup"
-                                    width={480}
-                                    height={160}
-                                    className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.18)] group-hover:drop-shadow-[0_35px_60px_rgba(94,32,74,0.22)] group-hover:scale-[1.03] transition-all duration-500"
-                                    style={{ width: "auto", height: "auto" }}
+                                    width={4232}
+                                    height={2362}
+                                    className="h-auto w-full max-w-[30rem] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.18)] group-hover:drop-shadow-[0_35px_60px_rgba(94,32,74,0.22)] group-hover:scale-[1.03] transition-all duration-500"
                                     priority
                                 />
                             </motion.div>
