@@ -115,12 +115,12 @@ export default function ServiceIntroduction() {
                                 className="pointer-events-none absolute left-0 top-[5.1rem] z-30 h-[26rem] w-[45rem] select-none xl:left-0 xl:top-[5.45rem] xl:h-[30rem] xl:w-[52rem]"
                             >
                                 <span
-                                    className={`${geist.className} absolute left-0 top-[5.95rem] z-20 origin-left -rotate-[6deg] text-[3.9rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_18px_42px_rgba(0,0,0,0.5)] xl:left-0 xl:top-[6.85rem] xl:text-[4.45rem]`}
+                                    className={`${geist.className} absolute left-[7.25rem] top-[5.15rem] z-20 origin-left -rotate-[2deg] text-[3.75rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_18px_42px_rgba(0,0,0,0.5)] xl:left-[7.9rem] xl:top-[5.85rem] xl:text-[4.2rem]`}
                                 >
                                     ventures
                                 </span>
 
-                                <div className="absolute right-[3rem] top-[-5.15rem] z-30 h-[33rem] w-[30rem] overflow-hidden xl:right-[4rem] xl:top-[-6.05rem] xl:h-[38rem] xl:w-[35rem]">
+                                <div className="absolute right-[1.25rem] top-[-6.25rem] z-30 h-[29rem] w-[27rem] overflow-hidden xl:right-[2.25rem] xl:top-[-7.25rem] xl:h-[34rem] xl:w-[31rem]">
                                     <Image
                                         src="/Now_remove_all_202604241650-Picsart-BackgroundRemover.png"
                                         alt=""
