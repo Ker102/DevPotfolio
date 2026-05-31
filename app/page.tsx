@@ -6,6 +6,7 @@ import Hero from "@/components/sections/Hero";
 import Supporters from "@/components/sections/Supporters";
 import ServiceIntroduction from "@/components/sections/ServiceIntroduction";
 import GradientSpacer from "@/components/sections/GradientSpacer";
+import DiagnoserCTA from "@/components/sections/DiagnoserCTA";
 import OpenClawBanner from "@/components/sections/OpenClawBanner";
 import Projects from "@/components/sections/Projects";
 import AboutKaelux from "@/components/sections/AboutKaelux";
@@ -80,6 +81,7 @@ export default function Home() {
       <GradientSpacer direction="toWhite" className="-mb-16 mt-0 md:mt-4 lg:mt-6 relative z-0" />
 
       <div className="relative z-10">
+        <DiagnoserCTA />
         <OpenClawBanner />
       </div>
 

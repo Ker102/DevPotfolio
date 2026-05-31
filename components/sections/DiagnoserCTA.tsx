@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
     motion,
     useReducedMotion,
@@ -9,12 +9,47 @@ import {
     useSpring,
     useTransform,
 } from "framer-motion";
-import { Send } from "lucide-react";
+import { ArrowRight, Send } from "lucide-react";
+
+const quickPrompts = [
+    "What does Kaelux build?",
+    "I want to invest or partner.",
+    "Can Kaelux build something similar for my business?",
+    "Tell me about personal AI agent setup.",
+];
+
+function getAgentReply(input: string) {
+    const normalized = input.toLowerCase();
+
+    if (normalized.includes("invest") || normalized.includes("partner") || normalized.includes("fund")) {
+        return "Kaelux is a founder-led AI venture group. The right path is an investor or strategic partner conversation around the venture thesis, current projects, and where outside capital or distribution could help.";
+    }
+
+    if (normalized.includes("build") || normalized.includes("business") || normalized.includes("similar")) {
+        return "Kaelux can evaluate selective build partnerships when a business wants something inspired by a Kaelux venture: a focused product, agent workflow, or technical system with a clear market and operator owner.";
+    }
+
+    if (normalized.includes("agent") || normalized.includes("openclaw") || normalized.includes("hermes") || normalized.includes("nanoclaw")) {
+        return "Personal AI agent setup is the secondary service path: OpenClaw, Hermes, NanoClaw, or another stack configured around your real accounts, files, browser work, terminal flows, and risk profile.";
+    }
+
+    if (normalized.includes("medai") || normalized.includes("medical") || normalized.includes("health")) {
+        return "MedAI is the Kaelux medical-research division. It focuses on research infrastructure, secure tooling, DevSecOps, MLOps, and practical workflows for medical AI programs.";
+    }
+
+    if (normalized.includes("vipermesh") || normalized.includes("prompttriage") || normalized.includes("nullstate")) {
+        return "The current venture directory highlights MedAI, ViperMesh, PromptTriage, and Nullstate. Kaelux is the parent label that makes those projects legible to investors, partners, and future collaborators.";
+    }
+
+    return "Kaelux builds and organizes AI ventures. For most people the next step is either exploring the venture directory, choosing an engagement path, or sending context through the contact form.";
+}
 
 export default function DiagnoserCTA() {
     const [input, setInput] = useState("");
     const [isFocused, setIsFocused] = useState(false);
-    const router = useRouter();
+    const [agentReply, setAgentReply] = useState(
+        "Ask about Kaelux, its ventures, investor/partner fit, similar-business builds, or personal AI agent setup."
+    );
     const sectionRef = useRef<HTMLElement>(null);
     const prefersReducedMotion = useReducedMotion();
 
@@ -47,12 +82,7 @@ export default function DiagnoserCTA() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (input.trim()) {
-            const encodedMessage = encodeURIComponent(input.trim());
-            router.push(`/diagnoser?q=${encodedMessage}`);
-        } else {
-            router.push("/diagnoser");
-        }
+        setAgentReply(getAgentReply(input.trim()));
     };
 
     return (
@@ -102,14 +132,14 @@ export default function DiagnoserCTA() {
                         {/* Professional Badge */}
                         <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-white/80 border border-gray-200/50 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.04)] mb-8 transition-all hover:border-gray-300/50">
                             <div className="w-2 h-2 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 animate-pulse" />
-                            <span className="text-sm text-gray-600 font-semibold tracking-wide">Intelligent Diagnostics</span>
+                            <span className="text-sm text-gray-600 font-semibold tracking-wide">Kaelux Intake Agent</span>
                         </div>
 
                         <h2 className="text-5xl md:text-6xl font-semibold tracking-tighter mb-6 text-transparent bg-clip-text bg-gradient-to-b from-gray-900 via-gray-700 to-gray-500">
-                            Not Sure Where to Start?
+                            Ask Kaelux before you reach out.
                         </h2>
                         <p className="text-gray-500 text-xl max-w-2xl mx-auto leading-relaxed font-light">
-                            Let our neural engine analyze your business infrastructure and architect the perfect solution.
+                            A fast terminal-style guide for venture questions, investor fit, partner builds, and personal agent setup.
                         </p>
                     </motion.div>
 
@@ -143,7 +173,7 @@ export default function DiagnoserCTA() {
 
                                 {/* Terminal Title & Status */}
                                 <div className="flex-1 flex items-center justify-center">
-                                    <span className="text-xs font-mono text-zinc-500">Kaelux Neural Agent</span>
+                                    <span className="text-xs font-mono text-zinc-500">kaelux.leads</span>
                                 </div>
 
                                 {/* Online indicator */}
@@ -161,19 +191,29 @@ export default function DiagnoserCTA() {
                                 {/* System init line */}
                                 <div className="flex items-center gap-2 text-zinc-600">
                                     <span className="text-zinc-700 select-none">#</span>
-                                    <span>kaelux-agent v3.5 initialized</span>
+                                    <span>kaelux-intake v1 ready</span>
                                 </div>
 
                                 {/* Ready prompt */}
                                 <div className="flex items-start gap-2">
                                     <span className="text-white select-none shrink-0">❯</span>
-                                    <span className="text-zinc-300">Describe your business and what you&apos;re looking to achieve.</span>
+                                    <span className="text-zinc-300">{agentReply}</span>
                                 </div>
 
-                                {/* Cursor blink */}
-                                <div className="flex items-center gap-2">
-                                    <span className="text-white select-none">❯</span>
-                                    <span className="inline-block w-2 h-4 bg-white/70 animate-pulse" />
+                                <div className="flex flex-wrap gap-2 pt-2">
+                                    {quickPrompts.map((prompt) => (
+                                        <button
+                                            key={prompt}
+                                            type="button"
+                                            onClick={() => {
+                                                setInput(prompt);
+                                                setAgentReply(getAgentReply(prompt));
+                                            }}
+                                            className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-left text-[11px] text-zinc-400 transition-colors hover:border-white/20 hover:text-white"
+                                        >
+                                            {prompt}
+                                        </button>
+                                    ))}
                                 </div>
                             </div>
 
@@ -199,7 +239,7 @@ export default function DiagnoserCTA() {
                                         {/* Placeholder text when empty */}
                                         {!input && !isFocused && (
                                             <span className="absolute left-[14px] top-1/2 -translate-y-1/2 text-zinc-600 font-mono text-sm pointer-events-none">
-                                                Tell us about your business...
+                                                Ask about Kaelux...
                                             </span>
                                         )}
                                     </div>
@@ -214,10 +254,32 @@ export default function DiagnoserCTA() {
                                     </motion.button>
                                 </div>
                                 <p className="text-[11px] text-zinc-600 mt-3 text-center tracking-widest uppercase font-mono">
-                                    Press Enter to Initialize
+                                    Press Enter for a quick route
                                 </p>
                             </form>
                         </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false }}
+                        transition={{ delay: 0.28 }}
+                        className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+                    >
+                        <Link
+                            href="/pricing"
+                            className="inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-gray-900"
+                        >
+                            Choose engagement path
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
+                        <Link
+                            href="#contact"
+                            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition-colors hover:border-gray-300 hover:text-black"
+                        >
+                            Send context
+                        </Link>
                     </motion.div>
 
                     {/* Trust indicator */}
@@ -229,7 +291,7 @@ export default function DiagnoserCTA() {
                         style={{ y: trustY }}
                         className="relative z-10 mt-12 flex items-center justify-center gap-6 pb-16 opacity-60 grayscale transition-all duration-500 hover:grayscale-0 will-change-transform md:pb-0"
                     >
-                        <span className="text-xs font-mono text-gray-400">Powered by Enterprise Neural Engine v3.5</span>
+                        <span className="text-xs font-mono text-gray-400">Fast triage for investors, partners, and serious build inquiries</span>
                     </motion.div>
                 </div>
 
