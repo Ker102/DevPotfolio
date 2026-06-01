@@ -96,7 +96,7 @@ export default function ServiceIntroduction() {
                             </motion.span>
                         </h2>
 
-                        <div className="relative hidden min-h-[21rem] lg:block xl:min-h-[23rem]">
+                        <div className="relative hidden min-h-[18.5rem] lg:block xl:min-h-[20.5rem]">
                             <h2 className={`${geist.className} relative z-10 flex flex-col gap-2 text-[5.25rem] font-medium leading-[1.05] tracking-[-0.04em] text-white xl:text-[5.65rem]`}>
                                 <motion.span variants={textReveal} className="inline-block text-white">
                                     How Kaelux
@@ -104,7 +104,7 @@ export default function ServiceIntroduction() {
                                 <motion.span variants={textReveal} className="inline-block text-white">
                                     builds AI
                                 </motion.span>
-                                <motion.span variants={textReveal} className="inline-block origin-left -rotate-[2deg] pl-[1.35em] text-[0.72em] font-semibold italic leading-[0.85] tracking-[-0.05em] text-white drop-shadow-[0_18px_42px_rgba(0,0,0,0.5)] xl:pl-[1.45em]">
+                                <motion.span variants={textReveal} className="sr-only">
                                     ventures
                                 </motion.span>
                             </h2>
@@ -112,15 +112,21 @@ export default function ServiceIntroduction() {
                             <motion.div
                                 variants={textReveal}
                                 aria-hidden="true"
-                                className="pointer-events-none absolute left-[24.5rem] top-[2.35rem] z-30 h-[25rem] w-[28rem] select-none xl:left-[28rem] xl:top-[2.45rem] xl:h-[28rem] xl:w-[31rem]"
+                                className="pointer-events-none absolute left-[20.25rem] top-[5.1rem] z-30 h-[26rem] w-[45rem] select-none xl:left-[22rem] xl:top-[5.45rem] xl:h-[30rem] xl:w-[52rem]"
                             >
-                                <div className="absolute inset-0 overflow-hidden">
+                                <span
+                                    className={`${geist.className} absolute left-[3.7rem] top-[1.15rem] z-20 origin-left rotate-[5deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_18px_42px_rgba(0,0,0,0.58)] xl:left-[4.35rem] xl:top-[1.45rem] xl:text-[5rem]`}
+                                >
+                                    ventures
+                                </span>
+
+                                <div className="absolute right-[1rem] top-[-5.15rem] z-30 h-[33rem] w-[30rem] overflow-hidden xl:right-[0.5rem] xl:top-[-6.05rem] xl:h-[38rem] xl:w-[35rem]">
                                     <Image
                                         src="/Now_remove_all_202604241650-Picsart-BackgroundRemover.png"
                                         alt=""
                                         width={2752}
                                         height={1536}
-                                        sizes="(min-width: 1280px) 31rem, 28rem"
+                                        sizes="(min-width: 1280px) 35rem, 30rem"
                                         className="absolute right-0 top-0 h-full w-auto max-w-none object-contain drop-shadow-[0_26px_76px_rgba(168,85,247,0.3)]"
                                         priority={false}
                                         unoptimized
