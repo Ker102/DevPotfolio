@@ -1,207 +1,81 @@
-<div align="center">
-
-<img src="public/kaelux-icon-v2.png" alt="Kaelux" width="120" />
-
 # Kaelux.dev
 
-### AI Engineering Agency — Custom LLM & Automation Solutions
+Kaelux.dev is the public site for Kaelux, the founder-led parent brand for AI ventures and product labs by Kristofer Jussmann.
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![Groq](https://img.shields.io/badge/Groq-Llama_3.3-orange?style=for-the-badge)](https://groq.com/)
+The site is no longer positioned as a generic AI agency, infrastructure provider, or broad service menu. Its job is to make the Kaelux group legible to investors, strategic partners, collaborators, and businesses inspired by the ventures.
 
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![DigitalOcean](https://img.shields.io/badge/Deployed_on-DigitalOcean-0080FF?style=for-the-badge&logo=digitalocean&logoColor=white)](https://www.digitalocean.com/)
+## Public Positioning
 
----
+Kaelux is a holding/studio brand over ventures and labs:
 
-[🌐 **Live Site**](https://kaelux.dev) · [💡 **Solutions**](https://kaelux.dev/solutions) · [💰 **Pricing**](https://kaelux.dev/pricing) · [🤖 **Diagnoser**](https://kaelux.dev/diagnoser) · [📚 **Wiki**](https://kaelux.dev/wiki)
+| Venture | Positioning |
+| --- | --- |
+| [MedAI](https://kaelux.dev/medai) | Medical-research AI infrastructure, secure tooling, DevSecOps, and MLOps. |
+| [ViperMesh](https://github.com/Ker102/ViperMesh) | AI-powered Blender assistant and neural 3D creation workspace. |
+| [PromptTriage](https://github.com/Ker102/PromptTriage) | Prompt analysis, refinement, and generation system. |
+| [Nullstate](https://github.com/Ker102/nullstate-cli) | Local-first purple-team CLI for Terraform IaC and infrastructure security workflows. |
 
-</div>
+Supporting labs include Crosswind Console, Kaelux-Automate, Workflow Atlas, and Kaelocs AI. They provide proof of range without being framed as the main venture story.
 
----
+## Engagements
 
-## 🧠 What is Kaelux?
+The legacy pricing route now acts as an engagements page:
 
-**Kaelux** is an AI engineering agency that architects complete AI pipelines — from RAG systems and agentic workflows to managed LLMOps — and connects them directly to your existing business infrastructure.
+- Investors and strategic partners
+- Venture and product partners
+- Selective business builds inspired by Kaelux ventures
+- Business automations
 
-### Core Offerings
+The old fixed package pricing has been removed. Kaelux work is evaluated by fit, seriousness, and leverage.
 
-| Offering | What We Do |
-|----------|------------|
-| 🧩 **Platform (SaaS)** | Pre-built AI tools incl. PromptTriage prompt engineering suite — `$499/mo` |
-| ⚙️ **Custom Engineering** | Bespoke agents, RAG pipelines, fine-tuned models on your data — `Custom quote` |
-| 🔄 **Managed LLMOps** | Continuous monitoring, retraining, drift detection, 24/7 support — `$1,499/mo` |
+## Business Automations
 
-### Platform Services
+The legacy `/openclaw` route is kept for compatibility, but it is now framed as business automations. The offer is for focused workflow builds around intake, research, reporting, internal handoffs, data cleanup, and operational support.
 
-| Service | Description |
-|---------|-------------|
-| 🎨 **UI/UX Design** | Research-driven interfaces with motion and accessibility |
-| 💻 **Full-Stack Development** | Next.js, React, TypeScript — SSR, ISR, and API architecture |
-| ☁️ **Cloud Infrastructure** | Terraform, Docker, Kubernetes on AWS/GCP/Azure/DO |
-| 🚀 **Continuous Delivery** | CI/CD pipelines, observability, and zero-downtime deploys |
+## Active Routes
 
----
+| Route | Purpose |
+| --- | --- |
+| `/` | Holding-studio homepage, venture directory, labs, founder, and contact. |
+| `/about` | Entity and founder context for search, AI assistants, partners, and investors. |
+| `/pricing` | Engagement paths, not package pricing. |
+| `/medai` | Kaelux MedAI division page. |
+| `/openclaw` | Business automations route. |
+| `/wiki` | Technical knowledge base. |
+| `/diagnoser` | Legacy diagnostic agent route. |
+| `/links` | Link-in-bio page. |
 
-## 🐙 OpenClaw Cloud
+`/solutions` and `/services/*` remain reachable as noindex bridge pages so old links do not break.
 
-**Managed AI agent hosting** — deploy open-source agents without managing hardware.
+## Tech Stack
 
-| Plan | Price | Highlights |
-|------|-------|------------|
-| **Explorer** | Free | 3 agents, shared GPU, community support |
-| **Pro** | $29/mo | 10 agents, dedicated GPU, priority support |
-| **Team** | $79/mo | 25 agents, multi-user, SLA guarantee |
-| **Enterprise** | Custom | Unlimited agents, on-prem, 24/7 SLA |
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion and GSAP
+- Three.js / React Three Fiber
+- Vercel AI SDK and Groq integration for legacy diagnostic flows
+- Metadata routes for sitemap and robots
+- JSON-LD structured data for Kaelux, Kristofer, and the venture directory
 
-👉 [Learn more at kaelux.dev/openclaw](https://kaelux.dev/openclaw)
-
----
-
-## 🤖 AI Diagnostic Agent
-
-The site features an AI-powered diagnostic agent (`/diagnoser`) that helps potential clients discover the right solutions for their needs.
-
-```
-User Input  ──►  Groq (Llama 3.3 70B)  ──►  Tool Calls  ──►  Tailored Recommendation
-                        │
-                        ▼
-               HuggingFace Model Search
-               Dynamic Q&A Flow
-               Solution Mapping
-```
-
-**Stack**: Groq API · Vercel AI SDK · Streaming Responses · Framer Motion
-
----
-
-## 📚 AI Engineering Wiki
-
-The `/wiki` section provides authoritative technical articles optimized for **Generative Engine Optimization (GEO)** — ensuring AI search engines cite Kaelux as a trusted source.
-
-| Article | Topic |
-|---------|-------|
-| [Agentic AI vs. Standard Automation](https://kaelux.dev/wiki/agentic-ai-workflows) | Autonomous AI vs. RPA |
-| [RAG for Enterprise Privacy](https://kaelux.dev/wiki/rag-security-compliance) | GDPR/SOC2 compliant retrieval |
-| [SLMs vs. LLMs](https://kaelux.dev/wiki/small-language-models) | When to use small vs. large models |
-| [Hallucination Prevention](https://kaelux.dev/wiki/ai-hallucination-prevention) | Defense-in-depth factuality |
-| [Structured Generation](https://kaelux.dev/wiki/structured-generation) | JSON for legacy integration |
-| [OpenClaw Cloud Hosting](https://kaelux.dev/wiki/openclaw-cloud-hosting) | Managed agent infrastructure |
-
-> Each article ships with **TechArticle JSON-LD**, dynamic `dateModified` freshness signals, and clean scrapable HTML.
-
----
-
-## 🚀 Featured Projects
-
-| Project | Description |
-|---------|-------------|
-| 🎯 [**PromptTriage**](https://github.com/Ker102/PromptTriage) | RAG-powered prompt engineering with metaprompts, few-shot learning, and multi-model optimization |
-| 🌐 [**Crosswind Console**](https://github.com/Ker102/Crosswind-Console) | Unified research dashboard with Gemini + MCP server orchestration |
-| ⚙️ [**Kaelux-Automate**](https://github.com/Ker102/Kaelux-Automate) | Enterprise automation builder with LLM-powered workflow generation |
-| 🌌 [**Workflow Atlas**](https://github.com/Ker102/n8n-ai-automation-workflow-atlas) | 3,800+ battle-tested n8n workflows with Vue explorer |
-| 🔨 [**ViperMesh**](https://github.com/Ker102/ViperMesh) | AI-powered Blender assistant and neural 3D hub with a LangChain-driven workflow |
-
----
-
-## 🏗️ Tech Stack
-
-<div align="center">
-
-| Category | Technologies |
-|----------|-------------|
-| **Frontend** | Next.js 15 · React 19 · TypeScript · Tailwind CSS · Framer Motion |
-| **3D / Animation** | Three.js · React Three Fiber · GSAP |
-| **AI / LLM** | Groq · Llama 3.3 · Vercel AI SDK |
-| **Infrastructure** | DigitalOcean · Docker · GitHub Actions |
-| **SEO** | JSON-LD Schema · OG/Twitter meta · Dynamic Sitemap |
-
-</div>
-
----
-
-## 📁 Project Structure
-
-```
-DevPotfolio/
-├── app/
-│   ├── page.tsx                # Landing page
-│   ├── layout.tsx              # Root layout + SEO metadata
-│   ├── solutions/              # AI Solutions hub
-│   ├── pricing/                # Unified pricing page
-│   ├── openclaw/               # OpenClaw Cloud product page
-│   ├── diagnoser/              # AI diagnostic agent
-│   ├── services/
-│   │   ├── ui-ux-design/
-│   │   ├── full-stack-development/
-│   │   ├── cloud-infrastructure/
-│   │   └── continuous-delivery/
-│   ├── wiki/                   # Technical knowledge base (6 articles)
-│   ├── links/                  # Link-in-bio page
-│   └── api/chat/               # Groq LLM API endpoint
-├── components/
-│   ├── sections/               # Homepage sections
-│   ├── services/               # Service page components
-│   ├── solutions/              # Solutions page components
-│   ├── pricing/                # Pricing page components
-│   ├── openclaw/               # OpenClaw components
-│   ├── diagnostic/             # Diagnoser chat
-│   └── ui/                     # Shared UI components
-├── data/                       # Content data (projects, skills, services)
-├── hooks/                      # Custom React hooks
-├── lib/                        # Animation variants + utilities
-└── public/                     # Static assets, sitemap, robots.txt
-```
-
----
-
-## ⚡ Getting Started
+## Development
 
 ```bash
-# Clone
-git clone https://github.com/Ker102/Kaelux-DevPortfolio.git
-cd Kaelux-DevPortfolio
-
-# Install dependencies
 npm install
-
-# Set up environment variables
-cp .env.example .env.local
-# Add your GROQ_API_KEY for the diagnoser
-
-# Run development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
+Useful checks:
 
----
+```bash
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-## 📊 Performance
+## Notes
 
-<div align="center">
-
-![Performance](https://img.shields.io/badge/Performance-95+-success?style=for-the-badge&logo=lighthouse&logoColor=white)
-![Accessibility](https://img.shields.io/badge/Accessibility-100-success?style=for-the-badge&logo=lighthouse&logoColor=white)
-![Best Practices](https://img.shields.io/badge/Best_Practices-100-success?style=for-the-badge&logo=lighthouse&logoColor=white)
-![SEO](https://img.shields.io/badge/SEO-100-success?style=for-the-badge&logo=lighthouse&logoColor=white)
-
-</div>
-
----
-
-## 📄 License
-
-This project is open source under the [MIT License](LICENSE).
-
----
-
-<div align="center">
-
-**Kaelux — Engineering AI that works.**
-
-[![Made by Kaelux](https://img.shields.io/badge/Made_by-Kaelux-000?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJ3aGl0ZSI+PHBhdGggZD0iTTEyIDJMMTQuNSA5LjUgMjIgMTIgMTQuNSAxNC41IDEyIDIyIDkuNSAxNC41IDIgMTIgOS41IDkuNXoiLz48L3N2Zz4=&logoColor=white)](https://kaelux.dev)
-
-</div>
+- Do not edit `public/hero-title.png` during copy-only repositioning work. The hero title is image-based and should be regenerated separately.
+- Keep commits small and meaningful so the reposition can be reverted in controlled chunks.
+- Avoid fabricated team, client, revenue, uptime, or traction claims.

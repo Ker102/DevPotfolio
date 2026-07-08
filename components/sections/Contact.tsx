@@ -42,9 +42,11 @@ const contactChannels = [
 ];
 
 const contactTopics = [
-  "Client project",
-  "Collaboration",
-  "MedAI research",
+  "Investor or strategic partner",
+  "Venture partnership",
+  "Build something similar",
+  "Business automation",
+  "MedAI collaboration",
   "General inquiry",
 ] as const;
 
@@ -123,7 +125,7 @@ export default function Contact() {
             </h2>
             <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
               <AnimatedNumericText
-                text="Have a project, want to collaborate, or have something serious worth building together? Reach out — whether you're a client, a collaborator, or bringing a strong idea, our team responds within 24 hours."
+                text="For investors, partners, collaborators, or businesses inspired by a Kaelux venture, send the context. Founder-led conversations start here."
                 numberClassName="font-semibold text-white"
               />
             </p>
@@ -183,8 +185,8 @@ export default function Contact() {
                       </h3>
                     </div>
                     <p className="text-gray-400 text-sm max-w-2xl leading-relaxed">
-                      Reach out if you need a technical partner for a client project, want to collaborate
-                      on a serious idea, or are exploring a new build in AI, infrastructure, or platform engineering.
+                      Reach out if you want to discuss investment, a venture partnership, MedAI collaboration,
+                      business automation, or a serious business build inspired by the Kaelux ventures.
                     </p>
                   </div>
 
@@ -303,7 +305,7 @@ export default function Contact() {
                           href="/pricing"
                           className="text-gray-400 hover:text-white font-medium text-base border border-white/10 rounded-full px-6 py-4 hover:border-white/20 transition-all duration-300 text-center whitespace-nowrap"
                         >
-                          See Pricing
+                          Engagements
                         </Link>
                       </div>
                     </form>
@@ -319,7 +321,7 @@ export default function Contact() {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
             </span>
             <span className="text-sm text-gray-500 font-medium">
-              Open to client work and collaborations
+              Open to investors, strategic partners, and selective build collaborations
             </span>
           </motion.div>
         </motion.div>

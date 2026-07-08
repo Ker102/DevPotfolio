@@ -46,15 +46,15 @@ export default function AboutMe() {
                         </div>
 
                         <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                            Agentic Systems Architect & Cloud Engineer based in Estonia,
-                            designing intelligent infrastructure that bridges LLM orchestration,
-                            autonomous agents, and enterprise-grade cloud deployments.
+                            Founder and agentic systems builder based in Estonia,
+                            developing the Kaelux venture group across medical AI,
+                            creative tooling, prompt systems, and infrastructure security.
                         </p>
                         <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                            Kristofer specializes in building agentic AI pipelines, RAG-powered
-                            workflows, and managed cloud platforms — from fine-tuned models
-                            to production-ready IaaS. Every system Kaelux ships is designed
-                            for reliability, scale, and real-world automation.
+                            Kristofer&apos;s role is to turn strong technical theses into
+                            shipped products: build the artifact, find the real market,
+                            and partner when a venture or inspired business build needs
+                            serious execution.
                         </p>
                     </motion.div>
                 </motion.div>

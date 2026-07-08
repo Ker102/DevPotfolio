@@ -1,7 +1,7 @@
-# Kaelux Knowledge Ingestion Workflow
-# Runs weekly to update the RAG knowledge base
+# Kaelux Intake Knowledge Ingestion Workflow
+# Runs weekly to update the RAG knowledge base for the intake agent
 
-name: Ingest Knowledge Base
+name: Ingest Kaelux Intake Knowledge
 
 on:
   schedule:
@@ -39,5 +39,5 @@ jobs:
 
       - name: Summary
         run: |
-          echo "✅ Knowledge base ingestion complete"
+          echo "✅ Kaelux intake knowledge ingestion complete"
           echo "Next scheduled run: $(date -d 'next Sunday 2:00' '+%Y-%m-%d %H:%M UTC')"

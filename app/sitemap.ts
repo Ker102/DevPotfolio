@@ -25,12 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
     },
     {
-      url: `${baseUrl}/solutions`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.95,
-    },
-    {
       url: `${baseUrl}/pricing`,
       lastModified: now,
       changeFrequency: "weekly",
@@ -55,32 +49,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
 
-    // ── Service Pages ───────────────────────────────────────────
-    {
-      url: `${baseUrl}/services/ui-ux-design`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/full-stack-development`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/cloud-infrastructure`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services/continuous-delivery`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-
     // ── Wiki / Knowledge Base ───────────────────────────────────
     {
       url: `${baseUrl}/wiki`,
@@ -96,12 +64,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/wiki/ai-hallucination-prevention`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/wiki/openclaw-cloud-hosting`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.75,

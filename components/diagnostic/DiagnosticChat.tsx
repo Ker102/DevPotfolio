@@ -7,12 +7,12 @@ import { Loader2, Send, ChevronDown, ChevronUp, Search, Cpu, CheckCircle2 } from
 import { useRef, useEffect, useState } from 'react';
 
 // Debug logging - appears in browser console (F12)
-const DEBUG_PREFIX = '🔮 [Diagnoser]';
+const DEBUG_PREFIX = '[Kaelux Intake]';
 const debug = {
-    message: (content: string) => console.log(`${DEBUG_PREFIX} 💬 Message:`, content),
-    toolCall: (toolName: string, input?: unknown) => console.log(`${DEBUG_PREFIX} ⚙️ Tool Call:`, toolName, input),
-    toolResult: (toolName: string, output?: unknown) => console.log(`${DEBUG_PREFIX} ✅ Tool Result:`, toolName, output),
-    error: (content: string) => console.error(`${DEBUG_PREFIX} ❌ Error:`, content),
+    message: (content: string) => console.log(`${DEBUG_PREFIX} Message:`, content),
+    toolCall: (toolName: string, input?: unknown) => console.log(`${DEBUG_PREFIX} Tool Call:`, toolName, input),
+    toolResult: (toolName: string, output?: unknown) => console.log(`${DEBUG_PREFIX} Tool Result:`, toolName, output),
+    error: (content: string) => console.error(`${DEBUG_PREFIX} Error:`, content),
 };
 
 interface CollapsibleSectionProps {
@@ -183,9 +183,9 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
         if (toolState === 'input-streaming' || toolState === 'input-available') {
             return (
                 <CollapsibleSection
-                    title="Searching AI Models"
+                    title="Reading Kaelux Knowledge"
                     icon={<Search className="w-4 h-4" />}
-                    badge="⚙️ Working..."
+                    badge="Working..."
                     isLoading={true}
                 />
             );
@@ -199,9 +199,9 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
 
             return (
                 <CollapsibleSection
-                    title="Model Search Results"
+                    title="Knowledge Results"
                     icon={<Cpu className="w-4 h-4" />}
-                    badge={`✅ Found ${typedOutput.models?.length || 0}`}
+                    badge={`Found ${typedOutput.models?.length || 0}`}
                     defaultOpen={true}
                 >
                     {typedOutput.models && typedOutput.models.length > 0 ? (
@@ -225,7 +225,7 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                             ))}
                             {typedOutput.recommendation && (
                                 <div className="mt-2 pt-2 border-t border-white/10 text-xs text-zinc-400">
-                                    💡 {typedOutput.recommendation}
+                                    {typedOutput.recommendation}
                                 </div>
                             )}
                         </div>
@@ -270,14 +270,14 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                             </svg>
                         </div>
                         <div>
-                            <h3 className="font-semibold text-white text-sm tracking-wide">Kaelux Neural Agent</h3>
+                            <h3 className="font-semibold text-white text-sm tracking-wide">Kaelux Intake Agent</h3>
                             <div className="flex items-center gap-2 mt-0.5">
                                 <span className="relative flex h-2 w-2">
                                     <span className={`animate-ping absolute inline-flex h-full w-full rounded-full ${isLoading ? 'bg-amber-400' : 'bg-emerald-400'} opacity-75`}></span>
                                     <span className={`relative inline-flex rounded-full h-2 w-2 ${isLoading ? 'bg-amber-500' : 'bg-emerald-500'}`}></span>
                                 </span>
                                 <span className="text-xs text-zinc-400 font-medium">
-                                    {isLoading ? 'Analyzing...' : 'System Online'}
+                                    {isLoading ? 'Reading context...' : 'System Online'}
                                 </span>
                                 {isLoading && stop && (
                                     <button
@@ -303,7 +303,7 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                             <div className="bg-zinc-900/80 border border-white/10 text-zinc-300 rounded-2xl px-6 py-5 backdrop-blur-sm">
                                 {showWelcome ? (
                                     <p className="text-[15px] font-medium text-white">
-                                        Describe your business and what you&apos;re looking to achieve.
+                                        Ask about Kaelux ventures, investor or partner fit, selective build inquiries, or business automations.
                                     </p>
                                 ) : (
                                     <>
@@ -331,7 +331,7 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                             >
                                 <div className="flex items-center gap-3 px-6 py-3">
                                     <Loader2 className="w-4 h-4 text-zinc-400 animate-spin" />
-                                    <span className="text-sm text-zinc-400">Analyzing your needs...</span>
+                                    <span className="text-sm text-zinc-400">Reading Kaelux context...</span>
                                 </div>
                             </motion.div>
                         )}
@@ -347,7 +347,7 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                                 onChange={(e) => setInput(e.target.value)}
                                 onFocus={() => setIsFocused(true)}
                                 onBlur={() => setIsFocused(false)}
-                                placeholder="Tell us about your business..."
+                                placeholder="Ask about Kaelux..."
                                 disabled={status !== 'ready'}
                                 className="w-full bg-zinc-900/50 border border-white/10 rounded-xl pl-5 pr-14 py-4 
                                    text-white placeholder-zinc-600 focus:outline-none focus:ring-1 

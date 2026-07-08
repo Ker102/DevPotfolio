@@ -26,11 +26,6 @@ const wikiArticles = [
         title: "JSON for Legacy Integration",
         description: "Strategies for connecting AI systems to legacy infrastructure using structured outputs.",
     },
-    {
-        slug: "openclaw-cloud-hosting",
-        title: "OpenClaw: Self-hosted vs. Cloud Deployment",
-        description: "Compare running OpenClaw on your own hardware vs. managed cloud hosting — security, cost, and operational trade-offs.",
-    },
 ];
 
 export default function WikiIndexPage() {

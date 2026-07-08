@@ -66,7 +66,7 @@ export default function ServiceIntroduction() {
     return (
         <section
             ref={sectionRef}
-            id="services"
+            id="approach"
             className="relative min-h-screen overflow-hidden bg-transparent px-6 pb-36 pt-12 md:pb-72 md:pt-40 lg:pb-[26rem] lg:pt-48 xl:pb-[30rem]"
         >
             <div className="relative z-10 container mx-auto max-w-7xl">
@@ -86,26 +86,26 @@ export default function ServiceIntroduction() {
                     >
                         <h2 className={`${geist.className} flex flex-col gap-2 text-5xl font-medium leading-[1.05] tracking-[-0.04em] text-white md:text-6xl lg:hidden`}>
                             <motion.span variants={textReveal} className="inline-block text-white">
-                                Beyond Chatbots:
+                                How Kaelux
                             </motion.span>
                             <motion.span variants={textReveal} className="inline-block text-white">
-                                Intelligent Infrastructure
+                                builds AI
                             </motion.span>
                             <motion.span variants={textReveal} className="inline-block text-white">
-                                for Business
+                                ventures
                             </motion.span>
                         </h2>
 
                         <div className="relative hidden min-h-[18.5rem] lg:block xl:min-h-[20.5rem]">
                             <h2 className={`${geist.className} relative z-10 flex flex-col gap-2 text-[5.25rem] font-medium leading-[1.05] tracking-[-0.04em] text-white xl:text-[5.65rem]`}>
                                 <motion.span variants={textReveal} className="inline-block text-white">
-                                    Beyond Chatbots:
+                                    How Kaelux
                                 </motion.span>
                                 <motion.span variants={textReveal} className="inline-block text-white">
-                                    Intelligent
+                                    builds AI
                                 </motion.span>
-                                <motion.span variants={textReveal} className="inline-block text-white">
-                                    for Business
+                                <motion.span variants={textReveal} className="sr-only">
+                                    ventures
                                 </motion.span>
                             </h2>
 
@@ -115,12 +115,12 @@ export default function ServiceIntroduction() {
                                 className="pointer-events-none absolute left-[20.25rem] top-[5.1rem] z-30 h-[26rem] w-[45rem] select-none xl:left-[22rem] xl:top-[5.45rem] xl:h-[30rem] xl:w-[52rem]"
                             >
                                 <span
-                                    className={`${geist.className} absolute left-[3.7rem] top-[1.15rem] z-20 origin-left rotate-[5deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white xl:left-[4.35rem] xl:top-[1.45rem] xl:text-[5rem]`}
+                                    className={`${geist.className} absolute left-[4.75rem] top-[1.15rem] z-20 origin-left rotate-[5deg] text-[4.35rem] font-semibold italic leading-none tracking-[-0.05em] text-white drop-shadow-[0_18px_42px_rgba(0,0,0,0.58)] xl:left-[5.35rem] xl:top-[1.45rem] xl:text-[5rem]`}
                                 >
-                                    Infrastructure
+                                    ventures
                                 </span>
 
-                                <div className="absolute right-[-3rem] top-[-5.15rem] z-30 h-[33rem] w-[30rem] overflow-hidden xl:right-[-3.45rem] xl:top-[-6.05rem] xl:h-[38rem] xl:w-[35rem]">
+                                <div className="absolute right-[4rem] top-[-5.15rem] z-30 h-[33rem] w-[30rem] overflow-hidden xl:right-[4rem] xl:top-[-6.05rem] xl:h-[38rem] xl:w-[35rem]">
                                     <Image
                                         src="/Now_remove_all_202604241650-Picsart-BackgroundRemover.png"
                                         alt=""
@@ -146,30 +146,30 @@ export default function ServiceIntroduction() {
                             className="flex flex-col items-center lg:items-start text-center lg:text-left will-change-transform"
                         >
                             <motion.p variants={textReveal} className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed mb-6 max-w-2xl">
-                                Generic AI models don&apos;t understand your{" "}
+                                Kaelux exists to build and organize{" "}
                                 <ScrollUnderline underlineClassName="via-white/85">
-                                    business
+                                    serious AI ventures
                                 </ScrollUnderline>
-                                . We build and tune{" "}
+                                . The focus is not generic services; it is turning focused technical theses into{" "}
                                 <ScrollUnderline underlineClassName="via-white/85">
-                                    custom solutions
+                                    durable companies and divisions
                                 </ScrollUnderline>{" "}
-                                that do.
+                                with clear markets.
                             </motion.p>
                             <motion.p variants={textReveal} className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed mb-10 max-w-2xl">
-                                By combining our tailored AI software with{" "}
+                                The operating style is editor-in-chief discipline plus hands-on{" "}
                                 <ScrollUnderline underlineClassName="via-white/85">
-                                    hands-on engineering services
+                                    production engineering
                                 </ScrollUnderline>
-                                , we connect LLMs directly to your existing systems, automating{" "}
+                                : choose the sharp problem, ship the working artifact, test the market, and keep only the ventures that earn{" "}
                                 <ScrollUnderline underlineClassName="via-white/85">
-                                    complex tasks and workflows
+                                    real traction
                                 </ScrollUnderline>
                                 .
                             </motion.p>
 
                             <motion.div variants={textReveal} style={{ y: ctaY }} className="flex flex-col items-center lg:items-start space-y-6 will-change-transform">
-                                <Link href="/solutions" passHref>
+                                <Link href="#ventures" passHref>
                                     <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
@@ -179,16 +179,20 @@ export default function ServiceIntroduction() {
                                         {/* Metallic Sheen Sweep */}
                                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent w-full -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out" />
 
-                                        <span className="relative z-10">Explore Solutions</span>
+                                        <span className="relative z-10">Explore Ventures</span>
                                         <FaArrowRight className="relative z-10 text-black group-hover:translate-x-1 transition-transform duration-300" />
                                     </motion.button>
                                 </Link>
 
                                 <p className="text-sm font-medium uppercase tracking-widest text-white/62">
-                                    Tailored for your business
+                                    Founder-led studio discipline
                                 </p>
 
-                                <NeedHelpLink className="text-white/72 decoration-white/45 hover:text-white hover:decoration-white" />
+                                <NeedHelpLink
+                                    label="For investors and partners"
+                                    href="/pricing"
+                                    className="text-white/72 decoration-white/45 hover:text-white hover:decoration-white"
+                                />
                             </motion.div>
                         </motion.div>
 

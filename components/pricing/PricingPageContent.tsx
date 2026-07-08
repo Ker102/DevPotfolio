@@ -3,221 +3,113 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
-import { services, openclawPlans, ServicePlan } from "@/data/services";
+
+import { engagementTracks } from "@/data/engagements";
 import { NeedHelpLink } from "@/components/ui/NeedHelpLink";
-
-interface PricingCategoryProps {
-    title: string;
-    description: string;
-    plans: ServicePlan[];
-    href: string;
-    delay?: number;
-}
-
-function PricingCategory({ title, description, plans, href, delay = 0 }: PricingCategoryProps) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 60, damping: 18, delay }}
-        >
-            {/* Category Header */}
-            <div className="flex items-center justify-between mb-6">
-                <div>
-                    <h3 className="text-2xl font-bold text-white">{title}</h3>
-                    <p className="text-gray-500 text-sm mt-1">{description}</p>
-                    <div className="mt-3">
-                        <NeedHelpLink />
-                    </div>
-                </div>
-                <Link
-                    href={href}
-                    className="text-sm text-gray-400 hover:text-white flex items-center gap-1 transition-colors"
-                >
-                    Learn more <FaArrowRight className="text-xs" />
-                </Link>
-            </div>
-
-            {/* Plans */}
-            <div className={`grid gap-6 ${plans.length === 1 ? "max-w-lg" : plans.length === 3 ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-2"}`}>
-                {plans.map((plan, index) => (
-                    <div
-                        key={index}
-                        className={`relative p-6 rounded-2xl border transition-all duration-300 ${plan.highlighted
-                            ? "border-white/20 bg-white/[0.05]"
-                            : "border-white/10 bg-white/[0.02]"
-                            } hover:border-white/25 hover:bg-white/[0.06]`}
-                    >
-                        {plan.highlighted && (
-                            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-                        )}
-
-                        <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-[0.15em] mb-1">
-                            {plan.subtitle}
-                        </p>
-                        <h4 className="text-lg font-bold text-white mb-3">{plan.name}</h4>
-
-                        <div className="flex items-baseline gap-1 mb-4">
-                            <span className="text-4xl font-bold tracking-tight text-white">
-                                {plan.price}
-                            </span>
-                            {plan.period && (
-                                <span className="text-sm text-gray-500 font-medium">
-                                    {plan.period}
-                                </span>
-                            )}
-                        </div>
-
-                        <p className="text-gray-400 text-sm mb-5 leading-relaxed">
-                            {plan.description}
-                        </p>
-
-                        <ul className="space-y-2 mb-6">
-                            {plan.features.map((feature, fIndex) => (
-                                <li key={fIndex} className="flex items-start gap-2.5">
-                                    <FaCheck className="w-3 h-3 text-white/60 mt-1 flex-shrink-0" />
-                                    <span className="text-xs text-gray-400">{feature}</span>
-                                </li>
-                            ))}
-                        </ul>
-
-                        <Link href={plan.ctaHref}>
-                            <motion.button
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className={`w-full py-3 rounded-full text-sm font-semibold flex items-center justify-center gap-2 transition-all duration-300 ${plan.highlighted
-                                    ? "bg-white text-black hover:bg-gray-100"
-                                    : "bg-white/10 text-white hover:bg-white/15 border border-white/10"
-                                    }`}
-                            >
-                                {plan.cta}
-                                <FaArrowRight className="text-xs" />
-                            </motion.button>
-                        </Link>
-                    </div>
-                ))}
-            </div>
-        </motion.div>
-    );
-}
 
 export default function PricingPageContent() {
     return (
-        <section className="min-h-screen pt-32 pb-24 px-6">
-            <div className="container mx-auto max-w-5xl">
-                {/* Page Header */}
+        <section className="min-h-screen px-6 pb-24 pt-32">
+            <div className="container mx-auto max-w-6xl">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 60, damping: 18 }}
-                    className="text-center mb-20"
+                    className="mx-auto mb-20 max-w-4xl text-center"
                 >
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 mb-4">
-                        Pricing
+                    <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-white/45">
+                        Engagements
+                    </p>
+                    <h1 className="mb-6 text-5xl font-semibold tracking-[-0.055em] text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 md:text-7xl">
+                        Partner with the Kaelux venture group.
                     </h1>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                        Transparent pricing for every service. Custom quotes for custom needs.
+                    <p className="mx-auto max-w-3xl text-lg leading-8 text-gray-400 md:text-xl">
+                        Kaelux is not selling a generic menu of AI packages. This page routes the right
+                        people to the right conversation: investors, venture partners, selective business
+                        builds, and focused business automations.
                     </p>
                 </motion.div>
 
-                {/* Pricing Categories */}
-                <div className="space-y-20">
-                    {/* Core AI Offerings */}
-                    <PricingCategory
-                        title="AI Solutions — Core Offerings"
-                        description="Custom LLM integration, agentic workflows, and managed AI infrastructure"
-                        plans={[
-                            {
-                                name: "Platform (SaaS)",
-                                subtitle: "Pre-Built Intelligence",
-                                price: "$499",
-                                period: "/mo",
-                                description: "Access our proprietary LLM tools with immediate plug-and-play integration.",
-                                features: [
-                                    "PromptTriage prompt engineering suite",
-                                    "Pre-built AI workflow templates",
-                                    "API access & webhook integrations",
-                                    "Usage-based compute billing",
-                                    "Standard SLA (99.5% uptime)",
-                                    "Community support + docs",
-                                ],
-                                cta: "Start Free Trial",
-                                ctaHref: "/solutions#contact-form",
-                                highlighted: false,
-                            },
-                            {
-                                name: "Custom Engineering",
-                                subtitle: "Tailored Automation",
-                                price: "Custom",
-                                period: "",
-                                description: "We build custom agents and RAG pipelines specific to your data and workflows.",
-                                features: [
-                                    "Dedicated AI engineering team",
-                                    "Custom agent & RAG pipeline build",
-                                    "Fine-tuned models on your data",
-                                    "Architecture design & review",
-                                    "Private deployment (your cloud or ours)",
-                                    "Priority SLA (99.9% uptime)",
-                                    "Dedicated Slack channel",
-                                ],
-                                cta: "Request a Proposal",
-                                ctaHref: "/solutions#contact-form",
-                                highlighted: true,
-                            },
-                            {
-                                name: "Managed LLMOps",
-                                subtitle: "Reliability at Scale",
-                                price: "$1,499",
-                                period: "/mo",
-                                description: "We handle fine-tuning, monitoring, and model updates so nothing breaks.",
-                                features: [
-                                    "Continuous model monitoring",
-                                    "Automated retraining pipelines",
-                                    "Drift detection & alerting",
-                                    "Model versioning & rollback",
-                                    "Cost optimization reports",
-                                    "24/7 on-call engineering support",
-                                    "Quarterly performance reviews",
-                                ],
-                                cta: "Schedule a Call",
-                                ctaHref: "/solutions#contact-form",
-                                highlighted: false,
-                            },
-                        ]}
-                        href="/solutions"
-                        delay={0.05}
-                    />
+                <div className="grid gap-6 lg:grid-cols-2">
+                    {engagementTracks.map((track, index) => (
+                        <motion.article
+                            key={track.id}
+                            initial={{ opacity: 0, y: 28 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.18 }}
+                            transition={{ type: "spring", stiffness: 60, damping: 18, delay: index * 0.05 }}
+                            className={`relative overflow-hidden rounded-[30px] border p-7 shadow-[0_24px_86px_rgba(0,0,0,0.28)] backdrop-blur ${
+                                track.highlighted
+                                    ? "border-white/22 bg-white/[0.065]"
+                                    : "border-white/10 bg-white/[0.03]"
+                            }`}
+                        >
+                            <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/45 to-transparent" />
+                            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.10),transparent_32%)]" />
 
-                    <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                            <div className="relative z-10 flex h-full flex-col">
+                                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/48">
+                                    {track.eyebrow}
+                                </p>
+                                <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white md:text-4xl">
+                                    {track.title}
+                                </h2>
+                                <p className="mt-5 text-base leading-7 text-gray-300">
+                                    {track.description}
+                                </p>
 
-                    {/* OpenClaw Cloud */}
-                    <PricingCategory
-                        title="OpenClaw Cloud"
-                        description="Managed AI agent hosting — no hardware required"
-                        plans={openclawPlans}
-                        href="/openclaw"
-                        delay={0.1}
-                    />
+                                <div className="mt-6 rounded-2xl border border-white/10 bg-black/18 p-5">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/45">
+                                        Best for
+                                    </p>
+                                    <p className="mt-3 text-sm leading-6 text-white/68">{track.bestFor}</p>
+                                </div>
 
-                    <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                                <ul className="mt-6 flex-1 space-y-3">
+                                    {track.outcomes.map((outcome) => (
+                                        <li key={outcome} className="flex items-start gap-3 text-sm leading-6 text-gray-300">
+                                            <FaCheck className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-white/62" />
+                                            <span>{outcome}</span>
+                                        </li>
+                                    ))}
+                                </ul>
 
-                    {/* Platform Services */}
-                    {services.map((service, index) => (
-                        <div key={service.slug}>
-                            <PricingCategory
-                                title={service.title}
-                                description={service.description}
-                                plans={service.plans}
-                                href={`/services/${service.slug}`}
-                                delay={0.1 * (index + 1)}
-                            />
-                            {index < services.length - 1 && (
-                                <div className="mt-20 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-                            )}
-                        </div>
+                                <Link href={track.href} className="mt-8">
+                                    <motion.span
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                        className={`inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 ${
+                                            track.highlighted
+                                                ? "bg-white text-black hover:bg-gray-100"
+                                                : "border border-white/14 bg-white/8 text-white hover:border-white/25 hover:bg-white/12"
+                                        }`}
+                                    >
+                                        {track.cta}
+                                        <FaArrowRight className="text-xs" />
+                                    </motion.span>
+                                </Link>
+                            </div>
+                        </motion.article>
                     ))}
                 </div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.15 }}
+                    className="mx-auto mt-16 max-w-3xl rounded-[28px] border border-white/10 bg-white/[0.03] p-7 text-center"
+                >
+                    <h2 className="text-2xl font-semibold text-white">No package pricing by default.</h2>
+                    <p className="mt-4 text-base leading-7 text-gray-400">
+                        Kaelux work is evaluated by fit, seriousness, and leverage. If the request is not a
+                        match for the venture group, the answer should be a clear no rather than a generic
+                        services proposal.
+                    </p>
+                    <div className="mt-5">
+                        <NeedHelpLink label="Start with the contact form" href="/#contact" />
+                    </div>
+                </motion.div>
             </div>
         </section>
     );

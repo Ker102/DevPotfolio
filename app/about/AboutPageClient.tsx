@@ -20,68 +20,68 @@ const slideUpFade = {
     },
 };
 
-const services = [
+const focusAreas = [
     {
-        title: "Custom AI Systems",
+        title: "Venture Building",
         description:
-            "Kaelux designs and deploys production AI systems with custom LLM workflows, routing layers, and domain-specific orchestration tuned for real operating environments.",
+            "Kaelux builds focused AI ventures around sharp technical theses, early artifacts, and markets where the work can become more than a one-off project.",
     },
     {
-        title: "Knowledge and Retrieval Infrastructure",
+        title: "Medical AI Division",
         description:
-            "From internal search to retrieval-augmented generation, Kaelux builds data pipelines that ground responses in company knowledge instead of generic public output.",
+            "MedAI is the medical-research division for secure AI infrastructure, research tooling, DevSecOps, and MLOps in retina, hearing, tinnitus, and medical imaging contexts.",
     },
     {
-        title: "Agents and Operational Automation",
+        title: "Creative and Prompt Tooling",
         description:
-            "Kaelux engineers agentic workflows and execution systems that automate repetitive operations, coordinate tools, and reduce dependence on brittle manual processes.",
+            "ViperMesh and PromptTriage explore agentic creation, Blender workflows, prompt analysis, and practical interfaces for builders working with models.",
     },
     {
-        title: "IaaS, PaaS, and SaaS Delivery",
+        title: "Infrastructure Security Labs",
         description:
-            "Kaelux ships managed infrastructure, platform layers, and software products that help businesses operate on modern stacks instead of lagging behind fast-moving technical shifts.",
+            "Nullstate and related labs explore local-first infrastructure security, DevSecOps workflows, and evidence-driven tooling for technical teams.",
     },
 ];
 
 const facts = [
     {
         label: "Entity Type",
-        value: "Engineering and Platform Company",
-        detail: "Kaelux builds and operates AI systems, software platforms, and production infrastructure.",
+        value: "Founder-Led Venture Studio",
+        detail: "Kaelux is the parent brand for AI ventures, divisions, and product labs.",
     },
     {
         label: "Founder",
         value: "Kristofer Jussmann",
-        detail: "Agentic systems architect and cloud engineer leading Kaelux.",
+        detail: "Founder and builder leading the Kaelux venture group.",
     },
     {
         label: "Base",
-        value: "Estonia, Serving Worldwide",
-        detail: "Kaelux works with companies internationally from its Estonia-based studio.",
+        value: "Estonia, Global Reach",
+        detail: "Kaelux is built from Estonia with public ventures and partner conversations that can cross borders.",
     },
     {
         label: "Core Focus",
-        value: "IaaS, PaaS, SaaS, AI",
-        detail: "From managed infrastructure and platform layers to applied AI systems and software products.",
+        value: "AI Ventures and Product Labs",
+        detail: "MedAI, ViperMesh, PromptTriage, Nullstate, and selective partner builds.",
     },
 ];
 
 const faqs = [
     {
         question: "What is Kaelux?",
-        answer: "Kaelux is an engineering and platform company that builds AI systems, managed infrastructure, internal platforms, and software products for businesses.",
+        answer: "Kaelux is the founder-led parent brand for AI ventures, divisions, and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
     },
     {
         question: "Who founded Kaelux?",
-        answer: "Kaelux was founded by Kristofer Jussmann, an Estonia-based agentic systems architect and cloud engineer focused on production-grade AI and infrastructure delivery.",
+        answer: "Kaelux was founded by Kristofer Jussmann, an Estonia-based builder focused on AI ventures, agentic systems, and product labs.",
     },
     {
         question: "What kind of work does Kaelux do?",
-        answer: "Kaelux delivers production AI systems, retrieval infrastructure, agentic automation, managed cloud environments, and platform offerings across IaaS, PaaS, and SaaS.",
+        answer: "Kaelux builds and organizes ventures such as MedAI, ViperMesh, PromptTriage, and Nullstate, while remaining open to selective investor, partner, and build conversations.",
     },
     {
         question: "Is Kaelux a software company or a content channel?",
-        answer: "Kaelux is an engineering company and product builder, not a media or entertainment channel.",
+        answer: "Kaelux is a venture-building parent brand and product builder, not a generic portfolio page or media channel.",
     },
 ];
 
@@ -101,10 +101,11 @@ export default function AboutPageClient() {
                         <motion.div variants={slideUpFade}>
                             <Image
                                 src="/kaelux-icon-v3.png"
-                                alt="Kaelux AI Engineering Agency Logo"
-                                width={120}
-                                height={120}
+                                alt="Kaelux venture studio logo"
+                                width={1536}
+                                height={1565}
                                 priority
+                                style={{ width: "auto", height: "120px" }}
                                 className="rounded-2xl shadow-2xl shadow-cyan-500/10"
                             />
                         </motion.div>
@@ -120,18 +121,17 @@ export default function AboutPageClient() {
                             variants={slideUpFade}
                             className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-3xl"
                         >
-                            <strong className="text-white">Kaelux</strong> is an
-                            engineering and platform company that builds AI
-                            systems, agentic workflows, retrieval pipelines,
-                            and infrastructure across IaaS, PaaS, and SaaS for
-                            businesses that need durable technical advantage.
+                            <strong className="text-white">Kaelux</strong> is the
+                            founder-led parent brand for AI ventures, divisions,
+                            and product labs: MedAI, ViperMesh, PromptTriage,
+                            Nullstate, and the experiments that support them.
                         </motion.p>
 
                         <motion.p
                             variants={slideUpFade}
                             className="max-w-2xl text-sm uppercase tracking-[0.28em] text-gray-500"
                         >
-                            Last updated April 12, 2026
+                            Last updated May 30, 2026
                         </motion.p>
                     </motion.div>
                 </div>
@@ -158,7 +158,7 @@ export default function AboutPageClient() {
                                 identify, cite, and understand across search
                                 engines, AI assistants, partner directories, and
                                 social platforms as a company that builds and
-                                operates production systems.
+                                organizes AI ventures.
                             </p>
                         </motion.div>
 
@@ -205,24 +205,22 @@ export default function AboutPageClient() {
                             variants={slideUpFade}
                             className="rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.05] p-7 text-lg text-gray-200 leading-relaxed"
                         >
-                            Kaelux is an engineering company focused on AI
-                            systems, infrastructure, and software platforms. It
-                            is the operating brand under which Kristofer
-                            Jussmann builds, ships, and manages production
-                            systems for companies that need modern technical
-                            leverage, not generic advisory work.
+                            Kaelux is a founder-led holding and venture studio
+                            brand focused on AI products, divisions, and labs.
+                            It is the operating label under which Kristofer
+                            Jussmann builds, ships, and organizes ventures with
+                            clear technical theses.
                         </motion.div>
                         <motion.p
                             variants={slideUpFade}
                             className="text-lg text-gray-300 font-light leading-relaxed"
                         >
-                            The brand is centered on practical delivery: custom
-                            AI applications, retrieval systems, multi-step
-                            agents, modern software platforms, and managed cloud
-                            environments. Kaelux is not an advisory label or a
-                            media property; it is a technical company built
-                            around operating useful systems and keeping clients
-                            ahead of rapid infrastructure shifts.
+                            The brand is centered on practical delivery:
+                            working products, credible public artifacts, and
+                            selective partnerships. Kaelux is not a generic
+                            portfolio page or a broad agency; it is a parent
+                            brand for ventures that may become standalone
+                            companies or divisions.
                         </motion.p>
                     </motion.div>
                 </div>
@@ -252,21 +250,16 @@ export default function AboutPageClient() {
                                 <strong className="text-white">
                                     Kristofer Jussmann
                                 </strong>{" "}
-                                to help businesses modernize faster than their
-                                current stack allows. Many teams know AI,
-                                automation, and cloud-native platforms matter,
-                                but they struggle to turn disconnected tools
-                                into systems that actually improve execution.
+                                to build a durable label for serious AI ventures.
+                                The site now exists to make the group legible to
+                                investors, collaborators, co-founder-level
+                                partners, and businesses inspired by the ventures.
                             </p>
                             <p>
-                                Kaelux closes that gap by combining AI systems
-                                engineering, platform development, and cloud
-                                infrastructure into one operating model. Whether
-                                a client needs internal knowledge retrieval,
-                                workflow automation, private AI infrastructure,
-                                platform foundations, or a new software product,
-                                the goal is the same: ship systems that create
-                                lasting operational advantage.
+                                Kaelux closes that gap by turning technical
+                                instincts into shipped ventures: define the
+                                market, build the artifact, test the signal, and
+                                keep moving only when the work earns traction.
                             </p>
                         </motion.div>
                     </motion.div>
@@ -287,7 +280,7 @@ export default function AboutPageClient() {
                     </motion.h2>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                        {services.map((service, i) => (
+                        {focusAreas.map((service, i) => (
                             <motion.div
                                 key={service.title}
                                 initial={{ opacity: 0, y: 30 }}
@@ -332,22 +325,21 @@ export default function AboutPageClient() {
                         >
                             Kristofer is an Agentic Systems Architect & Cloud
                             Engineer based in Estonia, designing intelligent
-                            infrastructure that bridges LLM orchestration,
-                            autonomous agents, and enterprise-grade cloud
-                            deployments. He focuses on engineering advanced
-                            retrieval systems, multi-model architectures,
-                            scalable AI products, and infrastructure layers that
-                            help businesses stay current as the technical
-                            landscape moves.
+                            products that bridge LLM orchestration, autonomous
+                            agents, research workflows, creative tooling, and
+                            infrastructure security. He focuses on turning those
+                            systems into ventures with a coherent story and
+                            visible public proof.
                         </motion.p>
                         <motion.p
                             variants={slideUpFade}
                             className="text-lg text-gray-400 font-light leading-relaxed"
                         >
                             Under the Kaelux brand, he combines hands-on
-                            engineering with platform thinking so clients can
-                            move from scattered experimentation to durable
-                            systems with measurable operational value.
+                            founder-led product thinking with hands-on
+                            engineering so Kaelux can move from scattered
+                            experiments to ventures that deserve more capital,
+                            partners, or distribution.
                         </motion.p>
                     </motion.div>
                 </div>
@@ -403,20 +395,19 @@ export default function AboutPageClient() {
                         className="space-y-6"
                     >
                         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">
-                            Ready to Build Something Intelligent?
+                            Interested in Kaelux?
                         </h2>
                         <p className="text-gray-400 text-lg">
-                            Whether you need AI infrastructure, a platform
-                            layer, or a software system that can keep pace with
-                            the market, Kaelux builds technical foundations that
-                            are meant to stay useful under pressure.
+                            Investors, strategic partners, collaborators, and
+                            businesses inspired by the ventures can start with
+                            the engagement paths or contact form.
                         </p>
                         <div className="flex flex-wrap justify-center gap-4 pt-4">
                             <Link
-                                href="/solutions"
+                                href="/pricing"
                                 className="px-8 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors"
                             >
-                                View Solutions
+                                View Engagements
                             </Link>
                             <Link
                                 href="/#contact"

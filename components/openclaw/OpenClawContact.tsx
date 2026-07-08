@@ -10,7 +10,7 @@ export default function OpenClawContact() {
         name: "",
         email: "",
         company: "",
-        plan: "managed",
+        plan: "automation-sprint",
         message: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,7 +27,7 @@ export default function OpenClawContact() {
         setErrorMessage("");
         try {
             await submitContactForm({
-                source: "OpenClaw Contact",
+                source: "Business Automations",
                 name: formData.name,
                 email: formData.email,
                 company: formData.company,
@@ -39,7 +39,7 @@ export default function OpenClawContact() {
                 name: "",
                 email: "",
                 company: "",
-                plan: "managed",
+                plan: "automation-sprint",
                 message: "",
             });
         } catch (error) {
@@ -56,7 +56,6 @@ export default function OpenClawContact() {
     return (
         <section id="openclaw-contact" className="py-28 px-6 bg-black relative overflow-hidden">
             <div className="container mx-auto max-w-2xl relative z-10">
-                {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -65,30 +64,28 @@ export default function OpenClawContact() {
                     className="text-center mb-12"
                 >
                     <span className="text-gray-400 font-medium tracking-[0.2em] uppercase mb-4 block text-sm">
-                        Get Started
+                        Automation Inquiry
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                        Ready to{" "}
+                        Tell us what should be{" "}
                         <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
-                            Deploy
-                        </span>
-                        ?
+                            automated
+                        </span>{" "}
+                        first.
                     </h2>
                     <p className="text-gray-400 max-w-lg mx-auto text-lg leading-relaxed">
-                        Fill out the form below and we&apos;ll get back to you within 24 hours with a deployment plan.
+                        Send the workflow, tools, data, and handoffs you have in mind. Kaelux will respond with the next sensible step.
                     </p>
                 </motion.div>
 
-                {/* Form Card */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                     className="relative rounded-2xl overflow-hidden"
-                    style={{ background: '#09090b' }}
+                    style={{ background: "#09090b" }}
                 >
-                    {/* Chrome Border */}
                     <div className="absolute inset-0 rounded-2xl border border-white/10 pointer-events-none" />
                     <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
 
@@ -104,14 +101,13 @@ export default function OpenClawContact() {
                                         <path d="M5 13l4 4L19 7" />
                                     </svg>
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-3">Message Sent!</h3>
+                                <h3 className="text-2xl font-bold text-white mb-3">Message sent</h3>
                                 <p className="text-gray-400">
-                                    We&apos;ll get back to you within 24 hours with your deployment plan.
+                                    Your business automation inquiry has been sent to Kaelux.
                                 </p>
                             </motion.div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-5">
-                                {/* Name & Email Row */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                     <div>
                                         <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
@@ -143,22 +139,20 @@ export default function OpenClawContact() {
                                     </div>
                                 </div>
 
-                                {/* Company */}
                                 <div>
                                     <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
-                                        Company (Optional)
+                                        Company / Team (Optional)
                                     </label>
                                     <input
                                         name="company"
                                         type="text"
                                         value={formData.company}
                                         onChange={handleChange}
-                                        placeholder="Your company"
+                                        placeholder="Company, studio, or personal workspace"
                                         className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all text-sm"
                                     />
                                 </div>
 
-                                {/* Plan Selection */}
                                 <div>
                                     <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
                                         Interested In
@@ -169,13 +163,13 @@ export default function OpenClawContact() {
                                         onChange={handleChange}
                                         className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all text-sm appearance-none cursor-pointer"
                                     >
-                                        <option value="managed">Managed Hosting ($29/mo)</option>
-                                        <option value="custom">One-Time Setup (Enterprise)</option>
+                                        <option value="automation-sprint">Automation sprint</option>
+                                        <option value="custom-automation-build">Custom automation build</option>
+                                        <option value="workflow-scoping">Workflow scoping</option>
                                         <option value="unsure">Not sure yet</option>
                                     </select>
                                 </div>
 
-                                {/* Message */}
                                 <div>
                                     <label className="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
                                         Message
@@ -184,13 +178,12 @@ export default function OpenClawContact() {
                                         name="message"
                                         value={formData.message}
                                         onChange={handleChange}
-                                        placeholder="Tell us about your use case, which messaging platforms you need, etc."
+                                        placeholder="Tell us what work repeats, which tools or data it touches, who reviews it, and what a good result would look like."
                                         rows={4}
                                         className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all text-sm resize-none"
                                     />
                                 </div>
 
-                                {/* Submit */}
                                 <motion.button
                                     type="submit"
                                     disabled={isSubmitting}
@@ -217,10 +210,6 @@ export default function OpenClawContact() {
                                 {errorMessage ? (
                                     <p className="text-sm text-red-400 text-center">{errorMessage}</p>
                                 ) : null}
-
-                                <p className="text-[11px] text-zinc-600 text-center tracking-widest uppercase font-medium">
-                                    We respond within 24 hours
-                                </p>
                             </form>
                         )}
                     </div>

@@ -5,9 +5,11 @@ import Link from "next/link";
 
 const footerLinks = [
     { label: "Home", href: "/" },
-    { label: "About", href: "/#about-kaelux" },
-    { label: "Services", href: "#features" },
-    { label: "Contact", href: "#contact-form" }
+    { label: "Ventures", href: "/#ventures" },
+    { label: "Engagements", href: "/pricing" },
+    { label: "Automations", href: "/openclaw" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/#contact" },
 ];
 
 export default function SolutionsFooter() {

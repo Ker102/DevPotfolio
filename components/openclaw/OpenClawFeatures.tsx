@@ -4,49 +4,49 @@ import { motion } from "framer-motion";
 import {
     HiOutlineShieldCheck,
     HiOutlineBolt,
-    HiOutlineCurrencyDollar,
     HiOutlineWrenchScrewdriver,
     HiOutlineServerStack,
-    HiOutlineLockClosed
+    HiOutlineLockClosed,
+    HiOutlineCommandLine,
 } from "react-icons/hi2";
 
-const painPoints = [
+const setupConcerns = [
     {
-        icon: HiOutlineCurrencyDollar,
-        title: "Hardware Costs",
-        pain: "A Mac Mini M4 starts at $599+ just for hardware — plus electricity, cooling, and internet uptime.",
-        solution: "We host in the cloud. No upfront investment, no surprise bills."
+        icon: HiOutlineWrenchScrewdriver,
+        title: "Workflow fit",
+        pain: "Most automation fails because the workflow was never clearly mapped before tools were added.",
+        solution: "We start with the repeated business process, the handoffs, and the outcome that should improve.",
     },
     {
         icon: HiOutlineShieldCheck,
-        title: "Security Gaps",
-        pain: "OpenClaw can access your files, browser, and shell. A misconfigured instance is a major security risk.",
-        solution: "We implement strict sandboxing, network policies, and access controls from day one."
+        title: "Access boundaries",
+        pain: "Automations can touch accounts, files, customer data, and internal systems. Loose access creates real risk.",
+        solution: "We define practical guardrails, permissions, and review points before automating meaningful work.",
     },
     {
         icon: HiOutlineBolt,
-        title: "Uptime & Reliability",
-        pain: "A home Mac Mini goes down when your internet or power does. No SLA, no redundancy.",
-        solution: "Production-grade cloud with 99.9% uptime, auto-restarts, and health monitoring."
+        title: "Tool integration",
+        pain: "A demo workflow is easy. A useful business automation needs to fit the tools people already use.",
+        solution: "We wire automations into the channels, databases, documents, and systems where work actually happens.",
     },
     {
-        icon: HiOutlineWrenchScrewdriver,
-        title: "Setup Complexity",
-        pain: "Configuring OpenClaw, LLM API keys, messaging integrations, and SSL takes hours of DevOps work.",
-        solution: "We handle the entire setup. You get a working OpenClaw instance, ready to use."
+        icon: HiOutlineCommandLine,
+        title: "System readiness",
+        pain: "Business workflows often depend on messy data, brittle exports, browser-only tools, and undocumented routines.",
+        solution: "We identify what needs cleanup, what can be automated now, and what should stay manual.",
     },
     {
         icon: HiOutlineServerStack,
-        title: "Scaling Limitations",
-        pain: "A single Mac Mini can only handle so much. Adding capacity means buying more hardware.",
-        solution: "Cloud infrastructure scales on demand. Add instances, increase resources, no physical limits."
+        title: "Deployment shape",
+        pain: "Some automations belong inside existing tools. Others need a small internal app, scheduled job, or agentic workflow.",
+        solution: "We choose the simplest durable shape instead of defaulting to a platform rebuild.",
     },
     {
         icon: HiOutlineLockClosed,
-        title: "Update Management",
-        pain: "OpenClaw is open-source and fast-moving. Keeping up with releases and patches is a chore.",
-        solution: "We manage updates, patches, and version upgrades so you stay current without downtime."
-    }
+        title: "Ongoing maintenance",
+        pain: "Automations decay when upstream tools, schemas, or team habits change.",
+        solution: "We document the operating model and can scope follow-up maintenance when the workflow deserves it.",
+    },
 ];
 
 const containerVariants = {
@@ -54,9 +54,9 @@ const containerVariants = {
     visible: {
         transition: {
             staggerChildren: 0.1,
-            delayChildren: 0.15
-        }
-    }
+            delayChildren: 0.15,
+        },
+    },
 };
 
 const cardVariants = {
@@ -67,16 +67,15 @@ const cardVariants = {
         transition: {
             type: "spring" as const,
             stiffness: 80,
-            damping: 18
-        }
-    }
+            damping: 18,
+        },
+    },
 };
 
 export default function OpenClawFeatures() {
     return (
         <section className="py-28 px-6 bg-black relative overflow-hidden">
             <div className="container mx-auto max-w-7xl relative z-10">
-                {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -85,22 +84,21 @@ export default function OpenClawFeatures() {
                     className="text-center mb-20"
                 >
                     <span className="text-gray-400 font-medium tracking-[0.2em] uppercase mb-4 block text-sm">
-                        Why Kaelux
+                        Automation Scope
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                        Self-Hosting is{" "}
+                        Useful automations need more than{" "}
                         <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
-                            Hard
+                            prompts
                         </span>
-                        . We Make It Easy.
+                        .
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-                        OpenClaw is powerful — but running it yourself comes with real operational challenges.
-                        Here&apos;s what we handle so you don&apos;t have to.
+                        The work is choosing the right process, setting boundaries, and connecting the
+                        automation to the places where it can actually save time.
                     </p>
                 </motion.div>
 
-                {/* Pain Point / Solution Grid */}
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                     variants={containerVariants}
@@ -108,14 +106,13 @@ export default function OpenClawFeatures() {
                     whileInView="visible"
                     viewport={{ once: true, margin: "-50px" }}
                 >
-                    {painPoints.map((item, index) => (
+                    {setupConcerns.map((item) => (
                         <motion.div
-                            key={index}
+                            key={item.title}
                             variants={cardVariants}
                             whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                             className="group relative p-7 bg-zinc-900/60 rounded-2xl hover:bg-zinc-800/60 transition-all duration-500 overflow-hidden shadow-[0_0_0_1px_rgba(255,255,255,0.04)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_8px_30px_-8px_rgba(0,0,0,0.5)]"
                         >
-                            {/* Icon — clean, no border, just the icon with subtle glow */}
                             <motion.div
                                 className="mb-5 text-white/80 group-hover:text-white transition-colors duration-300"
                                 whileHover={{ scale: 1.15, rotate: -5 }}
@@ -125,20 +122,15 @@ export default function OpenClawFeatures() {
                             </motion.div>
 
                             <h3 className="text-lg font-bold text-white mb-3">{item.title}</h3>
-
-                            {/* Pain */}
                             <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                                <span className="text-red-400/80 font-medium">The problem: </span>
+                                <span className="text-red-400/80 font-medium">The risk: </span>
                                 {item.pain}
                             </p>
-
-                            {/* Solution */}
                             <p className="text-gray-400 text-sm leading-relaxed">
-                                <span className="text-emerald-400/80 font-medium">Our solution: </span>
+                                <span className="text-emerald-400/80 font-medium">The setup: </span>
                                 {item.solution}
                             </p>
 
-                            {/* Subtle top accent on hover */}
                             <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </motion.div>
                     ))}

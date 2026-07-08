@@ -1,7 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useMemo, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
+import { Fragment, useMemo } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -33,11 +32,6 @@ export function CountUpNumber({
     duration = 1.1,
     className,
 }: CountUpNumberProps) {
-    const targetRef = useRef<HTMLSpanElement>(null);
-    const inView = useInView(targetRef, { once: true, amount: 0.7 });
-    const prefersReducedMotion = useReducedMotion();
-    const [displayValue, setDisplayValue] = useState(0);
-
     const formatter = useMemo(
         () =>
             new Intl.NumberFormat("en-US", {
@@ -48,38 +42,10 @@ export function CountUpNumber({
         [decimals, useGrouping]
     );
 
-    useEffect(() => {
-        if (!inView) {
-            return;
-        }
-
-        if (prefersReducedMotion) {
-            setDisplayValue(value);
-            return;
-        }
-
-        let frameId = 0;
-        const startedAt = performance.now();
-
-        const tick = (now: number) => {
-            const progress = Math.min((now - startedAt) / (duration * 1000), 1);
-            const easedProgress = 1 - Math.pow(1 - progress, 3);
-            setDisplayValue(value * easedProgress);
-
-            if (progress < 1) {
-                frameId = window.requestAnimationFrame(tick);
-            }
-        };
-
-        frameId = window.requestAnimationFrame(tick);
-
-        return () => window.cancelAnimationFrame(frameId);
-    }, [duration, inView, prefersReducedMotion, value]);
-
     return (
-        <span ref={targetRef} className={className}>
+        <span className={className}>
             {prefix}
-            {formatter.format(displayValue)}
+            {formatter.format(value)}
             {suffix}
         </span>
     );

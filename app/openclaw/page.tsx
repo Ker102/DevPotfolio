@@ -5,27 +5,25 @@ import OpenClawPricing from "@/components/openclaw/OpenClawPricing";
 import OpenClawHowItWorks from "@/components/openclaw/OpenClawHowItWorks";
 import OpenClawFAQ from "@/components/openclaw/OpenClawFAQ";
 import OpenClawContact from "@/components/openclaw/OpenClawContact";
+import AutomationImpact from "@/components/openclaw/AutomationImpact";
 import SolutionsFooter from "@/components/solutions/SolutionsFooter";
 import GradientSpacer from "@/components/sections/GradientSpacer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "OpenClaw Cloud Hosting | Managed AI Agent Deployment | Kaelux",
-    description: "Skip the Mac Mini. Kaelux deploys, secures, and manages your OpenClaw AI agent in production-grade cloud infrastructure. Always-on, zero headaches.",
+    title: "Business Automations | Kaelux",
+    description: "Business automation engagements for companies inspired by Kaelux ventures. Kaelux scopes practical AI-enabled workflows, handoffs, reporting, and internal systems.",
     keywords: [
-        "openclaw hosting",
-        "openclaw cloud",
-        "openclaw managed service",
-        "openclaw without mac mini",
-        "openclaw setup service",
-        "openclaw enterprise deployment",
-        "self-host openclaw alternative",
-        "managed AI agent",
+        "business automation",
+        "AI business automation",
+        "workflow automation",
+        "internal tools automation",
+        "agentic workflow automation",
         "Kaelux",
     ],
     openGraph: {
-        title: "OpenClaw Cloud Hosting | Kaelux",
-        description: "Your OpenClaw AI agent, fully managed in the cloud. No hardware, no security headaches, no downtime.",
+        title: "Business Automations | Kaelux",
+        description: "Scoped business automations and AI-enabled internal workflows by Kaelux.",
         type: "website",
         url: "https://kaelux.dev/openclaw",
     },
@@ -42,6 +40,7 @@ export default function OpenClawPage() {
                 <Navbar />
                 <OpenClawHero />
                 <OpenClawFeatures />
+                <AutomationImpact />
             </div>
 
             {/* Gradient Transition: Black → White */}
