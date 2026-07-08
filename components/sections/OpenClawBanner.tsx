@@ -8,9 +8,8 @@ import {
     useTransform,
 } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
-import { HiOutlineCloud, HiOutlineShieldCheck, HiOutlineBolt } from "react-icons/hi2";
+import { HiOutlineBolt, HiOutlineCog6Tooth, HiOutlineShieldCheck } from "react-icons/hi2";
 import { useRef } from "react";
 
 import { AnimatedNumericText } from "@/components/ui/AnimatedNumberText";
@@ -20,18 +19,18 @@ import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 const highlights = [
     {
         icon: HiOutlineBolt,
-        label: "Tool-Aware",
-        desc: "Configured around your daily workflows",
+        label: "Workflow-first",
+        desc: "Built around repeatable business work",
     },
     {
-        icon: HiOutlineCloud,
-        label: "Local or Cloud",
-        desc: "Match the setup to your risk profile",
+        icon: HiOutlineCog6Tooth,
+        label: "System-aware",
+        desc: "Connects tools, data, and handoffs",
     },
     {
         icon: HiOutlineShieldCheck,
-        label: "Framework-Agnostic",
-        desc: "OpenClaw, Hermes, NanoClaw, or another fit",
+        label: "Scoped",
+        desc: "Automation without a bloated agency package",
     },
 ];
 
@@ -111,29 +110,23 @@ export default function OpenClawBanner() {
                         >
                             <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/35 to-white/35" />
                             <span className="text-xs font-bold uppercase tracking-[0.2em] text-gray-700">
-                                Secondary offer
+                                Selective service
                             </span>
                             <div className="h-px flex-1 bg-gradient-to-l from-transparent via-white/35 to-white/35" />
                         </motion.div>
 
                         <Link href="/openclaw" className="group block">
-                            {/* Logo */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: false, margin: "-50px" }}
                                 transition={{ type: "spring", stiffness: 60, damping: 18 }}
                                 style={{ y: heroY }}
-                                className="mb-4 flex justify-center will-change-transform"
+                                className="mb-6 flex justify-center will-change-transform"
                             >
-                                <Image
-                                    src="/openclaw-logo.png"
-                                    alt="Personal AI agent setup"
-                                    width={4232}
-                                    height={2362}
-                                    className="h-auto w-full max-w-[30rem] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.18)] group-hover:drop-shadow-[0_35px_60px_rgba(94,32,74,0.22)] group-hover:scale-[1.03] transition-all duration-500"
-                                    priority
-                                />
+                                <div className="flex h-24 w-24 items-center justify-center rounded-[2rem] border border-white/45 bg-white/45 shadow-[0_24px_80px_rgba(15,23,42,0.16)] backdrop-blur transition-transform duration-500 group-hover:scale-[1.04]">
+                                    <HiOutlineBolt className="h-12 w-12 text-gray-900" />
+                                </div>
                             </motion.div>
 
                             {/* Text */}
@@ -146,22 +139,22 @@ export default function OpenClawBanner() {
                                 className="mx-auto mb-10 max-w-2xl text-center will-change-transform"
                             >
                                 <h3 className="mb-3 bg-gradient-to-b from-gray-900 via-gray-700 to-gray-400 bg-clip-text text-3xl font-bold tracking-tight text-transparent md:text-4xl">
-                                    Personal AI agent setup
+                                    Business automations
                                 </h3>
                                 <p className="mb-5 text-base leading-relaxed text-gray-600">
-                                    For founders, creators, and operators who want a practical agentic workspace
-                                    without weeks of setup. We help choose and configure{" "}
+                                    For businesses that see the Kaelux ventures and want comparable automation built
+                                    into their own operations. We scope focused systems for{" "}
                                     <ScrollUnderline underlineClassName="via-gray-900/75">
-                                        OpenClaw, Hermes, NanoClaw
+                                        intake, research, reporting, handoffs
                                     </ScrollUnderline>{" "}
-                                    or another agent stack around your{" "}
+                                    and other repeatable work around your{" "}
                                     <ScrollUnderline underlineClassName="via-gray-900/75">
-                                        real tools and accounts
+                                        real tools, data, and team
                                     </ScrollUnderline>
                                     .
                                 </p>
                                 <span className="inline-flex items-center gap-2 text-sm font-semibold text-gray-900 transition-all duration-300 group-hover:gap-3">
-                                    Explore setup
+                                    Explore automations
                                     <FaArrowRight className="text-gray-500 transition-colors duration-300 group-hover:text-gray-900" />
                                 </span>
                             </motion.div>

@@ -17,11 +17,11 @@ const quickPrompts = [
     "What does Kaelux build?",
     "I want to invest or partner.",
     "Can Kaelux build something similar for my business?",
-    "Tell me about personal AI agent setup.",
+    "Can Kaelux automate a business workflow?",
 ];
 
 const initialAgentReply =
-    "Ask about Kaelux, its ventures, investor/partner fit, similar-business builds, or personal AI agent setup.";
+    "Ask about Kaelux, its ventures, investor/partner fit, similar-business builds, or business automations.";
 
 export default function DiagnoserCTA() {
     const [input, setInput] = useState("");
@@ -157,7 +157,7 @@ export default function DiagnoserCTA() {
                             Ask Kaelux before you reach out.
                         </h2>
                         <p className="text-gray-500 text-xl max-w-2xl mx-auto leading-relaxed font-light">
-                            A fast terminal-style guide for venture questions, investor fit, partner builds, and personal agent setup.
+                            A fast terminal-style guide for venture questions, investor fit, partner builds, and business automations.
                         </p>
                     </motion.div>
 

@@ -15,12 +15,12 @@ const bridgeActions: BridgeAction[] = [
     },
     {
         title: "Review engagement paths",
-        description: "Find the right route for investors, strategic partners, selective builds, or agent setup.",
+        description: "Find the right route for investors, strategic partners, selective builds, or business automations.",
         href: "/pricing",
     },
     {
-        title: "Personal AI agent setup",
-        description: "Configure OpenClaw, Hermes, NanoClaw, or another practical agent stack for your workspace.",
+        title: "Business automations",
+        description: "Scope focused automation for repeated workflows, internal handoffs, reporting, and operational support.",
         href: "/openclaw",
     },
 ];

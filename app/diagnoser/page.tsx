@@ -3,10 +3,10 @@ import { DiagnosticChat } from '@/components/diagnostic';
 
 export const metadata: Metadata = {
     title: 'Kaelux Intake Agent | Kaelux',
-    description: 'Ask about Kaelux ventures, investor and partner fit, selective build inquiries, MedAI, and personal AI agent setup.',
+    description: 'Ask about Kaelux ventures, investor and partner fit, selective build inquiries, MedAI, and business automations.',
     openGraph: {
         title: 'Kaelux Intake Agent | Kaelux',
-        description: 'Route questions about Kaelux ventures, partnerships, build inquiries, and personal AI agent setup.',
+        description: 'Route questions about Kaelux ventures, partnerships, build inquiries, and business automations.',
         type: 'website',
         url: 'https://kaelux.dev/diagnoser',
     },
@@ -38,7 +38,7 @@ export default async function DiagnoserPage({ searchParams }: PageProps) {
                         Ask Kaelux
                     </h1>
                     <p className="text-gray-500 max-w-xl mx-auto text-lg font-light">
-                        Use the intake agent to understand Kaelux ventures, investor and partner fit, selective build inquiries, MedAI, and personal AI agent setup.
+                        Use the intake agent to understand Kaelux ventures, investor and partner fit, selective build inquiries, MedAI, and business automations.
                     </p>
                 </div>
 

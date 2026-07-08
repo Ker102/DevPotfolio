@@ -69,12 +69,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/wiki/openclaw-cloud-hosting`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
       url: `${baseUrl}/wiki/rag-security-compliance`,
       lastModified: now,
       changeFrequency: "monthly",

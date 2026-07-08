@@ -24,13 +24,13 @@ The legacy pricing route now acts as an engagements page:
 - Investors and strategic partners
 - Venture and product partners
 - Selective business builds inspired by Kaelux ventures
-- Personal AI agent setup
+- Business automations
 
 The old fixed package pricing has been removed. Kaelux work is evaluated by fit, seriousness, and leverage.
 
-## Personal AI Agent Setup
+## Business Automations
 
-The legacy `/openclaw` route is kept for compatibility, but it is now framed as personal AI agent setup. OpenClaw can be one option, alongside Hermes, NanoClaw, or another practical agent stack.
+The legacy `/openclaw` route is kept for compatibility, but it is now framed as business automations. The offer is for focused workflow builds around intake, research, reporting, internal handoffs, data cleanup, and operational support.
 
 ## Active Routes
 
@@ -40,7 +40,7 @@ The legacy `/openclaw` route is kept for compatibility, but it is now framed as 
 | `/about` | Entity and founder context for search, AI assistants, partners, and investors. |
 | `/pricing` | Engagement paths, not package pricing. |
 | `/medai` | Kaelux MedAI division page. |
-| `/openclaw` | Personal AI agent setup route. |
+| `/openclaw` | Business automations route. |
 | `/wiki` | Technical knowledge base. |
 | `/diagnoser` | Legacy diagnostic agent route. |
 | `/links` | Link-in-bio page. |

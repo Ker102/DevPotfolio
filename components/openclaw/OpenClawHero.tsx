@@ -21,7 +21,7 @@ export default function OpenClawHero() {
                 >
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-xs font-semibold text-gray-300 tracking-[0.15em] uppercase">
-                        Secondary Kaelux Service
+                        Selective Kaelux Service
                     </span>
                 </motion.div>
 
@@ -31,9 +31,9 @@ export default function OpenClawHero() {
                     transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.2 }}
                     className="relative text-5xl md:text-7xl font-bold tracking-tighter text-white mb-8 leading-[1.1]"
                 >
-                    Personal AI Agent{" "}
+                    Business{" "}
                     <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
-                        Setup
+                        Automations
                     </span>
                     <motion.span
                         initial={{ opacity: 0 }}
@@ -41,7 +41,7 @@ export default function OpenClawHero() {
                         transition={{ delay: 0.6, duration: 0.8 }}
                         className="text-gray-400 text-3xl md:text-5xl font-medium block mt-5"
                     >
-                        OpenClaw, Hermes, NanoClaw, or the right stack for your workspace.
+                        Practical systems for repeatable work inside real businesses.
                     </motion.span>
                 </motion.h1>
 
@@ -51,8 +51,8 @@ export default function OpenClawHero() {
                     transition={{ type: "spring", stiffness: 60, damping: 18, delay: 0.35 }}
                     className="text-lg md:text-xl text-gray-400 max-w-2xl font-light leading-relaxed mb-12"
                 >
-                    Kaelux helps founders, creators, and operators configure an agentic workspace around
-                    real tools: messaging, browser work, local files, terminals, accounts, and repeatable workflows.
+                    Kaelux helps businesses turn repeated operational work into focused automation:
+                    intake, research, reporting, internal handoffs, data cleanup, and workflow support.
                 </motion.p>
 
                 <motion.div
@@ -66,7 +66,7 @@ export default function OpenClawHero() {
                             href="#pricing"
                             className="group relative px-8 py-4 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-lg font-semibold overflow-hidden transition-all duration-300 hover:bg-white/15 hover:border-white/30 flex items-center gap-2"
                         >
-                            See setup paths
+                            See automation paths
                             <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
                         </Link>
                     </motion.div>
@@ -75,7 +75,7 @@ export default function OpenClawHero() {
                         href="#openclaw-contact"
                         className="text-gray-400 hover:text-white font-medium text-lg border-b border-transparent hover:border-white/50 transition-all duration-300 pb-0.5"
                     >
-                        Start a setup inquiry
+                        Start an automation inquiry
                     </Link>
                 </motion.div>
             </div>

@@ -360,51 +360,6 @@ export const services: ServiceData[] = [
     },
 ];
 
-// OpenClaw pricing data (for /pricing page)
-export const openclawPlans: ServicePlan[] = [
-    {
-        name: "Managed Hosting",
-        subtitle: "Monthly Subscription",
-        price: "$29",
-        period: "/mo",
-        description:
-            "Your OpenClaw instance, fully managed in the cloud. Perfect for individuals and small teams.",
-        features: [
-            "Single OpenClaw instance",
-            "Cloud-hosted (Google Cloud / Azure)",
-            "SSL & firewall configured",
-            "WhatsApp, Telegram, or Discord integration",
-            "99.9% uptime SLA",
-            "Automated updates & patches",
-            "Email support",
-        ],
-        cta: "Get Started",
-        ctaHref: "/openclaw#openclaw-contact",
-        highlighted: true,
-    },
-    {
-        name: "One-Time Setup",
-        subtitle: "Enterprise & Tailored Solutions",
-        price: "Custom",
-        period: "",
-        description:
-            "A fully tailored OpenClaw deployment designed for your specific infrastructure and scale requirements.",
-        features: [
-            "Multi-instance deployments",
-            "Custom cloud provider of choice",
-            "Advanced security & compliance",
-            "All messaging integrations",
-            "Dedicated infrastructure",
-            "Custom workflow automation",
-            "Priority support & SLA",
-            "On-call engineering",
-        ],
-        cta: "Contact Us",
-        ctaHref: "/openclaw#openclaw-contact",
-        highlighted: false,
-    },
-];
-
 export function getServiceBySlug(slug: string): ServiceData | undefined {
     return services.find((s) => s.slug === slug);
 }

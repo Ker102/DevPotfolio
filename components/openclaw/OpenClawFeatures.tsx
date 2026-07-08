@@ -13,39 +13,39 @@ import {
 const setupConcerns = [
     {
         icon: HiOutlineWrenchScrewdriver,
-        title: "Framework fit",
-        pain: "OpenClaw may be right, but so might Hermes, NanoClaw, or a local-first setup around another agent framework.",
-        solution: "We choose the setup around your actual workflow rather than forcing one branded stack.",
+        title: "Workflow fit",
+        pain: "Most automation fails because the workflow was never clearly mapped before tools were added.",
+        solution: "We start with the repeated business process, the handoffs, and the outcome that should improve.",
     },
     {
         icon: HiOutlineShieldCheck,
         title: "Access boundaries",
-        pain: "Personal agents can touch files, browsers, terminals, and accounts. Misconfigured access creates real risk.",
-        solution: "We define practical guardrails, permissions, and environment boundaries before the agent starts doing work.",
+        pain: "Automations can touch accounts, files, customer data, and internal systems. Loose access creates real risk.",
+        solution: "We define practical guardrails, permissions, and review points before automating meaningful work.",
     },
     {
         icon: HiOutlineBolt,
-        title: "Daily workflow integration",
-        pain: "A demo agent is easy. A useful daily agent needs messaging, context, account flows, and repeatable routines.",
-        solution: "We wire the agent into the channels and tools where it can actually save time.",
+        title: "Tool integration",
+        pain: "A demo workflow is easy. A useful business automation needs to fit the tools people already use.",
+        solution: "We wire automations into the channels, databases, documents, and systems where work actually happens.",
     },
     {
         icon: HiOutlineCommandLine,
-        title: "Local machine readiness",
-        pain: "Agents often depend on local packages, browser profiles, shell access, credentials, and environment setup.",
-        solution: "We prepare the workspace so the agent can operate without constant manual repair.",
+        title: "System readiness",
+        pain: "Business workflows often depend on messy data, brittle exports, browser-only tools, and undocumented routines.",
+        solution: "We identify what needs cleanup, what can be automated now, and what should stay manual.",
     },
     {
         icon: HiOutlineServerStack,
-        title: "Local or cloud choice",
-        pain: "Some workflows belong on a personal machine. Others need a small hosted environment or remote access.",
-        solution: "We decide deployment shape based on privacy, uptime, and cost instead of defaulting to cloud.",
+        title: "Deployment shape",
+        pain: "Some automations belong inside existing tools. Others need a small internal app, scheduled job, or agentic workflow.",
+        solution: "We choose the simplest durable shape instead of defaulting to a platform rebuild.",
     },
     {
         icon: HiOutlineLockClosed,
         title: "Ongoing maintenance",
-        pain: "Agent frameworks move quickly, and broken dependencies can turn a useful tool into shelfware.",
-        solution: "We document the setup and can scope follow-up maintenance when the workflow deserves it.",
+        pain: "Automations decay when upstream tools, schemas, or team habits change.",
+        solution: "We document the operating model and can scope follow-up maintenance when the workflow deserves it.",
     },
 ];
 
@@ -84,18 +84,18 @@ export default function OpenClawFeatures() {
                     className="text-center mb-20"
                 >
                     <span className="text-gray-400 font-medium tracking-[0.2em] uppercase mb-4 block text-sm">
-                        Setup Scope
+                        Automation Scope
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                        Useful agents need more than{" "}
+                        Useful automations need more than{" "}
                         <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
-                            installation
+                            prompts
                         </span>
                         .
                     </h2>
                     <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed">
-                        The work is choosing the right agent pattern, setting boundaries, and connecting the
-                        agent to the places where it can do useful work.
+                        The work is choosing the right process, setting boundaries, and connecting the
+                        automation to the places where it can actually save time.
                     </p>
                 </motion.div>
 

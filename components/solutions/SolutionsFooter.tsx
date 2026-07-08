@@ -7,7 +7,7 @@ const footerLinks = [
     { label: "Home", href: "/" },
     { label: "Ventures", href: "/#ventures" },
     { label: "Engagements", href: "/pricing" },
-    { label: "Agent Setup", href: "/openclaw" },
+    { label: "Automations", href: "/openclaw" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/#contact" },
 ];

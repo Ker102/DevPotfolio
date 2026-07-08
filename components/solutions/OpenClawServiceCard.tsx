@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { FaArrowRight } from "react-icons/fa";
+import { HiOutlineBolt } from "react-icons/hi2";
 
 export default function OpenClawServiceCard() {
     return (
@@ -26,36 +26,25 @@ export default function OpenClawServiceCard() {
                         transition={{ type: "spring", stiffness: 60, damping: 18 }}
                         className="flex flex-col md:flex-row md:items-center gap-10 md:gap-14"
                     >
-                        {/* Logo — large, standalone, no box */}
                         <div className="shrink-0 relative flex justify-center md:justify-start">
-                            <div className="relative">
-                                <Image
-                                    src="/openclaw-logo.png"
-                                    alt="OpenClaw"
-                                    width={440}
-                                    height={150}
-                                    className="object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.4)] group-hover:drop-shadow-[0_35px_60px_rgba(0,0,0,0.55)] group-hover:scale-[1.04] transition-all duration-500"
-                                />
-
+                            <div className="flex h-24 w-24 items-center justify-center rounded-[2rem] border border-gray-200 bg-white shadow-[0_25px_50px_rgba(0,0,0,0.12)] transition-transform duration-500 group-hover:scale-[1.04]">
+                                <HiOutlineBolt className="h-12 w-12 text-gray-900" />
                             </div>
                         </div>
 
-                        {/* Content — black-to-white silver gradient text */}
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center gap-3 mb-2">
                                 <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-gray-900 via-gray-600 to-gray-300">
-                                    OpenClaw Cloud
+                                    Business Automations
                                 </h3>
                             </div>
                             <span className="text-xs font-semibold text-gray-500 uppercase tracking-[0.15em] mb-4 block">
-                                Managed AI Agent Hosting
+                                Focused Workflow Builds
                             </span>
                             <p className="text-gray-600 leading-relaxed text-base md:text-lg max-w-3xl mb-6">
-                                OpenClaw is the open-source AI agent everyone is talking about — but self-hosting
-                                means buying hardware, managing security, and keeping it online 24/7. We eliminate
-                                all of that. Kaelux deploys, secures, and manages your OpenClaw instance in
-                                production-grade cloud infrastructure so you get an always-on AI agent without
-                                the Mac Mini.
+                                Kaelux scopes practical automations for repeated business workflows: intake,
+                                research, reporting, handoffs, data cleanup, and internal operating systems.
+                                The work starts from the process, then chooses the smallest durable build.
                             </p>
 
                             <div className="flex flex-wrap items-center gap-4">
@@ -65,7 +54,7 @@ export default function OpenClawServiceCard() {
                                 </span>
                                 <span className="text-sm text-gray-400">|</span>
                                 <span className="text-sm font-medium text-gray-500">
-                                    Starting from $29/mo
+                                    Scoped engagement
                                 </span>
                                 <span className="text-sm text-gray-400">|</span>
                                 {/* NEW badge — black-to-white gradient */}

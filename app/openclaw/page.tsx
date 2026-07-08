@@ -5,25 +5,25 @@ import OpenClawPricing from "@/components/openclaw/OpenClawPricing";
 import OpenClawHowItWorks from "@/components/openclaw/OpenClawHowItWorks";
 import OpenClawFAQ from "@/components/openclaw/OpenClawFAQ";
 import OpenClawContact from "@/components/openclaw/OpenClawContact";
+import AutomationImpact from "@/components/openclaw/AutomationImpact";
 import SolutionsFooter from "@/components/solutions/SolutionsFooter";
 import GradientSpacer from "@/components/sections/GradientSpacer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Personal AI Agent Setup | Kaelux",
-    description: "Personal AI agent setup for founders, creators, and operators. Kaelux helps configure OpenClaw, Hermes, NanoClaw, or the right agent stack for your workspace.",
+    title: "Business Automations | Kaelux",
+    description: "Business automation engagements for companies inspired by Kaelux ventures. Kaelux scopes practical AI-enabled workflows, handoffs, reporting, and internal systems.",
     keywords: [
-        "personal AI agent setup",
-        "OpenClaw setup",
-        "Hermes agent setup",
-        "NanoClaw setup",
-        "AI agent workspace",
-        "agentic workflow setup",
+        "business automation",
+        "AI business automation",
+        "workflow automation",
+        "internal tools automation",
+        "agentic workflow automation",
         "Kaelux",
     ],
     openGraph: {
-        title: "Personal AI Agent Setup | Kaelux",
-        description: "Configure a practical personal AI agent workspace with Kaelux.",
+        title: "Business Automations | Kaelux",
+        description: "Scoped business automations and AI-enabled internal workflows by Kaelux.",
         type: "website",
         url: "https://kaelux.dev/openclaw",
     },
@@ -40,6 +40,7 @@ export default function OpenClawPage() {
                 <Navbar />
                 <OpenClawHero />
                 <OpenClawFeatures />
+                <AutomationImpact />
             </div>
 
             {/* Gradient Transition: Black → White */}

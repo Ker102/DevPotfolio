@@ -45,7 +45,7 @@ const contactTopics = [
   "Investor or strategic partner",
   "Venture partnership",
   "Build something similar",
-  "Personal AI agent setup",
+  "Business automation",
   "MedAI collaboration",
   "General inquiry",
 ] as const;
@@ -186,7 +186,7 @@ export default function Contact() {
                     </div>
                     <p className="text-gray-400 text-sm max-w-2xl leading-relaxed">
                       Reach out if you want to discuss investment, a venture partnership, MedAI collaboration,
-                      personal AI agent setup, or a serious business build inspired by the Kaelux ventures.
+                      business automation, or a serious business build inspired by the Kaelux ventures.
                     </p>
                   </div>
 

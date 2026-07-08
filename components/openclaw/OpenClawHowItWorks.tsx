@@ -9,21 +9,21 @@ const steps = [
         Icon: HiOutlineChatBubbleLeftRight,
         title: "Map the workflow",
         description:
-            "We identify what the agent should actually do, which tools it may touch, and what should stay out of scope.",
+            "We identify the repeated business work, the inputs, the handoffs, the exceptions, and what should stay manual.",
     },
     {
         number: "02",
         Icon: HiOutlineCog8Tooth,
-        title: "Configure the agent stack",
+        title: "Design the automation",
         description:
-            "We set up the framework, model/API keys, local or hosted environment, integrations, and practical access boundaries.",
+            "We choose the simplest durable shape: internal tool, integration, scheduled workflow, agentic routine, or documented operating system.",
     },
     {
         number: "03",
         Icon: HiOutlineRocketLaunch,
         title: "Test real routines",
         description:
-            "We validate the setup against daily tasks, document how to operate it, and decide whether ongoing support is worth scoping.",
+            "We validate against real cases, document how the workflow should run, and decide whether maintenance is worth scoping.",
     },
 ];
 
@@ -67,11 +67,11 @@ export default function OpenClawHowItWorks() {
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
                         Three steps to a{" "}
                         <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
-                            useful agent
+                            useful automation
                         </span>
                     </h2>
                     <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-                        The goal is a setup that survives first contact with your real work.
+                        The goal is an automation that survives first contact with your real work.
                     </p>
                 </motion.div>
 

@@ -303,7 +303,7 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                             <div className="bg-zinc-900/80 border border-white/10 text-zinc-300 rounded-2xl px-6 py-5 backdrop-blur-sm">
                                 {showWelcome ? (
                                     <p className="text-[15px] font-medium text-white">
-                                        Ask about Kaelux ventures, investor or partner fit, selective build inquiries, or personal AI agent setup.
+                                        Ask about Kaelux ventures, investor or partner fit, selective build inquiries, or business automations.
                                     </p>
                                 ) : (
                                     <>

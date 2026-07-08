@@ -12,7 +12,7 @@ const navLinks = [
   { name: "Home", href: "#hero" },
   { name: "Ventures", href: "#ventures" },
   { name: "MedAI", href: "/medai", isExternal: true },
-  { name: "Agent Setup", href: "/openclaw", isExternal: true },
+  { name: "Automations", href: "/openclaw", isExternal: true },
   { name: "Engagements", href: "/pricing", isExternal: true },
   { name: "About", href: "/about", isExternal: true },
   { name: "Wiki", href: "/wiki", isExternal: true },
@@ -25,7 +25,7 @@ const navCards = [
     links: [
       { label: "How We Build", href: "#approach" },
       { label: "Ventures", href: "#ventures" },
-      { label: "Agent Setup", href: "/openclaw", isExternal: true },
+      { label: "Automations", href: "/openclaw", isExternal: true },
       { label: "Engagements", href: "/pricing", isExternal: true },
     ],
   },

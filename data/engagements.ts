@@ -58,18 +58,18 @@ export const engagementTracks: EngagementTrack[] = [
         href: "/#contact",
     },
     {
-        id: "personal-agent-setup",
+        id: "business-automations",
         eyebrow: "Secondary service offer",
-        title: "Personal AI agent setup",
+        title: "Business automations",
         description:
-            "For individuals or small teams that want a personal AI agent configured around their tools, accounts, local machine, and preferred agent framework.",
-        bestFor: "Founders, creators, and operators who want an agentic workspace without spending weeks on setup.",
+            "For businesses that want focused automation around repeated workflows, internal handoffs, reporting, research, or operational support.",
+        bestFor: "Teams with a specific workflow worth automating, not a vague request to transform everything at once.",
         outcomes: [
-            "Agent framework selection",
-            "Local or cloud setup guidance",
-            "Messaging, browser, filesystem, and workflow integration where appropriate",
+            "Workflow and handoff mapping",
+            "Automation architecture and integration scope",
+            "Prototype, implementation, or maintenance plan where appropriate",
         ],
-        cta: "Explore agent setup",
+        cta: "Explore automations",
         href: "/openclaw",
     },
 ];

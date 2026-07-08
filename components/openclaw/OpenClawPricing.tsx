@@ -6,36 +6,36 @@ import { FaArrowRight, FaCheck } from "react-icons/fa";
 
 const setupPaths = [
     {
-        name: "Personal Setup",
-        subtitle: "Founder / Creator Workspace",
+        name: "Automation Sprint",
+        subtitle: "Focused Business Workflow",
         price: "Scoped",
         description:
-            "A focused setup for one person or a small founder workspace using the agent framework that best fits the workflow.",
+            "A focused engagement for one operational workflow that is repetitive enough to automate but not large enough to become a full venture.",
         features: [
-            "Workflow and tool mapping",
-            "OpenClaw, Hermes, NanoClaw, or alternative framework selection",
-            "Local or cloud setup recommendation",
-            "Model/API key and account integration guidance",
-            "Basic guardrails and operating notes",
+            "Workflow and handoff mapping",
+            "Tool, data, and account integration plan",
+            "Automation architecture recommendation",
+            "Prototype or implementation scope",
+            "Operating notes and guardrails",
         ],
-        cta: "Start setup inquiry",
+        cta: "Start automation inquiry",
         ctaHref: "#openclaw-contact",
         highlighted: true,
     },
     {
-        name: "Custom Agent Build",
-        subtitle: "Advanced / Team Workflow",
+        name: "Custom Automation Build",
+        subtitle: "Internal System / Team Workflow",
         price: "Custom",
         description:
-            "A deeper engagement when the agent needs more integrations, stronger boundaries, or a team-ready operating environment.",
+            "A deeper build when the workflow needs integrations, permissions, reporting, human review, or a team-ready operating model.",
         features: [
-            "Multi-tool workflow design",
-            "Hosted or local environment architecture",
-            "Messaging, browser, filesystem, and terminal integration where appropriate",
+            "Multi-step workflow design",
+            "Internal tool, scheduled job, or agentic workflow architecture",
+            "CRM, spreadsheet, document, inbox, browser, or database integration where appropriate",
             "Security and access-control review",
             "Documentation and follow-up support options",
         ],
-        cta: "Discuss custom setup",
+        cta: "Discuss custom automation",
         ctaHref: "#openclaw-contact",
         highlighted: false,
     },
@@ -76,16 +76,16 @@ export default function OpenClawPricing() {
                     className="text-center mb-16"
                 >
                     <span className="text-gray-500 font-medium tracking-[0.2em] uppercase mb-4 block text-sm">
-                        Setup Paths
+                        Automation Paths
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
                         Scoped around the{" "}
                         <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
-                            real workflow
+                            business workflow
                         </span>
                     </h2>
                     <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-                        Agent setup depends on tools, risk, access, and whether the work belongs locally or in the cloud.
+                        Automation depends on process clarity, tool access, data quality, review points, and how much reliability the workflow needs.
                     </p>
                 </motion.div>
 

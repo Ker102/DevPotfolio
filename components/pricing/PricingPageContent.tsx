@@ -26,7 +26,7 @@ export default function PricingPageContent() {
                     <p className="mx-auto max-w-3xl text-lg leading-8 text-gray-400 md:text-xl">
                         Kaelux is not selling a generic menu of AI packages. This page routes the right
                         people to the right conversation: investors, venture partners, selective business
-                        builds, and personal AI agent setup.
+                        builds, and focused business automations.
                     </p>
                 </motion.div>
 

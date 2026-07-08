@@ -8,32 +8,32 @@ const faqs = [
     {
         question: "Is this still OpenClaw hosting?",
         answer:
-            "The route remains for compatibility, but the offer is broader now: personal AI agent setup. OpenClaw can be one option, alongside Hermes, NanoClaw, or another agent framework if it fits better.",
+            "No. The route remains for compatibility, but the active offer is business automations. OpenClaw or another agent framework may be used only if it is the right implementation detail for a workflow.",
     },
     {
         question: "Who is this for?",
         answer:
-            "Founders, creators, solo operators, and small teams who want an agentic workspace configured around real daily work instead of a demo-only tool.",
+            "Businesses and teams with repeated operational work that is painful enough to automate but specific enough to scope seriously.",
     },
     {
-        question: "Do you always deploy to the cloud?",
+        question: "Do you always build with AI agents?",
         answer:
-            "No. Some setups should stay local because of privacy, filesystem access, browser profiles, or cost. Others benefit from a hosted environment. The deployment shape is part of the scoping.",
+            "No. The implementation can be a small internal tool, workflow integration, scheduled job, documented operating system, or agentic workflow. The workflow decides the shape.",
     },
     {
-        question: "Can I bring my own model or API keys?",
+        question: "Can this connect to our existing tools?",
         answer:
-            "Yes. The setup can work with the model providers and keys you already use, assuming the selected framework supports them and the access pattern is reasonable.",
+            "Usually, yes. CRM, spreadsheets, inboxes, documents, databases, browser-only tools, and internal APIs can be considered, depending on access, security, and reliability constraints.",
     },
     {
-        question: "What integrations can be included?",
+        question: "What kinds of workflows fit?",
         answer:
-            "Messaging, browser workflows, local files, shell tasks, and tool-specific routines can be considered. The final scope depends on security, reliability, and what the agent can do safely.",
+            "Intake, research, reporting, lead qualification, document preparation, handoff tracking, data cleanup, and internal review workflows are better fits than vague requests to automate everything.",
     },
     {
         question: "Is this a subscription product?",
         answer:
-            "Not by default. The first step is a scoped setup. Ongoing support can be discussed only if the workflow is important enough to justify maintenance.",
+            "Not by default. The first step is a scoped automation engagement. Ongoing support can be discussed only if the workflow is important enough to justify maintenance.",
     },
 ];
 
@@ -54,7 +54,7 @@ export default function OpenClawFAQ() {
                         FAQ
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-                        Agent setup{" "}
+                        Automation{" "}
                         <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
                             questions
                         </span>

@@ -24,9 +24,9 @@ The site should communicate:
 ## Success Criteria
 
 - Homepage copy and CTAs frame Kaelux as a venture studio / holding company.
-- Homepage sections are ordered around how Kaelux builds, ventures, labs, personal agent setup, founder, and contact.
+- Homepage sections are ordered around how Kaelux builds, ventures, labs, business automations, founder, and contact.
 - Pricing becomes an engagements page instead of package pricing.
-- `/openclaw` is reframed as personal AI agent setup, with OpenClaw as one supported option.
+- `/openclaw` is reframed as business automations, with the old route kept only for compatibility.
 - Old service routes are removed from navigation and sitemap and are marked `noindex`.
 - Metadata, JSON-LD, README, and sitemap match the new positioning.
 - Animated numeric text renders real values in server/no-JS output instead of `0`.

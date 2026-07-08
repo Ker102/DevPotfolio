@@ -10,7 +10,7 @@ export default function OpenClawContact() {
         name: "",
         email: "",
         company: "",
-        plan: "personal-agent-setup",
+        plan: "automation-sprint",
         message: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,7 +27,7 @@ export default function OpenClawContact() {
         setErrorMessage("");
         try {
             await submitContactForm({
-                source: "Personal AI Agent Setup",
+                source: "Business Automations",
                 name: formData.name,
                 email: formData.email,
                 company: formData.company,
@@ -39,7 +39,7 @@ export default function OpenClawContact() {
                 name: "",
                 email: "",
                 company: "",
-                plan: "personal-agent-setup",
+                plan: "automation-sprint",
                 message: "",
             });
         } catch (error) {
@@ -64,17 +64,17 @@ export default function OpenClawContact() {
                     className="text-center mb-12"
                 >
                     <span className="text-gray-400 font-medium tracking-[0.2em] uppercase mb-4 block text-sm">
-                        Setup Inquiry
+                        Automation Inquiry
                     </span>
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
-                        Tell us what the{" "}
+                        Tell us what should be{" "}
                         <span className="text-transparent bg-clip-text bg-[linear-gradient(90deg,#FF3BFF_0%,#ECBFBF_38%,#5C24FF_76%,#D94FD5_100%)]">
-                            agent
+                            automated
                         </span>{" "}
-                        should do.
+                        first.
                     </h2>
                     <p className="text-gray-400 max-w-lg mx-auto text-lg leading-relaxed">
-                        Send the workflow, tools, and access boundaries you have in mind. Kaelux will respond with the next sensible step.
+                        Send the workflow, tools, data, and handoffs you have in mind. Kaelux will respond with the next sensible step.
                     </p>
                 </motion.div>
 
@@ -103,7 +103,7 @@ export default function OpenClawContact() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-3">Message sent</h3>
                                 <p className="text-gray-400">
-                                    Your agent setup inquiry has been sent to Kaelux.
+                                    Your business automation inquiry has been sent to Kaelux.
                                 </p>
                             </motion.div>
                         ) : (
@@ -163,9 +163,9 @@ export default function OpenClawContact() {
                                         onChange={handleChange}
                                         className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all text-sm appearance-none cursor-pointer"
                                     >
-                                        <option value="personal-agent-setup">Personal agent setup</option>
-                                        <option value="custom-agent-build">Custom agent build</option>
-                                        <option value="framework-selection">Framework selection help</option>
+                                        <option value="automation-sprint">Automation sprint</option>
+                                        <option value="custom-automation-build">Custom automation build</option>
+                                        <option value="workflow-scoping">Workflow scoping</option>
                                         <option value="unsure">Not sure yet</option>
                                     </select>
                                 </div>
@@ -178,7 +178,7 @@ export default function OpenClawContact() {
                                         name="message"
                                         value={formData.message}
                                         onChange={handleChange}
-                                        placeholder="Tell us what you want the agent to do, which tools it should touch, and whether local or cloud setup matters."
+                                        placeholder="Tell us what work repeats, which tools or data it touches, who reviews it, and what a good result would look like."
                                         rows={4}
                                         className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-zinc-600 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all text-sm resize-none"
                                     />

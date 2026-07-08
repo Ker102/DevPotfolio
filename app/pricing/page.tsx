@@ -7,13 +7,13 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
     title: "Engagements | Kaelux Venture Studio",
     description:
-        "Engagement paths for investors, strategic partners, venture collaborators, selective business builds, and personal AI agent setup with Kaelux.",
+        "Engagement paths for investors, strategic partners, venture collaborators, selective business builds, and focused business automations with Kaelux.",
     keywords: [
         "Kaelux engagements",
         "AI venture studio",
         "AI venture partners",
         "Kaelux investors",
-        "personal AI agent setup",
+        "business automation",
     ],
     openGraph: {
         title: "Engagements | Kaelux",
@@ -63,7 +63,7 @@ function PricingContact() {
                     Start the Right Conversation
                 </h2>
                 <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
-                    Send context on the venture, partnership, investment, or agent setup you want to discuss.
+                    Send context on the venture, partnership, investment, or automation you want to discuss.
                     The next step is a focused founder-led conversation, not a generic quote.
                 </p>
                 <a
