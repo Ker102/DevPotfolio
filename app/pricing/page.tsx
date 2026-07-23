@@ -5,15 +5,16 @@ import PricingPageContent from "@/components/pricing/PricingPageContent";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Engagements | Kaelux Venture Studio",
+    title: "Engagements | Kaelux AI Research Lab",
     description:
-        "Engagement paths for investors, strategic partners, venture collaborators, selective business builds, and focused business automations with Kaelux.",
+        "Engagement paths for research collaborators, investors, venture partners, selective builds, and secure business automations with Kaelux.",
     keywords: [
         "Kaelux engagements",
-        "AI venture studio",
+        "AI research lab",
+        "ML engineering",
         "AI venture partners",
         "Kaelux investors",
-        "business automation",
+        "secure business automation",
     ],
     openGraph: {
         title: "Engagements | Kaelux",

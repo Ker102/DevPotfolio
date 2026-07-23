@@ -2,21 +2,22 @@ import type { Metadata } from "next";
 import AboutPageClient from "./AboutPageClient";
 
 export const metadata: Metadata = {
-    title: "About Kaelux | AI Venture Studio and Holding Brand",
+    title: "About Kaelux | AI and ML Research Lab",
     description:
-        "Learn what Kaelux is: the founder-led parent brand for AI ventures and product labs founded by Kristofer Jussmann in Estonia.",
+        "Learn about Kaelux, the Estonia-based AI and ML research lab behind open-source tools, products, ventures, and secure business automations.",
     keywords: [
         "Kaelux",
         "Kaelux.dev",
         "Kaelux ventures",
-        "AI venture studio",
-        "AI holding company",
+        "AI research lab",
+        "ML engineering",
         "AI product lab",
         "Kristofer Jussmann",
         "who is Kaelux",
         "about Kaelux",
         "MedAI",
         "ViperMesh",
+        "Harneloop",
         "PromptTriage",
         "Nullstate",
     ],
@@ -24,9 +25,9 @@ export const metadata: Metadata = {
     creator: "Kaelux",
     publisher: "Kaelux",
     openGraph: {
-        title: "About Kaelux | AI Venture Studio and Holding Brand",
+        title: "About Kaelux | AI and ML Research Lab",
         description:
-            "Kaelux is a founder-led parent brand for AI ventures, divisions, and product labs.",
+            "Kaelux is an Estonia-based AI and ML research lab building open-source tools, products, divisions, and ventures.",
         type: "website",
         url: "https://kaelux.dev/about",
         siteName: "Kaelux",
@@ -35,15 +36,15 @@ export const metadata: Metadata = {
                 url: "https://kaelux.dev/kaelux-icon-v3.png",
                 width: 512,
                 height: 512,
-                alt: "Kaelux venture studio logo",
+                alt: "Kaelux AI research lab logo",
             },
         ],
     },
     twitter: {
         card: "summary",
-        title: "About Kaelux | AI Venture Studio and Holding Brand",
+        title: "About Kaelux | AI and ML Research Lab",
         description:
-            "Kaelux is the parent brand for AI ventures and product labs by Kristofer Jussmann.",
+            "AI and ML research, open-source tools, products, ventures, and secure automations by Kaelux.",
         images: ["https://kaelux.dev/kaelux-icon-v3.png"],
     },
     robots: {
@@ -69,7 +70,7 @@ export default function AboutPage() {
             name: "What is Kaelux?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Kaelux is the founder-led parent brand for AI ventures, divisions, and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
+                text: "Kaelux is an Estonia-based AI and ML research lab and venture group behind MedAI, ViperMesh, Harneloop, PromptTriage, and Nullstate.",
             },
         },
         {
@@ -77,7 +78,7 @@ export default function AboutPage() {
             name: "Who founded Kaelux?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Kaelux was founded by Kristofer Jussmann, an Estonia-based builder focused on AI ventures, agentic systems, and product labs.",
+                text: "Kaelux was founded by Kristofer Jussmann, an Estonia-based AI/ML systems researcher and builder.",
             },
         },
         {
@@ -85,7 +86,7 @@ export default function AboutPage() {
             name: "What kind of work does Kaelux do?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Kaelux builds and organizes ventures such as MedAI, ViperMesh, PromptTriage, and Nullstate, while remaining open to selective investor, partner, and build conversations.",
+                text: "Kaelux researches AI/ML systems, publishes open-source tools, develops selected work into products and ventures, and builds secure business automations.",
             },
         },
         {
@@ -93,7 +94,7 @@ export default function AboutPage() {
             name: "Is Kaelux a software company or a content channel?",
             acceptedAnswer: {
                 "@type": "Answer",
-                text: "Kaelux is a venture-building parent brand and product builder, not a generic portfolio page or media channel.",
+                text: "Kaelux is a research lab, software builder, and venture group rather than a personal portfolio or media channel.",
             },
         },
     ];
@@ -105,23 +106,26 @@ export default function AboutPage() {
             name: "About Kaelux",
             url: "https://kaelux.dev/about",
             description:
-                "About page for Kaelux, the AI venture studio and holding brand founded by Kristofer Jussmann.",
+                "About page for Kaelux, the AI and ML research lab founded by Kristofer Jussmann in Estonia.",
             mainEntity: {
                 "@type": "Organization",
                 name: "Kaelux",
                 alternateName: [
                     "Kaelux.dev",
+                    "Kaelux Research Lab",
                     "Kaelux Ventures",
-                    "Kaelux Venture Studio",
                 ],
                 url: "https://kaelux.dev",
                 logo: "https://kaelux.dev/kaelux-icon-v3.png",
                 description:
-                    "Kaelux is the founder-led parent brand for AI ventures and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
+                    "Kaelux is an Estonia-based AI and ML research lab and venture group behind MedAI, ViperMesh, Harneloop, PromptTriage, and Nullstate.",
                 areaServed: "Worldwide",
                 knowsAbout: [
                     "Artificial Intelligence",
+                    "Machine Learning Research",
                     "Large Language Models (LLMs)",
+                    "Agent Harness Engineering",
+                    "Spatial Reasoning",
                     "AI Venture Building",
                     "Medical AI Research Tooling",
                     "Creative AI Tooling",

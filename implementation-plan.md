@@ -47,3 +47,12 @@
 10. Intake agent reliability and knowledge
 - Repair quick-prompt state handling so the compact homepage terminal remains writable and recoverable.
 - Align the system prompt, local canonical context, and Redis ingestion sources with Harneloop, ViperMesh, research-lab positioning, and business automations.
+
+## July 23, 2026 Completion
+
+- Steps 9 and 10 are complete.
+- Added the Harneloop public-build card, Kaelux engineering article, wiki discovery, sitemap entry, and structured article metadata.
+- Updated ViperMesh positioning and linked its harness research to Harneloop.
+- Verified the terminal success path and forced error path in the browser.
+- Verified the Harneloop article at 1440px and 390px with no page-level horizontal overflow.
+- Full lint, typecheck, production build, and Python syntax validation pass.

@@ -98,7 +98,7 @@ export default function Projects() {
             Our ventures
           </p>
           <h2 className="text-5xl font-semibold tracking-[-0.055em] text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 md:text-7xl">
-            Kaelux builds open-source projects, ventures, and productized systems.
+            Kaelux turns AI and ML research into open-source projects, products, and ventures.
           </h2>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-400 md:text-xl">
             Kaelux uses research to make working software:{" "}

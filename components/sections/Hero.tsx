@@ -148,9 +148,9 @@ export default function Hero() {
     const liquidFlow3Ref = useRef<HTMLDivElement>(null);
 
     const mobileTexts = [
-        "A founder-led holding studio for AI ventures, product labs, and selective build partnerships.",
-        "MedAI, ViperMesh, PromptTriage, and Nullstate sit under the Kaelux venture group.",
-        "Built for investors, strategic partners, collaborators, and businesses inspired by the ventures."
+        "An Estonia-based AI and ML research lab building open-source tools, products, and ventures.",
+        "MedAI, ViperMesh, Harneloop, PromptTriage, and Nullstate sit under the Kaelux group.",
+        "Research-led engineering for collaborators, partners, investors, and secure business automation."
     ];
     const [mobileTextIndex, setMobileTextIndex] = useState(0);
 

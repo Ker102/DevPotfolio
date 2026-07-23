@@ -26,7 +26,7 @@ The site should communicate:
 
 ## Success Criteria
 
-- Homepage copy and CTAs frame Kaelux as a venture studio / holding company.
+- Homepage copy and CTAs frame Kaelux as an AI and ML research lab, software builder, and venture group.
 - Homepage sections are ordered around how Kaelux builds, ventures, labs, business automations, founder, and contact.
 - Pricing becomes an engagements page instead of package pricing.
 - `/openclaw` is reframed as business automations, with the old route kept only for compatibility.
@@ -36,3 +36,12 @@ The site should communicate:
 - The homepage intake terminal remains writable after a quick prompt is selected and exposes recoverable request errors.
 - Harneloop has a Kaelux engineering article, venture card, sitemap entry, and intake-agent context.
 - `npm run lint`, `npx tsc --noEmit`, and `npm run build` pass.
+
+## July 23, 2026 Status
+
+- Research-lab positioning is live across the homepage, About page, metadata, manifest, engagements, and canonical agent context.
+- ViperMesh is described as a unified 3D professional studio informed by spatial-reasoning research.
+- Harneloop is listed as a public build and linked to the new harness-evolution engineering article.
+- The homepage terminal remains writable after failed quick prompts and shows a recoverable error state.
+- Redis ingestion now replaces stale source chunks when canonical content changes.
+- Lint, TypeScript, production build, ingestion-script compilation, desktop checks, and mobile article checks pass.

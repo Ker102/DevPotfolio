@@ -10,7 +10,7 @@ type BridgeAction = {
 const bridgeActions: BridgeAction[] = [
     {
         title: "Explore the ventures",
-        description: "See MedAI, ViperMesh, PromptTriage, Nullstate, and the supporting Kaelux labs.",
+        description: "See MedAI, ViperMesh, Harneloop, PromptTriage, Nullstate, and the research connecting them.",
         href: "/#ventures",
     },
     {
