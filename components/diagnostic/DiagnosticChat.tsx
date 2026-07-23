@@ -89,7 +89,7 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
     const [hasSentInitial, setHasSentInitial] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
-    const { messages, sendMessage, status, stop } = useChat({
+    const { messages, sendMessage, status, stop, error, clearError } = useChat({
         transport: new DefaultChatTransport({ api: '/api/chat' }),
     });
 
@@ -136,9 +136,12 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (input.trim() && status === 'ready') {
+        if (input.trim() && !isLoading) {
             debug.message(`User submitting: ${input}`);
-            sendMessage({ text: input });
+            if (error) {
+                clearError();
+            }
+            void sendMessage({ text: input });
             setInput('');
         }
     };
@@ -341,6 +344,11 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
 
                     {/* Input Area */}
                     <form onSubmit={handleSubmit} className="p-5 border-t border-white/5 bg-black/20">
+                        {error && (
+                            <p role="alert" className="mb-3 text-sm text-rose-300">
+                                The last request did not complete. Edit your question or submit again to retry.
+                            </p>
+                        )}
                         <div className="flex items-center gap-3 relative">
                             <input
                                 value={input}
@@ -348,7 +356,7 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                                 onFocus={() => setIsFocused(true)}
                                 onBlur={() => setIsFocused(false)}
                                 placeholder="Ask about Kaelux..."
-                                disabled={status !== 'ready'}
+                                disabled={isLoading}
                                 className="w-full bg-zinc-900/50 border border-white/10 rounded-xl pl-5 pr-14 py-4 
                                    text-white placeholder-zinc-600 focus:outline-none focus:ring-1 
                                    focus:ring-white/20 focus:border-white/20 transition-all font-light text-sm
@@ -356,7 +364,7 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                             />
                             <motion.button
                                 type="submit"
-                                disabled={status !== 'ready' || !input.trim()}
+                                disabled={isLoading || !input.trim()}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="absolute right-2 p-2.5 rounded-lg bg-white text-black 
