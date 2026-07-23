@@ -1,14 +1,17 @@
-# Kaelux Holding-Studio Reposition
+# Kaelux Research Lab and Venture Group
 
 ## Objective
 
-Reposition `kaelux.dev` from a generic AI services and platform-engineering site into the founder-led parent brand for Kaelux ventures.
+Position `kaelux.dev` as the founder-led parent brand and research lab behind Kaelux open-source projects, product experiments, and ventures.
 
 The site should communicate:
 
-- Kaelux is a holding/studio company, not a generic portfolio and not a broad AI agency.
+- Kaelux experiments in AI and ML engineering, publishes open-source work, and develops selected projects into products or ventures.
 - Kristofer Jussmann is the founder behind the venture group.
-- The primary public proof is the venture directory: MedAI, ViperMesh, PromptTriage, and Nullstate.
+- The primary public proof is MedAI, ViperMesh, PromptTriage, Nullstate, and Harneloop.
+- ViperMesh is a unified workspace for 3D professionals informed by research into AI spatial reasoning.
+- Harneloop is the open-source, evidence-gated harness-evolution framework used while developing the ViperMesh Blender harness.
+- Kaelux offers security-first business automation design and implementation from Estonia for Baltic and international companies.
 - Businesses can still contact Kaelux for selective partnership builds inspired by those ventures.
 - Investors, strategic partners, collaborators, and co-founder-level partners are the main audience.
 
@@ -30,4 +33,6 @@ The site should communicate:
 - Old service routes are removed from navigation and sitemap and are marked `noindex`.
 - Metadata, JSON-LD, README, and sitemap match the new positioning.
 - Animated numeric text renders real values in server/no-JS output instead of `0`.
+- The homepage intake terminal remains writable after a quick prompt is selected and exposes recoverable request errors.
+- Harneloop has a Kaelux engineering article, venture card, sitemap entry, and intake-agent context.
 - `npm run lint`, `npx tsc --noEmit`, and `npm run build` pass.

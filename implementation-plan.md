@@ -1,4 +1,4 @@
-# Implementation Plan: Kaelux Holding Studio
+# Implementation Plan: Kaelux Research Lab and Venture Group
 
 1. Documentation baseline
 - Replace the old MedAI-only task definition with the holding-studio reposition objective.
@@ -37,3 +37,13 @@
 - Run stale-claim searches for fabricated team members and old positioning.
 - Run lint, typecheck, and build.
 - Start the dev server and visually verify homepage, pricing, about, MedAI, and business automations on desktop and mobile.
+
+9. Research-lab positioning and public research
+- Reframe homepage and metadata copy around AI/ML engineering research, open-source experiments, products, and ventures.
+- Present security-first business automations as the focused Kaelux service offer, with an Estonia/Baltics base.
+- Expand ViperMesh into a unified 3D professional workspace informed by spatial-reasoning research.
+- Add Harneloop as a public open-source build and publish the Kaelux harness-evolution engineering article.
+
+10. Intake agent reliability and knowledge
+- Repair quick-prompt state handling so the compact homepage terminal remains writable and recoverable.
+- Align the system prompt, local canonical context, and Redis ingestion sources with Harneloop, ViperMesh, research-lab positioning, and business automations.
