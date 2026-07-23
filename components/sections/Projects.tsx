@@ -101,12 +101,13 @@ export default function Projects() {
             Kaelux builds open-source projects, ventures, and productized systems.
           </h2>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-400 md:text-xl">
-            The public site makes the work easy to understand:{" "}
+            Kaelux uses research to make working software:{" "}
             <ScrollUnderline underlineClassName="via-white/80">
               MedAI
             </ScrollUnderline>
-            , ViperMesh, PromptTriage, and Nullstate show how Kaelux turns technical experiments into
-            open-source tools, venture candidates, internal systems, and products with real markets.
+            , ViperMesh, Harneloop, PromptTriage, and Nullstate span medical infrastructure,
+            spatial reasoning, agent harnesses, prompt systems, and security. Some remain open-source
+            experiments; others grow into products, divisions, or ventures.
           </p>
         </motion.div>
 

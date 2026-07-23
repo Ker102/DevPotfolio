@@ -146,24 +146,24 @@ export default function ServiceIntroduction() {
                             className="flex flex-col items-center lg:items-start text-center lg:text-left will-change-transform"
                         >
                             <motion.p variants={textReveal} className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed mb-6 max-w-2xl">
-                                Kaelux exists to build and organize{" "}
+                                Kaelux is an independent{" "}
                                 <ScrollUnderline underlineClassName="via-white/85">
-                                    serious AI ventures
+                                    AI and ML research lab
                                 </ScrollUnderline>
-                                . The focus is not generic services; it is turning focused technical theses into{" "}
+                                . We investigate how agents reason, use tools, and work inside real environments, then turn useful results into{" "}
                                 <ScrollUnderline underlineClassName="via-white/85">
-                                    durable companies and divisions
-                                </ScrollUnderline>{" "}
-                                with clear markets.
+                                    open-source projects, products, and ventures
+                                </ScrollUnderline>
+                                .
                             </motion.p>
                             <motion.p variants={textReveal} className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed mb-10 max-w-2xl">
-                                The operating style is editor-in-chief discipline plus hands-on{" "}
+                                That research also informs our focused service work:{" "}
                                 <ScrollUnderline underlineClassName="via-white/85">
-                                    production engineering
+                                    security-first business automations
                                 </ScrollUnderline>
-                                : choose the sharp problem, ship the working artifact, test the market, and keep only the ventures that earn{" "}
+                                , designed in Estonia for Baltic and international teams. Each system is scoped around a real operation, with clear permissions, human review, and{" "}
                                 <ScrollUnderline underlineClassName="via-white/85">
-                                    real traction
+                                    measurable time returned
                                 </ScrollUnderline>
                                 .
                             </motion.p>
@@ -185,7 +185,7 @@ export default function ServiceIntroduction() {
                                 </Link>
 
                                 <p className="text-sm font-medium uppercase tracking-widest text-white/62">
-                                    Founder-led studio discipline
+                                    Research-led engineering from Estonia
                                 </p>
 
                                 <NeedHelpLink

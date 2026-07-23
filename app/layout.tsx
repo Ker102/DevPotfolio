@@ -8,9 +8,9 @@ import { coreVentures } from "@/data/ventures";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Kaelux | Founder-Led AI Venture Studio",
-  description: "Kaelux is the founder-led parent brand for AI ventures and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
-  keywords: ["Kaelux", "AI venture studio", "AI ventures", "venture builder", "Kristofer Jussmann", "MedAI", "ViperMesh", "PromptTriage", "Nullstate"],
+  title: "Kaelux | AI Research Lab and Venture Group",
+  description: "Kaelux is an Estonia-based AI and ML research lab building open-source tools, products, ventures, and security-first business automations.",
+  keywords: ["Kaelux", "AI research lab", "ML engineering", "AI ventures", "secure business automation", "Baltics", "Kristofer Jussmann", "MedAI", "ViperMesh", "Harneloop", "PromptTriage", "Nullstate"],
   authors: [{ name: "Kaelux" }],
   creator: "Kaelux",
   publisher: "Kaelux",
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Kaelux | Founder-Led AI Venture Studio",
-    description: "The parent brand for Kaelux AI ventures, divisions, and product labs.",
+    title: "Kaelux | AI Research Lab and Venture Group",
+    description: "AI and ML research, open-source tools, ventures, and security-first business automations from Estonia.",
     type: "website",
     url: "https://kaelux.dev",
     siteName: "Kaelux",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         url: "https://kaelux.dev/kaelux-icon-v3.png",
         width: 512,
         height: 512,
-          alt: "Kaelux - AI venture studio",
+          alt: "Kaelux AI research lab",
         type: "image/png",
       },
     ],
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Kaelux | Founder-Led AI Venture Studio",
-    description: "AI ventures, product labs, and selective partner builds by Kaelux.",
+    title: "Kaelux | AI Research Lab and Venture Group",
+    description: "AI and ML research, open-source tools, ventures, and secure business automations from Estonia.",
     images: ["https://kaelux.dev/kaelux-icon-v3.png"],
   },
   robots: {
@@ -82,17 +82,21 @@ export default function RootLayout({
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Kaelux",
-      "alternateName": ["Kaelux.dev", "Kaelux Ventures", "Kaelux Venture Studio"],
+      "alternateName": ["Kaelux.dev", "Kaelux Research Lab", "Kaelux Ventures"],
       "url": "https://kaelux.dev",
       "logo": "https://kaelux.dev/kaelux-icon-v3.png",
       "image": "https://kaelux.dev/kaelux-icon-v3.png",
-      "description": "Kaelux is the founder-led parent brand for AI ventures and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
+      "description": "Kaelux is an Estonia-based AI and ML research lab building open-source tools, products, ventures, and security-first business automations.",
       "areaServed": "Worldwide",
       "knowsAbout": [
         "Artificial Intelligence",
+        "Machine Learning Research",
         "AI Venture Building",
+        "Agent Harness Engineering",
+        "Spatial Reasoning",
         "Medical AI Research Tooling",
         "Agentic Workflows",
+        "Business Automation Security",
         "Creative AI Tooling",
         "Prompt Engineering",
         "Infrastructure Security"
