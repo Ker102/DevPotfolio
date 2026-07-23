@@ -2,6 +2,11 @@ import Link from "next/link";
 
 const wikiArticles = [
     {
+        slug: "harness-evolution-vs-fine-tuning",
+        title: "Harness Evolution vs Fine-Tuning",
+        description: "How to choose the right optimization layer for an AI agent, with Harneloop and ViperMesh as the measured case study.",
+    },
+    {
         slug: "agentic-ai-workflows",
         title: "Agentic AI vs. Standard Automation",
         description: "A comprehensive business guide comparing autonomous AI workflows with traditional RPA systems.",
@@ -34,10 +39,10 @@ export default function WikiIndexPage() {
             {/* Header */}
             <header className="mb-16">
                 <h1 className="text-5xl font-bold tracking-tight text-white mb-4">
-                    AI Engineering Wiki
+                    AI and ML Research Notes
                 </h1>
                 <p className="text-xl text-gray-400">
-                    Technical knowledge base by <strong className="text-white">Kaelux.dev</strong>
+                    Engineering articles and research notes by <strong className="text-white">Kaelux</strong>
                 </p>
             </header>
 
@@ -62,7 +67,7 @@ export default function WikiIndexPage() {
             {/* Footer CTA */}
             <div className="mt-16 pt-8 border-t border-white/10">
                 <p className="text-gray-500 text-sm">
-                    Looking to implement these concepts?{" "}
+                    Working on a difficult agent or automation environment?{" "}
                     <Link href="/#contact" className="text-white hover:underline">
                         Contact Kaelux Engineering →
                     </Link>

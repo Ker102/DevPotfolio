@@ -1,10 +1,11 @@
-import Script from "next/script";
-
 interface WikiArticleProps {
     title: string;
     description: string;
     slug: string;
     children: React.ReactNode;
+    datePublished?: string;
+    dateModified?: string;
+    keywords?: string[];
 }
 
 // Get today's date in YYYY-MM-DD format for GEO freshness
@@ -17,8 +18,13 @@ export default function WikiArticle({
     description,
     slug,
     children,
+    datePublished,
+    dateModified,
+    keywords,
 }: WikiArticleProps) {
     const todayDate = getTodayDate();
+    const publishedDate = datePublished ?? todayDate;
+    const modifiedDate = dateModified ?? publishedDate;
 
     // TechArticle JSON-LD Schema for GEO
     const jsonLd = {
@@ -39,12 +45,13 @@ export default function WikiArticle({
                 "url": "https://kaelux.dev/logo.png",
             },
         },
-        "dateModified": todayDate,
+        "datePublished": publishedDate,
+        "dateModified": modifiedDate,
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": `https://kaelux.dev/wiki/${slug}`,
         },
-        "keywords": [
+        "keywords": keywords ?? [
             "AI engineering",
             "LLM",
             "automation",
@@ -55,11 +62,9 @@ export default function WikiArticle({
 
     return (
         <>
-            <Script
-                id={`jsonld-${slug}`}
+            <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
             />
 
             <article className="max-w-4xl">

@@ -13,6 +13,11 @@ interface WikiArticle {
 
 const wikiArticles: WikiArticle[] = [
     {
+        slug: "harness-evolution-vs-fine-tuning",
+        title: "Harness Evolution vs Fine-Tuning",
+        shortTitle: "Harness Evolution",
+    },
+    {
         slug: "agentic-ai-workflows",
         title: "Agentic AI vs. Standard Automation",
         shortTitle: "Agentic AI",
