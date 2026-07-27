@@ -10,7 +10,7 @@
     "lint": "eslint app components lib hooks data --max-warnings 999"
   },
   "dependencies": {
-    "@ai-sdk/groq": "^3.0.42",
+    "@ai-sdk/groq": "^4.0.13",
     "@ai-sdk/react": "^3.0.210",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
