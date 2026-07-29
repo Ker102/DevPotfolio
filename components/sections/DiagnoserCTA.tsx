@@ -14,21 +14,21 @@ import {
 import { ArrowRight, Send } from "lucide-react";
 
 const quickPrompts = [
-    "What does Kaelux build?",
+    "What is Kaelux researching?",
+    "How are Harneloop and ViperMesh connected?",
     "I want to invest or partner.",
-    "Can Kaelux build something similar for my business?",
-    "Can Kaelux automate a business workflow?",
+    "Can Kaelux securely automate a business workflow?",
 ];
 
 const initialAgentReply =
-    "Ask about Kaelux, its ventures, investor/partner fit, similar-business builds, or business automations.";
+    "Ask about Kaelux research, open-source projects, ventures, partnerships, or secure business automations.";
 
 export default function DiagnoserCTA() {
     const [input, setInput] = useState("");
     const [isFocused, setIsFocused] = useState(false);
     const sectionRef = useRef<HTMLElement>(null);
     const prefersReducedMotion = useReducedMotion();
-    const { messages, sendMessage, status } = useChat({
+    const { messages, sendMessage, status, error, clearError } = useChat({
         transport: new DefaultChatTransport({ api: "/api/chat" }),
     });
     const isLoading = status === "streaming" || status === "submitted";
@@ -53,6 +53,8 @@ export default function DiagnoserCTA() {
 
     const agentReply = isLoading
         ? "Reading the Kaelux knowledge base and routing your question..."
+        : error
+            ? "That request did not complete. You can keep typing or choose a prompt to try again."
         : latestAssistantText || initialAgentReply;
 
     const { scrollYProgress } = useScroll({
@@ -86,20 +88,28 @@ export default function DiagnoserCTA() {
         e.preventDefault();
         const prompt = input.trim();
 
-        if (!prompt || status !== "ready") {
+        if (!prompt || isLoading) {
             return;
         }
 
-        sendMessage({ text: prompt });
+        if (error) {
+            clearError();
+        }
+
+        void sendMessage({ text: prompt });
         setInput("");
     };
 
     const sendPrompt = (prompt: string) => {
-        if (status !== "ready") {
+        if (isLoading) {
             return;
         }
 
-        sendMessage({ text: prompt });
+        if (error) {
+            clearError();
+        }
+
+        void sendMessage({ text: prompt });
         setInput("");
     };
 
@@ -224,7 +234,7 @@ export default function DiagnoserCTA() {
                                             key={prompt}
                                             type="button"
                                             onClick={() => sendPrompt(prompt)}
-                                            disabled={status !== "ready"}
+                                            disabled={isLoading}
                                             className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-left text-[11px] text-zinc-400 transition-colors hover:border-white/20 hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
                                         >
                                             {prompt}
@@ -244,7 +254,8 @@ export default function DiagnoserCTA() {
                                             onFocus={() => setIsFocused(true)}
                                             onBlur={() => setIsFocused(false)}
                                             placeholder=""
-                                            disabled={status !== "ready"}
+                                            disabled={isLoading}
+                                            aria-describedby={error ? "kaelux-intake-error" : undefined}
                                             className="w-full bg-transparent border-none rounded-none pl-0 pr-14 py-3
                                        text-white placeholder-zinc-600 focus:outline-none font-mono text-sm caret-transparent"
                                         />
@@ -262,7 +273,7 @@ export default function DiagnoserCTA() {
                                     </div>
                                     <motion.button
                                         type="submit"
-                                        disabled={status !== "ready" || !input.trim()}
+                                        disabled={isLoading || !input.trim()}
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         className="absolute right-0 p-2.5 rounded-lg bg-white text-black
@@ -271,6 +282,11 @@ export default function DiagnoserCTA() {
                                         <Send className="w-4 h-4" />
                                     </motion.button>
                                 </div>
+                                {error && (
+                                    <p id="kaelux-intake-error" role="alert" className="mt-3 text-center font-mono text-[11px] text-rose-300">
+                                        Connection interrupted. Your input is still available; submit again to retry.
+                                    </p>
+                                )}
                                 <p className="text-[11px] text-zinc-600 mt-3 text-center tracking-widest uppercase font-mono">
                                     Press Enter for a quick route
                                 </p>

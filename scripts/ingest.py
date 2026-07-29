@@ -43,6 +43,11 @@ SOURCES = [
         "type": "local",
     },
     {
+        "name": "Harneloop and ViperMesh Research Context",
+        "path": "docs/HARNELOOP_RESEARCH.md",
+        "type": "local",
+    },
+    {
         "name": "Kaelux Homepage",
         "url": "https://kaelux.dev/",
         "type": "web",
@@ -63,8 +68,18 @@ SOURCES = [
         "type": "web",
     },
     {
-        "name": "Personal AI Agent Setup",
+        "name": "Business Automations",
         "url": "https://kaelux.dev/openclaw",
+        "type": "web",
+    },
+    {
+        "name": "Harneloop Harness Engineering",
+        "url": "https://kaelux.dev/wiki/harness-evolution-vs-fine-tuning",
+        "type": "web",
+    },
+    {
+        "name": "ViperMesh Spatial Reasoning Case Study",
+        "url": "https://www.kristoferjussmann.me/case-studies/vipermesh",
         "type": "web",
     },
 ]
@@ -220,6 +235,29 @@ def store_in_redis(
         return False
 
 
+def remove_stale_source_documents(
+    r: redis.Redis,
+    source_ref: str,
+    desired_keys: set[str],
+) -> int:
+    """Remove obsolete chunks for a source after its content changes."""
+    stale_keys = []
+
+    for key in r.scan_iter(match="knowledge:*"):
+        stored_source = r.hget(key, "source")
+        if isinstance(stored_source, bytes):
+            stored_source = stored_source.decode("utf-8", errors="replace")
+
+        normalized_key = key.decode("utf-8") if isinstance(key, bytes) else key
+        if stored_source == source_ref and normalized_key not in desired_keys:
+            stale_keys.append(key)
+
+    if stale_keys:
+        r.delete(*stale_keys)
+
+    return len(stale_keys)
+
+
 def process_source(
     source: Dict[str, str],
     r: redis.Redis,
@@ -244,13 +282,22 @@ def process_source(
     print(f"   Scraped {len(content)} characters")
     
     # Chunk the content
-    chunks = chunk_text(content)
+    chunks = chunk_text(content)[:10]
     print(f"   Split into {len(chunks)} chunks")
+
+    chunk_ids = [
+        hashlib.md5(
+            f"{source_ref}:{hashlib.sha256(chunk.encode()).hexdigest()}".encode()
+        ).hexdigest()[:12]
+        for chunk in chunks
+    ]
+    desired_keys = {f"knowledge:{doc_id}" for doc_id in chunk_ids}
+    removed = remove_stale_source_documents(r, source_ref, desired_keys)
+    if removed:
+        print(f"   Removed {removed} stale chunks")
     
     stored = 0
-    for i, chunk in enumerate(chunks[:10]):  # Limit to 10 chunks per source
-        # Create unique ID
-        doc_id = hashlib.md5(f"{source_ref}:{i}".encode()).hexdigest()[:12]
+    for i, (chunk, doc_id) in enumerate(zip(chunks, chunk_ids)):
         
         # Check if already exists
         if r.exists(f"knowledge:{doc_id}"):

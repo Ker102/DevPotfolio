@@ -63,6 +63,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/wiki/harness-evolution-vs-fine-tuning`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/wiki/ai-hallucination-prevention`,
       lastModified: now,
       changeFrequency: "monthly",

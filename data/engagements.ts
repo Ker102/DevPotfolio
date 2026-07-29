@@ -16,11 +16,11 @@ export const engagementTracks: EngagementTrack[] = [
         eyebrow: "Capital and strategic backing",
         title: "Investors and strategic partners",
         description:
-            "For angels, accelerators, funds, and strategic operators who want a clear view of the Kaelux venture pipeline and founder thesis.",
-        bestFor: "Investors evaluating Kaelux as a founder-led AI venture studio and holding company.",
+            "For angels, accelerators, funds, and strategic operators who want a clear view of the Kaelux research, open-source work, and venture pipeline.",
+        bestFor: "Investors evaluating Kaelux as a founder-led AI and ML research lab and venture group.",
         outcomes: [
-            "Founder and venture thesis discussion",
-            "Overview of MedAI, ViperMesh, PromptTriage, and Nullstate",
+            "Founder, research, and venture direction discussion",
+            "Overview of MedAI, ViperMesh, Harneloop, PromptTriage, and Nullstate",
             "Strategic partnership or funding-fit conversation",
         ],
         cta: "Start investor conversation",
@@ -59,11 +59,11 @@ export const engagementTracks: EngagementTrack[] = [
     },
     {
         id: "business-automations",
-        eyebrow: "Secondary service offer",
-        title: "Business automations",
+        eyebrow: "Security-first service",
+        title: "Secure business automations",
         description:
-            "For businesses that want focused automation around repeated workflows, internal handoffs, reporting, research, or operational support.",
-        bestFor: "Teams with a specific workflow worth automating, not a vague request to transform everything at once.",
+            "For Baltic and international businesses that want focused, maintainable automation around repeated workflows, internal handoffs, reporting, research, or operational support.",
+        bestFor: "Teams with a specific workflow, clear access boundaries, and a measurable outcome worth automating.",
         outcomes: [
             "Workflow and handoff mapping",
             "Automation architecture and integration scope",

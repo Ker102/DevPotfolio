@@ -61,7 +61,7 @@ export const otherProjects: Project[] = [
   {
     id: "vipermesh",
     name: "ViperMesh",
-    description: "AI-powered Blender assistant and neural 3D hub with a LangChain v1 agent, hybrid RAG pipeline, dynamic addon detection, and a premium dashboard for conversational 3D workflows.",
+    description: "Unified studio for 3D professionals combining agent-assisted creation, Blender tooling, spatial-reasoning research, and production workflows in one environment.",
     techStack: ["Next.js 16", "TypeScript", "Supabase", "LangChain v1", "Electron", "Blender"],
     image: "/projects/modelforge.jpg",
     githubUrl: "https://github.com/Ker102/ViperMesh",

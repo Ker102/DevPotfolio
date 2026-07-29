@@ -45,11 +45,11 @@ export default function AboutKaelux() {
                         variants={slideUpFade}
                         className="text-lg md:text-xl text-gray-300 font-light leading-relaxed max-w-3xl"
                     >
-                        Kaelux is the parent brand for a founder-led group of AI
-                        ventures and product labs. The company exists to identify
-                        sharp technical markets, build the first serious systems,
-                        and create room for investors, partners, and businesses to
-                        work with the ventures as they mature.
+                        Kaelux is an Estonia-based AI and ML research lab and venture
+                        group. We study how intelligent systems reason, use tools,
+                        inspect artifacts, and operate in real environments, then
+                        publish the useful work or develop it into products,
+                        divisions, and ventures.
                     </motion.p>
                 </motion.div>
             </div>

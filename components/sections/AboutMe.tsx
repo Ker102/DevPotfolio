@@ -46,15 +46,14 @@ export default function AboutMe() {
                         </div>
 
                         <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                            Founder and agentic systems builder based in Estonia,
-                            developing the Kaelux venture group across medical AI,
-                            creative tooling, prompt systems, and infrastructure security.
+                            Founder and AI/ML systems researcher based in Estonia,
+                            developing Kaelux across medical AI, spatial reasoning,
+                            agent harnesses, prompt systems, and infrastructure security.
                         </p>
                         <p className="text-lg md:text-xl text-gray-300 font-light leading-relaxed">
-                            Kristofer&apos;s role is to turn strong technical theses into
-                            shipped products: build the artifact, find the real market,
-                            and partner when a venture or inspired business build needs
-                            serious execution.
+                            Kristofer&apos;s role is to turn research into working artifacts,
+                            open-source tools, and products, then build partnerships where
+                            a venture or secure business system needs hands-on engineering.
                         </p>
                     </motion.div>
                 </motion.div>

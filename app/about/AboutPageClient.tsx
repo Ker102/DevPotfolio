@@ -22,9 +22,9 @@ const slideUpFade = {
 
 const focusAreas = [
     {
-        title: "Venture Building",
+        title: "AI and ML Research",
         description:
-            "Kaelux builds focused AI ventures around sharp technical theses, early artifacts, and markets where the work can become more than a one-off project.",
+            "Kaelux investigates agent reasoning, tool use, artifact inspection, and real-world AI environments, then publishes or develops the useful results.",
     },
     {
         title: "Medical AI Division",
@@ -32,9 +32,9 @@ const focusAreas = [
             "MedAI is the medical-research division for secure AI infrastructure, research tooling, DevSecOps, and MLOps in retina, hearing, tinnitus, and medical imaging contexts.",
     },
     {
-        title: "Creative and Prompt Tooling",
+        title: "Spatial Reasoning and Agent Harnesses",
         description:
-            "ViperMesh and PromptTriage explore agentic creation, Blender workflows, prompt analysis, and practical interfaces for builders working with models.",
+            "ViperMesh and Harneloop connect spatial-reasoning research, Blender workflows, artifact-aware evaluation, and evidence-gated harness evolution.",
     },
     {
         title: "Infrastructure Security Labs",
@@ -46,13 +46,13 @@ const focusAreas = [
 const facts = [
     {
         label: "Entity Type",
-        value: "Founder-Led Venture Studio",
-        detail: "Kaelux is the parent brand for AI ventures, divisions, and product labs.",
+        value: "AI and ML Research Lab",
+        detail: "Kaelux is an Estonia-based research lab, software builder, and venture group.",
     },
     {
         label: "Founder",
         value: "Kristofer Jussmann",
-        detail: "Founder and builder leading the Kaelux venture group.",
+        detail: "Founder, researcher, and builder leading Kaelux.",
     },
     {
         label: "Base",
@@ -61,27 +61,27 @@ const facts = [
     },
     {
         label: "Core Focus",
-        value: "AI Ventures and Product Labs",
-        detail: "MedAI, ViperMesh, PromptTriage, Nullstate, and selective partner builds.",
+        value: "Research, Open Source, and Ventures",
+        detail: "MedAI, ViperMesh, Harneloop, PromptTriage, Nullstate, and secure business automation.",
     },
 ];
 
 const faqs = [
     {
         question: "What is Kaelux?",
-        answer: "Kaelux is the founder-led parent brand for AI ventures, divisions, and product labs including MedAI, ViperMesh, PromptTriage, and Nullstate.",
+        answer: "Kaelux is an Estonia-based AI and ML research lab and venture group behind MedAI, ViperMesh, Harneloop, PromptTriage, and Nullstate.",
     },
     {
         question: "Who founded Kaelux?",
-        answer: "Kaelux was founded by Kristofer Jussmann, an Estonia-based builder focused on AI ventures, agentic systems, and product labs.",
+        answer: "Kaelux was founded by Kristofer Jussmann, an Estonia-based AI/ML systems researcher and builder.",
     },
     {
         question: "What kind of work does Kaelux do?",
-        answer: "Kaelux builds and organizes ventures such as MedAI, ViperMesh, PromptTriage, and Nullstate, while remaining open to selective investor, partner, and build conversations.",
+        answer: "Kaelux researches AI/ML systems, publishes open-source tools, develops selected work into products and ventures, and builds secure business automations.",
     },
     {
         question: "Is Kaelux a software company or a content channel?",
-        answer: "Kaelux is a venture-building parent brand and product builder, not a generic portfolio page or media channel.",
+        answer: "Kaelux is a research lab, software builder, and venture group rather than a personal portfolio or media channel.",
     },
 ];
 
@@ -101,7 +101,7 @@ export default function AboutPageClient() {
                         <motion.div variants={slideUpFade}>
                             <Image
                                 src="/kaelux-icon-v3.png"
-                                alt="Kaelux venture studio logo"
+                                alt="Kaelux AI research lab logo"
                                 width={1536}
                                 height={1565}
                                 priority
@@ -121,17 +121,17 @@ export default function AboutPageClient() {
                             variants={slideUpFade}
                             className="text-xl md:text-2xl text-gray-300 font-light leading-relaxed max-w-3xl"
                         >
-                            <strong className="text-white">Kaelux</strong> is the
-                            founder-led parent brand for AI ventures, divisions,
-                            and product labs: MedAI, ViperMesh, PromptTriage,
-                            Nullstate, and the experiments that support them.
+                            <strong className="text-white">Kaelux</strong> is an
+                            Estonia-based AI and ML research lab and venture group
+                            behind MedAI, ViperMesh, Harneloop, PromptTriage,
+                            Nullstate, and the experiments that connect them.
                         </motion.p>
 
                         <motion.p
                             variants={slideUpFade}
                             className="max-w-2xl text-sm uppercase tracking-[0.28em] text-gray-500"
                         >
-                            Last updated May 30, 2026
+                            Last updated July 23, 2026
                         </motion.p>
                     </motion.div>
                 </div>
@@ -157,8 +157,8 @@ export default function AboutPageClient() {
                                 This page exists to make the Kaelux brand easy to
                                 identify, cite, and understand across search
                                 engines, AI assistants, partner directories, and
-                                social platforms as a company that builds and
-                                organizes AI ventures.
+                                social platforms as a research lab that publishes
+                                open-source work and develops products and ventures.
                             </p>
                         </motion.div>
 
@@ -205,22 +205,21 @@ export default function AboutPageClient() {
                             variants={slideUpFade}
                             className="rounded-2xl border border-cyan-500/20 bg-cyan-500/[0.05] p-7 text-lg text-gray-200 leading-relaxed"
                         >
-                            Kaelux is a founder-led holding and venture studio
-                            brand focused on AI products, divisions, and labs.
-                            It is the operating label under which Kristofer
-                            Jussmann builds, ships, and organizes ventures with
-                            clear technical theses.
+                            Kaelux is a founder-led AI and ML research lab,
+                            software builder, and venture group. It is the
+                            operating label under which Kristofer Jussmann
+                            researches, publishes, and develops intelligent
+                            systems.
                         </motion.div>
                         <motion.p
                             variants={slideUpFade}
                             className="text-lg text-gray-300 font-light leading-relaxed"
                         >
-                            The brand is centered on practical delivery:
-                            working products, credible public artifacts, and
-                            selective partnerships. Kaelux is not a generic
-                            portfolio page or a broad agency; it is a parent
-                            brand for ventures that may become standalone
-                            companies or divisions.
+                            The lab is centered on practical evidence: working
+                            products, open-source projects, measured case studies,
+                            and selective partnerships. Research can remain public
+                            infrastructure or develop into a product, company, or
+                            division.
                         </motion.p>
                     </motion.div>
                 </div>
@@ -250,16 +249,17 @@ export default function AboutPageClient() {
                                 <strong className="text-white">
                                     Kristofer Jussmann
                                 </strong>{" "}
-                                to build a durable label for serious AI ventures.
-                                The site now exists to make the group legible to
-                                investors, collaborators, co-founder-level
-                                partners, and businesses inspired by the ventures.
+                                to give AI and ML research a place to become
+                                open-source infrastructure, useful products, and
+                                ventures. The site makes that work legible to
+                                researchers, collaborators, investors, partners,
+                                and businesses.
                             </p>
                             <p>
-                                Kaelux closes that gap by turning technical
-                                instincts into shipped ventures: define the
-                                market, build the artifact, test the signal, and
-                                keep moving only when the work earns traction.
+                                Kaelux closes the loop between research and use:
+                                investigate the failure, build the artifact,
+                                inspect the evidence, publish what is reusable,
+                                and develop the work when it solves a real problem.
                             </p>
                         </motion.div>
                     </motion.div>

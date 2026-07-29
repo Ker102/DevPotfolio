@@ -1,17 +1,18 @@
 # Kaelux.dev
 
-Kaelux.dev is the public site for Kaelux, the founder-led parent brand for AI ventures and product labs by Kristofer Jussmann.
+Kaelux.dev is the public site for Kaelux, an Estonia-based, founder-led AI and ML research lab and parent brand by Kristofer Jussmann.
 
 The site is no longer positioned as a generic AI agency, infrastructure provider, or broad service menu. Its job is to make the Kaelux group legible to investors, strategic partners, collaborators, and businesses inspired by the ventures.
 
 ## Public Positioning
 
-Kaelux is a holding/studio brand over ventures and labs:
+Kaelux researches how AI systems reason, use tools, and operate inside real environments. The useful results become open-source projects, products, divisions, or ventures:
 
 | Venture | Positioning |
 | --- | --- |
 | [MedAI](https://kaelux.dev/medai) | Medical-research AI infrastructure, secure tooling, DevSecOps, and MLOps. |
-| [ViperMesh](https://github.com/Ker102/ViperMesh) | AI-powered Blender assistant and neural 3D creation workspace. |
+| [ViperMesh](https://github.com/Ker102/ViperMesh) | Unified AI studio for 3D professionals, informed by spatial-reasoning research and developed to reduce fragmented 3D software workflows. |
+| [Harneloop](/wiki/harness-evolution-vs-fine-tuning) | Open-source framework for evidence-gated agent harness evolution, first used while developing the ViperMesh Blender harness. |
 | [PromptTriage](https://github.com/Ker102/PromptTriage) | Prompt analysis, refinement, and generation system. |
 | [Nullstate](https://github.com/Ker102/nullstate-cli) | Local-first purple-team CLI for Terraform IaC and infrastructure security workflows. |
 
@@ -30,7 +31,7 @@ The old fixed package pricing has been removed. Kaelux work is evaluated by fit,
 
 ## Business Automations
 
-The legacy `/openclaw` route is kept for compatibility, but it is now framed as business automations. The offer is for focused workflow builds around intake, research, reporting, internal handoffs, data cleanup, and operational support.
+The legacy `/openclaw` route is kept for compatibility, but it is now framed as security-first business automations. Kaelux designs focused workflow systems around intake, research, reporting, internal handoffs, data cleanup, and operational support for Baltic and international teams.
 
 ## Active Routes
 
