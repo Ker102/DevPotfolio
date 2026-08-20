@@ -52,3 +52,7 @@ public/projects/*.mov
 
 # Mobile dev Chrome profile
 .chrome-mobile-profile/
+
+# Local Superpowers workflow state
+.superpowers/
+.worktrees/
