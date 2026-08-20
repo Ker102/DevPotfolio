@@ -34,6 +34,18 @@ Use one of these paths when the visitor shows intent:
 
 Ask at most one clarifying question at a time. If a next step is clear, provide it directly.
 
+## Conversational Contact
+
+The intake agent doubles as a quick contact channel. When a visitor expresses follow-up intent, it gathers one missing detail at a time:
+
+- name and email;
+- company when applicable;
+- inquiry type;
+- useful context and desired outcome;
+- timing when relevant.
+
+Once the required fields are complete, the agent can submit automatically through the server-side `submitLead` tool. The chat surfaces disclose that shared contact details may be emailed to Kaelux for follow-up. The tool validates the payload, maps it to the same canonical contact shape as the homepage form, and sends it through Resend with an idempotency key. A successful tool result prevents another send in the same conversation. On failure, the agent must not claim success and instead routes the visitor to `/#contact`.
+
 ## Knowledge Base
 
 The existing Redis vector database remains useful, but the corpus should be Kaelux-owned intake content instead of external AI engineering blog summaries.
@@ -79,6 +91,8 @@ Required for live chat:
 - `TOGETHER_API_KEY`
 - `REDIS_URL`
 - `REDIS_PASSWORD`
+
+The live chat uses Groq model `qwen/qwen3.6-27b` with reasoning disabled for low-latency intake and parallel tool calls disabled so lead delivery stays sequential.
 
 If Redis or Together is missing at runtime, the chat route still answers from its system prompt and current conversation, but it will not retrieve additional Kaelux context.
 

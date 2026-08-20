@@ -1,10 +1,12 @@
 // Kaelux Intake Agent - API Route
 // Node.js runtime for full Redis Cloud support (RediSearch, LangCache)
 
-import { streamText, convertToModelMessages, UIMessage } from 'ai';
-import { createGroq } from '@ai-sdk/groq';
+import { streamText, convertToModelMessages, stepCountIs, tool, UIMessage } from 'ai';
+import { createGroq, type GroqLanguageModelOptions } from '@ai-sdk/groq';
 import { generateEmbedding, queryKnowledgeBase } from '@/lib/tools';
 import { checkRateLimit, getClientIP, rateLimitResponse } from '@/lib/rate-limiter';
+import { hasSuccessfulLeadSubmission, intakeLeadSchema, toContactPayload } from '@/lib/intake-lead';
+import { deliverContactEmail } from '@/lib/server/contact-email';
 
 // Node.js runtime (NOT edge) - enables TCP connections to Redis Cloud
 export const runtime = 'nodejs';
@@ -70,6 +72,14 @@ Classify the visitor into one of these paths:
    - For ViperMesh, emphasize the unified professional workspace and spatial-reasoning research rather than calling it only a Blender assistant.
    - Route technical readers to /wiki/harness-evolution-vs-fine-tuning and the ViperMesh case study in the supplied knowledge context.
 
+## CONVERSATIONAL CONTACT
+- When a visitor wants contact or follow-up, gather one missing detail at a time: name, email, company when relevant, inquiry type, useful context and desired outcome, and timing when relevant.
+- Do not ask for information already supplied.
+- Once name, valid email, inquiry type, and a useful summary are available, call submitLead automatically. A separate confirmation question is not required.
+- Call submitLead at most once. Never claim delivery succeeded unless the tool returns ok: true.
+- After success, say the context was sent and Kaelux can reply by email.
+- After failure, explain that delivery did not complete and link to /#contact.
+
 ## CONVERSATION STYLE
 - Be concise, direct, and factual.
 - Ask at most one clarifying question at a time.
@@ -132,12 +142,54 @@ export async function POST(req: Request) {
 
         // Prepare system prompt with RAG context
         const systemPrompt = SYSTEM_PROMPT.replace('{rag_context}', ragContext);
+        let leadSubmitted = hasSuccessfulLeadSubmission(messages);
 
         // Stream response from the Kaelux intake agent.
         const result = streamText({
-            model: groq('llama-3.3-70b-versatile'),
+            model: groq("qwen/qwen3.6-27b"),
+            providerOptions: {
+                groq: {
+                    reasoningEffort: "none",
+                    reasoningFormat: "hidden",
+                    parallelToolCalls: false,
+                } satisfies GroqLanguageModelOptions,
+            },
             system: systemPrompt,
             messages: await convertToModelMessages(messages),
+            tools: {
+                submitLead: tool({
+                    description: "Email a complete, qualified visitor inquiry to Kaelux. Use once only after collecting name, email, inquiry type, and useful context.",
+                    inputSchema: intakeLeadSchema,
+                    execute: async (lead, { toolCallId }) => {
+                        if (leadSubmitted) {
+                            return {
+                                ok: false as const,
+                                error: "This conversation was already sent.",
+                                contactHref: "/#contact" as const,
+                            };
+                        }
+
+                        const delivery = await deliverContactEmail(toContactPayload(lead), {
+                            idempotencyKey: `kaelux-intake/${toolCallId}`,
+                        });
+
+                        if (!delivery.ok) {
+                            return {
+                                ok: false as const,
+                                error: delivery.error,
+                                contactHref: "/#contact" as const,
+                            };
+                        }
+
+                        leadSubmitted = true;
+                        return {
+                            ok: true as const,
+                            message: "Lead sent to Kaelux successfully.",
+                        };
+                    },
+                }),
+            },
+            stopWhen: stepCountIs(3),
         });
 
         return result.toUIMessageStreamResponse();

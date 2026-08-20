@@ -19,3 +19,14 @@ test("hero uses the approved semantic copy and omits the venture inventory phras
   assert.match(source, /Where Research Becomes Ventures\./);
   assert.match(source, /alt="Where Research Becomes Ventures\."/);
 });
+
+test("chat uses current Groq model and exposes validated lead submission", async () => {
+  const source = await read("app/api/chat/route.ts");
+  assert.match(source, /groq\("qwen\/qwen3\.6-27b"\)/);
+  assert.doesNotMatch(source, /llama-3\.3-70b-versatile/);
+  assert.match(source, /submitLead:\s*tool\(/);
+  assert.match(source, /inputSchema:\s*intakeLeadSchema/);
+  assert.match(source, /stepCountIs\(3\)/);
+  assert.match(source, /reasoningEffort:\s*"none"/);
+  assert.match(source, /parallelToolCalls:\s*false/);
+});
