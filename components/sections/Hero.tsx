@@ -430,6 +430,7 @@ export default function Hero() {
                             width={2135}
                             height={736}
                             priority
+                            unoptimized
                             sizes="(max-width: 640px) 92vw, (max-width: 1024px) 82vw, 900px"
                             className="absolute left-1/2 top-1/2 h-auto w-[92vw] max-w-[900px] -translate-x-1/2 -translate-y-1/2 select-none drop-shadow-[0_0_30px_rgba(255,255,255,0.15)] sm:w-[88vw] md:w-[82vw]"
                             style={{
