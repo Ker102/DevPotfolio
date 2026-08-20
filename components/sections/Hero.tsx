@@ -413,7 +413,7 @@ export default function Hero() {
                     />
                 </div>
 
-                <div ref={contentRef}>
+                <div ref={contentRef} className="w-full">
                     {/* SEO: Visually hidden H1 for search engines and screen readers */}
                     <h1 className="sr-only">
                         Where Research Becomes Ventures.
@@ -422,15 +422,16 @@ export default function Hero() {
                     {/* Main Title - Image */}
                     <div
                         ref={titleRef}
-                        className="flex items-center justify-center opacity-0"
+                        className="relative flex h-12 w-full items-center justify-center overflow-hidden opacity-0 sm:h-14 md:h-20 lg:h-24"
                     >
                         <Image
                             src="/hero-title-ventures.png"
                             alt="Where Research Becomes Ventures."
-                            width={900}
-                            height={120}
+                            width={2135}
+                            height={736}
                             priority
-                            className="w-auto h-auto max-w-[80vw] md:max-w-[70vw] lg:max-w-[800px] select-none drop-shadow-[0_0_30px_rgba(255,255,255,0.15)]"
+                            sizes="(max-width: 640px) 96vw, (max-width: 1024px) 88vw, 980px"
+                            className="absolute left-1/2 top-1/2 h-auto w-[96vw] max-w-[980px] -translate-x-1/2 -translate-y-1/2 select-none drop-shadow-[0_0_30px_rgba(255,255,255,0.15)] sm:w-[92vw] md:w-[88vw]"
                             style={{
                                 filter: 'brightness(1.05) contrast(1.02)',
                             }}
