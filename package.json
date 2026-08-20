@@ -50,7 +50,7 @@
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.2.12",
     "eslint-plugin-react-hooks": "^7.1.1",
-    "postcss": "^8.5.25",
+    "postcss": "^8.5.26",
     "shadcn": "^3.8.5",
     "tailwindcss": "^3.4.15",
     "ts-node": "^10.9.2",
