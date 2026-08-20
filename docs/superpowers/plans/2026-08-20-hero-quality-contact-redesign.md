@@ -22,7 +22,7 @@
 test("hero title bypasses lossy Next image optimization", async () => {
   const source = await read("components/sections/Hero.tsx");
   const titleImage =
-    source.match(/<Image[\s\S]*?src="\/hero-title-ventures\.png"[\s\S]*?\/>/)?.[0] ?? "";
+    source.match(/<Image\s+src="\/hero-title-ventures\.png"[\s\S]*?\/>/)?.[0] ?? "";
 
   assert.match(titleImage, /\bunoptimized\b/);
 });
@@ -35,7 +35,12 @@ test("contact uses the sharp editorial split while preserving behavior", async (
   assert.match(source, /bg-green-500/);
   assert.match(source, /useReducedMotion/);
   assert.doesNotMatch(source, /bg-gradient|bg-clip-text|blur-xl/);
-  assert.doesNotMatch(source, /rounded-(?:2xl|3xl|full)/);
+  assert.doesNotMatch(source, /rounded-(?:2xl|3xl)/);
+  assert.equal(
+    (source.match(/rounded-full/g) ?? []).length,
+    2,
+    "only the two availability-dot layers may remain circular",
+  );
   for (const id of ["name", "email", "company", "topic", "details"]) {
     assert.match(source, new RegExp(`id="homepage-contact-${id}"`));
   }
@@ -233,4 +238,3 @@ git log -5 --oneline
 ```
 
 Expected: tracked changes are committed. The pre-existing unused `public/hero-title-candidate.png` may remain untracked and must not be added.
-
