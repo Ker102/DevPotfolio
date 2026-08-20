@@ -71,3 +71,34 @@ test("ventures use the clean editorial modular system", async () => {
     "venture hierarchy must use opacity utilities emitted by Tailwind",
   );
 });
+
+test("hero title bypasses lossy Next image optimization", async () => {
+  const source = await read("components/sections/Hero.tsx");
+  const titleImage =
+    source.match(/<Image\s+src="\/hero-title-ventures\.png"[\s\S]*?\/>/)?.[0] ?? "";
+
+  assert.match(titleImage, /\bunoptimized\b/);
+});
+
+test("contact uses the sharp editorial split while preserving behavior", async () => {
+  const source = await read("components/sections/Contact.tsx");
+
+  assert.match(
+    source,
+    /lg:grid-cols-\[minmax\(0,0\.72fr\)_minmax\(0,1\.28fr\)\]/,
+  );
+  assert.match(source, /contactChannels\.map/);
+  assert.match(source, /bg-green-500/);
+  assert.match(source, /useReducedMotion/);
+  assert.doesNotMatch(source, /bg-gradient|bg-clip-text|blur-xl/);
+  assert.doesNotMatch(source, /rounded-(?:2xl|3xl)/);
+  assert.equal(
+    (source.match(/rounded-full/g) ?? []).length,
+    2,
+    "only the two availability-dot layers may remain circular",
+  );
+  for (const id of ["name", "email", "company", "topic", "details"]) {
+    assert.match(source, new RegExp(`id="homepage-contact-${id}"`));
+  }
+  assert.match(source, /submitContactForm/);
+});
