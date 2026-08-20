@@ -7,7 +7,8 @@
     "dev:mobile": "node scripts/open-mobile.mjs & next dev -p 3001",
     "build": "next build",
     "start": "next start -H 0.0.0.0 -p $PORT",
-    "lint": "eslint app components lib hooks data --max-warnings 999"
+    "lint": "eslint app components lib hooks data --max-warnings 999",
+    "test:focused": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
     "@ai-sdk/groq": "^3.0.42",

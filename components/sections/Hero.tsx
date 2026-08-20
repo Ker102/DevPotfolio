@@ -149,7 +149,6 @@ export default function Hero() {
 
     const mobileTexts = [
         "An Estonia-based AI and ML research lab building open-source tools, products, and ventures.",
-        "MedAI, ViperMesh, Harneloop, PromptTriage, and Nullstate sit under the Kaelux group.",
         "Research-led engineering for collaborators, partners, investors, and secure business automation."
     ];
     const [mobileTextIndex, setMobileTextIndex] = useState(0);
@@ -417,7 +416,7 @@ export default function Hero() {
                 <div ref={contentRef}>
                     {/* SEO: Visually hidden H1 for search engines and screen readers */}
                     <h1 className="sr-only">
-                        Kaelux builds AI ventures.
+                        Where Research Becomes Ventures.
                     </h1>
 
                     {/* Main Title - Image */}
@@ -427,7 +426,7 @@ export default function Hero() {
                     >
                         <Image
                             src="/hero-title.png"
-                            alt="Kaelux builds AI ventures"
+                            alt="Where Research Becomes Ventures."
                             width={900}
                             height={120}
                             priority

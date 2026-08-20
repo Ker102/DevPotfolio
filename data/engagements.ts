@@ -40,7 +40,7 @@ export const engagementTracks: EngagementTrack[] = [
             "Technical and market feedback loop",
         ],
         cta: "Discuss a venture partnership",
-        href: "/#ventures",
+        href: "/#contact",
     },
     {
         id: "similar-builds",
