@@ -65,4 +65,9 @@ test("ventures use the clean editorial modular system", async () => {
   assert.doesNotMatch(source, /GlassSurface|ScrollUnderline/);
   assert.doesNotMatch(source, /bg-gradient|radial-gradient|blur-\[/);
   assert.doesNotMatch(source, /rounded-\[28px\]|rounded-full/);
+  assert.doesNotMatch(
+    source,
+    /(?:text|border)-white\/(?:68|52|38|78|58|12)/,
+    "venture hierarchy must use opacity utilities emitted by Tailwind",
+  );
 });

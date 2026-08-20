@@ -43,18 +43,18 @@ function VentureCard({ venture }: { venture: Venture }) {
       }`}>
         {venture.name}
       </h3>
-      <p className="mt-3 text-sm font-medium leading-6 text-white/68">
+      <p className="mt-3 text-sm font-medium leading-6 text-white/70">
         {venture.category}
       </p>
 
-      <p className={`mt-6 leading-7 text-white/52 ${isFeatured ? "max-w-3xl text-base" : "text-sm"}`}>
+      <p className={`mt-6 leading-7 text-white/50 ${isFeatured ? "max-w-3xl text-base" : "text-sm"}`}>
         {venture.description}
       </p>
-      <p className="mt-4 text-sm leading-6 text-white/38">
+      <p className="mt-4 text-sm leading-6 text-white/40">
         {venture.audience}
       </p>
 
-      <div className="mt-auto flex flex-wrap items-center gap-y-2 pt-8 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/52">
+      <div className="mt-auto flex flex-wrap items-center gap-y-2 pt-8 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/50">
         {venture.tags.map((tag, index) => (
           <span key={tag} className="inline-flex items-center">
             {index > 0 ? <span className="mx-3 text-white/20">/</span> : null}
@@ -63,7 +63,7 @@ function VentureCard({ venture }: { venture: Venture }) {
         ))}
       </div>
 
-      <span className="mt-6 inline-flex items-center gap-2 border-t border-white/12 pt-5 text-sm font-semibold text-white/78 transition-colors group-hover:text-white">
+      <span className="mt-6 inline-flex items-center gap-2 border-t border-white/15 pt-5 text-sm font-semibold text-white/80 transition-colors group-hover:text-white">
         {venture.linkLabel}
       </span>
     </motion.article>
@@ -108,7 +108,7 @@ export default function Projects() {
               <h2 className="mt-5 max-w-xl text-5xl font-semibold leading-[0.94] tracking-[-0.055em] text-white md:text-7xl">
                 Research, made useful.
               </h2>
-              <p className="mt-7 max-w-md text-base leading-7 text-white/58 md:text-lg md:leading-8">
+              <p className="mt-7 max-w-md text-base leading-7 text-white/60 md:text-lg md:leading-8">
                 Kaelux turns focused research into open-source work, products, divisions, and ventures built for real environments.
               </p>
             </div>
