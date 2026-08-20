@@ -47,3 +47,22 @@ test("standalone intake failures link to contact without logging lead details", 
   assert.match(source, /href="\/#contact"/);
   assert.doesNotMatch(source, /debug\.message|debug\.toolCall|debug\.toolResult/);
 });
+
+test("hero title uses the reduced approved footprint", async () => {
+  const source = await read("components/sections/Hero.tsx");
+  assert.match(source, /max-w-\[900px\]/);
+  assert.doesNotMatch(source, /max-w-\[980px\]/);
+});
+
+test("ventures use the clean editorial modular system", async () => {
+  const source = await read("components/sections/Projects.tsx");
+  assert.match(source, /Research,\s*made useful\./);
+  assert.match(
+    source,
+    /lg:grid-cols-\[minmax\(0,0\.72fr\)_minmax\(0,1\.55fr\)\]/,
+  );
+  assert.match(source, /venture\.id === "medai"/);
+  assert.doesNotMatch(source, /GlassSurface|ScrollUnderline/);
+  assert.doesNotMatch(source, /bg-gradient|radial-gradient|blur-\[/);
+  assert.doesNotMatch(source, /rounded-\[28px\]|rounded-full/);
+});

@@ -5,74 +5,85 @@ import Link from "next/link";
 import { HiExternalLink } from "react-icons/hi";
 
 import { coreVentures, Venture } from "@/data/ventures";
-import GlassSurface from "@/components/GlassSurface";
-import { ScrollUnderline } from "@/components/ui/ScrollUnderline";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
-function VentureCard({ venture, index }: { venture: Venture; index: number }) {
+function VentureCard({ venture }: { venture: Venture }) {
+  const isFeatured = venture.id === "medai";
+  const wrapperClassName = `block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-4 focus-visible:ring-offset-black ${
+    isFeatured ? "md:col-span-2" : ""
+  }`;
+
   const content = (
     <motion.article
       variants={fadeInUp}
-      whileHover={{ y: -6, scale: 1.01 }}
-      transition={{ type: "spring", stiffness: 280, damping: 24 }}
-      className="group relative h-full overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.035] p-6 shadow-[0_22px_80px_rgba(0,0,0,0.24)] backdrop-blur"
+      whileHover={{ y: -2 }}
+      transition={{ type: "spring", stiffness: 300, damping: 28 }}
+      className={`group flex h-full min-h-[15rem] flex-col border border-white/15 bg-[#0d0d0f] p-6 transition-colors duration-200 hover:border-white/30 hover:bg-[#121214] md:p-7 ${
+        isFeatured ? "lg:min-h-[17rem] lg:p-8" : ""
+      }`}
     >
-      <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-70" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_28%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-      <div className="relative z-10 flex h-full flex-col">
-        <div className="mb-6 flex items-start justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-white/48">
-              {venture.stage}
-            </p>
-            <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white md:text-4xl">
-              {venture.name}
-            </h3>
-          </div>
-          <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/58">
-            {String(index + 1).padStart(2, "0")}
-          </span>
-        </div>
-
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-white/62">
-          {venture.category}
+      <div className="flex items-start justify-between gap-5">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/45">
+          {venture.stage}
         </p>
-        <p className="text-base leading-7 text-gray-300">{venture.description}</p>
-        <p className="mt-5 text-sm leading-6 text-white/56">{venture.audience}</p>
-
-        <div className="mt-6 flex flex-wrap gap-2">
-          {venture.tags.map((tag) => (
-            <GlassSurface
-              key={tag}
-              width="auto"
-              height="auto"
-              borderRadius={9999}
-              className="px-3 py-1.5"
-            >
-              <span className="text-xs font-medium text-white/82">{tag}</span>
-            </GlassSurface>
-          ))}
-        </div>
-
-        <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white transition-all duration-300 group-hover:gap-3">
-          {venture.linkLabel}
-          <HiExternalLink className="h-4 w-4 text-white/50 transition-colors group-hover:text-white" />
-        </span>
+        {venture.isExternal ? (
+          <HiExternalLink
+            aria-hidden="true"
+            className="h-4 w-4 shrink-0 text-white/45 transition-colors group-hover:text-white"
+          />
+        ) : (
+          <span aria-hidden="true" className="text-base leading-none text-white/45 transition-colors group-hover:text-white">
+            →
+          </span>
+        )}
       </div>
+
+      <h3 className={`mt-8 font-semibold leading-none tracking-[-0.045em] text-white ${
+        isFeatured ? "text-4xl md:text-5xl" : "text-3xl md:text-4xl"
+      }`}>
+        {venture.name}
+      </h3>
+      <p className="mt-3 text-sm font-medium leading-6 text-white/68">
+        {venture.category}
+      </p>
+
+      <p className={`mt-6 leading-7 text-white/52 ${isFeatured ? "max-w-3xl text-base" : "text-sm"}`}>
+        {venture.description}
+      </p>
+      <p className="mt-4 text-sm leading-6 text-white/38">
+        {venture.audience}
+      </p>
+
+      <div className="mt-auto flex flex-wrap items-center gap-y-2 pt-8 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/52">
+        {venture.tags.map((tag, index) => (
+          <span key={tag} className="inline-flex items-center">
+            {index > 0 ? <span className="mx-3 text-white/20">/</span> : null}
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <span className="mt-6 inline-flex items-center gap-2 border-t border-white/12 pt-5 text-sm font-semibold text-white/78 transition-colors group-hover:text-white">
+        {venture.linkLabel}
+      </span>
     </motion.article>
   );
 
   if (venture.isExternal) {
     return (
-      <a href={venture.href} target="_blank" rel="noopener noreferrer" className="block h-full">
+      <a
+        href={venture.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={wrapperClassName}
+      >
         {content}
       </a>
     );
   }
 
   return (
-    <Link href={venture.href} className="block h-full">
+    <Link href={venture.href} className={wrapperClassName}>
       {content}
     </Link>
   );
@@ -80,48 +91,45 @@ function VentureCard({ venture, index }: { venture: Venture; index: number }) {
 
 export default function Projects() {
   return (
-    <section id="ventures" className="relative overflow-hidden bg-black px-6 py-24">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[8%] top-24 h-72 w-72 rounded-full bg-white/[0.04] blur-[150px]" />
-        <div className="absolute right-[12%] top-[36rem] h-80 w-80 rounded-full bg-violet-300/[0.08] blur-[170px]" />
-      </div>
+    <section id="ventures" className="relative bg-black px-6 py-28 md:py-36">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid gap-16 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.55fr)] lg:gap-20 xl:gap-28">
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.25 }}
+            variants={fadeInUp}
+            className="lg:sticky lg:top-28 lg:flex lg:min-h-[32rem] lg:flex-col lg:justify-between lg:self-start"
+          >
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/45">
+                Our ventures
+              </p>
+              <h2 className="mt-5 max-w-xl text-5xl font-semibold leading-[0.94] tracking-[-0.055em] text-white md:text-7xl">
+                Research, made useful.
+              </h2>
+              <p className="mt-7 max-w-md text-base leading-7 text-white/58 md:text-lg md:leading-8">
+                Kaelux turns focused research into open-source work, products, divisions, and ventures built for real environments.
+              </p>
+            </div>
 
-      <div className="relative z-10 container mx-auto max-w-7xl">
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.25 }}
-          variants={fadeInUp}
-          className="mb-16 max-w-4xl"
-        >
-          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.26em] text-white/45">
-            Our ventures
-          </p>
-          <h2 className="text-5xl font-semibold tracking-[-0.055em] text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-200 to-gray-500 md:text-7xl">
-            Kaelux turns AI and ML research into open-source projects, products, and ventures.
-          </h2>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-400 md:text-xl">
-            Kaelux uses research to make working software:{" "}
-            <ScrollUnderline underlineClassName="via-white/80">
-              MedAI
-            </ScrollUnderline>
-            , ViperMesh, Harneloop, PromptTriage, and Nullstate span medical infrastructure,
-            spatial reasoning, agent harnesses, prompt systems, and security. Some remain open-source
-            experiments; others grow into products, divisions, or ventures.
-          </p>
-        </motion.div>
+            <p className="mt-12 max-w-sm border-t border-white/15 pt-5 text-sm leading-6 text-white/40 lg:mt-20">
+              Focused research becomes working software, then earns its path into a product, division, or venture.
+            </p>
+          </motion.div>
 
-        <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.12 }}
-          variants={staggerContainer}
-          className="grid gap-6 md:grid-cols-2"
-        >
-          {coreVentures.map((venture, index) => (
-            <VentureCard key={venture.id} venture={venture} index={index} />
-          ))}
-        </motion.div>
+          <motion.div
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, amount: 0.12 }}
+            variants={staggerContainer}
+            className="grid gap-3 md:grid-cols-2"
+          >
+            {coreVentures.map((venture) => (
+              <VentureCard key={venture.id} venture={venture} />
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
