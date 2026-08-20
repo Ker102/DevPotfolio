@@ -5,6 +5,7 @@ import { DefaultChatTransport } from 'ai';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, Send, ChevronDown, ChevronUp, Search, Cpu, CheckCircle2 } from 'lucide-react';
 import { useRef, useEffect, useState } from 'react';
+import { getLeadSubmissionStatus } from '@/lib/intake-lead';
 
 // Debug logging - appears in browser console (F12)
 const DEBUG_PREFIX = '[Kaelux Intake]';
@@ -94,6 +95,7 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
     });
 
     const isLoading = status === 'streaming' || status === 'submitted';
+    const leadSubmissionStatus = getLeadSubmissionStatus(messages);
 
     // Auto-send initial message from query param
     useEffect(() => {
@@ -181,6 +183,10 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
 
     // Render collapsible tool sections
     const renderToolPart = (part: { type: string; state?: string; input?: unknown; output?: unknown }) => {
+        if (part.type === 'tool-submitLead') {
+            return null;
+        }
+
         const toolState = part.state;
 
         if (toolState === 'input-streaming' || toolState === 'input-available') {
@@ -325,6 +331,22 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                             </div>
                         </motion.div>
 
+                        {leadSubmissionStatus === 'sending' ? (
+                            <p className="mt-4 px-6 text-xs text-amber-300">
+                                Sending your contact context to Kaelux…
+                            </p>
+                        ) : null}
+                        {leadSubmissionStatus === 'sent' ? (
+                            <p className="mt-4 px-6 text-xs text-emerald-300">
+                                Contact context sent successfully.
+                            </p>
+                        ) : null}
+                        {leadSubmissionStatus === 'failed' ? (
+                            <p className="mt-4 px-6 text-xs text-rose-300">
+                                Delivery failed. Please use the contact form below.
+                            </p>
+                        ) : null}
+
                         {/* Loading Indicator */}
                         {isLoading && (
                             <motion.div
@@ -374,6 +396,9 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                                 {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                             </motion.button>
                         </div>
+                        <p className="mt-3 text-center text-[10px] leading-4 text-zinc-600">
+                            Contact details you share may be emailed to Kaelux for follow-up.
+                        </p>
                     </form>
                 </div>
             </div>

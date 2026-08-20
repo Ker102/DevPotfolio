@@ -12,6 +12,7 @@ import {
     useTransform,
 } from "framer-motion";
 import { ArrowRight, Send } from "lucide-react";
+import { getLeadSubmissionStatus } from "@/lib/intake-lead";
 
 const quickPrompts = [
     "What is Kaelux researching?",
@@ -32,6 +33,7 @@ export default function DiagnoserCTA() {
         transport: new DefaultChatTransport({ api: "/api/chat" }),
     });
     const isLoading = status === "streaming" || status === "submitted";
+    const leadSubmissionStatus = getLeadSubmissionStatus(messages);
 
     const latestAssistantText = useMemo(() => {
         for (let i = messages.length - 1; i >= 0; i -= 1) {
@@ -287,8 +289,26 @@ export default function DiagnoserCTA() {
                                         Connection interrupted. Your input is still available; submit again to retry.
                                     </p>
                                 )}
+                                {leadSubmissionStatus === "sending" ? (
+                                    <p className="mt-3 text-center font-mono text-[11px] text-amber-300">
+                                        Sending your contact context to Kaelux…
+                                    </p>
+                                ) : null}
+                                {leadSubmissionStatus === "sent" ? (
+                                    <p className="mt-3 text-center font-mono text-[11px] text-emerald-300">
+                                        Contact context sent successfully.
+                                    </p>
+                                ) : null}
+                                {leadSubmissionStatus === "failed" ? (
+                                    <p className="mt-3 text-center font-mono text-[11px] text-rose-300">
+                                        Delivery failed. Please use the contact form below.
+                                    </p>
+                                ) : null}
                                 <p className="text-[11px] text-zinc-600 mt-3 text-center tracking-widest uppercase font-mono">
                                     Press Enter for a quick route
+                                </p>
+                                <p className="mt-2 text-center text-[10px] leading-4 text-zinc-600">
+                                    Contact details you share may be emailed to Kaelux for follow-up.
                                 </p>
                             </form>
                         </div>

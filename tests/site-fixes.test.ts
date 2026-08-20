@@ -30,3 +30,14 @@ test("chat uses current Groq model and exposes validated lead submission", async
   assert.match(source, /reasoningEffort:\s*"none"/);
   assert.match(source, /parallelToolCalls:\s*false/);
 });
+
+test("both chat clients disclose conversational contact delivery", async () => {
+  for (const path of [
+    "components/sections/DiagnoserCTA.tsx",
+    "components/diagnostic/DiagnosticChat.tsx",
+  ]) {
+    const source = await read(path);
+    assert.match(source, /Contact details you share may be emailed to Kaelux for follow-up\./);
+    assert.match(source, /getLeadSubmissionStatus/);
+  }
+});
