@@ -425,7 +425,7 @@ export default function Hero() {
                         className="flex items-center justify-center opacity-0"
                     >
                         <Image
-                            src="/hero-title.png"
+                            src="/hero-title-ventures.png"
                             alt="Where Research Becomes Ventures."
                             width={900}
                             height={120}
