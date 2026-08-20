@@ -58,7 +58,7 @@ export default function Contact() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const fieldClassName =
-    "w-full border border-white/15 bg-[#080809] px-4 py-3 text-white outline-none transition-colors placeholder:text-white/30 hover:border-white/25 focus:border-white/50 focus:ring-1 focus:ring-white/20";
+    "w-full border border-white/15 bg-[#080809] px-4 py-3 text-white outline-none transition-colors placeholder:text-white/30 hover:border-white/25 focus:border-white/50 focus:ring-1 focus:ring-white/20 motion-reduce:transition-none";
   const revealTransition = reduceMotion
     ? { duration: 0 }
     : { duration: 0.55, ease: [0.16, 1, 0.3, 1] as const };
@@ -139,7 +139,7 @@ export default function Contact() {
                       ? { duration: 0 }
                       : {
                           duration: 0.45,
-                          delay: index * 0.055,
+                          delay: 0.16 + index * 0.055,
                           ease: [0.16, 1, 0.3, 1],
                         }
                   }
@@ -149,19 +149,19 @@ export default function Contact() {
                 >
                   <channel.icon
                     aria-hidden="true"
-                    className="h-4 w-4 text-white/50 transition-colors group-hover:text-white"
+                    className="h-4 w-4 text-white/50 transition-colors group-hover:text-white motion-reduce:transition-none"
                   />
                   <span>
                     <span className="block text-sm font-semibold text-white">
                       {channel.name}
                     </span>
-                    <span className="mt-1 block text-xs text-white/45">
+                    <span className="mt-1 block text-xs text-white/50">
                       {channel.label}
                     </span>
                   </span>
                   <FaArrowRight
                     aria-hidden="true"
-                    className="h-3.5 w-3.5 text-white/35 transition-colors group-hover:text-white"
+                    className="h-3.5 w-3.5 text-white/35 transition-colors group-hover:text-white motion-reduce:transition-none"
                   />
                 </motion.a>
               ))}
@@ -187,7 +187,7 @@ export default function Contact() {
             transition={
               reduceMotion
                 ? { duration: 0 }
-                : { ...revealTransition, delay: 0.12 }
+                : { ...revealTransition, delay: 0.78 }
             }
             className="border border-white/15 bg-[#0d0d0f] p-6 md:p-8 lg:p-10"
           >
@@ -333,7 +333,7 @@ export default function Contact() {
                     whileHover={reduceMotion ? undefined : { y: -2 }}
                     whileTap={reduceMotion ? undefined : { y: 0 }}
                     disabled={isSubmitting}
-                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap border border-white bg-white px-8 py-4 text-base font-semibold text-black transition-colors hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="inline-flex items-center justify-center gap-2 whitespace-nowrap border border-white bg-white px-8 py-4 text-base font-semibold text-black transition-colors hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-60 motion-reduce:transition-none"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                     <FaArrowRight aria-hidden="true" className="h-4 w-4" />
@@ -341,7 +341,7 @@ export default function Contact() {
 
                   <Link
                     href="/pricing"
-                    className="whitespace-nowrap border border-white/20 px-6 py-4 text-center text-base font-medium text-white/65 transition-colors hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                    className="whitespace-nowrap border border-white/20 px-6 py-4 text-center text-base font-medium text-white/65 transition-colors hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 motion-reduce:transition-none"
                   >
                     Engagements
                   </Link>
@@ -362,7 +362,7 @@ export default function Contact() {
           }
           className="mt-24 border-t border-white/15 pt-8 text-center"
         >
-          <p className="text-sm text-white/40">
+          <p className="text-sm text-white/50">
             © {new Date().getFullYear()} Kaelux. All rights reserved.
           </p>
         </motion.footer>

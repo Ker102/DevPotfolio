@@ -92,6 +92,26 @@ test("contact uses the sharp editorial split while preserving behavior", async (
   assert.match(source, /useReducedMotion/);
   assert.doesNotMatch(source, /bg-gradient|bg-clip-text|blur-xl/);
   assert.doesNotMatch(source, /rounded-(?:2xl|3xl)/);
+  assert.doesNotMatch(
+    source,
+    /text-white\/(?:40|45)/,
+    "small contact and footer text must meet WCAG AA contrast",
+  );
+  assert.equal(
+    (source.match(/transition-colors/g) ?? []).length,
+    (source.match(/motion-reduce:transition-none/g) ?? []).length,
+    "contact color transitions must stop for reduced-motion users",
+  );
+  assert.match(
+    source,
+    /delay: 0\.16 \+ index \* 0\.055/,
+    "contact channels must follow the heading reveal",
+  );
+  assert.match(
+    source,
+    /\{ \.\.\.revealTransition, delay: 0\.78 \}/,
+    "the form workspace must follow the channel stagger",
+  );
   assert.equal(
     (source.match(/rounded-full/g) ?? []).length,
     2,
