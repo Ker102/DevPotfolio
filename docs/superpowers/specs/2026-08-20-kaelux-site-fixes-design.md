@@ -42,9 +42,9 @@ The email should include:
 - company, if supplied;
 - inquiry type;
 - a concise structured summary;
-- relevant conversational context without internal prompts or system data.
+- a model-produced summary of relevant conversational context without the raw transcript, internal prompts, or system data.
 
-The flow must guard against duplicate delivery during the same conversation. After success, the agent clearly tells the visitor that the context was sent and that Kaelux can reply by email. If delivery fails, it reports a recoverable error and points the visitor to the standard contact form without claiming success.
+The flow must guard against duplicate delivery during the same conversation. A successful submission result remains in the client-provided message history; the API checks that history and disables or rejects further submission attempts for that conversation. After success, the agent clearly tells the visitor that the context was sent and that Kaelux can reply by email. If delivery fails, it reports a recoverable error and points the visitor to the standard contact form without claiming success.
 
 ## Hero Copy
 
