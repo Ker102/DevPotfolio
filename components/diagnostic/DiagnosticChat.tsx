@@ -7,15 +7,6 @@ import { Loader2, Send, ChevronDown, ChevronUp, Search, Cpu, CheckCircle2 } from
 import { useRef, useEffect, useState } from 'react';
 import { getLeadSubmissionStatus } from '@/lib/intake-lead';
 
-// Debug logging - appears in browser console (F12)
-const DEBUG_PREFIX = '[Kaelux Intake]';
-const debug = {
-    message: (content: string) => console.log(`${DEBUG_PREFIX} Message:`, content),
-    toolCall: (toolName: string, input?: unknown) => console.log(`${DEBUG_PREFIX} Tool Call:`, toolName, input),
-    toolResult: (toolName: string, output?: unknown) => console.log(`${DEBUG_PREFIX} Tool Result:`, toolName, output),
-    error: (content: string) => console.error(`${DEBUG_PREFIX} Error:`, content),
-};
-
 interface CollapsibleSectionProps {
     title: string;
     icon: React.ReactNode;
@@ -100,36 +91,10 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
     // Auto-send initial message from query param
     useEffect(() => {
         if (initialMessage && !hasSentInitial && status === 'ready') {
-            debug.message(`User initial: ${initialMessage}`);
             sendMessage({ text: initialMessage });
             setHasSentInitial(true);
         }
     }, [initialMessage, hasSentInitial, status, sendMessage]);
-
-    // Log messages for debugging (console only)
-    useEffect(() => {
-        if (messages.length > 0) {
-            const lastMsg = messages[messages.length - 1];
-
-            if (lastMsg.role === 'user') {
-                debug.message(`User: ${getMessageText(lastMsg)}`);
-            } else if (lastMsg.role === 'assistant') {
-                debug.message(`Agent: ${getMessageText(lastMsg).substring(0, 150)}...`);
-            }
-
-            // Log tool calls
-            const toolParts = getToolParts(lastMsg);
-            toolParts.forEach(part => {
-                const typedPart = part as { type: string; state?: string; toolName?: string; input?: unknown; output?: unknown };
-                if (typedPart.state === 'input-available') {
-                    debug.toolCall(typedPart.toolName || 'unknown', typedPart.input);
-                }
-                if (typedPart.state === 'output-available') {
-                    debug.toolResult(typedPart.toolName || 'unknown', typedPart.output);
-                }
-            });
-        }
-    }, [messages]);
 
     // Auto-scroll to bottom
     useEffect(() => {
@@ -139,7 +104,6 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (input.trim() && !isLoading) {
-            debug.message(`User submitting: ${input}`);
             if (error) {
                 clearError();
             }
@@ -343,7 +307,10 @@ export function DiagnosticChat({ initialMessage = '' }: DiagnosticChatProps) {
                         ) : null}
                         {leadSubmissionStatus === 'failed' ? (
                             <p className="mt-4 px-6 text-xs text-rose-300">
-                                Delivery failed. Please use the contact form below.
+                                Delivery failed. Please use the{' '}
+                                <a href="/#contact" className="underline underline-offset-2 hover:text-rose-200">
+                                    contact form
+                                </a>.
                             </p>
                         ) : null}
 

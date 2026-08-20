@@ -53,6 +53,10 @@ export function hasSuccessfulLeadSubmission(messages: readonly MessageWithParts[
   }));
 }
 
+export function hasLeadSubmissionAttempt(messages: readonly MessageWithParts[]) {
+  return messages.some(message => (message.parts ?? []).some(part => Boolean(asLeadToolPart(part))));
+}
+
 export type LeadSubmissionStatus = "idle" | "sending" | "sent" | "failed";
 
 export function getLeadSubmissionStatus(

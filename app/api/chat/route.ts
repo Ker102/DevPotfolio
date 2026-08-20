@@ -5,7 +5,7 @@ import { streamText, convertToModelMessages, stepCountIs, tool, UIMessage } from
 import { createGroq, type GroqLanguageModelOptions } from '@ai-sdk/groq';
 import { generateEmbedding, queryKnowledgeBase } from '@/lib/tools';
 import { checkRateLimit, getClientIP, rateLimitResponse } from '@/lib/rate-limiter';
-import { hasSuccessfulLeadSubmission, intakeLeadSchema, toContactPayload } from '@/lib/intake-lead';
+import { hasLeadSubmissionAttempt, intakeLeadSchema, toContactPayload } from '@/lib/intake-lead';
 import { deliverContactEmail } from '@/lib/server/contact-email';
 
 // Node.js runtime (NOT edge) - enables TCP connections to Redis Cloud
@@ -142,7 +142,8 @@ export async function POST(req: Request) {
 
         // Prepare system prompt with RAG context
         const systemPrompt = SYSTEM_PROMPT.replace('{rag_context}', ragContext);
-        let leadSubmitted = hasSuccessfulLeadSubmission(messages);
+        let leadSubmissionAttempted = hasLeadSubmissionAttempt(messages);
+        const intakeIdempotencyKey = `kaelux-intake/${messages[0]?.id ?? crypto.randomUUID()}`;
 
         // Stream response from the Kaelux intake agent.
         const result = streamText({
@@ -160,8 +161,8 @@ export async function POST(req: Request) {
                 submitLead: tool({
                     description: "Email a complete, qualified visitor inquiry to Kaelux. Use once only after collecting name, email, inquiry type, and useful context.",
                     inputSchema: intakeLeadSchema,
-                    execute: async (lead, { toolCallId }) => {
-                        if (leadSubmitted) {
+                    execute: async (lead) => {
+                        if (leadSubmissionAttempted) {
                             return {
                                 ok: false as const,
                                 error: "This conversation was already sent.",
@@ -169,8 +170,9 @@ export async function POST(req: Request) {
                             };
                         }
 
+                        leadSubmissionAttempted = true;
                         const delivery = await deliverContactEmail(toContactPayload(lead), {
-                            idempotencyKey: `kaelux-intake/${toolCallId}`,
+                            idempotencyKey: intakeIdempotencyKey,
                         });
 
                         if (!delivery.ok) {
@@ -181,7 +183,6 @@ export async function POST(req: Request) {
                             };
                         }
 
-                        leadSubmitted = true;
                         return {
                             ok: true as const,
                             message: "Lead sent to Kaelux successfully.",

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import {
   getLeadSubmissionStatus,
+  hasLeadSubmissionAttempt,
   hasSuccessfulLeadSubmission,
   intakeLeadSchema,
   toContactPayload,
@@ -47,4 +48,22 @@ test("successful tool history blocks another submission", () => {
   assert.equal(getLeadSubmissionStatus(messages), "sent");
   assert.equal(hasSuccessfulLeadSubmission([]), false);
   assert.equal(getLeadSubmissionStatus([]), "idle");
+});
+
+test("a failed tool attempt also blocks another automatic submission", () => {
+  const messages = [{
+    id: "1",
+    role: "assistant",
+    parts: [{
+      type: "tool-submitLead",
+      toolCallId: "call_1",
+      state: "output-available",
+      input: {},
+      output: { ok: false },
+    }],
+  }] as never;
+
+  assert.equal(hasLeadSubmissionAttempt(messages), true);
+  assert.equal(hasSuccessfulLeadSubmission(messages), false);
+  assert.equal(hasLeadSubmissionAttempt([]), false);
 });

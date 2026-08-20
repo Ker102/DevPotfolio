@@ -41,3 +41,9 @@ test("both chat clients disclose conversational contact delivery", async () => {
     assert.match(source, /getLeadSubmissionStatus/);
   }
 });
+
+test("standalone intake failures link to contact without logging lead details", async () => {
+  const source = await read("components/diagnostic/DiagnosticChat.tsx");
+  assert.match(source, /href="\/#contact"/);
+  assert.doesNotMatch(source, /debug\.message|debug\.toolCall|debug\.toolResult/);
+});
