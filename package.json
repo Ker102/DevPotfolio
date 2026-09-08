@@ -11,12 +11,12 @@
     "test:focused": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
-    "@ai-sdk/groq": "^3.0.42",
-    "@ai-sdk/react": "^3.0.210",
+    "@ai-sdk/groq": "^3.0.64",
+    "@ai-sdk/react": "^3.0.280",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "@types/three": "^0.185.1",
-    "ai": "^6.0.1",
+    "ai": "^6.0.277",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.2",
