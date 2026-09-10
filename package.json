@@ -11,7 +11,7 @@
     "test:focused": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
-    "@ai-sdk/groq": "^3.0.42",
+    "@ai-sdk/groq": "^4.0.28",
     "@ai-sdk/react": "^3.0.210",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
